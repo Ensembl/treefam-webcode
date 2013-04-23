@@ -1,0 +1,184 @@
+[%
+# header.tt
+# jt6 200670326 WTSI
+#
+# the page header for all main TreeFam pages.
+#
+# $Id: header.tt,v 1.8 2009-06-09 12:22:33 jt6 Exp $
+
+# the names for the links in the page
+navNames = { 
+  home   = "HOME",
+  search = "SEARCH",
+  browse = "BROWSE",
+  download    = "DOWNLOAD",
+  #blog   = "BLOG",
+  help   = "HELP"
+  about   = "ABOUT"
+ };
+
+# the URIs for the links
+navLinks = {
+  home   = c.uri_for( "/" ),
+  search = c.uri_for( "/search" ),
+  browse = c.uri_for( "/browse" ),
+  #ftp    = "ftp://ftp.sanger.ac.uk/pub/treefam/release-8.0/MySQL/",
+  download    = c.uri_for( "/download" ),
+  #blog   = "http://xfam.wordpress.com/",
+  help   = c.uri_for( "/help" )
+  about   = c.uri_for( "/about" )
+};
+
+# the order of the items in the navbar - these are the keys for the two
+# hashes above
+navItems = [ "home", "search", "browse", "download", "help" , "about"];
+#navItems = [ "home", "search", "browse", "ftp", "blog", "help" ];
+
+# the base URL for static content
+staticUri = c.uri_for( "/static" );
+sharedUri = c.uri_for( "/shared" );
+-%]
+
+<!-- header starts here -->
+
+<body class="level2">
+<div class="headerdiv" id="headerdiv">
+  <div class="header">
+    <div id="global-masthead" class="masthead grid_24">
+      <!--This has to be one line and no newline characters-->
+      <a href="//www.ebi.ac.uk/" title="Go to the EMBL-EBI homepage"><img src="//www.ebi.ac.uk/web_guidelines/images/logos/EMBL-EBI/EMBL_EBI_Logo_white.png" alt="EMBL European Bioinformatics Institute" /></a>
+
+      <div class="nav">
+        <ul id="global-nav">
+          <!-- set active class as appropriate -->
+          <li class="first active" id="services"><a href="//www.ebi.ac.uk/services">Services</a></li>
+          <li id="research"><a href="//www.ebi.ac.uk/research">Research</a></li>
+          <li id="training"><a href="//www.ebi.ac.uk/training">Training</a></li>
+          <li id="industry"><a href="//www.ebi.ac.uk/industry">Industry</a></li>
+          <li id="about" class="last"><a href="//www.ebi.ac.uk/about">About us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="local-masthead" class="masthead grid_24">
+
+      <!-- local-title -->
+      <!-- NB: for additional title style patterns, see http://frontier.ebi.ac.uk/web/style/patterns -->
+      <div class="grid_12 alpha omega" id="local-title">
+	<p><a href="/" title=""><img src="/static/images/treefam_logo.png" alt="" width="" height="" class="logo" /></a></p>
+        <!--<h1><a href="[service-url]" title="Back to [service-name] homepage">[service-name]</a></h1> -->
+      </div>
+     <div class="grid_12 omega">
+	<form id="local-search" name="local-search" action="[% c.uri_for( "/search/front_search" ) %]"  method="get" onsubmit="if (jQuery('#local-searchbox').val()=='') {alert('Please enter your search items.'); document.prompt.id.focus(); document.prompt.id.select(); return false;}">
+		<fieldset>
+			<label>
+			<input type="text" name="query" id="local-searchbox" onblur="displaySearchTreeFam(this);" onfocus="hideSearchTreeFam(this);" class="validate"/>
+			</label>
+		<input type="submit" name="submit" value="Search" class="submit" />
+		<br><font size="1">Examples: <a href="#" onclick="jQuery('#local-searchbox').val('BRCA2');">BRCA2</a>,<a href="#" onclick="jQuery('#local-searchbox').val('ENSP00000428982');">ENSP00000428982</a>, or do a <a href="/search#tabview=tab2">sequence search</a></font>
+		</fieldset>
+	</form>
+</div>
+
+ 
+      <!-- /local-title -->
+	<nav>
+		<ul class="grid_24" id="local-nav">
+		<li class="first"><a href="/" title="">Home</a></li>
+		<li><a href="/search" title="Search the TreeFam database">Search</a></li>
+		<li><a href="/browse" title="Browse the TreeFam database">Browse</a></li>
+		<li><a href="/download" title="Download TreeFam data">Download</a></li>
+		<li><a href="/help" title="Get help">Help</a></li>
+		<li class="last"><a href="/forum" title="">Forum</a></li>
+		</ul>
+	</nav>
+
+
+    </div>
+  </div>
+</div>
+
+</header>
+<!-- <div id="content" role="main" class="grid_24 clearfix"> -->
+<!-- Suggested layout containers -->
+<!-- <nav>
+<p id="breadcrumbs">
+<a href="#" title="">[Section title]</a> &gt; Item 3
+</p>
+</nav>
+-->
+
+<!-- End suggested layout containers -->
+<div class="cleaner"><!-- empty --></div>
+
+<!-- 
+<div id="getsat-widget-2751"></div>
+<script type="text/javascript" src="https://loader.engage.gsfn.us/loader.js"></script>
+<script type="text/javascript">
+if (typeof GSFN !== "undefined") { GSFN.loadWidget(2751,{"containerId":"getsat-widget-2751"}); }
+</script>
+-->
+<script type="text/javascript">
+
+jQuery('.validate').each(function(){
+     if(jQuery(this).val() == ''){
+          return false; 
+     }
+ });
+ 
+/*  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/zThpAkU0hpAXjLkdo57J6w.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })(); */
+</script>
+</div>
+
+
+<script type="text/javascript">
+  // <![CDATA[
+  jQuery("siteSearchField").value = "keyword search";
+  var ssCleared = false;
+  // ]]>
+
+
+</script>
+
+[%- # dump out the name of the host that served the file -%] 
+[%- # <!-- {% c.config.server_name %} / {% c.config.server_pid %} --> -%]
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31160966-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- header end -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

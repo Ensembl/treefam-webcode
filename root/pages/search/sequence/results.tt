@@ -1,0 +1,242 @@
+[%
+# searchResults.tt
+# jt6 20070414 WTSI
+#
+# show the results of a sequence search
+#
+# $Id: results.tt,v 1.22 2009-10-28 14:06:56 jt6 Exp $
+
+META title    = "Sequence search results";
+META fullPage = 1;
+
+USE wrap;
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+#requirements.js.push( "prototype.js" );
+requirements.js.push( "jquery/jquery-1.8.2.min.js" );
+requirements.js.push( "hmmerscan.js" );
+
+#requirements.js.push( "results.js" );
+#requirements.js.push( "ejs_production.js" );
+# requirements.js.push( "ejs_fulljslint.js" );
+
+requirements.css.push( "search.css" );
+requirements.css.push( "buttons.css" );
+
+#requirements.js.push( "updater.js" );
+#requirements.js.push( "tablekit.js" );
+
+requirements.css.push( "job.css" );
+requirements.cssIe.push( "job_ie.css" );
+
+#-------------------------------------------------------------------------------
+
+IF rest.error -%]
+<div class="whitebg">
+
+  <div class="key">
+    
+    <h2>Sequence search results</h2>
+
+    <div id="errors">
+      <h1>Job failure</h1>
+      <p>There was a problem with your search job:</p>
+      <ul>
+        <li>[% rest.error %]</li>
+      </ul>
+			<p>
+				You can <a href="[% c.uri_for( '/search' ) %]">return</a>
+				to the search form to try searching again.
+			</p>
+    </div>
+
+  </div>
+  </div>
+
+  [% RETURN;
+
+END; # of "IF rest.error" -%]
+<div class="whitebg">
+
+<div class="key">
+	
+	<h2>Sequence search results</h2>
+
+	<div id="loading"
+       class="hideOC">
+		<p>
+			Your results will appear in this page when the search is complete; please
+			don&apos;t close this window or browse to a different page until the
+			results are loaded. 
+		</p>
+		<div id="loadingMessage">
+			<img id="spinner" class="loadingBar"
+					 alt="Searching..."
+					 src="[% c.uri_for( "/shared/images/blank.gif" ) %]" />
+					 <br />
+		</div>
+	</div>
+
+	<div id="summary" 
+       class="showOC"
+       style="display: none">
+	
+		<p id="hitCount"></p>
+
+    [%- resultsURI = c.uri_for( "/search/sequence", jobId ) %]
+    <!--<div class="yes">
+      <p>
+        You can bookmark
+        <a href="[% resultsURI %]">
+          this URL</a> to retrieve your results later:
+      </p>
+      <div class="centreWrapper">
+        <p id="resultsURL"
+           class="plainSequence centredBlock">[% resultsURI | html %]</p>
+      </div> -->
+      <div class="cleaner"><!-- empty --></div>
+    <!-- </div> -->
+	<!--
+    <div class="both">
+      <p>
+        This is the sequence that you submitted:
+      </p>
+      <div class="centreWrapper">
+        <p id="plainSequence" 
+           class="plainSequence centredBlock"></p>
+      </div> -->
+      <div class="cleaner"><!-- empty --></div>
+    <!--</div> -->
+    <div id="error_div" class="fail error" style="display: none">
+      <h2>Search failure</h2>
+      <p>There was a problem running your job:</p>
+      <ul>
+        <li id="errors">Error message</li>
+      </ul>
+      <p>
+        Errors are most commonly caused by problems with the search sequence,
+        but if you feel that there is a problem with the server itself, please
+        let us know via our help desk.
+      </p>
+    </div>
+
+		<p>
+			<a href="[% c.uri_for( '/search', { tab = 'searchSequenceBlock' } ) %]">Return</a>
+			to the search form to look for TreeFam families on a new sequence.
+		</p>
+
+	</div><!-- end of "summary" --> 
+	
+</div><!-- end of "key" -->
+
+<div id="resultsHeader" 
+     class="yes"
+     style="display: none">
+
+  <h2>TreeFam matches</h2>
+
+  <!--<div id="dlLinks">
+    <span>Download your results as:</span>
+    <a href="[% c.uri_for( '/search/sequence_get_results', jobId, { to_file = '1','content-type' = 'application/json' } ) %]"
+       title="HMMer output">long output</a> 
+  </div> -->
+
+  <div align="center" id="results"></div>
+
+</div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+		console.log("about to start job");
+		var status;
+		var values  = new Object();
+		var seq = "[% seq %]";
+		console.log("submitting Job...");
+		var job_id = submit_job({seq : seq});
+      	
+
+
+	//	var job_id = "hmmer_hmmscan-R20130322-110646-0336-89187840-hx";
+		//values["job_id"] = job_id;
+		//console.log("Job submitted...");
+		//console.log("Checking status");
+		//check_status({job_id : job_id});	
+		
+		//console.log("getting results");
+		var result_type = "tblout";
+		
+		//get_results({job_id : job_id, result_type : result_type});	
+		get_results({job_id : job_id, result_type : result_type});	
+	jQuery('#families_table').html( '<table cellpadding="0" cellspacing="0" border="5" class="display" id="families_data"></table>' );
+		        jQuery('#families_data').dataTable( {
+						"sAjaxSource": "/search/families4keyword/"+ to_search,
+						"bProcessing": true,
+						"oLanguage": {
+							 "sSearch": "Search",
+							"sProcessing": '<img alt="Spinner" src="/static/images/ajax-loader.gif" />',
+							"sEmptyTable": "Nothing found!"
+						},
+						"fnServerData": function ( sSource, aoData, fnCallback ) {
+							    jQuery.getJSON( sSource, aoData, function (json) {
+									fnCallback(json)
+								} );
+								var no_of_families = [% no_family_hits %]
+								console.log("well, we have "+ no_of_families+" families")
+								jQuery("#no_families").text(no_of_families)
+						    },
+						"sAjaxDataProp": "",
+						"aLengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]],
+							"aoColumnDefs": [
+										    {
+											      "fnRender": function ( o, val ) {
+							                            return '<a href=/family/' + o.aData.gtName + '>' + o.aData.gtName + '</a>'		    ;
+													    },
+												  "aTargets": [ 0 ]
+											 },
+							    {
+											      "fnRender": function ( o, val ) {
+													    return o.aData.symbol;
+													    },
+												  "aTargets": [ 1 ]
+											 }, 
+							     {
+											      "fnRender": function ( o, val ) {
+													    return o.aData.name;
+													    },
+												  "aTargets": [ 2 ]
+											 },],
+							     "aoColumns": [
+							    { "sTitle": "TreeFam family", sDefaultContent: "n/a" },
+							    { "sTitle": "Symbol", sDefaultContent: "n/a" },
+							    { "sTitle": "Description", sDefaultContent: "n/a" }],	
+					}); 
+	
+		console.log("well, this is the end");
+		return;
+		
+			
+	});
+  </script>
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

@@ -1,0 +1,260 @@
+<script language="JavaScript">
+<!--
+function openWin( dataurl, configfile ) {
+
+  aptx_window = open("", "aptx_window", "width=300,height=150,status=no,toolbar=no,menubar=no,resizable=yes");
+
+  // open document for further output
+  aptx_window.document.open();
+
+  // create document
+  aptx_window.document.writeln( "<HTML>" );
+  aptx_window.document.writeln( "<HEAD>" );
+  aptx_window.document.writeln( "<TITLE>Archaeopteryx Launchpad</TITLE>" );
+  aptx_window.document.writeln( "</HEAD>" );
+  aptx_window.document.writeln( "<BODY TEXT=\"#FFFFFF\" BGCOLOR=\"#000000\">" );
+  aptx_window.document.writeln( "<FONT FACE=\"HELVETICA,ARIAL\">" );
+  aptx_window.document.writeln( "<CENTER>" );
+  aptx_window.document.writeln( "<B>Please do not close this window as long as you want to use Archaeopteryx.</B>" ); 
+  aptx_window.document.write( "<APPLET ARCHIVE=\"archaeopteryx_applets.jar\"" );
+  aptx_window.document.write( " CODEBASE=\"http://phylosoft.org/forester/download\"" );
+  aptx_window.document.write( " CODE=\"org.forester.archaeopteryx.ArchaeopteryxA.class\"" );
+  aptx_window.document.write( " NAME=\"ArchaeopteryxA\"" );
+  aptx_window.document.write( " WIDTH=\"220\" HEIGHT=\"60\"" );
+  aptx_window.document.writeln( " ALT=\"ArchaeopteryxA is not working on your system (requires at least Sun Java 1.5)!\">" ); 
+  aptx_window.document.writeln( "<PARAM NAME=\"url_of_tree_to_load\" VALUE=\"" + dataurl + "\">" );
+  aptx_window.document.writeln( "<PARAM NAME=\"config_file\" VALUE=\"" + configfile + "\">" );
+  aptx_window.document.writeln( "<PARAM NAME=\"java_arguments\" VALUE=\"-Xmx512m\">" );
+  aptx_window.document.writeln( "Your browser is completely ignoring the &lt;APPLET&gt; tag!" );
+  aptx_window.document.writeln( "</APPLET>" ); aptx_window.document.writeln( "</CENTER>" );
+  aptx_window.document.writeln( "</BODY>" );
+  aptx_window.document.writeln( "</HTML>" );
+
+  // close the document - (not the window!)
+  aptx_window.document.close();
+}
+
+
+
+
+function openWinSigned( dataurl, configfile ) {
+
+  aptx_window = open("", "aptx_window", "width=300,height=150,status=no,toolbar=no,menubar=no,resizable=yes");
+
+  // open document for further output
+  aptx_window.document.open();
+
+  // create document
+  aptx_window.document.writeln( "<HTML>" );
+  aptx_window.document.writeln( "<HEAD>" );
+  aptx_window.document.writeln( "<TITLE>Archaeopteryx Launchpad</TITLE>" );
+  aptx_window.document.writeln( "</HEAD>" );
+  aptx_window.document.writeln( "<BODY TEXT=\"#FFFFFF\" BGCOLOR=\"#000000\">" );
+  aptx_window.document.writeln( "<FONT FACE=\"HELVETICA,ARIAL\">" );
+  aptx_window.document.writeln( "<CENTER>" );
+  aptx_window.document.writeln( "<B>Please do not close this window as long as you want to use Archaeopteryx.</B>" ); 
+  aptx_window.document.write( "<APPLET ARCHIVE=\"archaeopteryx_applets.jar\"" );
+  aptx_window.document.write( " CODEBASE=\"http://phylosoft.org/forester/download/signed_applets\"" );
+  aptx_window.document.write( " CODE=\"org.forester.archaeopteryx.ArchaeopteryxA.class\"" );
+  aptx_window.document.write( " NAME=\"ArchaeopteryxA\"" );
+  aptx_window.document.write( " WIDTH=\"220\" HEIGHT=\"60\"" );
+  aptx_window.document.writeln( " ALT=\"ArchaeopteryxA is not working on your system (requires at least Sun Java 1.5)!\">" ); 
+  aptx_window.document.writeln( "<PARAM NAME=\"url_of_tree_to_load\" VALUE=\"" + dataurl + "\">" );
+  aptx_window.document.writeln( "<PARAM NAME=\"config_file\" VALUE=\"" + configfile + "\">" );
+  aptx_window.document.writeln( "<PARAM NAME=\"java_arguments\" VALUE=\"-Xmx512m\">" );
+  aptx_window.document.writeln( "Your browser is completely ignoring the &lt;APPLET&gt; tag!" );
+  aptx_window.document.writeln( "</APPLET>" ); aptx_window.document.writeln( "</CENTER>" );
+  aptx_window.document.writeln( "</BODY>" );
+  aptx_window.document.writeln( "</HTML>" );
+
+  // close the document - (not the window!)
+  aptx_window.document.close();
+}
+
+
+
+
+
+
+// -->
+</script>
+
+
+
+<link rel="stylesheet" type="text/css" href="../../forester/css/style_forester.css">
+
+
+
+
+
+  <h1>ArchaeopteryxA examples</h1>
+
+  <p>
+   Archaeopteryx requires at least Java 1.5 (also called Java 5). To determine which version of Java your web browser is using, please visit 
+     [<a href="http://www.javatester.org/version.html" target="_blank">javatester</a>] or [<a href="http://www.java.com/en/download/help/testvm.xml" target="_blank">java.com</a>].
+   <br>
+     Java is available for download at
+     [<a href="http://java.com/download/index.jsp" target="_blank">java.com</a>]
+ </p>
+  <br>
+  <p>   
+  <table border="0" cellpadding="1" cellspacing="0">
+
+   <tr>
+      <td>
+        <a href="#" 
+             onClick="openWin( 'http://www.phylosoft.org/archaeopteryx/examples/data/apaf.xml', 
+                                          'http://www.phylosoft.org/archaeopteryx/examples/config/_aptx_configuration_file_gene_tree_da' )">
+          Apaf-1 (domains)
+        </a>
+      </td>
+      <td>
+        Tree represented by data in 
+        <a href="http://www.phyloxml.org/">phyloXML</a> 
+        format. See input data <a href="data/apaf.xml">here</a>.
+      </td>
+    </tr>
+
+  <tr><td>&nbsp;</td></tr>
+
+    <tr>
+      <td>
+        <a href="#" 
+             onClick="openWin( 'http://www.phylosoft.org/archaeopteryx/examples/data/bcl_2.xml', 
+                                          'http://www.phylosoft.org/archaeopteryx/examples/config/_aptx_configuration_file_gene_tree' )">
+          Bcl-2
+        </a>
+      </td>
+      <td>
+        Tree represented by data in 
+        <a href="http://www.phyloxml.org/">phyloXML</a> 
+        format. See input data <a href="data/bcl_2.xml">here</a>.
+      </td>
+    </tr>
+
+
+     <tr><td>&nbsp;</td></tr>
+
+    <tr>
+      <td>
+        <a href="#" 
+             onClick="openWin( 'http://www.phylosoft.org/archaeopteryx/examples/data/apaf_bcl2.xml', 
+                                          'http://www.phylosoft.org/archaeopteryx/examples/config/_aptx_configuration_file_gene_tree_tab' )">
+          Apaf-1 & Bcl-2 (tabbed display)
+        </a>
+      </td>
+      <td>
+        Tree represented by data in 
+        <a href="http://www.phyloxml.org/">phyloXML</a> 
+        format. See input data <a href="data/apaf_bcl2.xml">here</a>.
+      </td>
+    </tr>
+
+
+
+
+
+   <tr><td>&nbsp;</td></tr>
+
+    <tr>
+      <td>
+        <a href="#" 
+             onClick="openWin( 'http://www.phylosoft.org/archaeopteryx/examples/data/ncbi_taxonomy_mollusca.xml.zip', 
+                                          'http://www.phylosoft.org/archaeopteryx/examples/config/_aptx_configuration_file_tax' )">
+          Mollusk taxonomy
+        </a>
+      </td>
+      <td>
+        Mollusca from the NCBI taxonomy (5632 external nodes)  
+        in <a href="http://www.phyloxml.org/">phyloXML</a> 
+        format. Download input data <a href="data/ncbi_taxonomy_mollusca.xml.zip"> here</a> (this is a zip file, from which Archaeopteryx extracts one phyloXML formatted entry). Due to 
+        the limited amount of default memory allocated for Java applets, a "Java heap space error" might occur. To correct this, increase the Java applet memory limit with 
+        the -Xmx command line option, as described  <a href="http://www.duckware.com/pmvr/howtoincreaseappletmemory.html">here</a>.
+
+      </td>
+    </tr>
+
+<tr><td>&nbsp;</td></tr>
+
+
+ <tr>
+      <td>
+        <a href="#" 
+             onClick="openWinSigned( 'http://www.phylosoft.org/archaeopteryx/examples/data/holomycota_images.xml', 
+                                                       'http://www.phylosoft.org/archaeopteryx/examples/config/_aptx_configuration_file_images' )">
+           Species images
+        </a>
+      </td>
+      <td>
+        Holomycota (fungi and nucleariids) with species images (all images are downloaded "on the fly" from various sources and are thus copyrighted) 
+        in <a href="http://www.phyloxml.org/">phyloXML</a> 
+        format. Download input data <a href="data/holomycota_images.xml"> here</a>.
+
+      </td>
+    </tr>
+
+
+<tr><td>&nbsp;</td></tr>
+
+
+
+   <tr>
+      <td>
+        <a href="#" 
+             onClick="openWin( 'http://www.phylosoft.org/archaeopteryx/examples/data/tol_cnidaria_2461.xml.zip', 
+                                          'http://www.phylosoft.org/archaeopteryx/examples/config/_aptx_configuration_file_tax' )">
+          Cnidaria from ToL project
+        </a>
+      </td>
+      <td>
+        Cnidarian phylogeny from the <a href="http://tolweb.org/">Tree of Life project</a>. This has been converted from the ToL Response XML format to <a href="http://www.phyloxml.org/">phyloXML</a>.
+        Download input data <a href="data/tol_cnidaria_2461.xml.zip">here</a>.  Download the original data <a href="data/tol_cnidaria_2461.tol.zip">here</a> (Archaeopteryx can read the ToL Response XML format).
+      </td>
+    </tr>
+    
+    <tr><td>&nbsp;</td></tr>
+    
+    <tr>
+      <td>
+        <a href="#" 
+            onClick="openWin( 'http://www.phylosoft.org/archaeopteryx/examples/data/demo3_colors.xml', 
+                                         'http://www.phylosoft.org/archaeopteryx/examples/config/_aptx_configuration_file_gene_tree_plus' )">
+            A colored phylogeny
+        </a>
+      </td>
+      <td>
+        Tree with species and branch coloring. See input data 
+        <a href="data/demo3_colors.xml">here</a> (<a href="http://www.phyloxml.org/">phyloXML</a>).
+      </td>
+    </tr>
+    
+    <tr><td>&nbsp;</td></tr>
+    
+    <tr>
+      <td>
+        <a href="#" 
+            onClick="openWin( 'http://www.phylosoft.org/archaeopteryx/examples/data/demo4_widths.xml', 
+                                         'http://www.phylosoft.org/archaeopteryx/examples/config/_aptx_configuration_file_gene_tree_plus' )">
+            Variable branch widths
+        </a>
+      </td>
+      <td>
+        Tree with variable branch widths. See input data
+        <a href="data/demo4_widths.xml">here</a> (<a href="http://www.phyloxml.org/">phyloXML</a>).
+      </td>
+    </tr>
+    
+    <tr><td>&nbsp;</td></tr>
+    
+   
+    
+    <tr><td>&nbsp;</td></tr>
+    
+</table>
+</p>
+
+<p class = noleftmargin>Last updated 2011.01.13</p>
+
+
+<p class = right><a href = "http://www.phylosoft.org/archaeopteryx/">Archaeopteryx</a> | <a href = "http://www.phylosoft.org">www.phylosoft.org</a></p>
+

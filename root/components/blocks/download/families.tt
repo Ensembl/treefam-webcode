@@ -1,0 +1,160 @@
+[%
+# index.tt
+# jt6 20070426 WTSI
+# 
+# build a "browse" index page
+#
+# $Id: index.tt,v 1.6 2008-12-08 13:01:06 jt6 Exp $
+
+#META title = "Browse TreeFam";
+#META fullPage = 1;
+
+#USE dumper;
+requirements.css.push( "buttons.css" );
+# For tables
+requirements.js.push( "d3/d3.v2.min.js" );
+requirements.js.push( "d3/d3.layout.js" );
+requirements.css.push( "demo_table.css" );
+requirements.css.push( "TreeFamily.css" );
+requirements.js.push( "jquery/jquery-1.6.2.min.js" );
+requirements.js.push( "jquery/jquery.tipsy.js" );
+requirements.js.push( "jquery/jquery.dataTables.min.js" );
+
+## Zoom
+#requirements.css.push( "ajax_zoom/jquery.fancybox-1.2.6.css" );
+#requirements.css.push( "ajax_zoom/axZm.css" );
+#requirements.js.push( "ajax_zoom/jquery.axZm.js" );
+#requirements.js.push( "ajax_zoom/jquery.fancybox-1.2.6.js" );
+
+# Fancybox
+#requirements.css.push( "fancybox/jquery.fancybox.css" );
+#requirements.js.push( "fancyapps/lib/jquery.mousewheel-3.0.6.pack.js" );
+#requirements.js.push( "fancyapps/source/jquery.fancybox.pack.js" );
+
+#requirements.js.push( "magiczoom/magiczoom.js" );
+#requirements.css.push( "magiczoom/magiczoom.css" );
+# For Tree
+#requirements.js.push( "d3/d3.min.js" );
+#requirements.js.push( "d3/d3.v2.js" );
+#requirements.js.push( "d3/d3.time.js" );
+#requirements.js.push( "jquery/jquery-1.6.2.min.js" );
+#requirements.js.push( "d3/d3.layout.js" );
+requirements.css.push( "speciestree.css" );
+
+requirements.js.push( "featuredimagezoomer/featuredimagezoomer.js" );
+
+requirements.js.push( "prototype.js" );
+requirements.js.push( "sharedFunctions.js" );
+
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+
+#-------------------------------------------------------------------------------
+
+-%]
+
+<div class="block" id="browseFamiliesBlock">
+  <div class="handle">
+    <h1>TreeFam families</h1>
+  </div>
+  <div class="blockContent">
+                <div id="families_table"  style="display:table;">
+		<script type="text/javascript" charset="utf-8">
+					 jQuery.noConflict(); 
+				/* Data set - can contain whatever information you want */
+			jQuery(document).ready(function() {           
+					var fDataSet= 
+					jQuery('#families_table').html( '<table cellpadding="0" align="left" cellspacing="0" border="2" class="display" id="families_data"></table>' );
+					jQuery('#families_data').dataTable( {
+						//"bJQueryUI": true,
+						"aaData": fDataSet,
+						"aLengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]],
+						"sPaginationType": "full_numbers",
+					"sAjaxSource": "/static/trees/treefam9_families.json",
+						"oLanguage": {
+       			 				"sSearch": "Search",
+        						"sProcessing": '<img alt="Spinner" src="/static/images/ajax-loader.gif" />'
+      						},
+						"sAjaxDataProp": "",
+						"aoColumnDefs": [
+						      {
+						              "fnRender": function ( o, val ) {
+							      return '<a href=family/' + o.aData.modelName + '>' + o.aData.modelName + '</a>';
+									        },
+							"aTargets": [ 0 ]
+							},
+							{
+						              "fnRender": function ( o, val ) {
+							        return o.aData.rootTaxon;
+									        },
+								"aTargets": [ 1 ]
+							},							{
+						              "fnRender": function ( o, val ) {
+							        return o.aData.geneCount;
+									        },
+								"aTargets": [ 2 ]
+							},	
+							{
+						              "fnRender": function ( o, val ) {
+							        return o.aData.percentIdentity;
+									        },
+								"aTargets": [ 3 ]
+							}	
+							,	
+							{
+						              "fnRender": function ( o, val ) {
+							        return o.aData.alnLength;
+									        },
+								"aTargets": [ 4 ]
+							},
+							{
+						              "fnRender": function ( o, val ) {
+							        return '<a href=family/' + o.aData.hgncSymbol + '>' + o.aData.hgncSymbol + '</a>';
+									        },
+							"aTargets": [ 5 ]
+							},
+							{
+						              "fnRender": function ( o, val ) {
+							        return o.aData.description;
+									        },
+								"aTargets": [ 6 ]
+							}],
+						"aoColumns": [
+							{ "sTitle": "ID" , sDefaultContent: "n/a"},
+							{ "sTitle": "tax Distribution", sDefaultContent: "n/a" },
+							{ "sTitle": "No of genes", sDefaultContent: "n/a" },
+							{ "sTitle": "Identity", sDefaultContent: "n/a" },
+							{ "sTitle": "Aln length", sDefaultContent: "n/a" },
+							{ "sTitle": "<img src='static/images/genenames_logo.png' width=40' height='30' >Symbol", sDefaultContent: "n/a" },
+							{ "sTitle": "Description", sDefaultContent: "n/a" },
+						],
+						"aaSorting": [[0,'asc']],
+					} );
+			} );
+			</script>  
+	</div>
+</div>
+</div>
+
+<!-- end of browse index page -->
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/code/!svn/ver/6390/trunk/RfamWeb/lib/RfamWeb/Controller/Search
+END
+Keyword.pm
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/code/!svn/ver/4514/trunk/RfamWeb/lib/RfamWeb/Controller/Search/Keyword.pm
+END
+Sequence.pm
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/code/!svn/ver/4604/trunk/RfamWeb/lib/RfamWeb/Controller/Search/Sequence.pm
+END
+Jump.pm
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/code/!svn/ver/4513/trunk/RfamWeb/lib/RfamWeb/Controller/Search/Jump.pm
+END
+Taxonomy.pm
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/code/!svn/ver/6390/trunk/RfamWeb/lib/RfamWeb/Controller/Search/Taxonomy.pm
+END
+Batch.pm
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/code/!svn/ver/3065/trunk/RfamWeb/lib/RfamWeb/Controller/Search/Batch.pm
+END
+Type.pm
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/code/!svn/ver/4515/trunk/RfamWeb/lib/RfamWeb/Controller/Search/Type.pm
+END

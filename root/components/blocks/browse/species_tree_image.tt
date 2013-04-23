@@ -1,0 +1,82 @@
+[%
+# summary.tt
+# jt6 20060925 WTSI
+# 
+# build the summary block for the help pages
+#
+# $Id: summary.tt,v 1.4 2009-06-10 10:46:27 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+#-------------------------------------------------------------------------------
+
+%]
+
+    
+<!-- start summary block -->
+<div class="block" id="browseSpeciesTreeImageBlock">
+	<div class="handle">
+		<h1>Species Tree</h1>
+	</div>
+	<div class="blockContent">
+		This is the species tree used in the current TreeFam release. Click image to view full size<br>
+        	<h3>Legend</h3>    
+	<div class="slidingDiv">
+			   <table>
+				<tr align="center">
+					<td><div class="rectangularBase rect_outgroup"></div>Outgroup (3 seqs)</td>
+					<td><div class="rectangularBase rect_protostomia"></div>Protostomia (2 seqs)</td>
+					<td><div class="rectangularBase rect_deuterostomia"></div>Deuterostomia (2 seqs)</td>
+					<td><div class="rectangularBase rect_mammals"></div>Mammals (4 seqs)</td>
+					<td><div class="rectangularBase rect_primates"></div>Primates (4 seqs)</td>
+				</tr>
+				<tr align="center"><td><div class="circleBase circle1"></div></td><td><div class="circleBase circle2"></div></td></tr>
+				<tr align="center"><td>gene present</td><td>gene absent</td></td>
+				</table>
+                </div>
+		<div id="Summ_left" class="Summ_column" >
+        		 <div  class="Summ_box" style="display:table;">
+				<a href="[% c.uri_for('/static/trees/species_tree_large.png') %]"> <img id="speciestree" border="0" src="[% c.uri_for('/static/trees/species_tree_large.png') %]" style="width:400px;height:800px" /></a>
+			</div>
+	</div>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        /*jQuery('#speciestree').addimagezoom({
+   		//options
+			zoomrange: [1, 7],
+			magnifiersize: [400,600],
+			magnifierpos: 'right',
+			cursorshade: true,
+ 		}) */
+	console.log("added imagezoom")
+		//jQuery(".slidingDiv").hide();
+        	jQuery(".show_hide").show();
+        	jQuery('.show_hide').click(function(){
+            		jQuery(".slidingDiv").slideToggle();
+            		jQuery(this).text(jQuery(this).text() == 'Show legend' ? 'Hide legend' : 'Show legend');
+        	});
+
+});
+ 
+</script><!-- end summary block -->
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk), 
+	Jennifer Daub (jd7@sanger.ac.uk) and Paul Gardner (pg5@sanger.ac.uk)
+
+	This is free software; you can redistribute it and/or modify it under
+	the terms of the GNU General Public License as published by the Free Software
+	Foundation; either version 2 of the License, or (at your option) any later
+	version.
+
+	This program is distributed in the hope that it will be useful, but WITHOUT
+	ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+	FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+	details.
+
+	You should have received a copy of the GNU General Public License along with
+	this program. If not, see <http://www.gnu.org/licenses/>.
+	-%]

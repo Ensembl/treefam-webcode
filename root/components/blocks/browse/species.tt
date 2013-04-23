@@ -1,0 +1,97 @@
+[%
+# index.tt
+# jt6 20070426 WTSI
+# 
+# build a "browse" index page
+#
+# $Id: index.tt,v 1.6 2008-12-08 13:01:06 jt6 Exp $
+
+#META title = "Browse TreeFam";
+#META fullPage = 1;
+
+#USE dumper;
+
+
+-%]
+
+        
+<!-- start of browse index page -->
+<div class="block" id="browseSpeciesBlock">
+  <div class="handle">
+    <h1>TreeFam species</h1>
+  </div>
+  <div class="blockContent">
+                <div id="genomes_table"  style="display:table;">
+			 <script type="text/javascript" charset="utf-8">
+					jQuery.noConflict();
+	/* Data set - can contain whatever information you want */
+					jQuery(document).ready(function() {           
+					
+					jQuery('#genomes_table').html( '<table cellpadding="0" align="left" cellspacing="0" border="1" class="display" id="genomes_data"></table>' );
+					jQuery('#genomes_data').dataTable( {
+	                "aLengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+					//"aaData": gDataSet,
+					"sAjaxSource": "/static/trees/treefam_species9.json",
+					"oLanguage": {
+       			 				"sSearch": "Search",
+        						"sProcessing": '<img alt="Spinner" src="/static/images/ajax-loader.gif" />'
+      					},
+					"sAjaxDataProp": "",
+					"aoColumnDefs": [
+						      {
+						              "fnRender": function ( o, val ) {
+							        		var image_path = "/static/images/species_pictures/species_files/"            
+										var image_file  = image_path+ '/thumb_' + o.aData.name + '.png'
+									//console.log(image_file)	
+										return '<a href="/genome/'+ o.aData.id +'"><img width="21px" height="21px" src="'+ image_file +'"/> '+ o.aData.name+' </a>';
+									    },
+							          "aTargets": [ 0 ]
+							 },
+                             {
+						              "fnRender": function ( o, val ) {
+										return o.aData.common_name ;
+									    },
+							          "aTargets": [ 1 ]
+							 },
+						    {
+						              "fnRender": function ( o, val ) {
+							                    return o.aData.classification ;
+									    },
+							          "aTargets": [ 2 ]
+							 },],
+					"aoColumns": [
+						{ "sTitle": "Species", sDefaultContent: "n/a" },
+						{ "sTitle": "Common name", sDefaultContent: "n/a" },
+						{ "sTitle": "Classification", sDefaultContent: "n/a" },
+					],
+					"aaSorting": [[0,'asc']],
+					"iDisplayLength": 20,
+					"sPaginationType": "full_numbers",
+					"bDeferRender": true,
+				} );    
+			} );
+			</script>  
+   </div>	 
+   </div>	 
+</div>
+
+<!-- end of browse index page -->
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

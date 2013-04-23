@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/code/!svn/ver/6903/trunk/RfamWeb/lib/RfamWeb/Roles/Search
+END
+Keyword.pm
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/code/!svn/ver/6903/trunk/RfamWeb/lib/RfamWeb/Roles/Search/Keyword.pm
+END
+SingleSequence.pm
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/code/!svn/ver/6903/trunk/RfamWeb/lib/RfamWeb/Roles/Search/SingleSequence.pm
+END
+Taxonomy.pm
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/code/!svn/ver/6903/trunk/RfamWeb/lib/RfamWeb/Roles/Search/Taxonomy.pm
+END
+Batch.pm
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/code/!svn/ver/6903/trunk/RfamWeb/lib/RfamWeb/Roles/Search/Batch.pm
+END
+Type.pm
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/code/!svn/ver/6903/trunk/RfamWeb/lib/RfamWeb/Roles/Search/Type.pm
+END

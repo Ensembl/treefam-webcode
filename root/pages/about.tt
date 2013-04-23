@@ -1,0 +1,60 @@
+[%
+# about.tt
+# jt6 20091027 WTSI
+#
+# An about page...
+#
+# $Id: about.tt,v 1.1 2009-10-29 14:36:40 jt6 Exp $
+PROCESS "components/require.tt";
+requirements.css.push( "buttons.css" );
+requirements.js.push( "jquery/jquery-1.8.2.min.js" );
+META fullPage = 1;
+META title = "About";
+-%]
+
+<div id="about">
+
+  <h1>About TreeFam</h1>
+  
+  <p>
+    TreeFam version [% relData.pfam_release %] was produced at the <a class="ext" 
+      href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a> and is mainly based on 
+    <a class="ext" href="http://www.ensembl.org/">EnsEMBL</a> and <a class="ext" href="http://www.ensemblgenomes.org/">EnsEMBL genomes</a> release 
+    [% relData.swiss_prot_version %].
+  </p>
+  <p>
+    TreeFam is freely available under the
+    <a class="ext" href="http://creativecommons.org/publicdomain/zero/1.0/">
+      Creative Commons Zero</a> (&quot;CC0&quot;) licence. We comply with the 
+    <a class="ext" href="http://www.sanger.ac.uk/datasharing/">data sharing guidelines</a>
+    of the Wellcome Trust Sanger Institute.
+  </p>
+  <p> 
+  TreeFam is based on the <a class="ext" href="http://www.ensembl.org/info/docs/compara/homology_method.html">Ensembl Compara GeneTree pipeline</a> using <a class="ext" href="http://hmmer.janelia.org/">HMMER</a>, <a class="ext" href="http://www.tcoffee.org/Projects/mcoffee/">MCoffee</a>, and <a class="ext" href="http://treesoft.sourceforge.net/treebest.shtml">TreeBest<a/>.
+  </p>
+  Join our discussion on 
+<ul>
+	<li><a class="ext" href="http://www.mendeley.com/groups/2810871/treefam/"><img src="http://d1xgx7lp3wi2d0.cloudfront.net/livesite-2012111501/graphics/commonnew/logo-mendeley.png" style="width:90px;height:30px" /></a></li>
+	<li></li>
+	<li></li>
+</ul>
+</div>
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

@@ -1,0 +1,72 @@
+[%
+# index.tt
+# jt6 20070426 WTSI
+# 
+# build a "browse" index page
+#
+# $Id: index.tt,v 1.6 2008-12-08 13:01:06 jt6 Exp $
+
+META title = "Download TreeFam";
+#META fullPage = 1;
+
+#USE dumper;
+
+
+-%]
+
+        
+<!-- start of browse index page -->
+<div class="block" id="DownloadPairwiseBlock">
+  <div class="handle">
+    <h1>Pairwise Homologs</h1>
+  </div>
+  <div class="blockContent">
+ <form action="[% c.uri_for( "/search/pairwiseHomologs" ) %]" method="post"> 
+<h3>Pairwise Homologs</h3>
+      <p>
+    Species A: <select name="first_genome" id="first_species_select">
+      	[% FOREACH genome = genomelist %]
+		[% IF genome == "Homo sapiens" %]
+        	<option id="first_species" selected="selected" value="[% genome %]">[% genome %]</option>
+		[% ELSE %]
+        	<option id="first_species" value="[% genome %]">[% genome %]</option>
+		[% END %]
+	[% END %]
+    	</select>
+        Species B:
+		<select  name="second_genome" id="second_species_select">
+      	[% FOREACH genome = genomelist %]
+		[% IF genome == "Mus musculus" %]
+        	<option id="second_species" selected="selected" value="[% genome %]">
+		[% ELSE %]
+		<option id="second_species" value="[% genome %]">
+		[% END %]
+          		[% genome %]
+        	</option>
+      	[% END %]
+    	</select> 
+   <INPUT type="submit" value="Download" id="pairwise_button">    </p>
+     </form> 
+    </div>	 
+</div>
+
+<!-- end of browse index page -->
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

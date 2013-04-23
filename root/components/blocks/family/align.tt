@@ -1,0 +1,142 @@
+[%
+# align.tt
+# jt6 20060411 WTSI
+#
+# block showing the family alignment.
+#
+# $Id: align.tt,v 1.6 2009-05-06 11:51:01 jd7 Exp $
+alignmentUri = c.uri_for( '/family', acc, 'alignment' );
+requirements.js.push( "canvasXpress.min.js" );
+
+%]
+<!-- start align block -->
+
+<div class="block" id="alignBlock">
+  <div class="handle">
+    <h1>Alignments</h1>
+  </div>
+  <div class="blockContent">
+And here can you view the alignment in Jalview : <p>
+<div id="alignmentActiveContent">
+    <p>
+	  <applet code="jalview.bin.JalviewLite" width="140" height="35" archive="[% c.uri_for( '/static/jalview/jalviewApplet.jar' ) %]">
+							<param name="file" value="[% alignmentUri %]/">
+							<!~~ embed into web site ~~>
+							<!-- <param name="embedded" value="true">  -->
+							<param name="defaultColour" value="Clustal">
+							<param name="wrap" value="true">
+							<param name="showAnnotation" value="false">
+							<param name="windowHeight" value="1000">
+							<param name="windowWidth" value="1000">
+							<param name="showFullId" value="false">
+							<param name="RGB"  value="F2F2FF">
+						<!--	<param name="linkLabel_1" value="SRS">
+							<param name="linkUrl_1" value="http://srs.ebi.ac.uk/srs7bin/cgi-bin/wgetz?-e+[uniprot-all:$SEQUENCE_ID$]+-vn+2">
+							<param name="linkLabel_2" value="Uniprot">
+							<param name="linkUrl_2" value="http://us.expasy.org/cgi-bin/niceprot.pl?$SEQUENCE_ID$"> 
+							<param name="APPLICATION_URL" value="http://www.jalview.org/services/launchApp">
+							<param name="PDBfile" value="1gaq.txt FER1_MAIZE">  -->
+    	</applet> 
+    </div>
+<p>   
+<!--   Here is the alignment in zoomable format: <p>
+<canvas id="canvas" width="800" height="800"></canvas>
+
+<div class="code" id="code-canvas" style="display: none;">
+              <pre>
+              <script type="text/javascript">
+                new CanvasXpress('canvas',
+                                 {tracks: [{
+                                            name: 'Very simple sxample of sequences',
+                                            subtype: 'Protein',
+                                            type: 'sequence',
+                                            data: [{
+                                                    id: 'Reference Sequence',
+                                                    fill: 'rgb(51,255,255)',
+                                                    outline: 'rgb(0,0,0)',
+                                                    dir: 'right',
+                                                    offset: 1,
+                                                    sequence: 'TACGTACGTACGTACGTACGTACGTACGTTACGTACGTACGTACGTACGTACGTACGTTACGTACGTACGTACGTACGTACGTACGTTACGTACGTACGTACGTACGTACGTACGT'
+                                                   }, {
+                                                    id: 'R1-0000-1234',
+                                                    fill: 'rgb(255,255,51)',
+                                                    outline: 'rgb(0,0,0)',
+                                                    dir: 'right',
+                                                    offset: 1,
+                                                    gaps: [[4, 2], [8, 1]],
+                                                    sequence: 'TACGCGTAGTACGTTACGCGTAGTACGTTACGCGTAGTACGTTACGCGTAGTACGTTACGCGTAGTACGTTACGCGTAGTACGTTACGCGTAGTACGTTACGCGTAGTACGT'
+                                                   }, {
+                                                    id: 'R1-0000-2345',
+                                                    fill: 'rgb(255,255,102)',
+                                                    outline: 'rgb(0,0,0)',
+                                                    dir: 'right',
+                                                    offset: 6,
+                                                    gaps: [[3, 1], [10, 1]],
+                                                    sequence: 'ACGACGTACGACGACGACGTACGACGACGACGTACGACGACGACGTACGACGACGACGTACGACGACGACGTACGACGACGACGTACGACGACGACGTACGACGACGACGTACGACG'
+                                                   }, {
+                                                    id: 'R1-0000-3456',
+                                                    fill: 'rgb(255,51,255)',
+                                                    outline: 'rgb(0,0,0)',
+                                                    dir: 'right',
+                                                    offsetLeft: '1',
+                                                    gaps: [[7, 2]],
+                                                    sequence: 'GTACGTATACGTACGTATACGTACGTATACGTACGTATACGTACGTATACGTACGTATACGTACGTATACGTACGTATACGTACGTATACGTACGTATACGTACGTATAC'
+                                                   }, {
+                                                    id: 'R1-0000-4567',
+                                                    fill: 'rgb(255,102,255)',
+                                                    outline: 'rgb(0,0,0)',
+                                                    dir: 'right',
+                                                    offset: 15,
+                                                    gaps: [[5, 1]],
+                                                    sequence: 'CGTACTACGTACGTACTACGTACGTACTACGTACGTACTACGTACGTACTACGTACGTACTACGTACGTACTACGTACGTACTACGTACGTACTACGTA'
+                                                   }, 
+                                                   {id: 'R1-0000-5678',fill: 'rgb(51,255,255)',outline: 'rgb(0,0,0)',dir: 'right',offset: 18,gaps: [[7, 1]],sequence: 'ACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGT'},
+                                                   {id: 'R1-0000-5678',fill: 'rgb(51,255,255)',outline: 'rgb(0,0,0)',dir: 'right',offset: 18,gaps: [[7, 1]],sequence: 'ACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGT'},
+                                                   {id: 'R1-0000-5678',fill: 'rgb(51,255,255)',outline: 'rgb(0,0,0)',dir: 'right',offset: 18,gaps: [[7, 1]],sequence: 'ACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGT'},
+                                                   {id: 'R1-0000-5678',fill: 'rgb(51,255,255)',outline: 'rgb(0,0,0)',dir: 'right',offset: 18,gaps: [[7, 1]],sequence: 'ACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGT'},
+                                                   {id: 'R1-0000-5678',fill: 'rgb(51,255,255)',outline: 'rgb(0,0,0)',dir: 'right',offset: 18,gaps: [[7, 1]],sequence: 'ACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGT'},
+                                                   {id: 'R1-0000-5678',fill: 'rgb(51,255,255)',outline: 'rgb(0,0,0)',dir: 'right',offset: 18,gaps: [[7, 1]],sequence: 'ACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGT'},
+                                                   {id: 'R1-0000-5678',fill: 'rgb(51,255,255)',outline: 'rgb(0,0,0)',dir: 'right',offset: 18,gaps: [[7, 1]],sequence: 'ACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGT'},
+                                                   {id: 'R1-0000-5678',fill: 'rgb(51,255,255)',outline: 'rgb(0,0,0)',dir: 'right',offset: 18,gaps: [[7, 1]],sequence: 'ACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGTACGTACGACGT'},
+                                                   ]
+                                           }]
+                                 },{
+                                  graphType: 'Genome',
+                                  backgroundType: 'gradient',
+                                  backgroundGradient1Color: 'rgb(0,183,217)',
+                                  backgroundGradient2Color: 'rgb(4,112,174)',
+                                  oddColor: 'rgb(220,220,220)',
+                                  evenColor: 'rgb(250,250,250)',
+                                  missingDataColor: 'rgb(220,220,220)',
+                                  setMin: 0,
+                                  setMax: 200,
+                                  maxCols: 20,
+                                  autoAdjust: true,
+                                 });
+                                 </script>
+              </pre>
+            </div>
+ -->  
+ </div>
+</div>
+
+<!-- end of align block -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

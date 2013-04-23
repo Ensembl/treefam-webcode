@@ -1,0 +1,354 @@
+[%
+# phylo.tt
+# jt6 20060515 WTSI
+#
+# block showing the phylogenetic tree for a family
+#
+# $Id: phylo.tt,v 1.7 2008-07-25 13:30:45 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+alignmentUri = c.uri_for( '/family', acc, 'alignment' );
+
+%]
+<div class="block" id="treeBlock">
+  <div class="handle">
+    <h1>Tree & Alignment</h1>
+  </div>
+  <div class="blockContent">
+	<div id="summaryTabs" class="nestedTabs yui-navset">
+      		<ul id="summaryTabsNav" class="yui-nav">
+	      		<!-- <li >
+            			<a href="#intTree">Gene Tree of <i>[% treefam.symbol %]</i> (interactive)</a>
+          		</li>
+	      		<li class="selected">
+            			<a href="#staticTree">Gene tree of <i>[% treefam.symbol %]</i> (static)</a>
+			</li> -->
+	      		<li >
+            			<a href="#d3Tree">Gene tree of <i>[% treefam.symbol %]</i> (d3)</a>
+          		</li>
+			<li>
+            			<a href="#Alignment">Alignment</a>
+          		</li>
+      			<li>
+            			<a id="alignmentTab" href="#AlignmentBioJs">Alignment (BioJs)</a>
+          		</li>  	</ul>
+      		<div class="yui-content">
+        		<div id="intTree">
+		<!-- 	 style="width: 700px ;  margin-left: auto ; margin-right: auto ;"> -->
+				<h3>Trace the evolution of <i>[% treefam.symbol %]</i></h3>
+						[%  
+						    config_url =  c.uri_for( "/static/archaeopteryx/_aptx_configuration_file.txt") ;
+						    code_base =  c.uri_for( "/static/archaeopteryx/") ;
+						%] 
+				   <!-- <div id="Summ_left" class="Summ_column">
+					<div id="one" class="Summ_box" style="width:90%" > -->
+					     [% IF summaryData.numSequences > 100 %]
+							[% 
+								tree_url = c.uri_for( "/family", acc, "tree/newick" ); 
+								config_url =  c.uri_for( "/static/archaeopteryx/_aptx_configuration_file_newick.txt") ; 
+							%]
+							Sorry, there are too many sequences to show the fully annotated tree in <a href="http://www.phylosoft.org/archaeopteryx/">archaeopteryx</a>.<br>
+							You can either <ul>
+								<li>click  
+									<a href="#" 
+										onClick="openWin( '[% tree_url%]', '[% config_url%]', '[% code_base%]')">
+											<img src="[% c.uri_for('/static/images/logos/tree.png') %]"/>
+									</a> to view the tree without annotations in archaeopteryx</li>
+								<li><a href="[% c.uri_for( "/family", acc, "tree/phyloxml" ) %]"> download </a> the tree in phyloxml format and view it using the command line version of <a href="http://www.phylosoft.org/archaeopteryx/">archaeopteryx</a></li>
+						</ul>
+					     [% ELSE %]
+							[% tree_url =c.uri_for( "/family", acc, "tree/phyloxml" ); %]
+							Click <a href="#" onClick="openWin( '[% tree_url%]', '[% config_url%]', '[% code_base%]')"><img src="[% c.uri_for('/static/images/logos/tree.png') %]"/></a> to view gene tree in <a href="http://www.phylosoft.org/archaeopteryx/">archaeopteryx</a>. 
+					     [% END %]
+				  <!--   </div>
+			     </div> -->
+			  </div>
+        		<div id="staticTree">
+				<!--  style="width: 700px ;  margin-left: auto ; margin-right: auto ;"> -->
+
+				 <h3>Trace the evolution of <i>[% treefam.symbol %]</i></h3>
+						    [% 
+							directory  = "${c.uri_for( '/static/trees/gene_tree_images')}"
+							gene_tree_large = "${directory}/${acc}_gene_tree_large.png" 
+							gene_tree_small = "${directory}/${acc}_gene_tree_small.png" 
+							gene_tree_tiny = "${directory}/${acc}_gene_tree_tiny.png" 
+							gene_tree_circular_large = "${directory}/${acc}_gene_tree_large.png" 
+							gene_tree_circular_small = "${directory}/${acc}_gene_tree_small.png" 
+							species_tree_directory  = "${c.uri_for( '/static/trees/species_tree_images')}"
+							species_tree_large = "${species_tree_directory}/${acc}_species_tree_large.png" 
+							species_tree_small = "${species_tree_directory}/${acc}_species_tree_small.png" 
+							species_tree_tiny = "${species_tree_directory}/${acc}_species_tree_tiny.png" 
+							species_tree_circular_large = "${species_tree_directory}/${acc}_species_tree_circular_large.png" 
+							species_tree_circular_small = "${species_tree_directory}/${acc}_species_tree_circular_small.png" 
+							species_tree_circular_tiny = "${species_tree_directory}/${acc}_species_tree_circular_tiny.png" 
+							missing_image = "/static/images/tree_Not_generated_yet.png" 
+						    %]
+						    <font size="1">Click image to view full screen.</font><br>
+			<a href="[% gene_tree_large %]" ><img src="[% gene_tree_small %]" alt="colline toscane" title="Gene tree of [% treefam.symbol %]" alt="Gene tree image missing"   onError="this.src='[% missing_image %]';" /></a>
+<!-- <div id="zoom01" class="zoom">
+				<img id="genetreeimage" src="[% gene_tree_large %]" alt="colline toscane" title="Colline Toscane (SI) - Italy - 2007 &copy; Giovanni Battista Lenoci" alt="Gene tree image missing"   onError="this.src='[% missing_image %]';" />
+			</div> 
+			<br style="clear:both" />-->
+			<!-- <p><img id="image1" border="0" src="http://i44.tinypic.com/9ie1ib.jpg" style="width:300px;height:225px" /><p>	 -->
+			<!--  <input class="submit"  type="submit" id="activate_zoom" name="activate_zoom" value="Activate zoom" /> -->
+			<!-- 
+				<div id="genetreeholder" onmouseout="clearzoom()">
+				<img id="image1" border="0" src="[% gene_tree_large %]" style="width:600px;height:600px" />
+				</div>
+			-->
+			</div>  <!-- static tree div-->  
+			<div id="d3Tree">
+         <STYLE type="text/css">
+text {
+	font-size:10px;
+}
+path.link {
+  fill: white;
+//  stroke: black;
+//  stroke-width: 2.5px;
+}
+circle {
+  fill: white;
+  stroke: black;
+  stroke-width: 7.5px;
+}
+ </STYLE>
+	
+
+<table border=1>
+  <tr>
+	  <th>internal node names:</th> 
+	  <th>species images:</th> 
+	  <th>IDs/Taxa:</th> 
+	  <th>domains:</th> 
+	  <th>taxonomic coloring:</th> 
+	  <th>evol_events:</th> 
+  </tr>
+  <tr>
+  	<td>
+			<a href="#" onclick="hide_internal_text();return false">hide</a>/
+			<a href="#" onclick="show_internal_text();return false">(all</a>
+			<a href="#" onclick="show_internal_text_important();return false">/selected)</a>
+			
+		</td>
+  	<td>
+				<a href="#" onclick="hide_images();return false">hide</a>/
+				<a href="#" onclick="show_images();return false">show</a><br>
+			</td>
+  	<td>
+
+				<a href="#" onclick="show_ids();return false">IDs</a>/
+				<a href="#" onclick="show_taxa();return false">taxa</a><br>
+			</td>
+  	<td>
+				<a href="#" onclick="hide_domains();return false">hide</a>/
+				<a href="#" onclick="show_domains();return false">show</a><br>
+			</td>
+  	<td>
+				<a href="#" onclick="hide_taxon_colors();return false">hide</a>/
+				<a href="#" onclick="show_taxon_colors();return false">show</a><br>
+			</td>
+  	<td>
+				<a href="#" onclick="hide_evol_nodes();return false">hide</a>/
+				<a href="#" onclick="show_evol_nodes();return false">show</a>
+			</td>
+	</tr>
+	</table>			
+<div style="width:80%;"> 
+	  <div style="float:left;   border: 3px grey solid; overflow=auto" id="tree"></div>
+</div>
+		</div>
+
+        		<div id="Alignment">
+                    <div id="Summ_left" class="Summ_column">
+                        <div id="one" class="Summ_box" style="width:90%">
+                		Click <applet code="jalview.bin.JalviewLite" width="140" height="35" archive="[% c.uri_for( '/static/jalview/jalviewApplet.jar' ) %]">
+							<param name="file" value="[% alignmentUri %]/">
+							<!~~ embed into web site ~~>
+							<!-- <param name="embedded" value="true">  -->
+							<param name="defaultColour" value="Clustal">
+							<param name="wrap" value="true">
+							<param name="showAnnotation" value="false">
+							<param name="windowHeight" value="1000">
+							<param name="windowWidth" value="1000">
+							<param name="showFullId" value="false">
+							<param name="RGB"  value="F2F2FF">
+						<!--	<param name="linkLabel_1" value="SRS">
+							<param name="linkUrl_1" value="http://srs.ebi.ac.uk/srs7bin/cgi-bin/wgetz?-e+[uniprot-all:$SEQUENCE_ID$]+-vn+2">
+							<param name="linkLabel_2" value="Uniprot">
+							<param name="linkUrl_2" value="http://us.expasy.org/cgi-bin/niceprot.pl?$SEQUENCE_ID$"> 
+							<param name="APPLICATION_URL" value="http://www.jalview.org/services/launchApp">
+							<param name="PDBfile" value="1gaq.txt FER1_MAIZE">  -->
+				    	</applet> to view the gene alignment in Jalview.
+				</div>
+				</div>
+				</div>
+        		<div id="AlignmentBioJS">
+				<div id="alignment-container" class="span12 biojs-widget biojs-widget-alignment"></div>
+			</div>
+		</div> <!-- yui content div -->
+	<div id="svgCanvas"> </div>
+	<script type="text/javascript">
+		var tabView = new YAHOO.widget.TabView('summaryTabs');
+		var widget_width = jQuery( '#structure-container' ).width();	
+		create_alignment_widget = function( container_id ) {
+
+			var aln_widget = new Biojs.Alignment({
+				target:             container_id,
+				proxyUrl:           '',
+				height:             300,
+				width:              300,
+				fastaUrl:           "[% c.uri_for( "/family",acc, "alignment") %]",
+				//scoreconsUrl:       funfamScoreconsUrl,
+				//scoreconsColor:     '#' + scoreconsHighlightColor,
+				//scoreconsCutoff:    scoreconsHighlightCutoff,
+			});
+			
+			return aln_widget;
+		}
+		var max_treefam_members = 200;
+		jQuery('#alignmentTab').click( function() {
+						console.log("getting alignment");
+			if ( [% summaryData.numSequences %] <= max_treefam_members ) {
+				alignment_widget = create_alignment_widget( 'alignment-container' );
+			}
+			else { 
+				console.log("too many sequences.")	
+			}
+		})
+	      	jQuery("#genetreeholder").mouseover(function() {
+			// Get the two selected IDS
+	
+		jQuery('#image1').addimagezoom({
+			//options
+				zoomrange: [3, 16],
+				magnifiersize: [600,600],
+				magnifierpos: 'right',
+				cursorshade: true,
+				largeimage: "[% gene_tree_large %]"//<-- No comma after last option!
+			})
+		console.log("added imagezoom")
+	 });
+function clearzoom()	{
+		jQuery('#image1').removeClass();
+		console.log("removed zoom in clearzoom")
+	jQuery('div').removeClass('zoomtracker')
+}
+         /* jQuery("#genetreeholder").mouseout(function() {
+			// Get the two selected IDS
+	
+		jQuery('#image1').removeClass();
+		console.log("removed zoom")
+	 }); */
+// axzoom
+	//jQuery('.demo').axzoomer({
+   	// 'maxZoom':100,
+	//});
+	//var img = document.getElementById("genetreeimage");
+	//var width = img.clientWidth;
+	//var height = img.clientHeight;
+	//console.log("sizes are: "+width+" and "+height)	
+	//jQuery(function() {
+	//			console.log("in function gzoom")
+	//		jQuery("#zoom01").gzoom({
+	//					sW: 900,
+	//					sH: 600,
+	//					lW: 2200,
+	//					lH: 6050,
+	//					lighbox : true
+	//		});
+	//		console.log("after function")
+	//	})
+	</script>
+		<script language="JavaScript">
+			<!--
+			function openWin( dataurl, configfile, codebase ) {
+  				aptx_window = open("", "aptx_window", "width=300,height=150,status=no,toolbar=no,menubar=no,resizable=yes");
+  				// open document for further output
+  				aptx_window.document.open();
+				console.log(dataurl);
+				console.log(configfile);
+  				// create document
+  				aptx_window.document.writeln( "<HTML>" );
+  				aptx_window.document.writeln( "<HEAD>" );
+  				aptx_window.document.writeln( "<TITLE>Archaeopteryx Launchpad</TITLE>" );
+  				aptx_window.document.writeln( "</HEAD>" );
+  				aptx_window.document.writeln( "<BODY TEXT=\"#FFFFFF\" BGCOLOR=\"#000000\">" );
+  				aptx_window.document.writeln( "<FONT FACE=\"HELVETICA,ARIAL\">" );
+  				aptx_window.document.writeln( "<CENTER>" );
+  				aptx_window.document.writeln( "<B>Please do not close this window as long as you want to use Archaeopteryx.</B>" ); 
+  				aptx_window.document.write( "<APPLET ARCHIVE=\"archaeopteryx_applets.jar\"" );
+  				aptx_window.document.write( " CODEBASE=\"" + codebase + "\"" );
+  				aptx_window.document.write( " CODE=\"org.forester.archaeopteryx.ArchaeopteryxA.class\"" );
+  				aptx_window.document.write( " NAME=\"ArchaeopteryxA\"" );
+  				aptx_window.document.write( " WIDTH=\"220\" HEIGHT=\"60\"" );
+  				aptx_window.document.writeln( " ALT=\"ArchaeopteryxA is not working on your system (requires at least Sun Java 1.5)!\">" ); 
+  				aptx_window.document.writeln( "<PARAM NAME=\"url_of_tree_to_load\" VALUE=\"" + dataurl + "\">" );
+  				aptx_window.document.writeln( "<PARAM NAME=\"config_file\" VALUE=\"" + configfile + "\">" );
+  				aptx_window.document.writeln( "<PARAM NAME=\"java_arguments\" VALUE=\"-Xmx512m\">" );
+  				aptx_window.document.writeln( "Your browser is completely ignoring the &lt;APPLET&gt; tag!" );
+  				aptx_window.document.writeln( "</APPLET>" ); 
+  				aptx_window.document.writeln( "</CENTER>" );
+  				aptx_window.document.writeln( "</BODY>" );
+  				aptx_window.document.writeln( "</HTML>" );
+
+  				// close the document - (not the window!)
+  				aptx_window.document.close();
+			}
+			function openWinSigned( dataurl, configfile , codebase) {
+  				aptx_window = open("", "aptx_window", "width=300,height=150,status=no,toolbar=no,menubar=no,resizable=yes");
+  				// open document for further output
+  				aptx_window.document.open();
+  				// create document
+  				aptx_window.document.writeln( "<HTML>" );
+  				aptx_window.document.writeln( "<HEAD>" );
+  				aptx_window.document.writeln( "<TITLE>Archaeopteryx Launchpad</TITLE>" );
+  				aptx_window.document.writeln( "</HEAD>" );
+  				aptx_window.document.writeln( "<BODY TEXT=\"#FFFFFF\" BGCOLOR=\"#000000\">" );
+  				aptx_window.document.writeln( "<FONT FACE=\"HELVETICA,ARIAL\">" );
+  				aptx_window.document.writeln( "<CENTER>" );
+  				aptx_window.document.writeln( "<B>Please do not close this window as long as you want to use Archaeopteryx.</B>" ); 
+  				aptx_window.document.write( "<APPLET ARCHIVE=\"archaeopteryx_applets.jar\"" );
+  				aptx_window.document.write( " CODEBASE=\"" + codebase + "\"" );
+  				aptx_window.document.write( " CODE=\"org.forester.archaeopteryx.ArchaeopteryxA.class\"" );
+  				aptx_window.document.write( " NAME=\"ArchaeopteryxA\"" );
+  				aptx_window.document.write( " WIDTH=\"220\" HEIGHT=\"60\"" );
+  				aptx_window.document.writeln( " ALT=\"ArchaeopteryxA is not working on your system (requires at least Sun Java 1.5)!\">" ); 
+  				aptx_window.document.writeln( "<PARAM NAME=\"url_of_tree_to_load\" VALUE=\"" + dataurl + "\">" );
+  				aptx_window.document.writeln( "<PARAM NAME=\"config_file\" VALUE=\"" + configfile + "\">" );
+  				aptx_window.document.writeln( "<PARAM NAME=\"java_arguments\" VALUE=\"-Xmx512m\">" );
+  				aptx_window.document.writeln( "Your browser is completely ignoring the &lt;APPLET&gt; tag!" );
+  				aptx_window.document.writeln( "</APPLET>" ); aptx_window.document.writeln( "</CENTER>" );
+  				aptx_window.document.writeln( "</BODY>" );
+  				aptx_window.document.writeln( "</HTML>" );
+		
+  				// close the document - (not the window!)
+  				aptx_window.document.close();
+			}
+		</script>
+
+</div> <!-- summaryTabs -->
+</div> <!-- block content -->
+</div> <!-- treeblock -->
+
+<!-- end of phyloBlock -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

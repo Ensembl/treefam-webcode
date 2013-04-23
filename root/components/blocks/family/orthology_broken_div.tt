@@ -1,0 +1,250 @@
+[%
+# sequences.tt
+# jt6 20081208 WTSI
+#
+# the sequences tab for the family section
+#
+# $Id: sequences.tt,v 1.3 2009-10-08 16:01:48 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+sharedRequirements.js.push( "tablekit.js" );
+
+sharedRequirements.js.push(  "lightbox2.js" );
+
+# BioJS files
+sharedRequirements.js.push(  "biojs/Biojs.js" );
+sharedRequirements.js.push(  "biojs/Biojs.Table.js" );
+sharedRequirements.js.push(  "jquery/jquery-1.4.2.min.js" );
+sharedRequirements.js.push(  "jquery/jquery.dataTables.min.js" );
+
+#sharedRequirements.js.push(  "jquery/jquery-ui-1.8.2.custom.min.js" );
+#sharedRequirements.js.push(  "jquery/jquery.multiselect.min.js" );
+
+
+sharedRequirements.css.push( "lightbox2.css" );
+sharedRequirements.css.push( "biojs.table.css" );
+sharedRequirements.css.push( "jquery-ui-1.8.18.custom.css" );
+#-------------------------------------------------------------------------------
+
+USE String;
+%]
+
+
+<!-- start sequences block -->
+
+<div class="block" id="sequencesBlock">
+  <div class="handle">
+    <h1>Homologs</h1>
+  </div>
+  <div class="blockContent">
+	<p>
+      There are <strong>[% homologs_number %]</strong> homologs in this family.
+    [% IF showAll %]
+      You can <a href="[% c.uri_for( '/family', acc, 'regions' ) %]">download</a>
+      the details of all regions as a tab-delimited file. The table of results 
+      below may be sorted by clicking on the column titles, or restored to the 
+      original order <span class="link" id="sortLink">here</span>. 
+    [% ELSIF showText %]
+      There are too many regions to show in this page, but you can still 
+      <a href="[% c.uri_for('/family', acc, 'regions' ) %]">download</a>
+      the details of all of them as a tab-delimited file.
+    [% ELSE %]
+      There are too many regions to show. If you really need a list of all 
+      regions for this family, please contact us at the address below and we 
+      will do our best to help. 
+    [% END %]
+    </p>
+
+    [% IF homologs.defined %]
+      <table summary="TreeFam regions"
+             id="regionsTable"
+             class="details">
+        <thead>
+          <tr>
+            <th id="indexCol" class="rowNum">Original order</th>
+            <th>Sequence 1</th>
+            <th>Taxon</th>
+            <th>Type </th>
+            <th>Sequence 2</th>
+            <th>Taxon </th>
+          </tr>
+        </thead>
+        <tbody>
+	[% FOREACH homolog = homologs -%] 
+		<tr>      
+ 		<td>[% homolog.member1.stable_id %]</td>
+       		<td>[% homolog.member1.taxon.binomial %]</td>
+       		<td>[% homolog.type %]</td>
+       		<td>[% homolog.member2.taxon.binomial %]</td>
+       		<td>[% homolog.member2.taxon.binomial %]</td>
+        </tr>
+	[% END %]
+	   </tbody>
+      </table>
+    [% END; # of "IF region_rows.defined" %]
+
+<div id="dynamic"></div>
+
+<script type="text/javascript" charset="utf-8">
+			/* Data set - can contain whatever information you want */
+			var aDataSet = [
+				['Trident','Internet Explorer 4.0','Win 95+','4','X'],
+				['Trident','Internet Explorer 5.0','Win 95+','5','C'],
+				['Trident','Internet Explorer 5.5','Win 95+','5.5','A'],
+				['Trident','Internet Explorer 6','Win 98+','6','A'],
+				['Trident','Internet Explorer 7','Win XP SP2+','7','A'],
+				['Trident','AOL browser (AOL desktop)','Win XP','6','A'],
+				['Gecko','Firefox 1.0','Win 98+ / OSX.2+','1.7','A'],
+				['Gecko','Firefox 1.5','Win 98+ / OSX.2+','1.8','A'],
+				['Gecko','Firefox 2.0','Win 98+ / OSX.2+','1.8','A'],
+				['Gecko','Firefox 3.0','Win 2k+ / OSX.3+','1.9','A'],
+				['Gecko','Camino 1.0','OSX.2+','1.8','A'],
+				['Gecko','Camino 1.5','OSX.3+','1.8','A'],
+				['Gecko','Netscape 7.2','Win 95+ / Mac OS 8.6-9.2','1.7','A'],
+				['Gecko','Netscape Browser 8','Win 98SE+','1.7','A'],
+				['Gecko','Netscape Navigator 9','Win 98+ / OSX.2+','1.8','A'],
+				['Gecko','Mozilla 1.0','Win 95+ / OSX.1+',1,'A'],
+				['Gecko','Mozilla 1.1','Win 95+ / OSX.1+',1.1,'A'],
+				['Gecko','Mozilla 1.2','Win 95+ / OSX.1+',1.2,'A'],
+				['Gecko','Mozilla 1.3','Win 95+ / OSX.1+',1.3,'A'],
+				['Gecko','Mozilla 1.4','Win 95+ / OSX.1+',1.4,'A'],
+				['Gecko','Mozilla 1.5','Win 95+ / OSX.1+',1.5,'A'],
+				['Gecko','Mozilla 1.6','Win 95+ / OSX.1+',1.6,'A'],
+				['Gecko','Mozilla 1.7','Win 98+ / OSX.1+',1.7,'A'],
+				['Gecko','Mozilla 1.8','Win 98+ / OSX.1+',1.8,'A'],
+				['Gecko','Seamonkey 1.1','Win 98+ / OSX.2+','1.8','A'],
+				['Gecko','Epiphany 2.20','Gnome','1.8','A'],
+				['Webkit','Safari 1.2','OSX.3','125.5','A'],
+				['Webkit','Safari 1.3','OSX.3','312.8','A'],
+				['Webkit','Safari 2.0','OSX.4+','419.3','A'],
+				['Webkit','Safari 3.0','OSX.4+','522.1','A'],
+				['Webkit','OmniWeb 5.5','OSX.4+','420','A'],
+				['Webkit','iPod Touch / iPhone','iPod','420.1','A'],
+				['Webkit','S60','S60','413','A'],
+				['Presto','Opera 7.0','Win 95+ / OSX.1+','-','A'],
+				['Presto','Opera 7.5','Win 95+ / OSX.2+','-','A'],
+				['Presto','Opera 8.0','Win 95+ / OSX.2+','-','A'],
+				['Presto','Opera 8.5','Win 95+ / OSX.2+','-','A'],
+				['Presto','Opera 9.0','Win 95+ / OSX.3+','-','A'],
+				['Presto','Opera 9.2','Win 88+ / OSX.3+','-','A'],
+				['Presto','Opera 9.5','Win 88+ / OSX.3+','-','A'],
+				['Presto','Opera for Wii','Wii','-','A'],
+				['Presto','Nokia N800','N800','-','A'],
+				['Presto','Nintendo DS browser','Nintendo DS','8.5','C/A<sup>1</sup>'],
+				['KHTML','Konqureror 3.1','KDE 3.1','3.1','C'],
+				['KHTML','Konqureror 3.3','KDE 3.3','3.3','A'],
+				['KHTML','Konqureror 3.5','KDE 3.5','3.5','A'],
+				['Tasman','Internet Explorer 4.5','Mac OS 8-9','-','X'],
+				['Tasman','Internet Explorer 5.1','Mac OS 7.6-9','1','C'],
+				['Tasman','Internet Explorer 5.2','Mac OS 8-X','1','C'],
+				['Misc','NetFront 3.1','Embedded devices','-','C'],
+				['Misc','NetFront 3.4','Embedded devices','-','A'],
+				['Misc','Dillo 0.8','Embedded devices','-','X'],
+				['Misc','Links','Text only','-','X'],
+				['Misc','Lynx','Text only','-','X'],
+				['Misc','IE Mobile','Windows Mobile 6','-','C'],
+				['Misc','PSP browser','PSP','-','C'],
+				['Other browsers','All others','-','-','U']
+			];
+			jQuery.noConflict();
+			window.onload = (function() {
+				$('#dynamic').html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="example"></table>' );
+				$('#example').dataTable( {
+					"aaData": aDataSet,
+					"aoColumns": [
+						{ "sTitle": "Engine" },
+						{ "sTitle": "Browser" },
+						{ "sTitle": "Platform" },
+						{ "sTitle": "Version", "sClass": "center" },
+						{
+							"sTitle": "Grade",
+							"sClass": "center",
+							"fnRender": function(obj) {
+								var sReturn = obj.aData[ obj.iDataColumn ];
+								if ( sReturn == "A" ) {
+									sReturn = "<b>A</b>";
+								}
+								return sReturn;
+							}
+						}
+					]
+				} );	
+			} );
+		</script>
+
+<script type="text/javascript">
+jQuery.noConflict();
+		window.onload = function() {
+ console.log("checking biojs table now");
+   // Adds a flag to the cell value.
+   var flagRender = function (col, dataRow, value) {
+          return '<img src="data/biojs.table/%27%20+dataRow[col-1]%20+%20%27.png"> ' + value;
+   };
+ 
+   // Formats a decimal value in a percentage value.
+   var numberToPercentageFormat = function (col, dataRow, value) {
+          return ( new Number(value) * 100 ).toFixed(2) + "%";
+   };
+ 
+   // Example of instantiation of the Table
+   var myTable = new Biojs.Table({
+      target: "YourOwnDivId",
+      hideColumns: [1],
+      orderBy:  [ [0,'asc'], [3,'desc'] ],
+      columns: [
+            "Rank",
+            "Flag",
+         { name: "Country", render: flagRender },
+         "Population",
+         "Date",
+            { name:"% World Population", render: numberToPercentageFormat }
+      ],
+      dataSet: [
+        [ 1, "chi", "China", 1347350000, "December 31, 2011", "0.1925" ],
+        [ 2, "ind", "India", 1210193422, "March 1, 2011", "0.1729" ],
+            [ 3, "usa", "United States", 313149000, "March 9, 2012", "0.0447" ],
+            [ 4, "ino", "Indonesia", 237641326, "May 1, 2010", "0.034" ],
+            [ 5, "bra", "Brazil", 192376496, "July 1, 2011", "0.0275" ],
+            [ 6, "pak", "Pakistan", 178945000, "March 9, 2012", "0.0256" ],
+            [ 7, "nig", "Nigeria", 162471000, "July 1, 2011", "0.0232" ],
+            [ 8, "rus", "Russia", 143030106, "January 1, 2012", "0.0204" ],
+            [ 9, "ban", "Bangladesh", 142319000, "March 15, 2011", "0.0203" ],
+            [ 10, "jap", "Japan", 127770000, "February 1, 2012", "0.0183" ],
+            [ 11, "mex", "Mexico", 112336538, "June 12, 2010", "0.016" ],
+            [ 12, "phi", "Philippines", 94013200, "July 1, 2010", "0.0134" ],
+            [ 13, "vie", "Vietnam", 87840000, "December 31, 2011", "0.0125" ],
+            [ 14, "eth", "Ethiopia", 84320987,  "July 1, 2012", "0.012" ],
+            [ 15, "ger", "Germany", 81796000, "August 31, 2011", "0.0117" ]
+      ]
+       
+   });
+   console.log("dataset is %s", dataset);
+ 
+};
+</script>
+</div>
+</div>
+<!-- end sequences block --> 
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

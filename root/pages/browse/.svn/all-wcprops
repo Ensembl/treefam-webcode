@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/code/!svn/ver/6728/trunk/RfamWeb/root/pages/browse
+END
+families.tt
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/code/!svn/ver/4544/trunk/RfamWeb/root/pages/browse/families.tt
+END
+genomes.tt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/code/!svn/ver/4544/trunk/RfamWeb/root/pages/browse/genomes.tt
+END
+all_articles.tt
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/code/!svn/ver/6330/trunk/RfamWeb/root/pages/browse/all_articles.tt
+END
+all_articles_columns.tt
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/code/!svn/ver/6363/trunk/RfamWeb/root/pages/browse/all_articles_columns.tt
+END
+ids.tt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/code/!svn/ver/6728/trunk/RfamWeb/root/pages/browse/ids.tt
+END
+clans.tt
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/code/!svn/ver/6728/trunk/RfamWeb/root/pages/browse/clans.tt
+END
+all_families.tt
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/code/!svn/ver/4544/trunk/RfamWeb/root/pages/browse/all_families.tt
+END
+all_articles_text.tt
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/code/!svn/ver/6363/trunk/RfamWeb/root/pages/browse/all_articles_text.tt
+END
+structures.tt
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/code/!svn/ver/4544/trunk/RfamWeb/root/pages/browse/structures.tt
+END
+index.tt
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/code/!svn/ver/6331/trunk/RfamWeb/root/pages/browse/index.tt
+END

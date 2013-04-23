@@ -1,0 +1,136 @@
+[%
+# tools.tt
+# rdf 20060926 WTSI
+# 
+# build the scores block for the help pages
+#
+# $Id: tools.tt,v 1.2 2009-05-06 11:48:34 jd7 Exp $
+
+USE dumper;
+
+# figure out the location of the schema document
+#controller = "Controller::PfamGraphicsTools"; # needed to cope with the "::"
+
+%]
+
+<!-- start the Tools block -->
+<div class="block" id="helpToolsBlock">
+  <div class="handle">
+    <h1>Accessing the TreeFam database</h1>
+  </div>
+    <h3>How you can use TreeFam</h3>
+  	<div class="blockContent">
+    		<h4>Study evolution of alpha tubulin</h4>
+    		<h4>Study lineage specific expansion </h4>
+            <h4>Study domain evolution of 9 metazoan species (+2 outgroups)</h4>
+                <a href="http://www.biomedcentral.com/1471-2148/12/138/abstract"> Paper</a>
+	
+	</div>
+  <h2>Accessing TreeFam data</h2>
+
+There are several ways to get data from TreeFam.
+<ul>
+<li>FTP-site</li>
+<li>Using the EnsEMBL Compara API</li>
+<li>MySQL server</li>
+</ul>
+    <div class="blockContent">
+  <h2>FTP-site</h2>
+  You can download all TreeFam data (e.g. pairwise orthologs) <a href="/download">here</a>
+   <hr>
+  <h2>API access</h2>
+  TreeFam is using the EnsEMBL compara database scheme and API.
+  You can find information on how to download and use the API <a href="http://www.ensembl.org/info/docs/api/compara/index.html" >here</a>.<br>
+  
+  We are trying to make all code that is used to build the database and website freely available on <a href="https://github.com/fabsta/TreeFam">GitHub</a><br>
+  To make your life easier we provide a set of example script that use the API to download data from TreeFam.<br>
+	Here are a few scripts that do the following:
+	<ul>
+	<li>Get all homologs between two species</li>
+	<pre class="code">
+      <code class="javasript">
+        perl get_pairwise_homologs.pl -species1 Homo_sapiens -species2 Pan_troglodytes 
+    </code>
+    </pre>
+    <li>Given a TreeFam id, give me alignment, tree, hmm</li>
+	<pre class="code">
+      <code class="javasript">
+        perl get_family_data.pl -family TF101001 
+    </code>
+    </pre>
+</ul>	
+    Please note that all scripts use 
+
+    If you need additional information, please feel free to contact TreeFam.
+    <hr>
+  <h2>MySQL server</h2>
+  <pre class="code">
+      <code class="javasript">
+       mysql -h web-mei-treefam -P 3365 -utreefam_user -preadonly -Dtreefam_production_9_68 
+      </code>
+    </pre>
+<h2>Restful interface</h2>
+  <h3>Information for a gene family</h3>
+  Given a TreeFam family, e.g. TF101003
+  <table border=1>
+	  <tr><td>Alignment (Fasta)</td><td>/family/TF101003/alignment</td></tr>
+	  <tr><td>Tree (newick)</td><td>/family/TF101003/tree/newick</td></tr>
+	  <tr><td>Tree (phyloxml)</td><td>/family/TF101003/tree/phyloxml</td></tr>
+	  <tr><td>HMM (HMMER v.3)</td><td>/family/TF101003/hmm</td></tr>
+  </table>
+  <h3>Searching the whole TreeFam db</h3>
+ 	You can search TreeFam using IDs from HGNC, UniProt.
+ 	It will take you either to a search results page with all the 
+  <table border=1>
+  	<tr><td>Keyword, e.g. Cyclin</td><td>/search/Cyclin/keyword</td></tr>
+  	<tr><td>HGNC, e.g. F6WHE2_HORSE</td><td>/search/F6WHE2_HORSE/keyword</td></tr>
+  	<tr><td>Pfam, e.g. Cyclin_N</td><td>/search/Cyclin_N/keyword</td></tr>
+  	<tr><td>HGNC, e.g. CCNB3</td><td>/search/CCNB3/keyword</td></tr>
+  </table>
+ 	<h4>Homology information</h4>
+  <table border=1>
+  	<tr><td>Homology type btw two genes</td><td>/search/homologyType/ID1/ID2</td></tr>
+  </table>
+  <h3>Searching TreeFam families</h3>
+ You can search for TreeFam families using IDs from HGNC, UniProt.
+ It will take you either to a search results page with all the 
+   <table border=1>
+  	<tr><td>HGNC, e.g. CCNB</td><td>/family/CCNB</td></tr>
+  	<tr><td>Pfam, e.g. PF02171</td><td>/family/PF02171/Pfam</td></tr>
+  	<tr><td>Pfam, e.g. Piwi</td><td>/family/Piwi/Pfam</td></tr>
+  	<tr><td>Merops, e.g. CCNB</td><td>/family/XXX</td></tr>
+  	<tr><td>EnsEMBL Compara GeneTrees, e.g. ENSGT00550000074390</td><td>/family/ENSGT00550000074390</td></tr>
+  </table>
+  <h3>Searching TreeFam sequences</h3>
+  Searching for 
+	<table border=1>
+  	<tr><td>HGNC, e.g. CCNB</td><td>/sequence/F6WHE2_HORSE</td></tr>
+  	<tr><td>HGNC, e.g. CCNB</td><td>/sequence/HGNC</td></tr>
+  	<tr><td>HGNC, e.g. CCNB</td><td>/sequence/SwissProt</td></tr>
+  </table>
+  
+  </div>
+</div>
+<!-- <script type="text/javascript">
+    jQuery.beautyOfCode.init({
+      brushes: ['Perl','Xml', 'JScript', 'CSharp', 'Plain', 'Php']
+    }); 
+</script> -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>
+-%]

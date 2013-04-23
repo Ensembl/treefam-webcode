@@ -1,0 +1,97 @@
+[%
+# scores.tt
+# rdf 20060926 WTSI
+# 
+# build the references block for the help pages
+#
+# $Id: references.tt,v 1.3 2009-06-09 12:23:40 jt6 Exp $
+%]
+
+<!-- start references block -->
+
+<div class="block" id="helpReferencesBlock">
+  <div class="handle">
+    <h1>References &amp; Bibliography</h1>
+  </div>
+  <div class="blockContent">
+
+    <p>
+      Rfam makes use of a large amount of publicly available data, especially
+      published multiple sequence alignments and secondary structures, and
+      repackages these data in a single searchable and sustainable
+      resource. We have made every effort to credit individual sources on
+      family pages. If you find any of the data presented here useful,
+      please also be sure to credit the primary source also.
+    </p>
+
+    <h2>Image  References</h2>
+    <table border="1px">
+        <tr><td>EnsEMBL species</td><td><a href="http://www.ensembl.org/info/about/species.html">Wikimedia</a></td></tr>
+        <tr><td>EnsEMBL metazoa species</td><td><a href="http://metazoa.ensembl.org/info/about/species.html">EnsEMBL website</a></td></tr>
+        <tr><td>Hydra magnipapillata</td><td><a href="http://upload.wikimedia.org/wikipedia/commons/5/51/Hydra_magnipapillata.jpg">EnsEMBL metazoa website</a></td></tr>
+        <tr><td>Spizellomyces punctatus</td><td><a href="http://biomesfifth10.wikispaces.com/file/view/Spizellomyces_punctatus_coral_reef.jpg/180584175/290x188/Spizellomyces_punctatus_coral_reef.jpg">Wikispace</a></td></tr>
+        <tr><td>Allomyces macrogynus</td><td><a href="http://content5.eol.org/content/2009/06/06/01/65335_large.jpg">Encyclopedia of Life</a></td></tr>
+        <tr><td>Phycomyces blakesleeanus</td><td><a href="http://genome.jgi.doe.gov/Phybl2/Phycomyces.jpg">JGI</a></td></tr>
+        <tr><td>Icons</td><td><a href="http://www.arthursclipart.org/silhouettes/animals1.htm">Arthur's silhouette clipart</a></td></tr> 
+        <tr><td>Tree Picture</td><td><a href="http://www.flickr.com/photos/urimland/96173767/sizes/m/in/photostream/">Flickr</a></td></tr> 
+    </table>
+    <h2>Studies citing TreeFam</h2>
+	<ul>
+		<li><a href="http://www.nature.com/ng/journal/v44/n8/full/ng.2343.html">Yak genome paper (Nature)</a></li>
+	</ul>
+    <h2>TreeFam References</h2>
+
+    <div class="citation">
+      <span class="title">
+        <a class="ext" 
+           href="http://www.ncbi.nlm.nih.gov/pubmed/16381935">
+          TreeFam: a curated database of phylogenetic trees of animal gene families.</a>
+      </span>
+      <span class="authors">
+       Li H, Coghlan A, Ruan J, Coin LJ, Hériché JK, Osmotherly L, Li R, Liu T, Zhang Z, Bolund L, Wong GK, Zheng W, Dehal P, Wang J, Durbin R.
+      </span>
+      <span class="ref">
+        <span class="jrnl">Nucleic Acids Research</span>&nbsp;(2006)
+        &nbsp;34(Database issue):D572-80.
+      </span>
+    </div>
+	<div class="citation">
+      	<span class="title">
+        	<a class="ext" 
+           	href="http://nar.oxfordjournals.org/content/36/suppl_1/D735.full">
+          	TreeFam: 2008 Update.</a>
+      	</span>
+      	<span class="authors">
+      	Ruan J, Li H, Chen Z, Coghlan A, Coin LJ, Guo Y, Hériché JK, Hu Y, Kristiansen K, Li R, Liu T, Moses A, Qin J, Vang S, Vilella AJ, Ureta-Vidal A, Bolund L, Wang J, Durbin R.
+	</span>
+      	<span class="ref">
+        	<span class="jrnl">Nucleic Acids Research</span>&nbsp;(2008)
+        	&nbsp;36(Database issue):D735-40.
+      	</span>
+    	</div>
+
+
+  </div>
+</div>
+
+<!-- start references block -->
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk), 
+Jennifer Daub (jd7@sanger.ac.uk) and Paul Gardner (pg5@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

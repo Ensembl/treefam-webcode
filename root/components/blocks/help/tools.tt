@@ -1,0 +1,48 @@
+[%
+# tools.tt
+# rdf 20060926 WTSI
+# 
+# build the scores block for the help pages
+#
+# $Id: tools.tt,v 1.2 2009-05-06 11:48:34 jd7 Exp $
+
+USE dumper;
+
+# figure out the location of the schema document
+controller = "Controller::PfamGraphicsTools"; # needed to cope with the "::"
+
+%]
+
+<!-- start the Tools block -->
+<div class="block" id="helpToolsBlock">
+  <div class="handle">
+    <h1>Accessing the TreeFam database</h1>
+  </div>
+  <div class="blockContent">
+  <h2>API access</h2>
+  Using the EnsEMBL API.
+
+  <h3>Examples</h3>
+  <h4>Study domain evolution of 9 metazoan species (+2 outgroups)</h4>
+  <a href="http://www.biomedcentral.com/1471-2148/12/138/abstract"> Paper</a>
+  </div>
+</div>
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>
+-%]

@@ -1,0 +1,423 @@
+[%
+# index.tt
+# jt6 20060717 WTSI
+# 
+# build the main Treefam home page.
+#
+# $Id: index.tt,v 1.10 2009-06-09 12:13:25 jt6 Exp $
+
+META title = "Home page";
+META fullPage = 1;
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+
+requirements.css.push( "index.css" );
+#requirements.css.push( "treefam.css" );
+requirements.css.push( "TreeFamily.css" );
+requirements.css.push( "buttons.css" );
+requirements.js.push( "jquery/jquery-1.6.2.min.js" );
+requirements.js.push( "mygene_query.js" );
+requirements.js.push( "prototype.js" );
+requirements.js.push( "sharedFunctions.js" );
+#requirements.cssIeAll.push( "index_all_ie.css" );
+
+#-------------------------------------------------------------------------------
+
+# a warning message for users who dont have javascript turned on. The 
+# message should be hidden immediately after its displayed, but if 
+# javascript is not working, the prototype call will fail and the message
+# will stay visible
+%]
+<div id="jsWarning">
+  <strong>Please note:</strong> this site relies heavily on the use of javascript. 
+  Without a javascript-enabled browser, this site will not function correctly. 
+  Please enable javascript and reload the page, or switch to a different browser.
+</div>
+<script type="text/javascript">
+  // <![CDATA[
+  $("jsWarning").hide();
+  // ]]>
+</script>
+
+<!-- start of index page -->
+ <div id="index">
+  <div id="intro"> 
+
+    [% # if the database is down, we will be unable to retrieve release data, so
+       # change the construction of the page title accordingly
+    IF relData;
+    
+      # we have release data; format the date nicely
+      USE date( format = "%B %Y" );
+      d = relData.rfam_release_date.match( '(\d+)\-(\d+)\-(\d+)' );
+
+      USE String;
+      release_date = String.new( "00:00:00 " );
+      CALL release_date.append( d.2, ":", d.1, ":", d.0 ); %]
+      <h2>TreeFam [% relData.rfam_release %] ([% date.format( release_date ) %],
+        [% relData.number_families %] families)</h2>
+    [% ELSE %]
+      <h2>TreeFam 9.0 (November 2012, 100 species in 16,064 families)</h2>
+    [% END %]
+    <p>
+      TreeFam (Tree families database) is a database of phylogenetic trees of animal genes. 
+      It aims at developing a curated resource that gives reliable information about ortholog and paralog assignments, 
+      and evolutionary history of various gene families.
+      <span onclick="reveal( this, 'treefamNotes', false, true )"
+            class="link moreLink">
+        More...</span>
+    </p>
+    <div id="treefamNotes" style="display: none">
+      <p>
+        TreeFam defines a gene family as a group of genes that evolved after the speciation of single-metazoan animals. 
+        It also tries to include outgroup genes like yeast (S. cerevisiae and S. pombe) and plant (A. thaliana) to reveal these distant members.
+		</p>
+	 <p>
+	 	TreeFam is also an ortholog database. Unlike other pairwise alignment based ones, TreeFam infers orthologs by means of gene trees. 
+		It fits a gene tree into the universal species tree and finds historical duplications, speciations and losses events. 
+		TreeFam uses this information to evaluate tree building, guide manual curation, and infer complex ortholog and paralog relations.
+		</p>
+	 <p>
+		The basic elements of TreeFam are gene families that can be divided into two parts: TreeFam-A and TreeFam-B families. 
+		TreeFam-B families are automatically created. They might contain errors given complex phylogenies. 
+		TreeFam-A families are manually curated from TreeFam-B ones. Family names and node names are assigned at the same time. 
+		The ultimate goal of TreeFam is to present a curated resource for all the families.
+      </p>
+    </div>
+  </div>
+
+  <hr />
+ 
+   [% # URI shortcuts
+   helpBase   = c.uri_for( "/help" );
+   searchBase = c.uri_for( "/search" );
+   jumpUri    = c.uri_for( "/family" );
+   #jumpUri    = "${searchBase}/jump";
+   %]
+ 
+   <div id="controlPanel"  > 
+    <ul>
+      <li class="link currentLink" onclick="switchPanel(this,'help')">QUICK LINKS</li>
+       <li class="link" onclick="switchPanel(this,'SEQUENCEDIV')">SEQUENCE</li> 
+      <li class="link" onclick="switchPanel(this,'keyword')">KEYWORD/ID</li>
+      <li class="link" onclick="switchPanel(this,'pairwise_homologs')">DOWNLOAD</li> 
+      <li class="link" onclick="switchPanel(this,'help')">JUMP TO</li>
+      <li>&nbsp;</li>
+    </ul>
+  </div><!-- end of "controlPanel" -->
+    
+  <div id="help" class="panel">
+    <h3>You can find data in Treefam in various ways...</h3>
+    <ul>
+      <li>Analyze your protein sequence for Treefam matches</li> 
+      <li>Search Treefam families for e.g. BRCA2 genes </li>
+      <li>Download TreeFam date (e.g. pairwise homologs)</li>
+      <li>
+      <!-- <form action="[% searchBase %]/" id="jumpForm" onsubmit="return jump(this);"> -->
+        <form action="[% searchBase %]/" method="post" id="jumpForm" >
+          <div>
+
+       <label for="gene_query">Enter a gene here: </label>
+    	<input style="width:250px" class="mygene_query_target">
+
+
+	 <input class="entryField"  type="text" name="entry" id="jumpField" size="30" />
+    		<a class="btn go" onclick="jQuery('#jumpForm').attr('action','family/'+jQuery('#jumpField').val());jQuery('#jumpForm').submit();"> <span id="jumpgoButton" class="btn-inner">Search</span></a>
+    		<a class="btn go" onclick="jQuery('#jumpField').val('TF101003')"> <span class="btn-inner">Example</span></a>
+	    <div style="display: none" class="jumpSpinner">Searching...</div>
+            <div style="display: none" class="jumpError"></div>
+            <p class="small nlh">
+              Enter any type of accession or ID to jump to the page for a TreeFam family
+	      </p>
+          </div>
+        </form>
+      </li>
+      <li>Or view the <a href="[% helpBase %]">help</a> pages for 
+        more information</li>
+    </ul>
+  </div>
+
+  <div id="SEQUENCEDIV" class="panel" style="display: none">
+    <h3>Analyze your Protein sequence for TreeFam matches</h3>
+    <p>
+      Paste your Protein sequence here to find matching TreeFam families.
+    </p>
+    <form action="[% searchBase %]/sequence" method="post" id="seqForm">
+      <div>
+        <input type="hidden" name="seqOpts" value="both" />
+        <input type="hidden" name="ga"  value="0" />
+        <input type="hidden"  name="evalue"  value="1.0" />
+        <textarea class="entryField"   name="seq"  id="seq"  cols="50" rows="6"></textarea>
+      </div>
+    <a class="btn go" onclick="jQuery('#seqForm').submit();"> <span id="seqgoButton" class="btn-inner">Search</span></a>
+    <a class="btn go" onclick="jQuery('#seq').val('MPIGSKERPTFFEIFKTRCNKADLGPISLNWFEELSSEAPPYNSEPAEESEHKNNNYEP')"> <span class="btn-inner">Example</span></a>
+     <!-- <a class="btn go" onclick="if($F('siteSearchField')){if(ssCleared){$('siteSearchForm').submit();}}">
+          <span id="jumpButton" class="btn-inner">Go</span></a>
+    <a class="btn go" onclick="$('seq').value=exSeq"> <span id="keyexButton" class="btn-inner">Example</span></a> -->
+	</form>
+	<p class="small nlh">
+This search will use and an E-value of 1.0. You can set your own search parameters and perform a range of other searches
+      You can set your own search parameters using 
+      <a href="[% searchBase %]?tab=searchSequenceBlock">this</a> form.      
+    </p>
+  </div>
+
+    <div id="pairwise_homologs" class="panel" style="display: none">
+    <h3>View pairwise orthologs/paralogs </h3>
+    <p>Click <a href="[% c.uri_for( "/help" ) %]">here</a> to download TreeFam data.
+      </p>
+  </div>
+  
+  
+   
+  <div id="keyword" class="panel" style="display: none">
+    <h3>Query TreeFam by keyword</h3>
+    <p>Search for keywords in text data in the TreeFam database.</p> 
+    <form action="[% searchBase %]/keyword" method="get" id="keywordForm">
+      <div>
+        <input class="entryField" type="text" name="query" id="keywordField" size="30" />
+      </div>
+    </form>
+    <!-- <a class="btn go" onclick="if($F('siteSearchField')){if(ssCleared){$('siteSearchForm').submit();}}"> <span id="keygoButton" class="btn-inner">Go</span></a> -->
+    <!-- <a class="btn go" onclick="if($F('siteSearchField')){if(ssCleared){$('siteSearchForm').submit();}}"> <span id="keygoButton" class="btn-inner">Go</span></a> -->
+    <a class="btn go" onclick="jQuery('#keywordForm').submit();"> <span id="keygoButton" class="btn-inner">Search</span></a>
+    <a class="btn go" onclick="jQuery('#keywordField').val('Cyclin')"> <span id="keyexButton" class="btn-inner">Example</span></a>
+    <p class="small nlh">
+      You can also use the  <a onclick="$('siteSearchField').focus();return false;" href="#"> keyword search box</a> at the top of every page.
+    </p>
+  </div>
+   
+    
+  <div class="cleaner"><!-- empty --></div>
+
+  [%# uncomment to add an advance warning of maintenance downtime
+  <hr />
+
+  <div id="maintenanceMsg" style="width:80%;margin:0 auto;background:#F0E8E6;border:1px solid #621700;padding:1em">
+    <h2>Sanger Institute IT Shutdown</h2>
+    <p> 
+      Between 12.30pm Friday 21 October and 10.00am Monday 24 October (BST) the 
+      Sanger Institute data-centre will be offline, during the first stage of  
+      the installation of a new combined heat and power system. During this
+      shutdown, the TreeFam website at WTSI will be unavailable.
+    </p>
+    <p> 
+      You can read more about the planned work on the main 
+      <a class="ext" href="http://www.sanger.ac.uk/about/press/2011/111012-datacentre.html">
+        Sanger website</a>.
+    </p>
+    <p> 
+      While this TreeFam site is offline, you may want to use the TreeFam site at
+      <a class="ext" href="http://rfam.janelia.org/">Janelia Farm, USA</a>. 
+      Please bear in mind, however, that this site has not been updated to
+      the most recent TreeFam release, 10.1, and is still serving release 10.0.
+    </ul>
+    <p> 
+      We apologise for any inconvenience.
+    </p>
+  </div>
+  # end of maintenance message %]
+<!-- <iframe id="widgetFrame" src="http://widgplus.com/templates/new/activity.php?plusid=115739728227274298589&textcolor=FFFFFF&bg=333&contentbg=555&linkcolor4D90FE" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:282px; height:362px;"></iframe> 
+-->
+  <div id="posts" class="announcements" style="display: none">
+    <hr />
+    <span onclick="hideThis('posts');" class="closer" style="float: right; cursor: pointer">Hide this</span>
+    <h2>Recent TreeFam <a class="ext" href="http://xfam.wordpress.com/"> blog</a> posts</h2>
+  </div>
+  
+  <hr />
+
+  <!-- <div id="newFeatures" style="display: none"> -->
+  <div id="newFeatures" style="display: none">
+  Some great news here!
+	</div>
+  
+  <div id="citation">
+    <h2>Citing TreeFam</h2>
+    <p>
+      If you find TreeFam useful, please consider 
+      <a href="[% helpBase %]?tab=helpReferencesBlock">citing</a> the references 
+      that describe this work:
+    </p>
+    <div class="citation">
+      <span class="title">
+        <a class="ext" 
+           href="http://nar.oxfordjournals.org/content/36/suppl_1/D735.full">
+          TreeFam: 2008 Update</a>
+      </span>
+      <span class="authors">
+        Jue Ruan, Heng Li, Zhongzhong Chen, Avril Coghlan, Lachlan James M. Coin, Yiran Guo, Jean-Karim H&eacute;rich&eacute;, Yafeng Hu, 
+        Karsten Kristiansen, Ruiqiang Li, Tao Liu, Alan Moses, Junjie Qin, S&oslash;ren Vang, Albert J. Vilella, 
+        Abel Ureta-Vidal, Lars Bolund, Jun Wang and Richard Durbin.
+      </span>
+      <span class="ref">
+        <span class="jrnl">Nucleic Acids Research</span>&nbsp;(2008)
+        &nbsp;doi: 10.1093/nar/gkm1005
+      </span>
+    </div>
+    
+  </div>
+
+  <div id="mirrors">
+    <h2>Mirrors</h2>
+    <p>The following are official TreeFam 
+      <a href="[% helpBase %]?tab=helpTheTeamBlock">mirror</a> sites:
+    </p>
+    [% PROCESS "components/mirrors.tt" %]
+
+  </div>
+
+  <div class="cleaner"><!-- empty --></div>
+
+  <div id="restore" class="announcements" style="display: none">
+    <hr />
+    <p>
+      You have hidden the blog posts section. You can restore it  
+      <span class="link" id="restoreLink">here</span>. 
+    </p>
+  </div>
+
+  <hr />
+  
+</div>
+
+<script type="text/javascript">
+  // <![CDATA[
+  
+  // set up the "jump to" field
+
+  // first, make it behave nicely
+  $("jumpField").value = "enter any accession or ID";
+  $("jumpField").selectionStart = 0;
+  $("jumpField").selectionEnd   = 0;
+  $("jumpField").focus();
+
+  // add observers to clear out the field when the user first enters something
+  // in it. We need several to catch all eventualities...
+
+  var jumpCleared = false;
+  //$("jumpField").observe( "keypress", function() {
+  //  var start = $("jumpField").selectionStart;
+  //  $("jumpField").value = $F("jumpField").substr( 0, start );;
+  //  jumpCleared = true;
+  //  $("jumpField").stopObserving();
+  //} );
+
+ // $("jumpField").observe( "click", function() {
+  //  $("jumpField").value = '';
+  //  jumpCleared = true;
+  //  $("jumpField").stopObserving();
+ // } );
+
+  //$("jumpField").observe( "focus", function() {
+  //  $("jumpField").selectionStart = 0;
+  //  $("jumpField").selectionEnd   = 0;
+  //} );
+
+  // rotate through example IDs
+  //var jumpExamples = $w("TF101003");  
+  //var lastJumpExample = 0;
+  //var fillJumpField = function() {
+  //  $("jumpField").value = jumpExamples[lastJumpExample++];
+  //  jumpCleared = true;
+  //  if ( lastJumpExample >= jumpExamples.size() ) {
+  //    lastJumpExample = 0;
+  //  }
+  //}
+
+  // add an observer to submit the form when the user hits "go"
+ // $("jumpButton").observe( "click", function() {
+ //   if ( $("jumpField").present() && jumpCleared ) {
+ //      jump('jumpForm');
+ //   }
+ // } );
+  // example values for the various forms
+
+  var exTreeFamId = "TF101001";
+  var exClanId = "telomerase";
+  var exKw     = "spliceosomal";
+  var exTx     = "plasmodium";
+  var exSeq    = "MPIGSKERPTFFEIFKTRCNKADLGPISLNWFEELSSEAPPYNSEPAEESEHKNNNYEPN";
+
+  // hide the announcements or new features list when the user clicks the 
+  // "hide this" button
+  var hideThis = function( id ) {
+    $(id).hide();
+
+    // tell urchin that we've hidden the blog
+    try {
+      urchinTracker( "/index/hidBlog" );
+    } catch( e ) {}
+
+    var d = new Date();
+    var t = Math.round( d.getTime() / 1000 );
+    createCookie( 'hide_' + id, t, '365' ); 
+    $("restore").show();
+  };
+  
+  $("restoreLink").observe( "click", function() {
+    console.log("in restore link");
+	['announcements','website_changes','posts'].each( function( type ) {
+      var cookieValue = readCookie( "hide_" + type );
+      if ( cookieValue != null ) {
+
+        // tell urchin that we've shown the blog
+        try {
+          urchinTracker( "/index/shownBlog" );
+        } catch( e ) {}
+
+
+        eraseCookie( "hide_" + type );
+        window.location = "[% c.uri_for('/') %]";
+      }
+    } );
+  } );
+  
+  // load the latest blog posts
+  document.observe( "dom:loaded", function() {
+    var r = new Ajax.Request( "[% c.uri_for( '/announcements' ) %]",
+      { 
+        method:     'get',
+        parameters: { type: "posts" },
+        on204:      function( oResponse ) {
+          $("restore").show();
+        },
+        // for the benefit of IE, we need to check for an out-and-out
+        // failure, as well 204 status
+        onFailure:  function( oResponse ) {
+          $("restore").show();
+        },
+        onSuccess:  function( oResponse ) {
+          $("posts").insert( oResponse.responseText );
+          $("posts").show();
+        }
+      }
+    );
+  } );
+
+  // ]]>
+</script>
+
+<!-- end of index page -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

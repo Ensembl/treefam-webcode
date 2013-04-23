@@ -1,0 +1,264 @@
+[%
+# tools.tt
+# rdf 20060926 WTSI
+# 
+# build the scores block for the help pages
+#
+# $Id: tools.tt,v 1.2 2009-05-06 11:48:34 jd7 Exp $
+
+USE dumper;
+
+# figure out the location of the schema document
+#controller = "Controller::PfamGraphicsTools"; # needed to cope with the "::"
+
+%]
+
+<!-- start the Tools block -->
+<div class="block" id="helpUseBlock">
+  <div class="handle">
+    <h1>How to use the TreeFam database</h1>
+  </div>
+We developed the TreeFam database to be useful for you scientists.
+To make it easy to use our resource, we show you how you can access our database
+and how you can use our data for your studies.<br>
+If we are missing a feature or have ideas please <a href ="/help#tabview=tab7">contact</a> us.<br>
+Here you find the following information on how to use TreeFam data:
+<ul>
+<li><a href="#access">Accessing TreeFam</a></li>
+<li><a href="#linking">Linking to TreeFam</a></li>
+<li><a href="#citing">Citing TreeFam</a></li>
+</ul>
+
+
+<h2 name="access">Accessing TreeFam</h2>
+There are several ways to get data from TreeFam.
+<ul>
+<li>Database dumps</li>
+<li>Using the EnsEMBL Compara API</li>
+<li>MySQL server</li>
+</ul>
+  <h3>Database dumps</h3>
+  You can download all TreeFam data (e.g. pairwise orthologs) <a href="/download">here</a>
+  <h3>API access</h3>
+  TreeFam is using the EnsEMBL compara database scheme and API.
+  You can download and find installation instructions <a href="http://www.ensembl.org/info/docs/api/compara/index.html" >here</a>.<br>
+ 
+  <h4>How to use the API</h4>
+  Below is an example script showing various uses of the API. You can find all scripts in our <a href="https://github.com/fabsta/TreeFam">GitHub</a> repository.
+
+<ul>
+<p>Basic scripts:</p>
+<li><a href="https://github.com/treefam/treefam_tools/tree/master/treefam_scan">treefamscan.pl</a> will you give you hits to TreeFam families for your protein sequences.</li>
+<li><a href="https://github.com/treefam/treefam_tools/tree/master/api_scripts/get_families">get_families.pl</a> will you give HMMs, Alignments, Sequences and Trees for a given list of TreeFam families.</li>
+<li><a href="https://github.com/treefam/treefam_tools/tree/master/api_scripts/get_homologs_by_species">get_homologs_by_species.pl</a> will you all homologs for a given list of species.</li>
+	<br> 
+<p>Power users:</p>
+<li>to come ...</li>
+</ul>
+    If you need additional information, please feel free to contact TreeFam using the right "Feedback" button.
+  <h3>MySQL server</h3>
+  <pre class="code">
+      <code class="javasript">
+      	to come...
+	</code>
+    </pre>
+<!-- <h3>Restful interface</h3>
+  <h3>Information for a gene family</h3>
+  Given a TreeFam family, e.g. TF101003
+  <table border=1>
+	  <tr><td>Alignment (Fasta)</td><td>/family/TF101003/alignment</td></tr>
+	  <tr><td>Tree (newick)</td><td>/family/TF101003/tree/newick</td></tr>
+	  <tr><td>Tree (phyloxml)</td><td>/family/TF101003/tree/phyloxml</td></tr>
+	  <tr><td>HMM (HMMER v.3)</td><td>/family/TF101003/hmm</td></tr>
+  </table>
+  <h3>Searching the whole TreeFam db</h3>
+ 	You can search TreeFam using IDs from HGNC, UniProt.
+ 	It will take you either to a search results page with all the 
+  <table border=1>
+  	<tr><td>Keyword, e.g. Cyclin</td><td>/search/Cyclin/keyword</td></tr>
+  	<tr><td>HGNC, e.g. F6WHE2_HORSE</td><td>/search/F6WHE2_HORSE/keyword</td></tr>
+  	<tr><td>Pfam, e.g. Cyclin_N</td><td>/search/Cyclin_N/keyword</td></tr>
+  	<tr><td>HGNC, e.g. CCNB3</td><td>/search/CCNB3/keyword</td></tr>
+  </table>
+ 	<h4>Homology information</h4>
+  <table border=1>
+  	<tr><td>Homology type btw two genes</td><td>/search/homologyType/ID1/ID2</td></tr>
+  </table>
+  <h3>Searching TreeFam families</h3>
+ You can search for TreeFam families using IDs from HGNC, UniProt.
+ It will take you either to a search results page with all the 
+   <table border=1>
+  	<tr><td>HGNC, e.g. CCNB</td><td>/family/CCNB</td></tr>
+  	<tr><td>Pfam, e.g. PF02171</td><td>/family/PF02171/Pfam</td></tr>
+  	<tr><td>Pfam, e.g. Piwi</td><td>/family/Piwi/Pfam</td></tr>
+  	<tr><td>Merops, e.g. CCNB</td><td>/family/XXX</td></tr>
+  	<tr><td>EnsEMBL Compara GeneTrees, e.g. ENSGT00550000074390</td><td>/family/ENSGT00550000074390</td></tr>
+  </table>
+  <h3>Searching TreeFam sequences</h3>
+  Searching for 
+	<table border=1>
+  	<tr><td>HGNC, e.g. CCNB</td><td>/sequence/F6WHE2_HORSE</td></tr>
+  	<tr><td>HGNC, e.g. CCNB</td><td>/sequence/HGNC</td></tr>
+  	<tr><td>HGNC, e.g. CCNB</td><td>/sequence/SwissProt</td></tr>
+  </table> -->
+<!--<hr>
+<h2 name="tools">TreeFam tools</h2>
+<div id="collapse_demo" data-collapse="accordion persist">
+   <h2 id="treefam_scan">Genome-wide scan of treefam families - treefam_scan</h2> 
+        <ul>
+		<li>Have: A proteome in FASTA format.</li>
+		<li>Goal: You want to scan your proteome for the presence of TreeFam families.</li>
+	  	<li>Need: Simply go to our <img src="/static/images/github.png" width="30"> repository <a href="https://github.com/fabsta/TreeFam/tree/master/tools/treefam_scan">here</a></li>
+	</ul>
+	<h2 id="single_copy_scan">Check genome sequence quality - single_copy_scan</h2>
+        <ul>
+		<li>Have: A newly sequenced genome.</li>
+		<li>Goal: You want to check your genomes quality. A high quality genome is expected to have hits in most animal single genes.</li>
+	  	<li>Need: Simply go to our <img src="/static/images/github.png" width="30"> repository <a href="https://github.com/fabsta/TreeFam/tree/master/tools/treefam_scan">here</a></li>
+	</ul>
+	<h2 id="family_data">Use TreeFam family data (HMM,Alignment) to add your own sequences and build a tree</h2>
+        <ul>
+		<li>Download a TreeFam family HMM and the alignment</li>
+		<li>Make sure you have <a href="http://hmmer.janelia.org/">Hmmer</a> installed</li>
+		<li>Run hmmscan - search sequence(s) against a profile database</li>
+		<li>Voila, now you can use e.g. <a href="http://treesoft.sourceforge.net/treebest.shtml">TreeBeST</a> to build a gene tree and predict ortholog/paralogs</li>
+	</ul>
+</div> -->
+<hr>
+<!--<h2 name="linking">Linking TreeFam</h2>
+    <p>
+      TreeFam is maintained by researchers at: the 
+      <a class="ext" href="http://www.sanger.ac.uk/">Wellcome Trust 
+        Sanger Institute</a>, and 
+      <a class="ext" href="http://ebi.ac.uk/">European Bioinformatics Institute</a>, Cambridge, UK. 
+    </p>
+    <p>
+      Although we have no plans to change the locations of resources within 
+      this site dramatically, webmasters are advised to link only to the 
+      following types of page within the site.
+    </p>
+    
+    <h3>Home pages</h3>
+    <dl class="sitesList">
+      <dd>
+        <a href="http://treefam.org">http://treefam.org</a>
+      </dd>
+    </dl>
+    
+   <h3>Searching a protein sequence against TreeFam</h3>
+    <dl class="sitesList">
+      <dd>
+        <a href="http://treefam.org/search?tab=sequenceSearchBlock">
+          http://treefam.org/search?tab=sequenceSearchBlock</a>
+      </dd>
+      </dl>
+  <h3>Searching an ID against TreeFam</h3>
+    <dl class="sitesList">
+      <dd>
+        <a href="http://treefam.org/search/TF101001">
+          http://treefam.org/search/ENSP00000428982</a>
+      </dd>
+      </dl> 
+    <h3>Linking to TreeFam family pages</h3>
+    
+    <p>
+      You can refer to TreeFam families either by accession,sequence ID, or (HGNC) gene symbolID.
+    </p>
+    <p>
+      TreeFam accession numbers are more stable between releases than IDs and
+      we <strong>strongly</strong> recommend that you link by accession number.
+    </p>
+    <p>
+      Here are some examples of linking to TreeFam: 
+    </p>
+    <dl class="sitesList">
+      <dt>By accession:</dt>
+      <dd>
+        <a href="http://treefam.org/family/TF101001">
+          http://treefam.org/family/TF101001</a>
+      </dd>
+      <dt>By ID:</dt>
+      <dd>
+        <a href="http://treefam.org/family/F6WHE2_HORSE">
+          http://treefam.org/family/F6WHE2_HORSE</a>
+      </dd>
+      <dt>Using &quot;Gene symbol&quot;:</dt>
+      <dd>
+        <a href="http://treefam.org/family/BRCA2">
+          http://treefam.org/family/BRCA2</a>
+      </dd>
+    </dl>
+<hr>-->
+<h2 name="citing">Citing TreeFam</h2>
+    <p>
+      TreeFam makes use of a large amount of publicly available data, especially
+      published multiple sequence alignments and secondary structures, and
+      repackages these data in a single searchable and sustainable
+      resource. We have made every effort to credit individual sources on
+      family pages. If you find any of the data presented here useful,
+      please also be sure to credit the primary source also.
+    </p>
+
+    <h2>Image  References</h2>
+    <table border="1px">
+        <tr><td>EnsEMBL species</td><td><a href="http://www.ensembl.org/info/about/species.html">Wikimedia</a></td></tr>
+        <tr><td>EnsEMBL metazoa species</td><td><a href="http://metazoa.ensembl.org/info/about/species.html">EnsEMBL website</a></td></tr>
+        <tr><td>Hydra magnipapillata</td><td><a href="http://upload.wikimedia.org/wikipedia/commons/5/51/Hydra_magnipapillata.jpg">EnsEMBL metazoa website</a></td></tr>
+        <tr><td>Spizellomyces punctatus</td><td><a href="http://biomesfifth10.wikispaces.com/file/view/Spizellomyces_punctatus_coral_reef.jpg/180584175/290x188/Spizellomyces_punctatus_coral_reef.jpg">Wikispace</a></td></tr>
+        <tr><td>Allomyces macrogynus</td><td><a href="http://content5.eol.org/content/2009/06/06/01/65335_large.jpg">Encyclopedia of Life</a></td></tr>
+        <tr><td>Phycomyces blakesleeanus</td><td><a href="http://genome.jgi.doe.gov/Phybl2/Phycomyces.jpg">JGI</a></td></tr>
+        <tr><td>Icons</td><td><a href="http://www.arthursclipart.org/silhouettes/animals1.htm">Arthur's silhouette clipart</a></td></tr> 
+        <tr><td>Tree Picture</td><td><a href="http://www.flickr.com/photos/urimland/96173767/sizes/m/in/photostream/">Flickr</a></td></tr> 
+    </table>
+       <h2>TreeFam References</h2>
+
+    <div class="citation">
+      <span class="title">
+        <a class="ext" 
+           href="http://europepmc.org/abstract/MED/16381935">
+          TreeFam: a curated database of phylogenetic trees of animal gene families.</a>
+      </span>
+      <span class="authors">
+       Li H, Coghlan A, Ruan J, Coin LJ, Hériché JK, Osmotherly L, Li R, Liu T, Zhang Z, Bolund L, Wong GK, Zheng W, Dehal P, Wang J, Durbin R.
+      </span>
+      <span class="ref">
+        <span class="jrnl">Nucleic Acids Research</span>&nbsp;(2006)
+        &nbsp;34(Database issue):D572-80.
+      </span>
+    </div>
+	<div class="citation">
+      	<span class="title">
+        	<a class="ext" 
+           	href="http://europepmc.org/abstract/MED/18056084">
+          	TreeFam: 2008 Update.</a>
+      	</span>
+      	<span class="authors">
+      	Ruan J, Li H, Chen Z, Coghlan A, Coin LJ, Guo Y, Hériché JK, Hu Y, Kristiansen K, Li R, Liu T, Moses A, Qin J, Vang S, Vilella AJ, Ureta-Vidal A, Bolund L, Wang J, Durbin R.
+	</span>
+      	<span class="ref">
+        	<span class="jrnl">Nucleic Acids Research</span>&nbsp;(2008)
+        	&nbsp;36(Database issue):D735-40.
+      	</span>
+    	</div>
+
+
+
+</div>
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>
+-%]

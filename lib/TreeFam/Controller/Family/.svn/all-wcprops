@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/code/!svn/ver/4974/trunk/RfamWeb/lib/RfamWeb/Controller/Family
+END
+Alignment.pm
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/code/!svn/ver/4507/trunk/RfamWeb/lib/RfamWeb/Controller/Family/Alignment.pm
+END
+Tree.pm
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/code/!svn/ver/4974/trunk/RfamWeb/lib/RfamWeb/Controller/Family/Tree.pm
+END
+Structures.pm
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/code/!svn/ver/4506/trunk/RfamWeb/lib/RfamWeb/Controller/Family/Structures.pm
+END

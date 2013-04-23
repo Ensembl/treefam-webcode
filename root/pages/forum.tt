@@ -1,0 +1,65 @@
+[%
+# about.tt
+# jt6 20091027 WTSI
+#
+# An about page...
+#
+# $Id: about.tt,v 1.1 2009-10-29 14:36:40 jt6 Exp $
+PROCESS "components/require.tt";
+requirements.css.push( "buttons.css" );
+requirements.js.push( "jquery/jquery-1.8.2.min.js" );
+
+META fullPage = 1;
+META title = "Download";
+-%]
+<style>
+      body {
+         font-family: "myriad pro", tahoma, verdana, arial, sans-serif;
+      }
+
+      .moot {
+         font-size: 14px;
+      }
+      </style>
+<link rel="stylesheet" href="http://cdn.moot.it/1.0/moot.css"/>
+<script src="http://cdn.moot.it/1.0/moot.min.js"></script>
+
+<div class="whitebg" style="min-height:600px;">
+  <div class="key">
+    
+    <h2>TreeFam user forum</h2>
+	Welcome to the TreeFam user forum powered by <a href="http://www.moot.it">moot</a>. You can post a comment, request a feature or report a bug.<br>
+	To post something, just enter your comment, select a forum, and sign up (takes ~1 minute). (click  <a href="/help#tabview=tab7">here</a> for more contact options.
+   </div>
+
+<!-- (2) Placeholder for the forum. The forum will be rendered inside this element -->
+      <a class="moot" href="http://api.moot.it/treefam"></a>
+
+      <!--
+         (2) Example tag for commenting, put it on a different page
+         <a class="moot" href="http://api.moot.it/treefam/blog#my-blog-entry"></a>
+
+         (2) Example tag for threaded commenting
+         <a class="moot" href="http://api.moot.it/treefam/blog/my-large-blog-entry"></a>
+
+         Moot paths are awesome: http://moot.it/docs/?treefam#path
+      -->
+</div>
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

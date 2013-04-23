@@ -1,0 +1,109 @@
+[%
+# about.tt
+# jt6 20091027 WTSI
+#
+# An about page...
+#
+# $Id: about.tt,v 1.1 2009-10-29 14:36:40 jt6 Exp $
+PROCESS "components/require.tt";
+requirements.css.push( "buttons.css" );
+requirements.js.push( "jquery/jquery-1.8.2.min.js" );
+
+META fullPage = 1;
+META title = "Download";
+-%]
+
+<div id="download" align="center">
+
+  <h1>Download TreeFam data here</h1>
+<!-- <h3>Genome-quality test: Single-copy genes</h3>
+Here is a list of single-copy genes in TreeFam.<br>
+Hmmer new genome against HMM library of TreeFam single-copy genes.
+High genome quality -> hits in (>95%/all) genes -->
+
+
+ <form action="[% c.uri_for( "/search/pairwiseHomologs" ) %]" method="post"> 
+<h3>Pairwise Homologs</h3>
+      <p>
+    Species A: <select name="first_genome" id="first_species_select">
+      	[% FOREACH genome = genomelist %]
+		[% IF genome == proteomeSpecies.species %]
+        	<option id="first_species" selected value="[% genome %]">[% genome %]</option>
+		[% ELSE %]
+        	<option id="first_species" value="[% genome %]">[% genome %]</option>
+		[% END %]
+	[% END %]
+    	</select>
+        Species B:
+		<select  name="second_genome" id="second_species_select">
+      	[% FOREACH genome = genomelist %]
+        	<option id="second_species" value="[% genome %]">
+          		[% genome %]
+        	</option>
+      	[% END %]
+    	</select> 
+   <INPUT type="submit" value="Download" id="pairwise_button">    </p>
+     </form> 
+ 
+<!-- FAMILIES -->
+<table>
+<tr><td><h3>Families</h3></td></tr>
+<tr><td><a href="/static/download/treefam_family_data.tar.gz">families (tar.gz, 1.7Gb)</a></td><td>alignment, tree, orthologs for each family</td></tr>
+<!-- ALIGNMENTS -->
+<tr><td><h3>Alignments</h3></td></tr>
+<tr><td><a href="/static/download/xml/Compara.68.protein.aa.fasta.tar.gz">alignments (fasta, 276mb)</a></td><td>alignments for all TreeFam families</td></tr>
+<!-- HMMs -->
+<tr><td><h3>HMMs</h3></td></tr>
+<tr><td><a href="/static/download/treefam9.hmms">HMMs (tar.gz, 537Mb)</a></td><td>HMMs of all TreeFam families (HMMer version 2.3)</td></tr>
+
+<!--  TREES -->
+<tr><td><h3>Trees</h3></td></tr>
+<tr><td><a href="/static/download/xml/Compara.68.protein.nh.emf.tar.gz">gene trees (newick, 45mb)</a></td><td>gene trees for each family</td></tr>
+<tr><td><a href="/static/download/xml/Compara.68.protein.tree.phyloxml.xml.tar.gz">trees (phyloxml, 137mb)</a></td><td>accessions, symbols and names of TreeFam-A families</td></tr>
+<tr><td><a href="/static/download/treefam_species_tree9.phy">species tree (newick, 3,7Kb)</a></td><td>species tree used in this release</td></tr>
+
+<!--  SEQUENCES -->
+<tr><td><h3>Sequences</h3></td></tr>
+<tr><td><a href="/static/download/treefam9.fa.tar.gz">sequences (tar.gz, 183Mb)</a></td><td>fasta file with all families and sequences</td></tr>
+<tr><td><a href="/static/download/emf/Compara.68.protein.aa.fasta.gz">aa_seq (fasta, 275mb)</a></td><td>amino acid sequences</td></tr>
+<tr><td><a href="/static/download/emf/Compara.68.protein.cds.fasta.gz">cds_seq (fasta, 658mb)</a></td><td>nucleotide sequences</td></tr>
+
+<!--  HOMOLOGS -->
+<tr><td><h3>Homologs</h3></td></tr>
+<tr><td><a href="/static/download">homologs_table</a></td><td>homologs in table format</td></tr>
+<tr><td><a href="/static/download/xml/TreeFam.69.protein.allhomologies.orthoxml.xml">homologs_orthoxml (orthoxml, 2.3gb)</a></td><td>homologs </td></tr>
+<!--<tr><td><h3>Xref</h3></td></tr>
+<tr><td>We provide mappings from TreeFam to the following external databases<br>(links between TreeFam families and external database IDs): </td></tr>
+<tr><td><a href="http://www.genenames.org" ><img src="http://www.genenames.org/sites/genenames.org/themes/custom/genenames/genenames_logo.png" width="40px" height="30px" /></a></td><td><a href="/static/download/hgnc_treefam_txt">hgnc_treefam.txt</a></td></tr>
+<tr><td><a href="http://www.wikigenes.org" ><img src="[% c.uri_for('/static/images/wikigenes.jpg') %]" width="80px" height="30px" /></a></td><td><a href="/static/download/wikigene_treefam_txt">wikigene_treefam.txt</a></td></tr>
+<tr><td>all external mappings</td><td><a href="">external references</a></td></tr>-->
+</table>   
+   
+	<script type="text/javascript">
+   		jQuery(document).ready(function(){
+			jQuery('.show_family').click(function(){
+            			jQuery(".family_div").slideToggle();
+            			//jQuery(this).text(jQuery(this).text() == 'Show hits' ? 'Hide hits' : 'Show hits');
+        		});
+   	});	
+	 </script>
+</div>
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

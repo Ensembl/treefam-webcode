@@ -1,0 +1,284 @@
+[%
+# keyword.tt
+# jt6 20061108 WTSI
+# 
+# build the keyword search block
+#
+# $Id: keyword.tt,v 1.3 2009-10-08 16:01:49 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+#PROCESS "components/require.tt";
+requirements.css.push( "treefam_search.css" );
+requirements.css.push( "buttons.css" );
+requirements.css.push( "TreeFamily.css" );
+requirements.css.push( "demo_table.css" );
+#requirements.js.push( "jquery/jquery.dataTables.min.js" );
+#-------------------------------------------------------------------------------
+%]
+
+<!-- start keyword search block -->
+
+<div class="block" id="searchHomologyBlock">
+  <div class="handle">
+    <h1>Homology search</h1>
+  </div>
+  <div class="blockContent">
+    <p>
+    </p>
+    <div id="kwNotes" style="display: none">
+      <p>
+        The search currently covers the following sections of the database:
+      </p>
+      <ul>
+        <li>text fields within TreeFam entries, such as description and comments</li>
+        <li>Wikipedia annotations</li>
+      </ul>
+      <p>
+        You can perform the same search from anywhere within the TreeFam site, using
+        the keyword search box at the top right-hand side of every page.
+      </p>
+      <hr />
+    </div>
+    <!-- <table id="mytable" style="margin:20px 0px 20px 0px;">
+	    <thead>
+		    <tr><th>One</th><th>Two</th></tr>
+	    </thead>
+	    <tbody>
+	    </tbody>
+    </table>
+    <script type="text/javascript">
+
+    jQuery(function() {
+       jQuery('#mytable').dataTable( {
+             "sAjaxSource": '/static/trees/test_table.txt'
+       });
+	jQuery('#mytable tbody').delegate("tr", "click", rowClick);
+    });
+    </script> -->
+    <div class="gradientBoxesWithOuterShadows">
+    <div class="formWrapper">
+	<h3>
+	<!--<img src="[% c.uri_for( "/static/images/logos/treefam_search_homologs4gene.png" ) %]" style="width:68px;height:50px;"/> -->
+Get homologs for a given sequence ID (e.g. ENSP0000042898):</h3>
+    	</div>
+    <p>
+    </p>
+    <div class="formWrapper">
+            <form method="post" id="homologySearchForm" action="[% c.uri_for( "/sequence/" ) %]">
+        	<div><input type="hidden" name="queryType" value="unp" /></div>
+          		<!-- <label for="query1">ID</label> -->
+      		    <input class="entryField entryField" type="text" size="30" maxlength="100" name="querySingle" id="querySingle" />
+                <!--<select id="homologyTypeSelect">
+                  	<option value="all">all</option>
+			<optgroup label="Orthologs"></optgroup>
+                  	<option value="ortholog_one2one">one - one</option>
+                  	<option value="ortholog_many2many">many - many</option>
+                  	<option value="ortholog_one2many">one - many</option>
+			<optgroup label="Paralogs"></optgroup>
+                  	<option value="within_species_paralog">within species paralog</option>
+                  	<option value="other_paralog">Other paralog</option>
+                </select> -->  	
+  	      		&nbsp;&nbsp;&nbsp;&nbsp;
+			<!-- <input class="submit"  onclick="get_homologs()" type="submit" name="Search" value="Search" /> -->
+			<input class="submit"  onclick=
+				jQuery('#homologySearchForm').attr('action','sequence/'+jQuery('#querySingle').val());	
+				jQuery('#homologySearchForm').submit();" type="submit" name="Search" value="Search" />
+  	      		<input class="reset"   onclick="jQuery('#querySingle').val('');" type="reset"  name="reset"  value="Reset" />
+  	      	<!-- 	<input class="example" type="button" value="Example" onclick="jQuery('#querySingle').val('ENSP00000428982');" /> -->
+		</div>  
+		</form>
+	using e.g. <a id="homology"  onClick="homology_onClick()">ENSP00000428982</a>
+</div>
+ <!-- <div class="gradientBoxesWithOuterShadows">
+    <div class="formWrapper">
+    <h3><img src="[% c.uri_for( "/static/images/logos/treefam_search_homologytype.png" ) %]" style="width:68px;height:50px;"/>
+Get the homology relationship for a gene pair</h3>
+    	</div>
+    <p>
+    </p>
+	<div class="formWrapper">
+        	<div><input type="hidden" name="queryType" value="unp" /></div>
+  	      		<input class="entryField entryField" type="text" size="30" maxlength="100" name="query1" id="query1" />
+  	      		<input class="entryField entryField" type="text" size="30" maxlength="100" name="query2" id="query2" />
+  	      		&nbsp;&nbsp;&nbsp;&nbsp;
+			<input class="submit"  onclick="get_homologyType()" type="submit" name="Search" value="Search" />
+  	      		<input class="reset"   onclick="jQuery('#query1').val('');jQuery('#query2').val(''); " type="reset"  name="reset"  value="Reset" />
+  	      		<input class="example" type="button" value="Example" onclick="jQuery('#query1').val('ENSP00000428982');jQuery('#query2').val('ENSMUSP00000100062'); " /> 
+		</div> 
+ <!--  </div>
+</div> -->
+<p></p>
+</div>    
+<script type="text/javascript">
+	function homology_onClick() {
+  		jQuery('#querySingle').val('ENSP00000428982')
+	}
+   	jQuery(document).ready(function(){
+        	jQuery(".slidingDivHomologs").hide();
+        	jQuery(".show_hideHomologs").show();
+        	jQuery('.show_hideHomologs').click(function(){
+            		jQuery(".slidingDivHomologs").slideToggle();
+            		jQuery(this).text(jQuery(this).text() == 'Show hits' ? 'Hide hits' : 'Show hits');
+        	});
+		// Sequences
+		jQuery(".slidingDivSequences").hide();
+        	jQuery(".show_hideSequences").show();
+        	jQuery('.show_hideSequences').click(function(){
+            		jQuery(".slidingDivSequences").slideToggle();
+            		jQuery(this).text(jQuery(this).text() == 'Show sequences' ? 'Hide sequences' : 'Show sequences');
+        	});
+	});
+ jQuery("#spinner").bind("ajaxSend", function() {
+		$(this).show();
+	}).bind("ajaxStop", function() {
+		$(this).hide();
+	}).bind("ajaxError", function() {
+		$(this).hide();
+	});
+
+	// show and hide the spinner
+    jQuery('#loadingDiv')
+		    .hide()  // hide it initially
+		    .ajaxStart(function() {
+			jQuery(this).show();
+		    })
+		    .ajaxStop(function() {
+			jQuery(this).hide();
+		    });
+   // homology between two IDS
+   function get_homologyType(){
+			// Get the two selected IDS
+			var seq1 = jQuery("#query1").val();
+			var seq2 = jQuery("#query2").val();
+			var treefam_family = "[% treefam.acc%]";
+			var function2call =  "/search/homologyType/"+seq1+"/"+seq2; 
+			console.log(function2call);
+            //alert(function2call);return false;
+			// lets clear the old table first
+			jQuery('#family_header').html("");
+			jQuery('#family_div').hide();
+			jQuery("#results_table").find("tr:gt(0)").remove();
+			jQuery("#sequences_container").html('');
+			jQuery('#results_div').hide();
+			jQuery('#error_div').hide();
+			jQuery('#sequences_div').hide();
+			jQuery('#results_header').html("");
+			jQuery('#sequences_header').html("");
+			var no_homologs = 0;	
+			jQuery.getJSON(function2call, function(data){
+					})
+			.success(function(data){
+					jQuery.each(data, function() {
+  						//jQuery("#" + this).text("My id is " + this + ".");
+						console.log("data is "+this)
+						var msg = "<tr><td>"+this[0]+"</td><td>"+this[1]+"</td><td>"+this[2]+"</td><td>"+this[3]+"</td><td>"+this[4]+"</td><td>"+this[5]+"</td></tr>"
+						jQuery('#results_table tr:first').after(msg)
+						no_homologs++;
+					});
+				jQuery('#results_table').show('slow');
+				jQuery('#results_div').show('slow');
+				jQuery('#results_header').html("<h2>Homologs ("+no_homologs+")</h2>");
+			})
+			.error(function(data){
+					console.log("Could not find data");
+					jQuery('#error_div').html("<h3>Sorry, we could not find a homology relationship for the IDs you entered</h3");
+				jQuery('#error_div').show('slow');
+			});
+		}
+    function get_homologs(){
+			// Get the two selected IDS
+			var seq1 = jQuery("#querySingle").val();
+			var homologytype = jQuery("#homologyTypeSelect").val();
+			var function2call =  "/search/homologs4gene/"+seq1+"/"+homologytype; 
+			console.log(function2call);
+            //alert(function2call);
+            //return false;
+		var fasta_sequences;
+		var sequences_hash = new Array;
+		var no_homologs = 0;
+        var tf_family;
+		var no_sequences = 0;
+			jQuery('#family_header').html("");
+			jQuery('#family_div').hide();
+			jQuery("#results_table").find("tr:gt(0)").remove();
+			jQuery("#sequences_container").html('');
+			jQuery('#results_div').hide();
+			jQuery('#error_div').hide();
+			jQuery('#sequences_div').hide();
+			jQuery('#results_header').html("");
+			jQuery('#sequences_header').html("");
+			// lets clear the old table first
+			jQuery("#results_table").find("tr:gt(0)").remove();
+			jQuery.getJSON(function2call, function(data){
+			
+					})
+			.success(function(data){
+						jQuery.each(data, function() {
+                                tf_family = this.tf_family;
+                                console.log("Found TreeFam family: "+tf_family);
+								//jQuery("#" + this).text("My id is " + this + ".");
+								//console.log("data is "+this);
+								var msg = "<tr><td>"+this.source.species+"</td><td>"+this.source.protein_id+"</td><td>"+this.target.species+"</td><td>"+this.target.protein_id+"</td><td>"+this.type+"</td><td>"+this.subtype+"</td></tr>"
+								jQuery('#results_table tr:first').after(msg);
+								no_homologs++;
+								//console.log("msg is "+msg);
+								var source_prot_id = this.source.protein_id;
+								var target_prot_id = this.target.protein_id;	
+								var source_sequence = this.source.sequence;
+								var target_sequence = this.target.sequence;
+								//console.log("source-prot-id: "+source_prot_id+" target-prot_id: "+target_prot_id);
+								//console.log("source-prot-seq: "+source_sequence+" target-prot_seq: "+target_sequence);
+				/* //extract sequence information */
+								if(! sequences_hash[source_prot_id]){
+									fasta_sequences = fasta_sequences + ">"+source_prot_id+"\n"+source_sequence+"<br>";
+									//console.log("saving seq: >"+source_prot_id+"\n"+source_sequence);
+									no_sequences++;				
+								}
+								if(! sequences_hash[target_prot_id]){
+									fasta_sequences = fasta_sequences + ">"+target_prot_id+"\n"+target_sequence+"<br>";
+									//console.log("saving seq: >"+target_prot_id+"\n"+target_sequence);
+									no_sequences++;				
+								}
+								sequences_hash[source_prot_id] = 1;
+								sequences_hash[target_prot_id] = 1;  
+						});
+								console.log("no sequences is "+no_sequences);
+					jQuery('#family_header').html("<h2>TreeFam family:  <a href='family/"+tf_family+"'> "+tf_family+"</a></h2>");
+					jQuery('#family_div').show('slow');
+					jQuery('#sequences_header').html("<h2>Sequences ("+no_sequences+")</h2>");
+					jQuery('#sequences_container').html(fasta_sequences);
+					jQuery('#results_header').html("<h2>Homologs ("+no_homologs+")</h2>");
+					jQuery('#sequences_div').show('slow');
+					jQuery('#results_table').show('slow');
+					jQuery('#results_div').show('slow');
+			})
+			.error(function(){
+					jQuery('#error_div').html("<h3>Sorry, we could not find a homology relationship for the IDs you entered</h3");
+				jQuery('#error_div').show('slow');
+					});
+    }	
+  </script>
+
+</div>
+
+<!-- end keyword search block -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

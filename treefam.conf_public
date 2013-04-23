@@ -1,0 +1,681 @@
+# treefamweb.conf
+# jt6 20060919 WTSI
+#
+# This is the conf-format configuration file for the Rfam website
+# catalyst application.
+#
+# $Id: rfamweb.conf,v 1.11 2009-06-09 12:30:23 jt6 Exp $
+#
+# Copyright (c) 2007: Genome Research Ltd.
+#
+# Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+#
+# This is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <http://www.gnu.org/licenses/>.
+
+#-------------------------------------------------------------------------------
+#- top-level configuration -----------------------------------------------------
+#-------------------------------------------------------------------------------
+
+# the name of the application
+name TreeFam
+title TreeFam # the prefix that appears in the browser tab or window title
+# RESTFUL settings
+#default_view = HTML
+service_name = Ensembl REST API
+log4perl_conf = /nfs/public/rw/xfam/treefam/dev/log4perl.conf
+jsonp=0
+# includes...
+
+# read in the changelog
+include changelog.conf
+
+# read in the robots.txt file
+include robots/wtsi.conf
+
+# default to setting up as the WTSI installation                                                                                       
+site      wtsi                                                                                                                            
+site_home http://www.sanger.ac.uk/                                                                                                                             
+site_name Wellcome Trust Sanger Institute 
+
+
+#-------------------------------------------------------------------------------
+#- model configuration ---------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Loading the registry here
+<Registry>
+   #host = web-mei-treefam  
+   #port = 3365
+   #user = treefam_user
+   #pass = readonly
+
+  # host = ensembldb.ensembl.org
+  # port = 5306
+  # user = anonymous
+  
+  # version = 68
+  # verbose = 0
+
+  # Turns on per-process connection sharing; experimental feature
+  connection_sharing = 1
+
+  # Control the reconnection timeout (example is set to 10 mintues in ms). Only works when connection_sharing is on
+  reconnect_interval = 600000
+
+  # Control if we close DB connections down once finished with them
+  disconnect_if_idle = 0
+
+  # Control if we attempt pings and re-connections
+  reconnect_when_lost = 1
+
+  # Set to control internal Ensembl API caching
+  no_caching = 1
+
+  # The file to use as a registry file passed into Bio::EnsEMBL::Registry::load_all()
+   file = production_treefam_reg_conf.pm
+  
+</Registry>
+<Compara>
+  # The name of the compara in the Ensembl registry to use by default
+  default_compara = TreeFam
+</Compara>
+
+
+
+
+
+#-------------------------------------------------------------------------------
+#- view configuration ----------------------------------------------------------
+#-------------------------------------------------------------------------------
+
+
+<View TT>
+
+  # set the location of the directory that will contain the template files
+  INCLUDE_PATH "/nfs/public/rw/xfam/treefam/dev/root/"
+# enable caching of the compiled templates
+#  COMPILE_DIR /tmp/rfam
+
+  # use a single template to wrap around the content. This contains
+  # all of the header and footer mark-up which was previously in 
+  # separate header.tt and footer.tt files
+  WRAPPER "components/wrapper.tt"
+
+  # allow perl expressions in the templates
+  EVAL_PERL 1
+
+  # allow TT to look for files along absolute paths
+  ABSOLUTE 1
+
+  # fixed values...
+  <CONSTANTS>
+
+    # the URL for the top-level tmp directory. This is where, for example,
+    # we can find the auto-generated domain graphics
+    tmp  "/tmp"
+
+    # the root directory for the server, from the client's perspective. This is used
+    # in the cookie handling routines for building the correct path
+    #root "/Users/fs9/bioinformatics/current_projects/treefam9/TreeFamWeb/" 
+    root "/nfs/public/rw/xfam/treefam/dev/root"
+    # this controls the appearance of the table of families in the alignment tab of
+    # the clans section. If there are more than this number of families, the table 
+    # will be split into two columns
+    tableLength 20
+  </CONSTANTS>
+
+  # I guess these are pre-defined but changeable variables...
+  <VARIABLES>
+
+    # these are the available block templates
+    <blocks>
+
+      # download-specific blocks
+      downloadPairwiseBlock  "components/blocks/download/pairwise_homologs.tt"
+      downloadDatabaseBlock  "components/blocks/download/database_dumps.tt"
+      # browse-specific blocks
+      browseSummaryBlock  "components/blocks/browse/summary.tt"
+      browseFamiliesBlock          "components/blocks/browse/families.tt"
+      browseD3FamiliesBlock          "components/blocks/browse/d3_families.tt"
+      browseSpeciesBlock          "components/blocks/browse/species.tt"
+      browseSpeciesTreeBlock		"components/blocks/browse/species_tree.tt"
+      browseSpeciesTreePhyloSvgBlock		"components/blocks/browse/phylosvg.tt"
+      browseSpeciesTreePlazaBlock		"components/blocks/browse/species_tree_plaza.tt"
+      browseSpeciesImageBlock "components/blocks/browse/species_tree_image.tt"
+	
+
+      # family-specific blocks
+      familySummaryBlock  "components/blocks/family/summary.tt"
+      alignBlock          "components/blocks/family/align.tt"
+      familySSBlock       "components/blocks/family/secondary_structure.tt"
+      speciesBlock        "components/blocks/family/species.tt"
+      domainsBlock        "components/blocks/family/domains.tt"
+      curationBlock       "components/blocks/family/curation.tt"
+      orthologyBlock      "components/blocks/family/orthology.tt"
+      familyDownloadBlock  "components/blocks/family/downloads.tt"
+      orthologyBrokenBlock "components/blocks/family/orthology_broken_div.tt"  
+      phyloBlock          "components/blocks/family/phylo.tt"
+      treeBlock          "components/blocks/family/trees.tt"
+      phylod3Block          "components/blocks/family/phylo_d3.tt"
+      phylojssvgBlock      "components/blocks/family/phylosvg.tt"
+      archBlock      "components/blocks/family/arch.tt"
+      intBlock            "components/blocks/family/interactions.tt"
+      pdbBlock            "components/blocks/family/pdb.tt"
+      dbBlock             "components/blocks/family/db.tt"
+      sequencesBlock      "components/blocks/family/sequences.tt"
+      wikipediaBlock      "components/blocks/family/wikipedia.tt"
+      speciesCountBlock      "components/blocks/family/species_counts.tt"
+      nhlCountBlock      "components/blocks/family/nhl.tt"
+      homologsBlock      "components/blocks/family/homologs.tt"
+
+#       wikiBlock           "components/blocks/family/wiki.tt"
+#       wikiFrameBlock      "components/blocks/family/wiki_frame.tt"
+#       clanBlock           "components/blocks/family/clan.tt" 
+#       speciesBlock        "components/blocks/family/species.tt"
+#       dbRefsBlock         "components/blocks/family/dbRefs.tt"
+
+      # clan-specific blocks
+      #clanSummaryBlock       "components/blocks/clan/summary.tt"
+      #clanStructuresBlock    "components/blocks/clan/structures.tt"
+      #clanSecStructuresBlock "components/blocks/clan/secondary_structures.tt"
+      #clanAlignBlock         "components/blocks/clan/alignments.tt"
+
+      # genome blocks
+      genomeSummaryBlock      "components/blocks/genome/summary.tt"
+      genomeDownloadBlock  "components/blocks/genome/download.tt"
+
+      # help pages
+      helpSummaryBlock        "components/blocks/help/summary.tt"
+      helpChangesBlock        "components/blocks/help/changes.tt"
+      helpPipelineBlock        "components/blocks/help/pipeline.tt"
+      helpGetStartedBlock     "components/blocks/help/getStarted.tt"
+      helpStatisticsBlock     "components/blocks/help/statistics.tt"
+      helpSpeciesTreeBlock     "components/blocks/help/species_tree.tt"
+      helpFAQBlock            "components/blocks/help/faq.tt"
+      helpCurationBlock       "components/blocks/help/curation.tt"
+      helpGenomeAnnotBlock    "components/blocks/help/annot.tt"
+      helpAccessBlock          "components/blocks/help/access.tt"
+      helpLinkingBlock        "components/blocks/help/linking.tt"
+      helpReferencesBlock     "components/blocks/help/references.tt"
+      helpGlossaryBlock       "components/blocks/help/glossary.tt"
+      helpContactUsBlock      "components/blocks/help/contactUs.tt"
+      helpTheTeamBlock        "components/blocks/help/theTeam.tt"
+      helpFtpBlock            "components/blocks/help/ftp.tt"
+      helpInstallBlock        "components/blocks/help/install.tt"
+      helpPrivacyBlock        "components/blocks/help/privacy.tt"
+      helpUseBlock        "components/blocks/help/use.tt"
+
+      # search tools
+      #searchSummaryBlock  "components/blocks/search/summary.tt"
+      searchKeywordBlock  "components/blocks/search/keyword.tt"
+      searchHomologyBlock  "components/blocks/search/homology.tt"
+      searchSequenceBlock   "components/blocks/search/sequence.tt"
+      searchBatchBlock    "components/blocks/search/batch.tt"
+      searchDomainBlock   "components/blocks/search/domain.tt"
+      searchTaxBlock      "components/blocks/search/tax.tt"
+      searchTypeBlock     "components/blocks/search/type.tt"
+# 
+    </blocks>
+
+    # configure the different sections
+
+    <layouts>
+
+      # ------------------------------------------------------------------------------
+
+ <download>
+
+        # first column is the block ID, second is the title for the sidebar. This
+        # is an array rather than a simple hash because we want to specify the 
+        # order of the tabs here
+        #<blocks>
+          #browseSummaryBlock "Summary"
+        #</blocks>
+        <blocks>
+          downloadDatabaseBlock "MySQL dumps"
+        </blocks>
+	<blocks>
+          downloadPairwiseBlock "Pairwise homologs"
+        </blocks>
+	#<blocks>
+        #  browseD3FamiliesBlock "Families"
+        #</blocks>
+	#<blocks>
+        #  browseSpeciesBlock "Species (Table)"
+        #</blocks>
+        #<blocks>
+        #  browseSpeciesTreeBlock "Species (Tree)"
+        #</blocks>
+        #<blocks>
+        #  browseSpeciesImageBlock "Species (Image)"
+        #</blocks>
+        #<blocks>	
+	        #browseSpeciesTreePhyloSvgBlock "Species Tree (PhyloSVG)"
+	    #</blocks>
+        #<blocks>
+          #browseSpeciesTreePlazaBlock "Species (Plaza)"
+        #</blocks>
+   </download>      
+
+ <browse>
+
+        # first column is the block ID, second is the title for the sidebar. This
+        # is an array rather than a simple hash because we want to specify the 
+        # order of the tabs here
+        #<blocks>
+          #browseSummaryBlock "Summary"
+        #</blocks>
+        <blocks>
+          browseFamiliesBlock "Families"
+        </blocks>
+	#<blocks>
+        #  browseD3FamiliesBlock "Families"
+        #</blocks>
+	<blocks>
+          browseSpeciesBlock "Species (Table)"
+        </blocks>
+        <blocks>
+          browseSpeciesTreeBlock "Species (Tree)"
+        </blocks>
+        #<blocks>
+        #  browseSpeciesImageBlock "Species (Image)"
+        #</blocks>
+        #<blocks>	
+	        #browseSpeciesTreePhyloSvgBlock "Species Tree (PhyloSVG)"
+	    #</blocks>
+        #<blocks>
+          #browseSpeciesTreePlazaBlock "Species (Plaza)"
+        #</blocks>
+   </browse>      
+
+      <family>
+
+        # first column is the block ID, second is the title for the sidebar. This
+        # is an array rather than a simple hash because we want to specify the 
+        # order of the tabs here
+        <blocks>
+          familySummaryBlock "Summary"
+        </blocks>
+        #<blocks>
+	      #speciesCountBlock         "SpeciesCount" 
+	    #</blocks>
+ 	    #<blocks>
+	      #nhlCountBlock         "HomologCount" 
+	    #</blocks>	
+	    <blocks>
+	        treeBlock         "Gene Tree" 
+	    </blocks>
+        <blocks>
+          wikipediaBlock         "Wikipedia"
+        </blocks>
+        <blocks>
+          homologsBlock         "Sequences"
+        </blocks>
+        <blocks>
+          familyDownloadBlock         "Downloads"
+        </blocks>
+	    #<blocks>
+          #sequencesBlock     "Family members"
+        #</blocks>
+        #<blocks>
+          #alignBlock         "Alignments"
+        #</blocks>
+        #<blocks>
+        #  familySSBlock      "Secondary structure"
+        #</blocks>
+        #<blocks>
+         #speciesBlock       "Species"
+        #</blocks>
+        #<blocks>
+          #archBlock         "Trees (arch)" 
+        #</blocks>
+        #<blocks>
+	  #phylojssvgBlock        "Tree (JsPhyloSVG)"
+	   #</blocks>
+	    #<blocks>
+        #  pdbBlock           "Structures"
+        #</blocks>
+        #<blocks>
+        #  dbBlock            "Database references"
+        #</blocks>
+        #<blocks>
+        #  curationBlock      "Curation"
+        #</blocks>
+
+        # this is the mapping between the summary icons and blocks, i.e. clicking on
+        # the architectures icon will display the block with ID "domainsBlock"
+        <iconLinks>
+          seqIcon    alignBlock
+        #  ipfamIcon  ipfamBlock
+          specIcon   speciesBlock
+         # structIcon pdbBlock
+        </iconLinks>
+
+      </family>  
+      
+      # ------------------------------------------------------------------------------
+
+     # <clan>
+
+        # first column is the block ID, second is the title for the sidebar. This
+        # is an array rather than a simple hash because we want to specify the 
+        # order of the tabs here
+     #   <blocks>
+     #     clanSummaryBlock        "Summary"
+     #   </blocks>
+     #   <blocks>
+     #     clanStructuresBlock     "Structures"
+     #   </blocks>
+     #   <blocks>
+     #     clanSecStructuresBlock  "Secondary structures"
+     #   </blocks>
+     #   <blocks>
+     #     clanAlignBlock          "Alignments"
+     #   </blocks>
+
+        # this is the mapping between the summary icons and blocks, i.e. clicking on
+        # the architectures icon will display the block with ID "domainsBlock"
+       # <iconLinks>
+       #   seqIcon    clanAlignBlock
+       #   ipfamIcon  ipfamBlock
+       #   specIcon   speciesBlock
+       #   structIcon clanStructuresBlock
+       # </iconLinks>
+
+     # </clan>  
+      
+      # ------------------------------------------------------------------------------
+
+      <genome>
+
+        <blocks>
+          genomeSummaryBlock     "Summary"
+        </blocks>
+        <blocks>
+          genomeDownloadBlock "Download"
+        </blocks>
+
+        <iconLinks>
+          seqIcon    genomeChromosomesBlock
+          ipfamIcon  none
+          specIcon   genomeSummaryBlock
+          structIcon none
+        </iconLinks>
+
+      </genome>  
+      
+      # ------------------------------------------------------------------------------
+
+      <help>
+
+        <blocks>
+          helpSummaryBlock        "Summary"
+        </blocks>
+                #<blocks>
+        #  helpGetStartedBlock     "Getting Started"
+        #</blocks>
+        <blocks>
+          helpPipelineBlock     "TreeFam Pipeline"
+        </blocks>
+        <blocks>
+          helpStatisticsBlock     "Statistics"
+        </blocks>
+        		#<blocks>
+        	#helpSpeciesTreeBlock   "Species Tree"
+        #</blocks>
+                #<blocks>
+          #helpCurationBlock       "Curation"
+        #</blocks>
+        #<blocks>
+         #helpGenomeAnnotBlock     "Genome Annotation"
+        #</blocks>
+        #       <blocks>
+        #        helpToolsBlock           "Software and tools"
+        #       </blocks>
+        <blocks>
+          helpUseBlock     "Using TreeFam"
+        </blocks>
+	#<blocks>
+        #  helpAccessBlock     "Using TreeFam"
+        #</blocks>
+	#<blocks>
+        #  helpUseBlock     "Using TreeFam"
+        #</blocks>
+	#<blocks>
+        #  helpLinkingBlock        "Using TreeFam"
+        #</blocks>
+        #<blocks>
+          #helpFtpBlock            "FTP site"
+        #</blocks>
+        #<blocks>
+        #  helpReferencesBlock     "Using TreeFam"
+        #</blocks>
+        #        <blocks>
+        #          helpGlossaryBlock       "Glossary"
+        #        </blocks>
+        #<blocks>
+        #  helpFAQBlock            "FAQ &amp; Glossary"
+        #</blocks>
+	<blocks>
+          helpChangesBlock        "Changes"
+        </blocks>
+	<blocks>
+          helpTheTeamBlock        "Team Members"
+        </blocks>
+        #        <blocks>
+        #          helpInstallBlock        "Website installation"
+        #        </blocks>
+        <blocks>
+          helpPrivacyBlock        "Privacy"
+        </blocks>
+        <blocks>
+          helpContactUsBlock      "Contact Us"
+        </blocks>   
+      </help>
+    
+      # ------------------------------------------------------------------------------
+
+      <search>
+
+        #<blocks>
+          #searchSummaryBlock "Summary"
+        #</blocks>
+	    <blocks>
+          searchKeywordBlock  "Keyword"
+        </blocks>
+	    <blocks>
+          searchHomologyBlock   "Homology"
+        </blocks>
+	<blocks>
+          searchSequenceBlock    "Sequence"
+        </blocks>
+#        <blocks>
+#          searchDomainBlock   "Domain architecture"
+#        </blocks>
+        #<blocks>
+          #searchTaxBlock      "Taxonomy"
+        #</blocks>
+        #<blocks>
+        #  searchTypeBlock     "Entry type"
+        #</blocks>
+
+      </search>
+    
+      # ------------------------------------------------------------------------------
+    
+    </layouts>
+
+  </VARIABLES>
+
+</View>
+
+
+#-------------------------------------------------------------------------------
+#- controller configuration ----------------------------------------------------
+#-------------------------------------------------------------------------------
+
+
+<Controller Root>
+  # URI for the blog feed
+  blog_uri http://xfam.wordpress.com/feed/
+</Controller>
+
+# the controller that generates the various representations of the
+# species trees
+
+<Controller SpeciesTree>
+  # if the number of species is greater than the first limit, we'll show a 
+  # message saying that "this could be slow", but will allow the user to 
+  # generate the interactive tree anyway
+  allowInteractiveLimit 350
+
+  # if the number of species is greater than the second limit, we'll refuse 
+  # to generate the interactive tree and only provide a link to the 
+  # text tree
+  denyInteractiveLimit 600
+
+  # if the number of species is greater than this third limit, we'll refuse 
+  # point-blank to generate even a text tree
+  denyAllLimit 1000
+
+  # make sure that 
+  #   denyAllLimit > denyInteractiveLimit > allowInteractiveLimit
+  # because that's what the controller is going to assume
+  
+  # location of the Easel reformat binary
+  eslreformat_binary    /usr/local/bin/esl-reformat
+</Controller>
+
+#-------------------------------------------------------------------------------
+# searching
+
+# interactive sequence search controller
+<Controller Search::Sequence>
+  # the maximum number of jobs that are allowed in the sequence search queue
+  pendingLimit 100
+
+  # the interval at which the user's browser should poll the search server for
+  # the result of their search
+  pollingInterval 3
+  
+  # maximum number of residues allowed in an uploaded sequence
+  maxSeqLength 10000
+  
+  # a multiplier that is used to calculate the estimated run time for an 
+  # interactive sequence search. The formula is:
+  #
+  #   estimated time = sequence length * multiplier / 100
+  #
+  # i.e. with the multiplier set to 1, a sequence of 100 residues should take
+  # about 1 second, while a sequence with 1200 residues should take 12 seconds.
+  # e.g. if a sequence search for a 1200-residue sequence actually takes 24s, 
+  # the multiplier would be set to 2.
+  search_multiplier 1
+</Controller>
+
+<Controller Search::Batch>
+  # if a duplicate search is submitted within "uniqueSearchInterval" hours, the
+  # server will throw an error message asking the user not to submit duplicate
+  # searches
+  uniqueSearchInterval 24
+
+  # limits for uploaded FASTA files
+  
+  # maximum number of lines in a single file
+  maxNumLines 100000
+  
+  # maximum number of sequences in a single file. Although the site advertises
+  # this as 1000, we'll give a little bit of latitude
+  maxNumSeqs 1100
+  
+  # maximum number of bases in a single sequence
+  maxNumResidues 200000
+  
+  # minimum number of different base types in a sequence
+  minNumResidueTypes 2
+  
+  # regular expression for validating sequence lines. Note that newline (\n),
+  # carriage return (\r) and space characters (\s) are removed before this 
+  # regex is applied
+  sequenceValidationRegex "^[ACGUTSWMKRYBDHVN\-\.]+$"
+  
+</Controller>
+
+<Controller Search::Keyword>
+  # these are the search plugins that can be called by the search system
+  <plugins>
+    TreeFam       "Text fields for TreeFam entries"
+  #  Wikipedia  "Wikipedia annotations"
+  #  Literature "Literature references"
+  #  Pdb        "PDB structures"
+  </plugins>
+
+  # these are sets of searches. They can be used to group searches, so that, 
+  # for example the "textSearches" list can contain those search plugins that
+  # perform fulltext queries
+  <searchSets>
+    # full text queries
+    textSearches TreeFam
+    #textSearches Wikipedia
+    #textSearches Literature
+    #textSearches Pdb
+  </searchSets>
+
+</Controller>
+
+#-------------------------------------------------------------------------------
+# site sections
+ 
+<Controller Structure::GetPdbFile>
+  # the URL for retrieving uncompressed PDB files
+  pdbFileUrl ftp://ftp.ebi.ac.uk/pub/databases/msd/pdb_uncompressed/
+</Controller>
+ 
+<Controller Browse>
+  # these are the accepted values when browsing for Rfam families in a 
+  # particular kingdom
+  <kingdoms>
+    Bacteria  1
+    Eukaryota 1
+    Archaea   1
+    Viruses   1
+  </kingdoms>
+</Controller>
+
+<Controller Genome>
+  # these are the accepted values when browsing for Rfam families in a 
+  # particular kingdom
+  <kingdoms>
+    Bacteria  1
+    Eukaryota 1
+    Archaea   1
+    Viruses   1
+  </kingdoms>
+</Controller>
+
+<Controller Family>
+  <regionsLimits>
+    showAll   4000
+    showText 10000
+  </regionsLimits>
+</Controller>
+
+<Controller Family::Alignment::Download>
+  default_output_format stockholm
+  eslreformat_binary    /usr/local/bin/esl-reformat
+</Controller>
+
+
+#-------------------------------------------------------------------------------
+#- EOF -------------------------------------------------------------------------
+#-------------------------------------------------------------------------------

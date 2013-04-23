@@ -1,0 +1,224 @@
+[%
+# searchResults.tt
+# jt6 20060807 WTSI
+# 
+# keyword search results page
+#
+# $Id: results.tt,v 1.1 2008-09-12 09:27:14 jt6 Exp $
+
+META title = "Keyword/ID search results";
+META fullPage = 1;
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+
+requirements.css.push( "family.css" );
+requirements.css.push( "buttons.css" );
+requirements.css.push( "demo_table.css" );
+requirements.js.push( "jquery/jquery-1.8.2.min.js" );
+requirements.js.push( "jquery/jquery.dataTables.min.js" );
+requirements.css.push( "search.css" );
+
+
+#-------------------------------------------------------------------------------
+
+-%]
+<div class="whitebg">
+<div class="key" 
+     id="sequenceHitsKey">
+
+  <h2>TreeFam hits on keyword "[% entry %]"</h2>
+	[% IF initial_entry %]
+		(Your initial search was for [% initial_entry %]. We mapped it to an identifier used by TreeFam)
+	[% END %]
+  <p>
+  </p>
+
+<!--   <table class="details" summary="Sequence information">
+    <tbody>
+      <tr class="[% oe % 2 ? 'odd' : 'even'; oe = oe + 1; %]">
+        <td class="label">Families</td>
+        <td class="data" id="seqDesc"><a href="#families"><div id="no_families">2</div></a></td>
+      </tr><tr class="[% oe % 2 ? 'odd' : 'even'; oe = oe + 1; %]">
+        <td class="label">Sequences</td>
+        <td class="data" id="seqDesc"><a href="#sequences" ><div id="no_sequences">4</div></a></td>
+      </tr>
+      <tr class="[% oe % 2 ? 'odd' : 'even'; oe = oe + 1; %]">
+        <td class="label">External references</a></td>
+        <td class="data" id="tree"><a href="#xrefs"><div id="no_xrefs">3</div></a></td>
+      </tr>
+    </tbody>
+  </table> -->
+
+</div> <!-- end of div "key" -->
+
+<div id="results">  
+    <h2 id="families">   <img src="[% c.uri_for( "/static/images/logos/treefam_families_small.png" ) %]" style="width:35px;height:25px;"/>Families</h2>
+ 	<div class="keyTable" id="families_table"></div> 
+    <h2 id="sequences"><img src="[% c.uri_for( "/static/images/logos/treefam_sequences_small.png" ) %]" style="width:35px;height:25px;"/>Sequences</h2>
+ 	<div class="keyTable" id="sequences_table"></div> 
+    <h2 id="xrefs"><img src="[% c.uri_for( "/static/images/logos/treefam_xrefs_small.png" ) %]" style="width:35px;height:25px;"/>External references</h2>
+	 <div class="keyTable" id="xrefs_table"></div> 
+</div>
+
+
+</div>
+</div>
+<script type="text/javascript">
+  jQuery.noConflict();
+    /* Data set - can contain whatever information you want */
+    jQuery(document).ready(function() {          
+                var to_search = "[% entry %]"
+                jQuery('#families_table').html( '<table cellpadding="0" cellspacing="0" border="5" class="display" id="families_data"></table>' );
+		        jQuery('#families_data').dataTable( {
+						"sAjaxSource": "/search/families4keyword/"+ to_search,
+						"bProcessing": true,
+						"oLanguage": {
+							 "sSearch": "Search",
+							"sProcessing": '<img alt="Spinner" src="/static/images/ajax-loader.gif" />',
+							"sEmptyTable": "Nothing found!"
+						},
+						"fnServerData": function ( sSource, aoData, fnCallback ) {
+							    jQuery.getJSON( sSource, aoData, function (json) {
+									fnCallback(json)
+								} );
+								var no_of_families = [% no_family_hits %]
+								console.log("well, we have "+ no_of_families+" families")
+								jQuery("#no_families").text(no_of_families)
+						    },
+						"sAjaxDataProp": "",
+						"aLengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]],
+							"aoColumnDefs": [
+										    {
+											      "fnRender": function ( o, val ) {
+							                            return '<a href=/family/' + o.aData.gtName + '>' + o.aData.gtName + '</a>'		    ;
+													    },
+												  "aTargets": [ 0 ]
+											 },
+							    {
+											      "fnRender": function ( o, val ) {
+													    return o.aData.symbol;
+													    },
+												  "aTargets": [ 1 ]
+											 }, 
+							     {
+											      "fnRender": function ( o, val ) {
+													    return o.aData.name;
+													    },
+												  "aTargets": [ 2 ]
+											 },],
+							     "aoColumns": [
+							    { "sTitle": "TreeFam family", sDefaultContent: "n/a" },
+							    { "sTitle": "Symbol", sDefaultContent: "n/a" },
+							    { "sTitle": "Description", sDefaultContent: "n/a" }],	
+					}); 
+                jQuery('#sequences_table').html( '<table cellpadding="0" cellspacing="0" border="5" class="display" id="sequences_data"></table>' );
+		        jQuery('#sequences_data').dataTable( {
+						"sAjaxSource": "/search/sequences4keyword/"+ to_search,
+						"bProcessing": true,
+						"oLanguage": {
+							 "sSearch": "Search",
+							"sProcessing": '<img alt="Spinner" src="/static/images/ajax-loader.gif" />',
+							"sEmptyTable": "Nothing found!"
+						},
+						"fnServerData": function ( sSource, aoData, fnCallback ) {
+							    jQuery.getJSON( sSource, aoData, function (json) {
+								fnCallback(json)
+								} );
+						    },
+						"sAjaxDataProp": "",
+						"aLengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]],
+							"aoColumnDefs": [
+										    {
+											      "fnRender": function ( o, val ) {
+							                            return '<a href=/genome/' + o.aData.taxon_id + '>' + o.aData.taxon_name + '</a>'		    ;
+													    },
+												  "aTargets": [ 0 ]
+											 },
+							                    {
+											      "fnRender": function ( o, val ) {
+							                            return '<a href=/sequence/' + o.aData.stable_id + '>' + o.aData.stable_id + '</a>'		    ;
+													    },
+												  "aTargets": [ 1 ]
+											 }, 
+							                {
+											      "fnRender": function ( o, val ) {
+							                            return '<a href=/family/' + o.aData.family + '>' + o.aData.family + '</a>'		    ;
+													    },
+												  "aTargets": [ 2 ]
+											 },
+                                            {
+											      "fnRender": function ( o, val ) {
+													    return o.aData.description;
+													    },
+												  "aTargets": [ 3 ]
+											 },
+ ],
+							     "aoColumns": [
+							    { "sTitle": "Species", sDefaultContent: "n/a" },
+							    { "sTitle": "ID", sDefaultContent: "n/a" },
+							    { "sTitle": "TreeFam family", sDefaultContent: "n/a" },
+							    { "sTitle": "Description", sDefaultContent: "n/a" }],	
+					}); 
+                jQuery('#xrefs_table').html( '<table cellpadding="0" cellspacing="0" border="5" class="display" id="xrefs_data"></table>' );
+		        jQuery('#xrefs_data').dataTable( {
+						"sAjaxSource": "/search/xrefs4keyword/"+ to_search,
+						"bProcessing": true,
+						"oLanguage": {
+							 "sSearch": "Search",
+							"sProcessing": '<img alt="Spinner" src="/static/images/ajax-loader.gif" />',
+							"sEmptyTable": "Nothing found!"
+						},
+						"fnServerData": function ( sSource, aoData, fnCallback ) {
+							    jQuery.getJSON( sSource, aoData, function (json) {
+								fnCallback(json)
+								} );
+						    },
+						"sAjaxDataProp": "",
+						"aLengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]],
+							"aoColumnDefs": [
+										    {
+											      "fnRender": function ( o, val ) {
+													    return o.aData.dbName ;
+													    },
+												  "aTargets": [ 0 ]
+											 },
+							                {
+											      "fnRender": function ( o, val ) {
+													    return o.aData.extName;
+													    },
+												  "aTargets": [ 1 ]
+											 }, 
+							                {
+											      "fnRender": function ( o, val ) {
+							                            return '<a href=/family/' + o.aData.gtName + '>' + o.aData.gtName + '</a>'		    ;
+													    },
+												  "aTargets": [ 2 ]
+											 },],
+							     "aoColumns": [
+							    { "sTitle": "external DB", sDefaultContent: "n/a" },
+							    { "sTitle": "External ID", sDefaultContent: "n/a" },
+							    { "sTitle": "TreeFam family", sDefaultContent: "n/a" }],	
+					}); 
+    });
+</script>
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

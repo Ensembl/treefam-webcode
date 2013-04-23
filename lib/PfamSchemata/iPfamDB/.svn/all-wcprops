@@ -1,0 +1,257 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/code/!svn/ver/4960/trunk/PfamSchemata/iPfamDB
+END
+PdbConnectivity.pm
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/PdbConnectivity.pm
+END
+ProteinProteinBonds.pm
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/code/!svn/ver/4960/trunk/PfamSchemata/iPfamDB/ProteinProteinBonds.pm
+END
+Dli.pm
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Dli.pm
+END
+GeneOntology.pm
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/GeneOntology.pm
+END
+Nadi.pm
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Nadi.pm
+END
+LigandSynonyms.pm
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/LigandSynonyms.pm
+END
+Ligands.pm
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Ligands.pm
+END
+NucleicAcidIntAtoms.pm
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/code/!svn/ver/4960/trunk/PfamSchemata/iPfamDB/NucleicAcidIntAtoms.pm
+END
+Pli.pm
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Pli.pm
+END
+NadiRes.pm
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/code/!svn/ver/4960/trunk/PfamSchemata/iPfamDB/NadiRes.pm
+END
+ProteinLigandBonds.pm
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/ProteinLigandBonds.pm
+END
+ProteinAnnseq.pm
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/ProteinAnnseq.pm
+END
+Napi.pm
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Napi.pm
+END
+Ppi.pm
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Ppi.pm
+END
+QualityControl.pm
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/QualityControl.pm
+END
+Nardi.pm
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Nardi.pm
+END
+NapiRes.pm
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/NapiRes.pm
+END
+Tracking.pm
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Tracking.pm
+END
+Pdb.pm
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Pdb.pm
+END
+NucleicAcidRegion.pm
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/NucleicAcidRegion.pm
+END
+NardiRes.pm
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/NardiRes.pm
+END
+Domain.pm
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Domain.pm
+END
+PdbImage.pm
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/PdbImage.pm
+END
+DdiRes.pm
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/DdiRes.pm
+END
+LigandSummary.pm
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/LigandSummary.pm
+END
+LigandIntAtoms.pm
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/LigandIntAtoms.pm
+END
+PdbResidueData.pm
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/PdbResidueData.pm
+END
+Protein.pm
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Protein.pm
+END
+DliRes.pm
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/DliRes.pm
+END
+Sources.pm
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Sources.pm
+END
+Pfama.pm
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Pfama.pm
+END
+Rfam.pm
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Rfam.pm
+END
+LigandChemistry.pm
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/code/!svn/ver/4960/trunk/PfamSchemata/iPfamDB/LigandChemistry.pm
+END
+PdbAuthor.pm
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/PdbAuthor.pm
+END
+ProteinNucleicAcidBonds.pm
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/code/!svn/ver/4960/trunk/PfamSchemata/iPfamDB/ProteinNucleicAcidBonds.pm
+END
+Pfamseq.pm
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Pfamseq.pm
+END
+PliRes.pm
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/PliRes.pm
+END
+ProteinIntAtoms.pm
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/code/!svn/ver/4960/trunk/PfamSchemata/iPfamDB/ProteinIntAtoms.pm
+END
+Ddi.pm
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/Ddi.pm
+END
+PpiRes.pm
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/code/!svn/ver/4903/trunk/PfamSchemata/iPfamDB/PpiRes.pm
+END
+PdbChainData.pm
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/code/!svn/ver/4960/trunk/PfamSchemata/iPfamDB/PdbChainData.pm
+END
+NucleicAcid.pm
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/code/!svn/ver/4960/trunk/PfamSchemata/iPfamDB/NucleicAcid.pm
+END

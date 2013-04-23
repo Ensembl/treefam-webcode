@@ -1,0 +1,113 @@
+[%
+# phylo.tt
+# jt6 20060515 WTSI
+#
+# block showing the phylogenetic tree for a family
+#
+# $Id: phylo.tt,v 1.7 2008-07-25 13:30:45 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+alignmentUri = c.uri_for( '/family', acc, 'alignment' );
+
+%]
+<div class="block" id="treeBlock">
+  <div class="handle">
+    <h1>Gene Tree</h1>
+  </div>
+  <div class="blockContent">
+       			<div id="d3Tree">
+        
+	Here is the gene tree of [% treefam.symbol %]. You can download the tree <a href="[% c.uri_for( "/family",acc, "tree/newick") %]" >here</a>.<br>
+	 <STYLE type="text/css">
+text {
+	font-size:10px;
+}
+path.link {
+            fill: none;
+            stroke: gray;
+            stroke-width: 2.5px;
+        }
+
+        path.selected {
+            stroke: darkred;
+            fill: none;
+            stroke-width: 5px;
+        }
+circle {
+  //fill: white;
+ // stroke: black;
+  stroke-width: 5.5px;  
+}
+
+text.domainlabel{
+color : white;
+} 
+
+</STYLE>
+	
+<br>
+<table >
+  <tr>
+	  <th>internal node names</th> 
+	  <th>IDs/Taxa</th> 
+	  <th>domains</th> 
+  </tr>
+  <tr>
+  	<td>
+			<a href="#" onclick="hide_internal_text();return false">hide</a>/
+			<a href="#" onclick="show_internal_text();return false">(all</a>
+			<a href="#" onclick="show_internal_text_important();return false">/selected)</a>
+		</td>
+  	<td>
+				<a href="#" onclick="show_leaf_ids(); return false">IDs</a>/
+				<a href="#" onclick="show_leaf_taxa(); return false">taxa</a><br>
+			</td>
+  	<td>
+				<a href="#" onclick="hide_domains(); return false">hide</a>/
+				<a href="#" onclick="show_domains(); return false">show</a><br>
+			</td>
+
+	</tr>
+	</table>	
+		
+<div style="width:80%;"> 
+	  <div style="float:left;    overflow=auto" id="tree"></div>
+</div>
+<script type="text/javascript">
+		jQuery(document).ready(function() {
+				//var json_tree = "/family/TF101005/tree/json";
+				var json_tree = "[% c.uri_for( "/family",acc, "tree/json") %]";
+				//var json_tree = "/static/trees/gene_tree.json";
+				var no_genes = "[% numSequences %]" * 2;
+				var alignment_length = "[% summaryData.aln_length %]";
+				var image_path = "/static/images/species_pictures/species_files";
+				console.log("call with "+json_tree+" and "+no_genes+ " and path: "+image_path);
+				draw_d3_tree(no_genes, alignment_length,json_tree, image_path);
+		});
+</script>
+		</div>
+
+        		</div> <!-- block content -->
+</div> <!-- treeblock -->
+
+<!-- end of phyloBlock -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

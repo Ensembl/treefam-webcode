@@ -1,0 +1,287 @@
+[%
+# summary.tt
+# jt6 20060925 WTSI
+# 
+# build the summary block for the help pages
+#
+# $Id: summary.tt,v 1.4 2009-06-10 10:46:27 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+#-------------------------------------------------------------------------------
+
+%]
+
+<!-- start summary block -->
+<div class="block" id="browseSpeciesTreeBlock">
+	<div class="handle">
+		<h1>Species Tree</h1>
+	</div>
+	<div class="blockContent">
+	<p>Here is the species tree used in the current TreeFam release. You can download the tree in newick format <a href="http://dev.treefam.org/download#tabview=tab0">here</a>.	</p>
+
+	<p>	
+		<table >
+  		<tr>
+		  <th>internal node names</th> <td>
+			<a href="#" onclick="hide_internal_text();return false">hide</a>/
+			<a href="#" onclick="show_internal_text();return false">(all</a>
+			<a href="#" onclick="show_internal_text_important();return false">/major)</a>
+		</td></tr>
+		</table>
+
+	  <div style="float:left; overflow=auto" id="tree"></div>
+</p>
+ <script type="text/javascript">
+console.log("at least i am here");  	
+	// Defined showable taxa
+	var show_taxa = new Object();
+	show_taxa['Metazoa'] = 1;
+	show_taxa['Bilateria'] = 1;
+	show_taxa['Mammalia'] = 1;
+	show_taxa['Dipteria'] = 1;
+	show_taxa['Primates'] = 1;
+	show_taxa['Arthropoda'] = 1;
+	show_taxa['Nematoda'] = 1;
+	show_taxa['Ascomycota'] = "red";
+	show_taxa['Codonosigidae'] = "red";
+
+
+// Outgroup
+
+	
+	var image_path = "/static/images/species_pictures/species_files/";
+	
+	var id_label;
+	var id_label;
+	var w = "800",
+		h = "2000",
+		i = 0,
+		duration = 500,
+		root;
+	
+	var margin = {top: 0, right: 10, bottom: 0, left: 0},
+		width = 960 - margin.left - margin.right,
+		height = 500 - margin.top - margin.bottom;
+	
+	
+	
+ 	//var tree = d3.layout.tree()
+ 	//.separation(function(a, b) { return a.parent === b.parent ? 0.9 : 2; })
+ 	//	.size([h, w - 160]);    
+	
+	var tree = d3.layout.cluster()
+	.separation(function(a, b) { return a.parent === b.parent ? 4 : 4; })
+	//.separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; })
+	.size([h, w - 300]);
+	
+	var domainOnlyScale = d3.scale.linear().domain([0,7]);
+	
+	var diagonal = d3.svg.diagonal()
+		.projection(function(d) { return [d.y, d.x]; });
+	
+// tree	
+	var vis = d3.select("#tree").append("svg:svg")
+		.attr("width", w)
+		.attr("height", h)
+		//.attr("viewBox","0 0 50 50")
+	  	.attr("transform", "translate(40,0)")
+		.attr("pointer-events", "all")
+	    .append('svg:g');
+
+	
+	 d3.json("/static/trees/treefam9_new.json", function(json) {
+// 	
+	
+	function collapse(d) {
+		if (d.children) {
+		  d._children = d.children;
+		  d._children.forEach(collapse);
+		  d.children = null;
+		}
+	  }
+
+	
+	  //update(root);
+	 // json = JSON.parse( myjson );
+console.log("heloooooo");
+	  update(root = json);
+	});
+	
+	function update(source) {
+	
+	  // Compute the new tree layout.
+	  var nodes = tree.nodes(root);
+	  vis.attr({ width: 40000, height: 500});
+	  // Update the nodesâ¦
+		var node = vis.selectAll("g.node").data(nodes, function(d) { return d.id || (d.id = ++i); });
+	
+		var nodeEnter = node.enter().append("svg:g")
+			.attr("class", "node")
+			.attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; });
+	 
+	  // Enter any new nodes at the parent's previous position.
+// CIRCLE	 
+		var circles = nodeEnter.append("svg:circle")
+		  .attr("r", function(d){
+		  	return d.children ? 2.5 : 0;
+		  });
+		
+// TEXT		
+		var texts = nodeEnter.append("svg:text")
+			.attr("x", function(d) { return d.children ? -50 : 38; })
+			.attr("y", function(d) { return d.children ? -5 : 3; })
+			.attr("class","innerNode_label")
+			.text(function(d) { 
+						if(d.children){
+							if(show_taxa.hasOwnProperty(d.name)){
+								if(d.duplication == "Y"){return "";}
+								else{return d.name;}
+							}
+						}
+						else{return d.name; }});
+// IMAGE
+	 var images = nodeEnter.append("svg:image")
+			.attr("y", -13.5)
+		   .attr("x", 10.5)
+		   .attr("width", 20)
+		   .attr("height", 20)
+		   .attr("xlink:href", function(d) { 
+				//console.log("node "+d.name+"has "+d.children+" children");
+			  return d.children == null? image_path+"/thumb_"+d.name+".png" : "";
+	//         //return "http://static.ensembl.org/i/species/48/Homo_sapiens.png"; 
+		   });
+
+
+	
+	  // Transition nodes to their new position.
+		nodeEnter.transition()
+			.duration(duration)
+			.attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+			.style("opacity", 1)
+		  .select("circle");
+			//.attr("cx", function(d) { return d.x; })
+			//.attr("cy", function(d) { return d.y; })
+			//.style("fill", "lightsteelblue");
+		  
+		node.transition()
+		  .duration(duration)
+		  .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+		  .style("opacity", 1);
+		
+	
+		node.exit().transition()
+		  .duration(duration)
+		  .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+		  .style("opacity", 1e-6)
+		  .remove();
+
+	  // Update the linksâ¦
+	  var link = vis.selectAll("path.link")
+		  .data(tree.links(nodes), function(d) { return d.target.id; });
+	
+	  // Enter any new links at the parent's previous position.
+	  link.enter().insert("svg:path", "g")
+		  .attr("class", "link")
+		  .attr("stroke-width", function(d){
+				return "1.5px";
+		  })
+		  .attr("stroke", function(d){
+				return "black";
+		  })      
+		  .attr("d", elbow)
+		.transition()
+		  .duration(duration)
+		  .attr("d", elbow)
+		  ;
+	
+	  // Transition links to their new position.
+	  link.transition()
+		  .duration(duration)
+		  .attr("d", elbow)
+		  ;
+	
+	  // Transition exiting nodes to the parent's new position.
+	  link.exit().transition()
+		  .duration(duration)
+		  .attr("d", elbow)
+		  .remove();
+	
+	  // Stash the old positions for transition.
+	  nodes.forEach(function(d) {
+		d.x0 = d.x;
+		d.y0 = d.y;
+	  });
+	
+	}
+
+
+
+	function elbow(d, i) {
+		   return "M" + d.source.y + "," + d.source.x
+      + "V" + d.target.x + "H" + d.target.y;
+	}
+
+	function hide_internal_text(d) {
+		 d3.select("#tree svg").selectAll(".innerNode_label").text(function(d){
+				return d.children ? "": d.name; 
+		});
+	}
+	function show_internal_text(d) {
+		console.log("we are here");
+		 d3.select("#tree svg").selectAll(".innerNode_label").text(function(d) { 
+		if(d.duplication == "Y"){
+				return "";
+		}
+		else{
+					return d.name; 
+		}
+		});
+	}	
+	
+function show_internal_text_important(d) {
+		 d3.select("#tree svg").selectAll(".innerNode_label").text(function(d) { 
+			if(d.children){
+				if(show_taxa.hasOwnProperty(d.name)){
+					if(d.duplication == "Y"){
+						return "";
+					}
+				else{
+					return d.name;
+				}
+
+			}
+		}
+		else{
+			return d.name; 
+		}	
+});
+	}
+	d3.select(self.frameElement).style("height", "2000px");   
+    
+    
+    
+    </script>
+</div>
+</div>
+<!-- end summary block -->
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk), 
+	Jennifer Daub (jd7@sanger.ac.uk) and Paul Gardner (pg5@sanger.ac.uk)
+
+	This is free software; you can redistribute it and/or modify it under
+	the terms of the GNU General Public License as published by the Free Software
+	Foundation; either version 2 of the License, or (at your option) any later
+	version.
+
+	This program is distributed in the hope that it will be useful, but WITHOUT
+	ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+	FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+	details.
+
+	You should have received a copy of the GNU General Public License along with
+	this program. If not, see <http://www.gnu.org/licenses/>.
+	-%]

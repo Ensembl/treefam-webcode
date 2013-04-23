@@ -1,0 +1,681 @@
+[%
+# index.tt
+# jt6 20060717 WTSI
+# 
+# build the main Treefam home page.
+#
+# $Id: index.tt,v 1.10 2009-06-09 12:13:25 jt6 Exp $
+
+META title = "Home page";
+META fullPage = 1;
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+
+requirements.css.push( "index.css" );
+#requirements.css.push( "treefam.css" );
+#requirements.css.push( "TreeFamily.css" );
+#requirements.css.push( "buttons.css" );
+#requirements.css.push( "slider/style.css" );
+requirements.js.push( "jquery/jquery-1.8.2.min.js" );
+requirements.js.push( "jquery/jquery-ui-1.8.2.custom.min.js" );
+#requirements.js.push( "mygene_query.js" );
+# This will be our own implementation of autocomplete
+requirements.js.push( "treefam_autocomplete.js" );
+requirements.js.push( "prototype.js" );
+requirements.js.push( "sharedFunctions.js" );
+#
+#requirements.css.push( "jcobb-basic-jquery-slider-e15b5ee/bjqs.css" );
+#requirements.js.push( "jcobb-basic-jquery-slider-e15b5ee/js/bjqs-1.3.js" );
+
+# slider: http://css-tricks.com/examples/AnythingSlider/demos.html#&panel1-4&panel2-1&panel3-3
+requirements.js.push( "anythingslider/jquery.easing.1.2.js" );
+requirements.js.push( "anythingslider/jquery.anythingslider.min.js" );
+requirements.js.push( "anythingslider/jquery.colorbox-min.js" );
+requirements.css.push( "anythingslider/anythingslider.css" );
+requirements.css.push( "anythingslider/colorbox.css" );
+
+
+# slider   http://tympanus.net/codrops/2010/04/28/pretty-simple-content-slider-with-jquery-and-css3/
+#requirements.js.push( "PrettySimpleContentSlider/jquery-package-min.js" );
+#requirements.css.push( "PrettySimpleContentSlider/style.css" );
+
+# slider: http://www.gayadesign.com/scripts/presentationCycle/
+#requirements.js.push( "presentationCycle/presentationCycle.js" );
+#requirements.js.push( "presentationCycle/jquery.cycle.all.min.js" );
+#requirements.css.push( "presentationCycle/presentationCycle.css" );
+#requirements.css.push( "presentationCycle/style.css" );
+
+# News ticker
+requirements.css.push( "jquerynewsticker/ticker-style.css" );
+requirements.js.push( "jquerynewsticker/jquery.ticker.js" );
+
+#requirements.cssIeAll.push( "index_all_ie.css" );
+
+#-------------------------------------------------------------------------------
+
+# a warning message for users who dont have javascript turned on. The 
+# message should be hidden immediately after its displayed, but if 
+# javascript is not working, the prototype call will fail and the message
+# will stay visible
+%]
+<div id="jsWarning">
+  <strong>Please note:</strong> this site relies heavily on the use of javascript. 
+  Without a javascript-enabled browser, this site will not function correctly. 
+  Please enable javascript and reload the page, or switch to a different browser.
+</div>
+<script type="text/javascript">
+  // <![CDATA[
+  $("jsWarning").hide();
+  // ]]>
+</script>
+
+<!-- start of index page -->
+ 
+
+<div id="index">
+<!-- 
+  <div id="intro"> 
+
+    [% # if the database is down, we will be unable to retrieve release data, so
+       # change the construction of the page title accordingly
+    IF relData;
+    
+      # we have release data; format the date nicely
+      USE date( format = "%B %Y" );
+      d = relData.rfam_release_date.match( '(\d+)\-(\d+)\-(\d+)' );
+
+      USE String;
+      release_date = String.new( "00:00:00 " );
+      CALL release_date.append( d.2, ":", d.1, ":", d.0 ); %]
+      <h2>TreeFam [% relData.rfam_release %] ([% date.format( release_date ) %],
+        [% relData.number_families %] families)</h2>
+    [% ELSE %]
+      <h2>TreeFam 9.0 (November 2012, 100 species in 16,064 families)</h2>
+    [% END %]
+    <p>
+      TreeFam (Tree families database) is a database of phylogenetic trees of animal genes. 
+      It aims at developing a curated resource that gives reliable information about ortholog and paralog assignments, 
+      and evolutionary history of various gene families.
+	<a href="#" id="slide_ref" class="show_hide">More ...</a>
+    </p>
+    <div class="slidingDiv">
+      <p>
+        TreeFam defines a gene family as a group of genes that evolved after the speciation of single-metazoan animals. 
+        It also tries to include outgroup genes like yeast (S. cerevisiae and S. pombe) and plant (A. thaliana) to reveal these distant members.
+		</p>
+	 <p>
+	 	TreeFam is also an ortholog database. Unlike other pairwise alignment based ones, TreeFam infers orthologs by means of gene trees. 
+		It fits a gene tree into the universal species tree and finds historical duplications, speciations and losses events. 
+		TreeFam uses this information to evaluate tree building, guide manual curation, and infer complex ortholog and paralog relations.
+		</p>
+	 <p>
+		The basic elements of TreeFam are gene families that can be divided into two parts: TreeFam-A and TreeFam-B families. 
+		TreeFam-B families are automatically created. They might contain errors given complex phylogenies. 
+		TreeFam-A families are manually curated from TreeFam-B ones. Family names and node names are assigned at the same time. 
+		The ultimate goal of TreeFam is to present a curated resource for all the families.
+      </p>
+    </div>
+  </div>
+-->
+<p></p>
+<br>
+<!-- div id="my-slideshow">
+    <ul class="bjqs">
+		<li><a href="/about" ><img src="[% c.uri_for( "/static/images/slider/Welcome_treeFam_large.png" ) %]" ></li>
+		<li><a href="/download" ><img src="[% c.uri_for( "/static/images/slider/treefam_answers.png" ) %]" ></a></li>
+		<li><a href="/family/BRCA2" ><img src="[% c.uri_for( "/static/images/slider/BRCA2_study.png" ) %]" ></a></li>
+		<li><a href="#" ><img src="[% c.uri_for( "/static/images/slider/treefam_tree_pics.png" ) %]" ></a></li>
+    </ul>
+</div>
+-->
+<!-- slider: http://css-tricks.com/examples/AnythingSlider/demos.html#&panel1-1&panel2-1&panel3-3 -->
+<div id="new_slider">
+just a test
+	<ul id="slider1"> 
+	  <li><img src="/static/images/slider/Welcome_treeFam_large.png"></li> 
+	  <li><img src="/static/images/slider/treefam_answers.png"></li> 
+	  <li><img src="/static/images/slider/BRCA2_study.png"></li> 
+	  <li><img src="/static/images/slider/treefam_tree_pics.png"></li> 
+	</ul>
+</div>
+<!-- slider example from http://www.gayadesign.com/scripts/presentationCycle/ -->
+<!-- <div id="presentation_container" class="pc_container">
+            <div class="pc_item">
+                <div class="desc">
+                    <h1>Server Park</h1>
+                    Consectetur adipiscing elit. Nunc quis tellus eros.
+                    Nam blandit diam id turpis bibendum nec rutrum dui pulvinar. Quisque fermentum,
+                    dolor ut adipiscing suscipit, leo lorem malesuada mauris, vitae dapibus mi
+                    ligula ut nunc.
+                </div>
+                <img src="static/images/presentationCycle/slide1.jpg" alt="slide1" />
+            </div>
+            <div class="pc_item">
+                <div class="desc">
+                    <h1>iPhone Apps</h1>
+                    Consectetur adipiscing elit. Nunc quis tellus eros.
+                    Nam blandit diam id turpis bibendum nec rutrum dui pulvinar. Quisque fermentum,
+                    dolor ut adipiscing suscipit, leo lorem malesuada mauris, vitae dapibus mi
+                    ligula ut nunc.
+                </div>
+                <img src="static/images/presentationCycle/slide2.jpg" alt="slide2" />
+            </div>
+            <div class="pc_item">
+                <div class="desc" style="left: 0px;">
+                    <h1>Wordpress Extensions</h1>
+                    Consectetur adipiscing elit. Nunc quis tellus eros.
+                    Nam blandit diam id turpis bibendum nec rutrum dui pulvinar. Quisque fermentum,
+                    dolor ut adipiscing suscipit, leo lorem malesuada mauris, vitae dapibus mi
+                    ligula ut nunc.
+                </div>
+                <img src="static/images/presentationCycle/slide3.jpg" alt="slide3" />
+            </div>
+            <div class="pc_item">
+                <div class="desc" style="left: 165px;">
+                    <h1>City Skyline</h1>
+                    Consectetur adipiscing elit. Nunc quis tellus eros.
+                    Nam blandit diam id turpis bibendum nec rutrum dui pulvinar. Quisque fermentum,
+                    dolor ut adipiscing suscipit, leo lorem malesuada mauris, vitae dapibus mi
+                    ligula ut nunc.
+                </div>
+                <img src="static/images/presentationCycle/slide4.jpg" alt="slide4" />
+            </div>
+            <div class="pc_item">
+                <div class="desc">
+                    <h1>Mario Finds Peach</h1>
+                    Consectetur adipiscing elit. Nunc quis tellus eros.
+                    Nam blandit diam id turpis bibendum nec rutrum dui pulvinar. Quisque fermentum,
+                    dolor ut adipiscing suscipit, leo lorem malesuada mauris, vitae dapibus mi
+                    ligula ut nunc.
+                </div>
+                <img src="static/images/presentationCycle/slide5.jpg" alt="slide5" />
+            </div>
+            <div class="pc_item">
+                <div class="desc">
+                    <h1>Said and Done</h1>
+                    Consectetur adipiscing elit. Nunc quis tellus eros.
+                    Nam blandit diam id turpis bibendum nec rutrum dui pulvinar. Quisque fermentum,
+                    dolor ut adipiscing suscipit, leo lorem malesuada mauris, vitae dapibus mi
+                    ligula ut nunc.
+                </div>
+                <img src="static/images/presentationCycle/slide6.jpg" alt="slide6" />
+            </div>
+        </div>
+-->
+
+<!-- Example end from http://www.gayadesign.com/scripts/presentationCycle/ -->
+<!--   Example from http://tympanus.net/codrops/2010/04/28/pretty-simple-content-slider-with-jquery-and-css3/ -->
+<!-- begin rotator -->
+           <!--  <div class="rotator">
+                <ul id="rotmenu">
+                    <li>
+                        <a href="rot1">TreeFam</a>
+                        <div style="display:none;">
+                             <div class="info_image">2.jpg</div> 
+                            <div class="info_heading">Some Information</div>
+                            <div class="info_description">
+				Welcome to TreeFam, the database of phylogenetic trees for animals genes.. <br />
+                                <a href="#" class="more">Read more</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="rot2">release 9</a>
+                        <div style="display:none;">
+                            <div class="info_image">1.jpg</div>
+                            <div class="info_heading">Some Text here</div>
+                            <div class="info_description">
+				 In release 9 we cover 101 species and across 16,064 families...
+                                <a href="#" class="more">More Information</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="rot3">Study e.g. BRCA2</a>
+                        <div style="display:none;">
+                             <div class="info_image">3.jpg</div> 
+                            <div class="info_heading">Another Text here</div>
+                            <div class="info_description">
+				 See which animals have BRCA2 and trace the evolution of BRCA by looking at BRCA's gene tree.
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="rot4">new features</a>
+                        <div style="display:none;">
+                            <div class="info_image">4.jpg</div>
+                            <div class="info_heading">Different Text here</div>
+                            <div class="info_description">
+                           	New features are:
+				<ul>
+					<li>New web design</li>
+					<li>Improved tree visualization (using ETE)</li>
+					<li>Wikipedia integration</li>
+				</ul> 
+			   </div>
+                        </div>
+                    </li>
+                </ul>
+                <div id="rot1">
+                    <img src="#" width="800" height="300" class="bg" alt=""/>
+                    <div class="heading">
+                        <h5>&nbsp;</h5>
+                    </div>
+                    <div class="description">
+                        <p>&nbsp;</p>
+
+                    </div>    
+                </div>
+            </div> -->
+			<!-- end rotator --> 
+ 
+<!-- End of Example http://tympanus.net/codrops/2010/04/28/pretty-simple-content-slider-with-jquery-and-css3/ -->
+<!-- upadte from http://www.xhtml-valid-websites.com/demos/complete-site-with-navigation-and-simple-content-slider/ -->
+<br>
+<br>
+   [% # URI shortcuts
+   helpBase   = c.uri_for( "/help" );
+   searchBase = c.uri_for( "/search" );
+   jumpUri    = c.uri_for( "/family" );
+   #jumpUri    = "${searchBase}/jump";
+   %]
+      <!-- <form action="[% searchBase %]/" id="jumpForm" onsubmit="return jump(this);"> -->
+        <form action="[% searchBase %]/" method="post" id="jumpForm" >
+		<div style="vertical-align: middle;   text-align: center;">
+		<select name="mydropdown" id="search_dropdown">
+		    <option value="gene">Gene (Autocomplete)</option>
+		    <!-- <option value="sequence">Protein Sequence</option> -->
+		    <option value="keyword">Keyword/ID</option>
+	 	</select>
+    	
+        <input style="width:250px" class="mygene_query_target" name="query" id="query">
+    	<a class="btn go" onclick="jQuery('#spinner').show();
+                                   jQuery('#jumpForm').attr('action','search/'+jQuery('#search_dropdown').val());
+                                   jQuery('#jumpForm').submit();"> <span id="jumpgoButton" class="btn-inner">Search</span></a>
+	    <div style="display: none" class="jumpSpinner">Searching...</div>
+        <div style="display: none" class="jumpError"></div>
+        <p class="small nlh">
+        <div id="spinner" style="display:none;">
+		    <img id="img-spinner" src="[% c.uri_for( "/static/images/ajax-loader.gif") %]" alt="Loading"/> Loading...
+	    </div>
+	    Search for e.g. a <a href="#" onclick="jQuery('#query').val('');
+                                               jQuery('#search_dropdown').val('gene');
+                                               jQuery('#query').css({'height':'10px'});">gene</a> name (BRCA2), an 
+	    <a href="#" onclick="jQuery('#query').val('BRCA2');jQuery('#search_dropdown').val('keyword');
+                             jQuery('#query').css({'height':'10px'});">ID</a> 
+	<!--
+	    	     or a 
+        <a href="#" onclick="jQuery('#query').val('MPIGSKERPTFFEIFKTRCNKADLGPISLNW\n\FEELSSEAPPYNSEPAEESEHKNNNYEP');
+                             jQuery('#search_dropdown').val('sequence');
+                             jQuery('#query').css({'height':'75px'}); 
+			     jQuery('#query').removeClass('ui-autocomplete-input');">protein sequence</a> -->
+		.
+      </div>
+  
+    
+  <div class="cleaner"><!-- empty --></div>
+
+  [%# uncomment to add an advance warning of maintenance downtime
+  <hr />
+
+  <div id="maintenanceMsg" style="width:80%;margin:0 auto;background:#F0E8E6;border:1px solid #621700;padding:1em">
+    <h2>Sanger Institute IT Shutdown</h2>
+    <p> 
+      Between 12.30pm Friday 21 October and 10.00am Monday 24 October (BST) the 
+      Sanger Institute data-centre will be offline, during the first stage of  
+      the installation of a new combined heat and power system. During this
+      shutdown, the TreeFam website at WTSI will be unavailable.
+    </p>
+    <p> 
+      You can read more about the planned work on the main 
+      <a class="ext" href="http://www.sanger.ac.uk/about/press/2011/111012-datacentre.html">
+        Sanger website</a>.
+    </p>
+    <p> 
+      While this TreeFam site is offline, you may want to use the TreeFam site at
+      <a class="ext" href="http://rfam.janelia.org/">Janelia Farm, USA</a>. 
+      Please bear in mind, however, that this site has not been updated to
+      the most recent TreeFam release, 10.1, and is still serving release 10.0.
+    </ul>
+    <p> 
+      We apologise for any inconvenience.
+    </p>
+  </div>
+  # end of maintenance message %]
+<!-- <iframe id="widgetFrame" src="http://widgplus.com/templates/new/activity.php?plusid=115739728227274298589&textcolor=FFFFFF&bg=333&contentbg=555&linkcolor4D90FE" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:282px; height:362px;"></iframe> 
+-->
+  <div id="posts" class="announcements" style="display: none">
+    <hr />
+    <span onclick="hideThis('posts');" class="closer" style="float: right; cursor: pointer">Hide this</span>
+    <h2>Recent TreeFam <a class="ext" href="http://xfam.wordpress.com/"> blog</a> posts</h2>
+  </div>
+  
+  <hr />
+  <ul id="js-news" class="js-hidden">
+	      <li class="news-item"></li>
+	      <li class="news-item"><a href="http://xfam.wordpress.com/2012/11/13/whats-new-in-antifam/">TreeFam 9 is out!</a></li>
+	      <li class="news-item"><a href="http://xfam.wordpress.com/2012/11/01/were-on-the-move/">We&#39;re on the move</a></li>
+	      <li class="news-item"><a href="http://xfam.wordpress.com/2012/03/27/treefam-is-back-with-a-new-release/">TreeFam is back with a new release</a></li>
+  </ul>
+  <div id="newFeatures" style="display:none">
+  Some great news here!
+	</div>
+  
+  <div id="citation">
+    <h2>Citing TreeFam</h2>
+    <p>
+      If you find TreeFam useful, please consider 
+      <a href="[% helpBase %]?tab=helpReferencesBlock">citing</a> the references 
+      that describe this work:
+    </p>
+    <div class="citation">
+      <span class="title">
+        <a class="ext" 
+           href="http://nar.oxfordjournals.org/content/36/suppl_1/D735.full">
+          TreeFam: 2008 Update</a>
+      </span>
+      <span class="authors">
+        <!-- Jue Ruan, Heng Li, Zhongzhong Chen, Avril Coghlan, Lachlan James M. Coin, Yiran Guo, Jean-Karim H&eacute;rich&eacute;, Yafeng Hu, 
+        Karsten Kristiansen, Ruiqiang Li, Tao Liu, Alan Moses, Junjie Qin, S&oslash;ren Vang, Albert J. Vilella, 
+        Abel Ureta-Vidal, Lars Bolund, Jun Wang and Richard Durbin. -->
+        Jue Ruan, Heng Li, et al.
+      </span>
+      <span class="ref">
+        <span class="jrnl">Nucleic Acids Research</span>&nbsp;(2008) 
+        <br>doi: 10.1093/nar/gkm1005
+       </span>
+    </div>
+    
+  </div>
+
+  <div id="mirrors">
+    <h2>Mirrors</h2>
+    <p>The following are official TreeFam 
+      <a href="[% helpBase %]?tab=helpTheTeamBlock">mirror</a> sites:
+    </p>
+    [% PROCESS "components/mirrors.tt" %]
+
+  </div>
+
+  <div class="cleaner"><!-- empty --></div>
+<!--
+  <div id="restore" class="announcements" style="display: none">
+    <hr />
+    <p>
+      You have hidden the blog posts section. You can restore it  
+      <span class="link" id="restoreLink">here</span>. 
+    </p>
+  </div>
+
+  <hr />
+  -->
+</div>
+
+<script type="text/javascript">
+ jQuery(document).ready(function(){
+	//presentationCycle.init();
+	
+
+
+jQuery(function(){ 
+ jQuery('#slider1') 
+  .anythingSlider({ 
+   toggleControls : true, 
+   theme          : 'metallic', 
+   navigationFormatter : function(i, panel){ // add thumbnails as navigation links 
+    return '<img src="static/images/slider/' + ['Welcome_treeFam_large', 'BRCA2_study', 'treefam_tree_pics', 'treefam_answers'][i - 1] + '.png">'; 
+   } 
+  }) 
+  // target all images inside the current slider 
+  // replace with 'img.someclass' to target specific images 
+  .find('.panel:not(.cloned) img') // ignore the cloned panels 
+   .attr('rel','group')            // add all slider images to a colorbox group 
+   .colorbox({ 
+     width: '90%', 
+     height: '90%', 
+     href: function(){ return jQuery(this).attr('src'); }, 
+     // use jQuery(this).attr('title') for specific image captions 
+     title: 'Press escape to close', 
+     rel: 'group' 
+   }); 
+	console.log("well, finished anythingslider");
+});
+
+// other slider: problems in safari and when clicking on links
+/*jQuery(function() {
+                var current = 1;
+               console.log("setting slider javascript"); 
+                var iterate		= function(){
+                    var i = parseInt(current+1);
+                    var lis = jQuery('#rotmenu').children('li').size();
+                    if(i>lis) i = 1;
+                    display(jQuery('#rotmenu li:nth-child('+i+')'));
+                }
+                display(jQuery('#rotmenu li:first'));
+                var slidetime = setInterval(iterate,3000);
+				
+                jQuery('#rotmenu li').bind('click',function(e){
+                    clearTimeout(slidetime);
+                    display(jQuery(this));
+                    e.preventDefault();
+                });
+				
+                function display(elem){
+                    var $this 	= elem;
+                    var repeat 	= false;
+                    if(current == parseInt($this.index() + 1))
+                        repeat = true;
+					
+                    if(!repeat)
+                        $this.parent().find('li:nth-child('+current+') a').stop(true,true).animate({'marginRight':'-20px'},300,function(){
+                            jQuery(this).animate({'opacity':'0.7'},700);
+                        });
+					
+                    current = parseInt($this.index() + 1);
+					
+                    var elem = jQuery('a',$this);
+                    
+                        elem.stop(true,true).animate({'marginRight':'0px','opacity':'1.0'},300);
+					
+                    var info_elem = elem.next();
+                    jQuery('#rot1 .heading').animate({'left':'-420px'}, 500,'easeOutCirc',function(){
+
+                        jQuery('h1',jQuery(this)).html(info_elem.find('.info_heading').html());
+                        jQuery(this).animate({'left':'0px'},400,'easeInOutQuad');
+                    });
+					
+                    jQuery('#rot1 .description').animate({'bottom':'-270px'},500,'easeOutCirc',function(){
+                        jQuery('p',jQuery(this)).html(info_elem.find('.info_description').html());
+                        jQuery(this).animate({'bottom':'0px'},400,'easeInOutQuad');
+                    })
+                    jQuery('#rot1').prepend(
+                    jQuery('<img/>',{
+                        style	:	'opacity:0',
+                        className : 'bg'
+                    }).load(
+                    function(){
+                        jQuery(this).animate({'opacity':'1'},600);
+                        jQuery('#rot1 img:first').next().animate({'opacity':'0'},700,function(){
+                            jQuery(this).remove();
+                        });
+                    }
+                ).attr('src','static/images/PrettySimpleContentSlider/'+info_elem.find('.info_image').html()).attr('width','800').attr('height','300')
+                );
+                }
+            });
+*/
+
+/*	console.log("initialising my-slideshow");
+   jQuery('#my-slideshow').bjqs({
+        'height' : 300,
+        'width' : 600,
+        'responsive' : true,
+	'showcontrols' : false,
+	'centercontrols' : true,
+	'automatic'       : false,
+    }); 
+*/      
+	/*console.log("banner-fade initialised");
+	jQuery("featured").tabs({fx:{opacity: "toggle"}}).tabs("rotate", 5000, true);
+
+	jQuery(".slidingDiv").hide();
+        jQuery(".show_hide").show();
+        jQuery('.show_hide').click(function(){
+            jQuery(".slidingDiv").slideToggle();
+            jQuery(this).text(jQuery(this).text() == 'More ...' ? 'Less ...' : 'More ...');
+        });
+
+	*/
+	jQuery(function () {
+		        jQuery('#js-news').ticker(
+				{
+				controls: false,
+				titleText: 'TreeFam News',
+				//		htmlFeed: false,
+            	//		ajaxFeed: true,
+            	//		feedUrl: 'http://xfam.wordpress.com/feed/',
+            	//		feedType: 'xml'		
+			}
+			);
+		});
+	}); 
+
+// <![CDATA[
+  
+  // set up the "jump to" field
+  // first, make it behave nicely
+  //$("jumpField").value = "enter any accession or ID";
+  //$("jumpField").selectionStart = 0;
+  //$("jumpField").selectionEnd   = 0;
+  //$("jumpField").focus();
+
+  // add observers to clear out the field when the user first enters something
+  // in it. We need several to catch all eventualities...
+
+  var jumpCleared = false;
+  //$("jumpField").observe( "keypress", function() {
+  //  var start = $("jumpField").selectionStart;
+  //  $("jumpField").value = $F("jumpField").substr( 0, start );;
+  //  jumpCleared = true;
+  //  $("jumpField").stopObserving();
+  //} );
+
+ // $("jumpField").observe( "click", function() {
+  //  $("jumpField").value = '';
+  //  jumpCleared = true;
+  //  $("jumpField").stopObserving();
+ // } );
+
+  //$("jumpField").observe( "focus", function() {
+  //  $("jumpField").selectionStart = 0;
+  //  $("jumpField").selectionEnd   = 0;
+  //} );
+
+  // rotate through example IDs
+  //var jumpExamples = $w("TF101003");  
+  //var lastJumpExample = 0;
+  //var fillJumpField = function() {
+  //  $("jumpField").value = jumpExamples[lastJumpExample++];
+  //  jumpCleared = true;
+  //  if ( lastJumpExample >= jumpExamples.size() ) {
+  //    lastJumpExample = 0;
+  //  }
+  //}
+
+  // add an observer to submit the form when the user hits "go"
+ // $("jumpButton").observe( "click", function() {
+ //   if ( $("jumpField").present() && jumpCleared ) {
+ //      jump('jumpForm');
+ //   }
+ // } );
+  // example values for the various forms
+
+  var exTreeFamId = "TF101001";
+  var exClanId = "telomerase";
+  var exKw     = "spliceosomal";
+  var exTx     = "plasmodium";
+  var exSeq    = "MPIGSKERPTFFEIFKTRCNKADLGPISLNWFEELSSEAPPYNSEPAEESEHKNNNYEPN";
+
+  // hide the announcements or new features list when the user clicks the 
+  // "hide this" button
+  var hideThis = function( id ) {
+    $(id).hide();
+
+    // tell urchin that we've hidden the blog
+    try {
+      urchinTracker( "/index/hidBlog" );
+    } catch( e ) {}
+
+    var d = new Date();
+    var t = Math.round( d.getTime() / 1000 );
+    createCookie( 'hide_' + id, t, '365' ); 
+    $("restore").show();
+  };
+  
+  /*jQuery("restoreLink").observe( "click", function() {
+    console.log("in restore link");
+	['announcements','website_changes','posts'].each( function( type ) {
+      var cookieValue = readCookie( "hide_" + type );
+      if ( cookieValue != null ) {
+
+        // tell urchin that we've shown the blog
+        try {
+          urchinTracker( "/index/shownBlog" );
+        } catch( e ) {}
+
+
+        eraseCookie( "hide_" + type );
+        window.location = "[% c.uri_for('/') %]";
+      }
+    } );
+  } );
+   */
+  
+  // load the latest blog posts
+  document.observe( "dom:loaded", function() {
+    var r = new Ajax.Request( "[% c.uri_for( '/announcements' ) %]",
+      { 
+        method:     'get',
+        parameters: { type: "posts" },
+        on204:      function( oResponse ) {
+          $("restore").show();
+        },
+        // for the benefit of IE, we need to check for an out-and-out
+        // failure, as well 204 status
+        onFailure:  function( oResponse ) {
+          $("restore").show();
+        },
+        onSuccess:  function( oResponse ) {
+          $("posts").insert( oResponse.responseText );
+          $("posts").show();
+        }
+      }
+    );
+  } );
+
+  // ]]>
+</script>
+
+<!-- end of index page -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

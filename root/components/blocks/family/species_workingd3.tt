@@ -1,0 +1,155 @@
+[%
+# species.tt
+# jt6 20060411 WTSI
+#
+# block showing the species tree. This is a wrapper around another
+# template, which is called using an XMLHttpRequest to SpeciesTree.pm.
+#
+# $Id: species.tt,v 1.30 2009-12-07 22:32:47 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+
+#sharedRequirements.js.push( "tree_factory.js" ); # handles tree data
+
+#sharedRequirements.js.push( "sunburst.js" );     # sunburst tree
+#sharedRequirements.css.push( "sunburst.css" );
+
+#sharedRequirements.css.push( "tree.css" );       # YUI tree 
+
+# this needs to be loaded before we try to load the canvas text library,
+# but if we include it specifically for IE, it gets added below everything
+# else. We can add it here safely, however, because excanvas checks to see
+# if canvas is implemented before trying to inject itself
+requirements.js.push( "excanvas.js" );
+
+# need to load the canvas.text.js file before trying to load the font file, 
+# otherwise it bails with an error about "face.glyphs is undefined"
+#requirements.js.push( "canvas.text.js" );
+#requirements.js.push( "faces/optimer-bold-normal.js" );
+
+requirements.js.push( "d3/d3.v2.js" );
+#-------------------------------------------------------------------------------
+%]
+
+<!-- start species block -->
+
+<div class="block" id="speciesBlock">
+  <div class="handle">
+    <h1>Species distribution</h1>
+  </div>
+  	<div class="blockContent">
+		<h1 id='sunburst'>Sunburst</h1>
+		<div class='gallery' id='chart'>
+			  <button class='first' id='size'>
+			    Size
+			  </button><button class='last active' id='count'>
+			    Count
+			  </button><p />
+		</div>
+		<link href='d3.button.sunburst.css' rel='stylesheet' type='text/css' />
+		    <script type="text/javascript">
+
+		var width = 960,
+    height = 700,
+    radius = Math.min(width, height) / 2,
+    color = d3.scale.category20c();
+
+var vis = d3.select("#chart").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+var partition = d3.layout.partition()
+    .sort(null)
+    .size([2 * Math.PI, radius * radius])
+    .value(function(d) { return 1; });
+
+var arc = d3.svg.arc()
+    .startAngle(function(d) { return d.x; })
+    .endAngle(function(d) { return d.x + d.dx; })
+    .innerRadius(function(d) { return Math.sqrt(d.y); })
+    .outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
+
+//d3.json("[% c.uri_for( "/static/trees/flare.json" ) %]", function(json) {
+	d3.json("[% c.uri_for( "/static/trees/flare.json" ) %]", function(json) {
+//	d3.json("http://mbostock.github.com/d3/data/flare.json", function(json) {
+
+
+  var path = vis.data([json]).selectAll("path")
+      .data(partition.nodes)
+    .enter().append("path")
+      .attr("display", function(d) { return d.depth ? null : "none"; }) // hide inner ring
+      .attr("d", arc)
+      .attr("fill-rule", "evenodd")
+      .style("stroke", "#fff")
+      .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
+      .each(stash);
+
+  d3.select("#size").on("click", function() {
+    path
+        .data(partition.value(function(d) { return d.size; }))
+      .transition()
+        .duration(1500)
+        .attrTween("d", arcTween);
+
+    d3.select("#size").classed("active", true);
+    d3.select("#count").classed("active", false);
+  });
+
+  d3.select("#count").on("click", function() {
+    path
+        .data(partition.value(function(d) { return 1; }))
+      .transition()
+        .duration(1500)
+        .attrTween("d", arcTween);
+
+    d3.select("#size").classed("active", false);
+    d3.select("#count").classed("active", true);
+  });
+});
+
+// Stash the old values for transition.
+function stash(d) {
+  d.x0 = d.x;
+  d.dx0 = d.dx;
+}
+
+// Interpolate the arcs in data space.
+function arcTween(a) {
+  var i = d3.interpolate({x: a.x0, dx: a.dx0}, a);
+  return function(t) {
+    var b = i(t);
+    a.x0 = b.x;
+    a.dx0 = b.dx;
+    return arc(b);
+  };
+}
+</script>
+		
+	</div>
+</div>
+
+
+<!-- end of species block -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

@@ -1,0 +1,245 @@
+[%
+# lookup.tt
+# jt6 20081205 WTSI
+#
+# show the Rfam hits on a specific EMBL sequence
+#
+# $Id: lookup.tt,v 1.2 2009-01-06 11:56:03 jt6 Exp $
+
+META title    = "Sequence search results";
+META fullPage = 1;
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+requirements.css.push( "buttons.css" );
+requirements.css.push( "demo_table.css" );
+requirements.js.push( "jquery/jquery-1.8.2.min.js" );
+requirements.js.push( "jquery/jquery.dataTables.min.js" );
+requirements.css.push( "search.css" );
+
+# required for the post-loaded table
+#sharedRequirements.js.push( "tablekit.js" );
+
+#-------------------------------------------------------------------------------
+
+USE String;
+
+# store the first row of the results, since we use itin various places as the 
+# source of information about this particular rfamseq row 
+firstRow = results.first;
+
+oe = 0;
+%]
+<!-- start of "results" -->
+<div class="whitebg">
+
+<div class="key"
+     id="sequenceHitsKey">
+
+  <h2>TreeFam keyword hits on sequence "[% entry %]"</h2>
+	<!-- [% IF initial_entry %]
+		(Your initial search was for [% initial_entry %]. We mapped it to an identifier used by TreeFam)
+	[% END %]
+  <p>
+    There [% results.size > 1 ? "are" : "is" %] <strong>[% results.size %]</strong> 
+    TreeFam hit[% results.size > 1 ? "s" : "" %] <strong>"[% entry %]"</strong>.
+  </p>-->
+
+ <!-- <table class="details" id="sum_table"  summary="Sequence information">
+    <tbody>
+      <tr class="[% oe % 2 ? 'odd' : 'even'; oe = oe + 1; %]">
+        <td class="label">TreeFam family</td>
+        <td class="data" id="seqDesc"><a href='/family/' + treefam_family + '> TF101001</a></td>
+      </tr><tr class="[% oe % 2 ? 'odd' : 'even'; oe = oe + 1; %]">
+        <td class="label"><a href="#homologies" >Homologies</a></td>
+        <td class="data" id="seqDesc"><a href="#homologies"><div id="no_homologies">2</div></a></td>
+      </tr align="center">
+      	<tr class="[% oe % 2 ? 'odd' : 'even'; oe = oe + 1; %]">
+        <td class="label"><a href="#xrefs">External references</a></td>
+	<td class="data" id="tree"><div id="no_xrefs">4</a></td>
+      </tr>
+    </tbody>
+  </table> -->
+
+</div> <!-- end of div "key" -->
+
+<div id="results">  
+    <h2>Member info</h2>
+
+    <h2>Sequences</h2>
+    	
+    <h2 id="homologies"><img src="[% c.uri_for( "/static/images/logos/treefam_search_homologs4gene.png" ) %]" style="width:35px;height:25px;"/>Homologies</h2>
+ 	<div class="keyTable" id="homologies_table"></div> 
+	
+    <h2 id="xrefs"><img src="[% c.uri_for( "/static/images/logos/treefam_xrefs_small.png" ) %]" style="width:50px;height:35px;"/>Xrefs</h2>
+	 <div class="keyTable" id="xrefs_table"></div> 
+
+</div>
+</div>
+<script type="text/javascript">
+  jQuery.noConflict();
+    /* Data set - can contain whatever information you want */
+    jQuery(document).ready(function() {          
+		var valid_entry = "[% entry %]"
+	if(valid_entry)	{
+                jQuery('#homologies_table').html( '<table cellpadding="0" cellspacing="0" border="5" class="display" id="homologies_data"></table>' );
+		jQuery('#homologies_data').dataTable( {
+						"sAjaxSource": "/search/homologs4gene/"+ valid_entry +"/all",
+						"oLanguage": {
+							 //"sSearch": "Retrieving data",
+							"sProcessing": '<img alt="Spinner" src="/static/images/ajax-loader.gif" />',
+							"sEmptyTable": "Nothing found!"
+						},
+						"bProcessing": true,
+						"fnServerData": function ( sSource, aoData, fnCallback ) {
+							    jQuery.getJSON( sSource, aoData, function (json) {
+									fnCallback(json)
+									var numberOfRows = aoData.length;
+									jQuery('#sum_table .details').each(function()
+									{
+  										alert(jQuery(this).html());
+										console.log(jQuery(this).html());
+									});
+									var no_hits	= jQuery('#no_homolog_hits').val();
+									console.log("get no_homolog_hits:"+ no_hits);
+								} );
+						    },
+						"sAjaxDataProp": "",
+						"aLengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]],
+							"aoColumnDefs": [
+										    {
+											      "fnRender": function ( o, val ) {
+													    return o.aData.source.species ;
+													    },
+												  "aTargets": [ 0 ]
+											 },
+							    			    {
+											      "fnRender": function ( o, val ) {
+													    return o.aData.source.id;
+													    },
+												  "aTargets": [ 1 ]
+											 }, 
+							     			    {
+											      "fnRender": function ( o, val ) {
+													    return o.aData.target.species ;
+													    },
+												  "aTargets": [ 2 ]
+											 },
+							    			    {
+											      "fnRender": function ( o, val ) {
+													    return o.aData.target.id;
+													    },
+												  "aTargets": [ 3 ]
+											 },{
+											      "fnRender": function ( o, val ) {
+													    return o.aData.type;
+													    },
+												  "aTargets": [ 4 ]
+											 },{
+											      "fnRender": function ( o, val ) {
+													    return o.aData.subtype;
+													    },
+												  "aTargets": [ 5 ]
+											 },],
+							     "aoColumns": [
+							    { "sTitle": "Species", sDefaultContent: "n/a" },
+							    { "sTitle": "ID", sDefaultContent: "n/a" },
+							    { "sTitle": "Species", sDefaultContent: "n/a" },
+							    { "sTitle": "ID", sDefaultContent: "n/a" },
+							    { "sTitle": "Type", sDefaultContent: "n/a" },
+							    { "sTitle": "Taxonomic level", sDefaultContent: "n/a" }],	
+					}); 
+                jQuery('#xrefs_table').html( '<table cellpadding="0" cellspacing="0" border="5" class="display" id="xrefs_data"></table>' );
+                jQuery('#xrefs_data').dataTable( {
+	                "aLengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]],
+       			"sAjaxSource": "/search/xrefs4gene/"+ [% member_id %],
+						"oLanguage": {
+							 //"sSearch": "Search",
+							"sProcessing": '<img alt="Spinner" src="/static/images/ajax-loader.gif" />',
+							"sEmptyTable": "Nothing found!"
+						},
+						"sDom": 'T<"clear">lfrtip',
+						"oTableTools": {
+								"sSwfPath": "/static/swf/copy_csv_xls_pdf.swf"
+						},
+						"bProcessing": true,
+						"fnServerData": function ( sSource, aoData, fnCallback ) {
+							    jQuery.getJSON( sSource, aoData, function (json) {
+								fnCallback(json)
+								var no_xref_hits = 3;
+								console.log("set some values:"+no_xref_hits);
+								} );
+						    },
+						"sAjaxDataProp": "", 	        
+						"aoColumnDefs": [
+						    {
+						              "fnRender": function ( o, val ) {
+							                    var dbName = o.aData.dbName;
+									    var url = "";
+									    var image = "<img src='/static/images/external_dbs"
+									    //console.log("database name is:"+ dbName);
+									   // switch(dbName){
+									    if(dbName ==  "eggNOG"){
+										    image = image+"/eggNOG.png'/>"	
+									    }
+									    if(dbName == "Pfam"){
+										    image = image+"/pfam_logo.gif'/>"	
+									    }
+									    	//"http://eggnog.embl.de/version_3.0/cgi/search.py?search_term_0="+o.aData.extID+"	
+										//"http://www.genome.jp/dbget-bin/www_bget?hsa:892"	
+										//"http://pbil.univ-lyon1.fr/cgi-bin/acnuc-dispfam?query=HOG000008007&db=HOGENOM6"
+										//"http://phylomedb.org/?seqid=ENSCAFP00000023132"
+								      	//	console.log(image);
+									    	return dbName;
+									    	//return image;
+									    },
+							          "aTargets": [ 0 ]
+							 },
+                            				{
+						              "fnRender": function ( o, val ) {
+							                    	 var link_url
+										    
+										   return o.aData.extID;
+									    },
+							          "aTargets": [ 1 ]
+							 }, 
+                             				{
+						              "fnRender": function ( o, val ) {
+							                    return '<a href=/family/' + o.aData.gtName + '>' + o.aData.gtName + '</a>'		    ;
+                                            },
+							          "aTargets": [ 2 ]
+							 },],
+                             "aoColumns": [
+                            { "sTitle": "Database", sDefaultContent: "n/a" },
+                            { "sTitle": "External ID", sDefaultContent: "n/a" },
+                            { "sTitle": "TreeFam Family", sDefaultContent: "n/a" },
+                        ]
+                    } );    
+		}
+	} );
+
+</script>
+
+<!-- end of "results" -->
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

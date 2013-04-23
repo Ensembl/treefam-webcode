@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/code/!svn/ver/6814/trunk/RfamWeb/root/components/blocks/family
+END
+error.tt
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/code/!svn/ver/6814/trunk/RfamWeb/root/components/blocks/family/error.tt
+END
+domains.tt
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/code/!svn/ver/2645/trunk/RfamWeb/root/components/blocks/family/domains.tt
+END
+align.tt
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/code/!svn/ver/6803/trunk/RfamWeb/root/components/blocks/family/align.tt
+END
+species.tt
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/code/!svn/ver/5310/trunk/RfamWeb/root/components/blocks/family/species.tt
+END
+sequences.tt
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/code/!svn/ver/6805/trunk/RfamWeb/root/components/blocks/family/sequences.tt
+END
+phylo.tt
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/code/!svn/ver/6808/trunk/RfamWeb/root/components/blocks/family/phylo.tt
+END
+summary.tt
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/code/!svn/ver/6752/trunk/RfamWeb/root/components/blocks/family/summary.tt
+END
+treeMap.tt
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/code/!svn/ver/4529/trunk/RfamWeb/root/components/blocks/family/treeMap.tt
+END
+renderTree.tt
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/code/!svn/ver/2645/trunk/RfamWeb/root/components/blocks/family/renderTree.tt
+END
+interactions.tt
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/code/!svn/ver/2645/trunk/RfamWeb/root/components/blocks/family/interactions.tt
+END
+pdb.tt
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/code/!svn/ver/6809/trunk/RfamWeb/root/components/blocks/family/pdb.tt
+END
+secondary_structure.tt
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/code/!svn/ver/6806/trunk/RfamWeb/root/components/blocks/family/secondary_structure.tt
+END
+clan.tt
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/code/!svn/ver/2645/trunk/RfamWeb/root/components/blocks/family/clan.tt
+END
+title.tt
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/code/!svn/ver/3291/trunk/RfamWeb/root/components/blocks/family/title.tt
+END
+curation.tt
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/code/!svn/ver/6810/trunk/RfamWeb/root/components/blocks/family/curation.tt
+END
+familyStructures.tt
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/code/!svn/ver/2645/trunk/RfamWeb/root/components/blocks/family/familyStructures.tt
+END
+db.tt
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/code/!svn/ver/6799/trunk/RfamWeb/root/components/blocks/family/db.tt
+END
+structureTab.tt
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/code/!svn/ver/6807/trunk/RfamWeb/root/components/blocks/family/structureTab.tt
+END

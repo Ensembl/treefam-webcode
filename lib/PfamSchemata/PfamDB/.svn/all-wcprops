@@ -1,0 +1,497 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/code/!svn/ver/6703/trunk/PfamSchemata/PfamDB
+END
+CompleteProteomes.pm
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/CompleteProteomes.pm
+END
+Wikipedia.pm
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/code/!svn/ver/5069/trunk/PfamSchemata/PfamDB/Wikipedia.pm
+END
+DeadFamilies.pm
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/code/!svn/ver/6517/trunk/PfamSchemata/PfamDB/DeadFamilies.pm
+END
+ClanLocks.pm
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/ClanLocks.pm
+END
+GeneOntology.pm
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/code/!svn/ver/6702/trunk/PfamSchemata/PfamDB/GeneOntology.pm
+END
+NcbiMap.pm
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/NcbiMap.pm
+END
+SecondaryPfamseqAcc.pm
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/SecondaryPfamseqAcc.pm
+END
+NcbiPfamaReg.pm
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/NcbiPfamaReg.pm
+END
+PfamaSpeciesTree.pm
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/code/!svn/ver/5070/trunk/PfamSchemata/PfamDB/PfamaSpeciesTree.pm
+END
+PfambReg.pm
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PfambReg.pm
+END
+PfamaRegFullSignificant.pm
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/code/!svn/ver/5242/trunk/PfamSchemata/PfamDB/PfamaRegFullSignificant.pm
+END
+Version.pm
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/Version.pm
+END
+PfamaLiteratureReferences.pm
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/code/!svn/ver/3481/trunk/PfamSchemata/PfamDB/PfamaLiteratureReferences.pm
+END
+AlignmentsAndTrees.pm
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/AlignmentsAndTrees.pm
+END
+PfamAnnseq.pm
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PfamAnnseq.pm
+END
+MetaPfamaReg.pm
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/MetaPfamaReg.pm
+END
+Pfamb2pfamaPrcResults.pm
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/Pfamb2pfamaPrcResults.pm
+END
+ClanDatabaseLinks.pm
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/code/!svn/ver/5264/trunk/PfamSchemata/PfamDB/ClanDatabaseLinks.pm
+END
+SeqInfo.pm
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/SeqInfo.pm
+END
+GenomeSeqs.pm
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/GenomeSeqs.pm
+END
+PfamaInteractions.pm
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/code/!svn/ver/3514/trunk/PfamSchemata/PfamDB/PfamaInteractions.pm
+END
+PdbPfamaReg.pm
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PdbPfamaReg.pm
+END
+PdbImage.pm
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PdbImage.pm
+END
+Edits.pm
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/Edits.pm
+END
+MarkupKey.pm
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/MarkupKey.pm
+END
+PfambStockholm.pm
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PfambStockholm.pm
+END
+NcbiTaxonomy.pm
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/NcbiTaxonomy.pm
+END
+PfamseqMarkup.pm
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PfamseqMarkup.pm
+END
+DeadClans.pm
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/DeadClans.pm
+END
+OtherReg.pm
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/OtherReg.pm
+END
+ContextPfamRegions.pm
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/ContextPfamRegions.pm
+END
+PfamaNcbi.pm
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/code/!svn/ver/5263/trunk/PfamSchemata/PfamDB/PfamaNcbi.pm
+END
+ProteomeRegions.pm
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/code/!svn/ver/5243/trunk/PfamSchemata/PfamDB/ProteomeRegions.pm
+END
+LiteratureReferences.pm
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/code/!svn/ver/3481/trunk/PfamSchemata/PfamDB/LiteratureReferences.pm
+END
+PfamaRegSeed.pm
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PfamaRegSeed.pm
+END
+NcbiSeq.pm
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/NcbiSeq.pm
+END
+GenomeSpecies.pm
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/GenomeSpecies.pm
+END
+PfamaArchitecture.pm
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PfamaArchitecture.pm
+END
+ClanAlignmentsAndRelationships.pm
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/ClanAlignmentsAndRelationships.pm
+END
+Pfamseq.pm
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/code/!svn/ver/4392/trunk/PfamSchemata/PfamDB/Pfamseq.pm
+END
+Pfama2pfamaPrcResults.pm
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/code/!svn/ver/4392/trunk/PfamSchemata/PfamDB/Pfama2pfamaPrcResults.pm
+END
+PfamaFasta.pm
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PfamaFasta.pm
+END
+Pfamb2pfambPrcResults.pm
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/Pfamb2pfambPrcResults.pm
+END
+PfambFasta.pm
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PfambFasta.pm
+END
+ClanLitRefs.pm
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/ClanLitRefs.pm
+END
+ProteomeSpecies.pm
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/ProteomeSpecies.pm
+END
+PfamseqDisulphide.pm
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PfamseqDisulphide.pm
+END
+PfamaWiki.pm
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/code/!svn/ver/5069/trunk/PfamSchemata/PfamDB/PfamaWiki.pm
+END
+FunctionalSimilarity.pm
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/FunctionalSimilarity.pm
+END
+PfamaRegFullInsignificant.pm
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PfamaRegFullInsignificant.pm
+END
+ClanArchitecture.pm
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/ClanArchitecture.pm
+END
+PfamaInternal.pm
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PfamaInternal.pm
+END
+PfambSpeciesTree.pm
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/code/!svn/ver/6674/trunk/PfamSchemata/PfamDB/PfambSpeciesTree.pm
+END
+Architecture.pm
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/Architecture.pm
+END
+Pfamb.pm
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/code/!svn/ver/6676/trunk/PfamSchemata/PfamDB/Pfamb.pm
+END
+PfamaHmm.pm
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PfamaHmm.pm
+END
+GenomePfamseq.pm
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/GenomePfamseq.pm
+END
+NestedDomains.pm
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/NestedDomains.pm
+END
+ProteomeArchitecture.pm
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/code/!svn/ver/6677/trunk/PfamSchemata/PfamDB/ProteomeArchitecture.pm
+END
+ReleasedPfamVersion.pm
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/ReleasedPfamVersion.pm
+END
+Clans.pm
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/code/!svn/ver/3481/trunk/PfamSchemata/PfamDB/Clans.pm
+END
+Pfama2pfamaScoopResults.pm
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/Pfama2pfamaScoopResults.pm
+END
+ClanWiki.pm
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/code/!svn/ver/5069/trunk/PfamSchemata/PfamDB/ClanWiki.pm
+END
+Interpro.pm
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/code/!svn/ver/6703/trunk/PfamSchemata/PfamDB/Interpro.pm
+END
+Pfama2pfamaHhsearchResults.pm
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/code/!svn/ver/6411/trunk/PfamSchemata/PfamDB/Pfama2pfamaHhsearchResults.pm
+END
+Pdb.pm
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/code/!svn/ver/6544/trunk/PfamSchemata/PfamDB/Pdb.pm
+END
+ClanVersions.pm
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/ClanVersions.pm
+END
+ProteomePfamseq.pm
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/ProteomePfamseq.pm
+END
+PdbPfambReg.pm
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PdbPfambReg.pm
+END
+PfamaDatabaseLinks.pm
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PfamaDatabaseLinks.pm
+END
+PfambDatabaseLinks.pm
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PfambDatabaseLinks.pm
+END
+Taxonomy.pm
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/code/!svn/ver/6410/trunk/PfamSchemata/PfamDB/Taxonomy.pm
+END
+PdbResidueData.pm
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/code/!svn/ver/6647/trunk/PfamSchemata/PfamDB/PdbResidueData.pm
+END
+Pfama.pm
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/code/!svn/ver/6636/trunk/PfamSchemata/PfamDB/Pfama.pm
+END
+PdbAuthor.pm
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/code/!svn/ver/3481/trunk/PfamSchemata/PfamDB/PdbAuthor.pm
+END
+PfamseqNcbi.pm
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/PfamseqNcbi.pm
+END
+ClanMembership.pm
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/code/!svn/ver/6678/trunk/PfamSchemata/PfamDB/ClanMembership.pm
+END
+MetaseqNcbiMap.pm
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/MetaseqNcbiMap.pm
+END
+MetagenomicsRefs.pm
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/MetagenomicsRefs.pm
+END
+CurrentPfamVersion.pm
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/CurrentPfamVersion.pm
+END
+NestedLocations.pm
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/NestedLocations.pm
+END
+Metaseq.pm
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/code/!svn/ver/3515/trunk/PfamSchemata/PfamDB/Metaseq.pm
+END

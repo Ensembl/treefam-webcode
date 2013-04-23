@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/code/!svn/ver/7038/trunk/PfamBase/lib/PfamBase/Roles
+END
+Section.pm
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/code/!svn/ver/7038/trunk/PfamBase/lib/PfamBase/Roles/Section.pm
+END
+JobManager.pm
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/code/!svn/ver/7038/trunk/PfamBase/lib/PfamBase/Roles/JobManager.pm
+END
+Search.pm
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/code/!svn/ver/7038/trunk/PfamBase/lib/PfamBase/Roles/Search.pm
+END
+Help.pm
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/code/!svn/ver/7038/trunk/PfamBase/lib/PfamBase/Roles/Help.pm
+END
+SpeciesTree.pm
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/code/!svn/ver/7038/trunk/PfamBase/lib/PfamBase/Roles/SpeciesTree.pm
+END
+Utils.pm
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/code/!svn/ver/7038/trunk/PfamBase/lib/PfamBase/Roles/Utils.pm
+END
+Root.pm
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/code/!svn/ver/7038/trunk/PfamBase/lib/PfamBase/Roles/Root.pm
+END

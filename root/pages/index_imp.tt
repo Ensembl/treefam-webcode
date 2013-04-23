@@ -1,0 +1,287 @@
+[%
+# index.tt
+# jt6 20060717 WTSI
+# 
+# build the main Treefam home page.
+#
+# $Id: index.tt,v 1.10 2009-06-09 12:13:25 jt6 Exp $
+
+META title = "Home page";
+META fullPage = 1;
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+
+#requirements.css.push( "index.css" );
+#requirements.css.push( "treefam.css" );
+#requirements.css.push( "TreeFamily.css" );
+requirements.css.push( "buttons.css" );
+requirements.css.push( "landing_page.css" );
+#requirements.css.push( "slider/style.css" );
+requirements.js.push( "jquery/jquery-1.8.2.min.js" );
+requirements.js.push( "jquery/jquery-ui-1.8.2.custom.min.js" );
+requirements.js.push( "jquery/jquery.fancybox-1.3.4.pack.js" );
+requirements.css.push( "jquery/jquery.fancybox-1.3.4.css" );
+# This will be our own implementation of autocomplete
+#requirements.js.push( "treefam_autocomplete.js" );
+requirements.js.push( "prototype.js" );
+requirements.js.push( "sharedFunctions.js" );
+
+
+requirements.js.push( "d3/d3.v3.min.js" );
+requirements.js.push( "jquery/jquery.tipsy.js" );
+requirements.css.push( "jquery/tipsy.css" );
+requirements.js.push( "phylowidget/minimal_species_tree.js" );
+
+#-------------------------------------------------------------------------------
+
+# a warning message for users who dont have javascript turned on. The 
+# message should be hidden immediately after its displayed, but if 
+# javascript is not working, the prototype call will fail and the message
+# will stay visible
+%]
+<div id="jsWarning">
+  <strong>Please note:</strong> this site relies heavily on the use of javascript. 
+  Without a javascript-enabled browser, this site will not function correctly. 
+  Please enable javascript and reload the page, or switch to a different browser.
+</div>
+<script type="text/javascript">
+  // <![CDATA[
+  $("jsWarning").hide();
+  // ]]>
+</script>
+
+<div id="index" >
+   <div id="main-left">
+      <div style="    overflow=auto" id="minimal_species_tree"></div>
+      <p>The <span class="title" oldtitle="Genes connected by an edge in a functional network are predicted to participate in similar biological processes.">species tree used in TreeFam 9</span>.</p>
+   </div>
+   <div id="main-right">
+      <h2>TreeFam</h2>
+      <p>TreeFam is a database composed of phylogenetic trees inferred from animal genomes. It provides accurate gene families annotations, e.g. sequences, homologs, Pfam domains, etc..</p>
+      <h3>Release 9</h3>
+		<p>The latest TreeFam release contains a total of 109 species in 15,321 families.
+		You can download all data, learn how we make a new release and view our species tree.</p>
+	  <h3>Get TreeFam data</h3>
+		<p>e.g. all pairwise homologs (orthologs/paralogs) or use our scripts to e.g. get homologs for your species of interest.</p>
+	  <h3>Use TreeFam data</h3>
+		<p>e.g. all pairwise homologs (orthologs/paralogs) or use our scripts to e.g. get homologs for your species of interest</p>
+   </div>
+</div>
+<div id="contentwrapper">
+    <div id="contentcolumn">
+		<div id="posts" class="announcements" >
+			<!-- <span onclick="hideThis('posts');" class="closer" style="float: right; cursor: pointer">Hide this</span> -->
+			<div id="container" style="margin-left: 10px;margin-right: 20px;">  
+				       <h3 ><img src="/static/images/landing_page/announcement.png" width="20" height="20" alt="citing_treefam"> Recent TreeFam <a  href="http://xfam.wordpress.com/"> blog</a> posts</h3>  
+            <p style="color:grey">
+				<ul>
+				<li><img src="/static/images/landing_page/documentation.png" width="15" height="15" alt="citing_treefam"><b> TreeFam: What is in the next release</b><br>
+				 <font size="2">(posted 10 December 2012)</font><br>
+Behind the scenes we are working hard on building the next TreeFam release, which will be TreeFam 9.
+TreeFam 9 will have 109 species, that is a 37% increase over TreeFam 8. Most of the species come from EnsEMBL (v.69) and EnsEMBL genomes (v.16) with a few ones coming from JGI. <a href="http://xfam.wordpress.com/2012/12/10/treefam-whats-in-the-next-release/">[...]</a> </li>
+<br>
+<li><img src="/static/images/landing_page/documentation.png" width="15" height="15" alt="citing_treefam"><b> We are on the move</b><br>
+<font size="2"> (posted 1 November 2012)</font><br>
+After 15 great years at the Sanger Institute we are on the move. On the 1st November, the Cambridge Xfam group will be taking up residence at the European Bioinformatics Institute on the other side of the Wellcome Trust Genome Campus. We will keep running the websites at Sanger for a bit longer, but eventually we will <a href="http://xfam.wordpress.com/2012/11/01/were-on-the-move/">[...]</a></li>
+<br>
+<li><img src="/static/images/landing_page/documentation.png" width="15" height="15" alt="citing_treefam"><b> TreeFam is back with a new release!</b><br> 
+<font size="2">(posted 27 March 2012)</font><br>
+As some of you will already be aware, the Xfam family has recently gained a new member: the TreeFam database.
+TreeFam aims to provide phylogenetic trees and orthology predictions for all animal genes.<a href="http://xfam.wordpress.com/2012/03/27/treefam-is-back-with-a-new-release/">[...]</a></li>
+	</ul>
+	</p>
+            </div>
+	</div>
+    </div>
+</div>
+
+<div id="leftcolumn">
+	<div id="container" style="margin-right:9%; ">  
+			<h3><img src="/static/images/landing_page/industry.png" width="20" height="20" alt="citing_treefam"> Xfam databases</h3>  
+            <p style="color:#888">
+            	<ul>
+            	<li>Protein domains: <a href="http://pfam.sanger.ac.uk/"><img src="/static/images/Pfam_logo.gif" height="10"/></a></li>   
+            	<li>RNA families:  <a href="http://rfam.sanger.ac.uk/"><img src="/static/images/rfam_logo.png" height="10"/></a></li>
+				<li>Repetitive DNA: <a href="http://dfam.janelia.org/"><img src="/static/images/dfam_logo.png" height="10"/></a>	 </li>
+				<li>Peptidases: <a href="http://merops.sanger.ac.uk/"><img src="/static/images/meropslogo.png" height="10"/></a>  </li>
+				<li>Spurious ORFs: <a href="ftp://ftp.sanger.ac.uk/pub/databases/Pfam/AntiFam/"><img src="/static/images/antifam_logo.png" height="10"/></a> </li>
+			</ul>
+		</p>
+</div>
+</div>
+
+<div id="rightcolumn">
+	<div id="container" style="margin-left:5%">  
+		        <h3><img src="/static/images/landing_page/publication.png" width="20" height="20" alt="citing_treefam"> Citing TreeFam</h3>  
+    	<p>
+      		If you find TreeFam useful, please consider 
+      		<a href="/help?tab=helpReferencesBlock">citing</a> the references 
+      		that describe this work:<br>
+      <span class="title">
+        <a class="ext" 
+           href="http://europepmc.org/abstract/MED/18056084">
+          TreeFam: 2008 Update</a>
+      </span>
+      <span class="authors">
+        Jue Ruan, Heng Li, et al.
+      </span>
+      <span class="ref">
+        <span class="jrnl">Nucleic Acids Research</span>&nbsp;(2008) 
+        <br>doi: 10.1093/nar/gkm1005
+       </span>
+    	</p>
+</div>
+
+	</div>
+</div>
+    </div>	    	
+	    </div><!-- wrap close -->
+    </div><!-- fancy close -->  
+   </div> 
+
+<script type="text/javascript">
+var SEARCH_TREEFAM = "Search TreeFam...";
+
+    function displaySearchTreeFam(queryEl) {
+        if (queryEl == null) {
+            return;
+        }
+        if (queryEl.value == null || queryEl.value.trim() == "") {
+            queryEl.value = SEARCH_TREEFAM;
+        }
+    }
+
+    function hideSearchTreeFam(queryEl) {
+        if (queryEl == null || queryEl.value == null) {
+            return;
+        }
+        if (queryEl.value.trim() == SEARCH_TREEFAM) {
+            queryEl.value = "";
+        }
+    }
+
+
+  // load the latest blog posts
+jQuery(document).ready(function(){    
+        displaySearchTreeFam(document.getElementById('local-searchbox'));
+	jQuery(".lightbox").fancybox({
+		'speedIn'		:	600, 
+		'speedOut'		:	200
+	});
+var randomtrees = {
+	
+	"trees": [
+        {"name": "CCNB", "id": "TF101001", "annotation":"Cyclin B"},
+        {"name": "UBE2E", "id": "TF101117", "annotation": "Ubiquitin-conjugating enzyme E2 E"},
+        {"name": "BRCA2", "id": "TF105041", "annotation": "breast cancer 2, early onset"},
+        {"name": "HSPA5", "id": "TF105044", "annotation": "heat shock 70kDa protein 5"},
+        {"name": "POLR1D", "id": "TF103035", "annotation": "polymerase (DNA directed), delta 1, catalytic subunit"},
+        {"name": "", "id": "", "annotation": ""},
+        {"name": "", "id": "", "annotation": ""},
+        {"name": "", "id": "", "annotation": ""},
+    ]
+};
+var randomnumber=Math.floor(Math.random()*4);
+console.log("taking number "+randomnumber);
+ 	var chosen_tree = randomtrees.trees[randomnumber].id;	
+        var chosen_gene = randomtrees.trees[randomnumber].name;	
+        var chosen_annotation = randomtrees.trees[randomnumber].annotation;	
+
+	//var minimal_species_tree_json = "/static/trees/front_page_tree.json";
+	console.log("chosen tree is "+chosen_tree);
+	var minimal_species_tree_json = "/family/"+chosen_tree+"/tree/minimal_species_json";
+				//var json_tree = "/static/trees/gene_tree.json";
+			console.log("drawing minimal_species_tree with "+minimal_species_tree_json);	
+			var show_pie_charts = 0;
+			draw_minimal_species_tree({ json_tree : minimal_species_tree_json, show_pie_charts : show_pie_charts });	
+	jQuery("#randomtreetext").html("<font size='2'>Species tree with the major taxonomic groups containing the <b><a href='/family/"+chosen_tree+"'>"+chosen_gene+"</a></b> gene ("+chosen_annotation+").</font><br><font size='1'>Click <a href='/family/"+chosen_tree+"'>here</a> to go to the family page of "+chosen_gene+" or <a href='/browse#tabview=tab2'>here</a> to view the full species Tree</font>");
+if( jQuery(".slider").length ){
+		
+		// Init the slider
+		var slider = jQuery(".slider"),
+			slideWidth = slider.find("li").eq(0).width(),
+			num = slider.find("li").length,
+			sliderController = jQuery(".sliderController");
+
+		slider.width( num * slideWidth );
+		
+		// center the arrows and add click event
+		jQuery(".arrow").height(
+			slider.height()
+		).click( function(){
+			slideTo( jQuery(this).attr("rel") );
+			return false;
+		} );
+		
+		// build the controller
+		for( i=0; i<num; i++ ){
+			var li = jQuery('<li><a href="#"></a></li>');
+			li.click(function(){
+				slideTo( jQuery(this).index() );
+				return false;
+			}).appendTo(sliderController);
+		}
+		
+		// Set width to the controller to center it
+		sliderController.width(
+			num * 25
+		).find("li").eq(0).addClass("current");
+		
+		// Do slide
+		function slideTo( next ){
+			var current = sliderController.find(".current"),
+				currentIndex = current.index();
+				
+			if( next == "right" ) { 
+				next = currentIndex + 1;
+				if( next == num ) { next = 0; }
+			}
+			if( next == "left" ) {
+				next = currentIndex - 1; 
+				if( next < 0 ) { next = num-1; }
+			}
+			
+			if( (next < num) && !(next < 0) ) {
+			
+				slider.animate({
+					left: - ( next * slideWidth )
+				});
+				
+				current.removeClass("current");
+				sliderController.find("li").eq(next).addClass("current");
+				
+			}	
+		}
+	
+	}
+
+
+	console.log("dom loaded")
+  } );
+
+  // ]]>
+</script>
+
+<!-- end of index page -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

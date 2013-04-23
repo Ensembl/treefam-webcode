@@ -1,0 +1,385 @@
+[%
+# summary.tt
+# jt6 20060925 WTSI
+# 
+# build the summary block for the help pages
+#
+# $Id: summary.tt,v 1.4 2009-06-10 10:46:27 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+#PROCESS "components/require.tt";
+#sharedRequirements.js.push( "jsphylosvg-min.js" );
+#sharedRequirements.js.push( "jsphylosvg.js" );
+#sharedRequirements.js.push( "raphael-min.js" );
+#sharedRequirements.js.push( "yui/build/yui/yui.js" );
+
+#requirements.js.push( "jquery/jquery-1.4.2.min.js" );
+#requirements.js.push( "jquery/jquery.simplemodal.1.4.1.min.js" );
+#requirements.js.push( "jsphylosvg-min.js" );
+requirements.js.push( "plaza/simple-slide-show.js" );
+requirements.js.push( "plaza/util.js" );
+requirements.js.push( "plaza/wz_jsgraphics.js" );
+
+#requirements.css.push( "help.css" );
+#sharedRequirements.js.push( "unitip/unitip.js" );
+#sharedRequirements.css.push( "unitip/unitip.css" );
+
+#-------------------------------------------------------------------------------
+
+%]
+
+    
+<!-- start summary block -->
+<div class="block" id="browseSpeciesTreeBlock">
+	<div class="handle">
+		<h1>Species Tree</h1>
+	</div>
+	<div class="blockContent">
+	<h2> Currently available genomes </h2>	
+	<br/>
+	<div style="z-index:2;">
+	    <div>
+	<div>	
+ 
+		<div class="shadow-container">
+	<div class="shadow1">
+	<div class="shadow2">
+	<div class="shadow3">
+	<div class="shad-container" id="species_tree_div" style="border:none;padding:0px;">
+	    <div id='species_tree_div1' style='height:490px;'>
+		    	        
+		<div id="species_tree_div11" style='height:480px;' >		   	
+		    &nbsp;
+		<div id="slide_show_container">
+		    	<div id="slide_show">
+			    <ul id="slide-images">
+				<li><img src="/static/images/species_pictures/species_files/Homo_sapiens.png" alt="" /></li>
+				<li><img src="/static/images/species_pictures/species_files/Pan_troglodytes.png" alt="" /></li>
+				<li><img src="/static/images/species_pictures/species_files/Mus_musculus.png" alt="" /></li>
+				<li><img src="/static/images/species_pictures/species_files/Rattus_norvegicus.png" alt="" /></li>
+	
+			    </ul>
+			</div>
+		 </div>
+		<div id="species_tree_div2">	   	        
+		    <div id='myCanvasTree' style='position:relative;height:485px;'>
+			<script type="text/javascript">				
+				var tt = "((Homo_sapiens:0.10,Pan_troglodytes:0.10)Homoninae:0.1,(Mus_musculus:0.1,Rattus_norvegicus:0.1));";						
+				// var tt = "(((((((((((Lotus_japonicus:0.10,Medicago_truncatula:0.10)Galegoids:0.09,Glycine_max:0.19)Papilionoideae:0.09,(Malus_domestica:0.09,Fragaria_vesca:0.09)Rosaceae:0.19)N2FixingClade:0.09,((Manihot_esculenta:0.10,Ricinus_communis:0.10)Euphorbiaceae:0.09,Populus_trichocarpa:0.19)Malpighiales:0.18)Fabids:0.09,(((Arabidopsis_thaliana:0.01,Arabidopsis_lyrata:0.01)Arabidopsis:0.18,Carica_papaya:0.19)Brassicales:0.18,Theobroma_cacao:0.37)Malvids:0.09)Rosids:0.09,Vitis_vinifera:0.55)Eudicots:0.09,(((Oryza_sativa_ssp._japonica:0.01,Oryza_sativa_ssp._indica:0.01)Oryza:0.27,Brachypodium_distachyon:0.28)BEPClade:0.27,(Sorghum_bicolor:0.28,Zea_mays:0.28)PACCMADClade:0.27)Monocots:0.09)Angiosperms:0.09,Selaginella_moellendorffii:0.73)VascularPlants:0.09,Physcomitrella_patens:0.82)LandPlants:0.09,(((Ostreococcus_lucimarinus:0.01,Ostreococcus_tauri:0.01)Ostreococcus:0.18,Micromonas_sp._RCC299:0.19)Mamiellales:0.36,(Volvox_carteri:0.19,Chlamydomonas_reinhardtii:0.19)Chlamydomonadales:0.36)Chlorophyta:0.36)GreenPlants:0.09);";						
+				var	tree = parseNewickSpecies(tt);
+				//printParsedTree(tree);
+				var jg = new jsGraphics("myCanvasTree");			
+				drawTreeNew(jg,tree);  
+			</script>	
+		    </div>
+		</div>
+		<div style="clear:both;width:200px;">&nbsp;</div>
+	    </div>		
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+    //<![CDATA[
+    	
+    var species_img_array	= ["<img src=\"/plaza/img/organisms/box/Arabidopsis_lyrata_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Arabidopsis_thaliana_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Brachypodium_distachyon_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Carica_papaya_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Chlamydomonas_reinhardtii_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Fragaria_vesca_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Glycine_max_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Lotus_japonicus_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Malus_domestica_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Manihot_esculenta_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Medicago_truncatula_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Micromonas_sp._RCC299_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Oryza_sativa_ssp._indica_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Oryza_sativa_ssp._japonica_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Ostreococcus_lucimarinus_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Ostreococcus_tauri_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Physcomitrella_patens_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Populus_trichocarpa_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Ricinus_communis_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Selaginella_moellendorffii_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Sorghum_bicolor_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Theobroma_cacao_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Vitis_vinifera_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Volvox_carteri_box.jpg\" alt=\"\" />", "<img src=\"/plaza/img/organisms/box/Zea_mays_box.jpg\" alt=\"\" />"];
+    var species_images		= $A(species_img_array);
+    //var rotate_images		= true;		    
+    var rotate_images		= false;		    
+	
+    function stopRotating(){	
+	$("slide_show_container").style.display="none";	
+	$("species_tree_div11").style.display="inline";
+    }	
+    function startRotating(){
+	$("species_tree_div11").style.display="none";
+	$("slide_show_container").style.display="inline";				
+    }	
+   
+		
+
+    Event.observe('tree_link_Arabidopsis+lyrata','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Arabidopsis_lyrata_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Arabidopsis+lyrata','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Arabidopsis+thaliana','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Arabidopsis_thaliana_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Arabidopsis+thaliana','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Brachypodium+distachyon','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Brachypodium_distachyon_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Brachypodium+distachyon','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Carica+papaya','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Carica_papaya_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Carica+papaya','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Chlamydomonas+reinhardtii','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Chlamydomonas_reinhardtii_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Chlamydomonas+reinhardtii','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Fragaria+vesca','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Fragaria_vesca_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Fragaria+vesca','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Glycine+max','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Glycine_max_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Glycine+max','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Lotus+japonicus','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Lotus_japonicus_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Lotus+japonicus','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Malus+domestica','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Malus_domestica_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Malus+domestica','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Manihot+esculenta','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Manihot_esculenta_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Manihot+esculenta','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Medicago+truncatula','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Medicago_truncatula_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Medicago+truncatula','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Micromonas+sp.+RCC299','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Micromonas_sp._RCC299_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Micromonas+sp.+RCC299','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Oryza+sativa+ssp.+indica','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Oryza_sativa_ssp._indica_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Oryza+sativa+ssp.+indica','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Oryza+sativa+ssp.+japonica','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Oryza_sativa_ssp._japonica_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Oryza+sativa+ssp.+japonica','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Ostreococcus+lucimarinus','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Ostreococcus_lucimarinus_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Ostreococcus+lucimarinus','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Ostreococcus+tauri','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Ostreococcus_tauri_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Ostreococcus+tauri','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Physcomitrella+patens','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Physcomitrella_patens_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Physcomitrella+patens','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Populus+trichocarpa','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Populus_trichocarpa_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Populus+trichocarpa','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Ricinus+communis','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Ricinus_communis_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Ricinus+communis','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Selaginella+moellendorffii','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Selaginella_moellendorffii_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Selaginella+moellendorffii','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Sorghum+bicolor','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Sorghum_bicolor_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Sorghum+bicolor','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Theobroma+cacao','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Theobroma_cacao_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Theobroma+cacao','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Vitis+vinifera','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Vitis_vinifera_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Vitis+vinifera','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Volvox+carteri','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Volvox_carteri_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Volvox+carteri','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+startRotating();
+});
+Event.observe('tree_link_Zea+mays','mouseover',function(){
+stopRotating();
+new Effect.Morph('species_tree_div11',{style:'opacity:0.7;'});
+$('species_tree_div11').innerHTML='<img src="/plaza/img/organisms/box/Zea_mays_box.jpg" alt="" />';
+});
+Event.observe('tree_link_Zea+mays','mouseout',function(){
+new Effect.Morph('species_tree_div11',{style:'opacity:0.0;',duration:0.1});
+$('species_tree_div11').innerHTML = '';
+//startRotating();
+});
+    
+ //  startRotating();
+    
+    //]]>
+</script>
+	    </div>
+</div>
+</div>
+<!-- end summary block -->
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk), 
+	Jennifer Daub (jd7@sanger.ac.uk) and Paul Gardner (pg5@sanger.ac.uk)
+
+	This is free software; you can redistribute it and/or modify it under
+	the terms of the GNU General Public License as published by the Free Software
+	Foundation; either version 2 of the License, or (at your option) any later
+	version.
+
+	This program is distributed in the hope that it will be useful, but WITHOUT
+	ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+	FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+	details.
+
+	You should have received a copy of the GNU General Public License along with
+	this program. If not, see <http://www.gnu.org/licenses/>.
+	-%]

@@ -1,0 +1,437 @@
+[%
+# index.tt
+# jt6 20060717 WTSI
+# 
+# build the main Treefam home page.
+#
+# $Id: index.tt,v 1.10 2009-06-09 12:13:25 jt6 Exp $
+
+META title = "Home page";
+META fullPage = 1;
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+
+requirements.css.push( "index.css" );
+requirements.css.push( "treefam.css" );
+#requirements.css.push( "TreeFamily.css" );
+requirements.css.push( "buttons.css" );
+#requirements.css.push( "slider/style.css" );
+requirements.js.push( "jquery/jquery-1.8.2.min.js" );
+requirements.js.push( "jquery/jquery-ui-1.8.2.custom.min.js" );
+# This will be our own implementation of autocomplete
+#requirements.js.push( "treefam_autocomplete.js" );
+requirements.js.push( "prototype.js" );
+requirements.js.push( "sharedFunctions.js" );
+#
+#requirements.css.push( "jcobb-basic-jquery-slider-e15b5ee/bjqs.css" );
+#requirements.js.push( "jcobb-basic-jquery-slider-e15b5ee/js/bjqs-1.3.js" );
+
+# slider: http://css-tricks.com/examples/AnythingSlider/demos.html#&panel1-4&panel2-1&panel3-3
+#requirements.js.push( "anythingslider/jquery.easing.1.2.js" );
+#requirements.js.push( "anythingslider/jquery.anythingslider.min.js" );
+#requirements.js.push( "anythingslider/jquery.colorbox-min.js" );
+#requirements.css.push( "anythingslider/anythingslider.css" );
+#requirements.css.push( "anythingslider/colorbox.css" );
+
+
+# slider   http://tympanus.net/codrops/2010/04/28/pretty-simple-content-slider-with-jquery-and-css3/
+#requirements.js.push( "PrettySimpleContentSlider/jquery-package-min.js" );
+#requirements.css.push( "PrettySimpleContentSlider/style.css" );
+
+# slider: http://www.gayadesign.com/scripts/presentationCycle/
+#requirements.js.push( "presentationCycle/presentationCycle.js" );
+#requirements.js.push( "presentationCycle/jquery.cycle.all.min.js" );
+#requirements.css.push( "presentationCycle/presentationCycle.css" );
+#requirements.css.push( "presentationCycle/style.css" );
+
+# accordion
+requirements.css.push( "accordion/liteaccordion.css" );
+requirements.js.push( "accordion/liteaccordion.jquery.js" );
+
+
+# News ticker
+requirements.css.push( "jquerynewsticker/ticker-style.css" );
+requirements.js.push( "jquerynewsticker/jquery.ticker.js" );
+
+#requirements.cssIeAll.push( "index_all_ie.css" );
+
+#-------------------------------------------------------------------------------
+
+# a warning message for users who dont have javascript turned on. The 
+# message should be hidden immediately after its displayed, but if 
+# javascript is not working, the prototype call will fail and the message
+# will stay visible
+%]
+<div id="jsWarning">
+  <strong>Please note:</strong> this site relies heavily on the use of javascript. 
+  Without a javascript-enabled browser, this site will not function correctly. 
+  Please enable javascript and reload the page, or switch to a different browser.
+</div>
+<script type="text/javascript">
+  // <![CDATA[
+  $("jsWarning").hide();
+  // ]]>
+</script>
+
+<div id="index" >
+	<!-- <div id="index" style="box-shadow: 0 0 10px #000;"> -->
+	<div>
+	<div id="container">  
+		        <h1>Welcome to TreeFam<span class="arrow"></span> </h1>  
+
+		<!--<ol style="list-style-type:decimal; width: 100%;">
+    			<li style="float: left; width: 20%;">Animal genes</li>
+    			<li style="float: left; width: 5%;">o</li>
+    			<li style="float: left; width: 20%;">Gene trees</li>
+    			<li style="float: left; width: 5%;">o</li>
+    			<li style="float: left; width: 20%;">Orthologs/Paralogs</li>
+		</ol>
+<div style="clear: both;"></div> -->
+		<div style="height:70px;padding:10px">
+		<p>TreeFam (Tree families database) is a database of phylogenetic trees of animal genes. <br>It aims at developing a curated resource that gives reliable information about ortholog and paralog assignments, and evolutionary history of various gene families.</p>
+ 			<!-- <p>TreeFam defines a gene family as a groIup of genes that evolved after the speciation of single-metazoan animals. It also tries to include outgroup genes like yeast (S. cerevisiae and S. pombe) and plant (A. thaliana) to reveal these distant members.</p>
+
+			<p>TreeFam is also an ortholog database. Unlike other pairwise alignment based ones, TreeFam infers orthologs by means of gene trees. It fits a gene tree into the universal species tree and finds historical duplications, speciations and losses events. TreeFam uses this information to evaluate tree building, guide manual curation, and infer complex ortholog and paralog relations. </p>
+
+			<p>The basic elements of TreeFam are gene families that can be divided into two parts: TreeFam-A and TreeFam-B families. TreeFam-B families are automatically created. They might contain errors given complex phylogenies. TreeFam-A families are manually curated from TreeFam-B ones. Family names and node names are assigned at the same time. The ultimate goal of TreeFam is to present a curated resource for all the families.</p>  -->
+		</div> 
+</div>
+<br>
+<div id="accordion" style="margin-left:auto; margin-right:auto">
+		    <ol>
+				<li data-slide-name="one">
+				    <h2><span>TreeFam</span></h2>
+				    <div>
+					<h2 style="border-bottom: 2px solid #D7EADA;" >&nbsp; Gene trees and orthologs/paralogs</h2>
+					&nbsp; 	Trace the evolution of a gene family and find orthologs/paralogs. 
+						<figure>
+							<img src="/static/images/slider/treefam_chain_of_genes.png" style="width=500px;height=250px" alt="image" />
+						</figure> 
+					</div>
+				</li>
+				<li data-slide-name="two">
+				    <h2><span>Release 9</span></h2>
+				    <div>
+					<h2 style="border-bottom: 2px solid #D7EADA;">&nbsp; TreeFam release 9</h2>
+					&nbsp; The latest database release covers <a href="/browse#tabview=tab2">109 species</a> in <a href="/browse">16,064 families</a>
+						<figure>
+							<img src="/static/images/slider/Welcome_treefam_slider.png" alt="image" />
+						</figure> 
+					</div>
+				</li>
+				<li data-slide-name="three">
+				    <h2><span>Gene families</span></h2>
+				    <div>
+					<h2 style="border-bottom: 2px solid #D7EADA;">&nbsp; TreeFam families</h2>
+					&nbsp; Each TreeFam family page gives you a summary, trees, alignments, orthologs/paralogs, and more.<br>
+					&nbsp; Check out, e.g. <a href="/family/BRCA2">BRCA2</a>
+						<figure>
+							<a href="/family/BRCA2" ><img src="static/images/slider/BRCA2_study.png" alt="image" /></a>
+						</figure>
+					</div>
+				</li>
+				<li data-slide-name="four">
+				    <h2><span>Access data</span></h2>
+				    <div>
+					<h2 style="border-bottom: 2px solid #D7EADA;">&nbsp; Check out our improved tree visualization</h2>
+					&nbsp; Check out our new gene tree images drawn with <a href="http://ete.cgenomics.org/">ETE</a>. Our trees now have: 
+					<ul>
+					<li>species pictures</li>
+					<li>sequence with Pfam domains</li>
+					</ul>
+						<figure>
+							<img src="static/images/slider/treefam_treevisualization.png" alt="image" />
+						</figure>
+					</div>
+				</li>
+				<li data-slide-name="five">
+				    <h2><span>Analyse your own data</span></h2>
+				    <div>
+					<h2 style="border-bottom: 2px solid #D7EADA;" >&nbsp; Analyse your own data</h2>
+					&nbsp; You can analyse your own proteome data. Simply download the <a href="/static/download/treefam9.hmms">TreeFam HMMs</a> and <a href="https://github.com/treefam/treefam_tools/tree/master/treefam_scan">treefamscan</a> to run it on your machine. 
+						<figure>
+							<img src="/static/images/TreeFamScan.png" WIDTH=500 HEIGHT=250 alt="TreeFam workflow" />
+						</figure>
+					</div>
+				</li>
+		    </ol>
+			<noscript>
+				<p>Please enable JavaScript to get the full experience.</p>
+			</noscript>
+		</div>
+
+<!-- <div class="social-buttons">
+            <ul>
+              <li>
+                <fb:like href="http://nicolahibbert.com/demo/liteAccordion/" send="true" showfaces="false" width="120" layout="button_count" action="like"/></fb:like></li>
+              <li>
+                <a href="http://twitter.com/share" data-url="http://nicolahibbert.com/demo/liteAccordion/" data-text="liteAccordion - a horizontal accordion plugin for jQuery, by @nicolahibbert" class="twitter-share-button">Tweet</a>
+              </li>
+              <li>
+                <g:plusone size="medium" callback="plusone_vote"></g:plusone>
+              </li>
+              <li>
+                <script type="in/share" data-url="http://nicolahibbert.com/demo/liteAccordion/" data-counter="right"></script>
+              </li>
+            </ul>
+        </div>
+
+	<div id="index"> -->
+<!--<div id="index"> -->
+   [% # URI shortcuts
+   helpBase   = c.uri_for( "/help" );
+   searchBase = c.uri_for( "/search" );
+   jumpUri    = c.uri_for( "/family" );
+   #jumpUri    = "${searchBase}/jump";
+   %]
+
+  <div class="cleaner"><!-- empty --></div>
+
+<div id="contentwrapper">
+    <div id="contentcolumn">
+		<div id="posts" class="announcements" >
+			<!-- <span onclick="hideThis('posts');" class="closer" style="float: right; cursor: pointer">Hide this</span> -->
+			<div id="container" style="margin-left: 10px;margin-right: 20px;">  
+				       <h2>Recent TreeFam <a class="ext" href="http://xfam.wordpress.com/"> blog</a> posts<span class="arrow"></span> </h2>  
+            <div class="innertube">
+  			<ul>
+				<li><b>TreeFam: What is in the next release (posted 10 December 2012)</b><br>
+Behind the scenes we are working hard on building the next TreeFam release, which will be TreeFam 9.
+TreeFam 9 will have 109 species, that is a 37% increase over TreeFam 8. Most of the species come from EnsEMBL (v.69) and EnsEMBL genomes (v.16) with a few ones coming from JGI. <a href="http://xfam.wordpress.com/2012/12/10/treefam-whats-in-the-next-release/">[...]</a> </li>
+
+<li><b>We are on the move (posted 1 November 2012)</b><br>
+After 15 great years at the Sanger Institute we are on the move. On the 1st November, the Cambridge Xfam group will be taking up residence at the European Bioinformatics Institute on the other side of the Wellcome Trust Genome Campus. We will keep running the websites at Sanger for a bit longer, but eventually we will <a href="http://xfam.wordpress.com/2012/11/01/were-on-the-move/">[...]</a></li>
+
+<li><b>TreeFam is back with a new release! (posted 27 March 2012)</b><br>
+As some of you will already be aware, the Xfam family has recently gained a new member: the TreeFam database.
+TreeFam aims to provide phylogenetic trees and orthology predictions for all animal genes.<a href="http://xfam.wordpress.com/2012/03/27/treefam-is-back-with-a-new-release/">[...]</a></li>
+
+</ul>
+			</div>
+            </div>
+	</div>
+    </div>
+</div>
+
+<div id="leftcolumn">
+	<div id="container" style="margin-right:9%">  
+		        <h2> Our users<span class="arrow"></span> </h2>  
+    	<div class="innertube">
+	<h3>Databases:</h3>
+		<ul>
+		<li><a href="http://www.wormbase.org/"><img src="/static/images/logo_wormbase.gif" height="30"/></a>   <a href="http://www.ensembl.org/index.html"><img src="/static/images/ensembl_logo.png" height="35"/></a>    </li>
+		<li><a href="http://www.yeastgenome.org/"><img src="/static/images/sgd_logo.gif" height="35"/></a>	 <a href="http://orthology.phylomedb.org/"><img src="/static/images/methaphors_logo.png" height="35"/></a>	</li>
+		</ul>
+		<!-- <img src="/static/images/publications.png" alt="image" /> -->
+		<h3>Studies (<a href="http://europepmc.org/search/?sortby=Date&page=1&query=CITES:18056084_MED">all</a>):</h3>
+		<font size=1>
+		o	<a href="http://www.nature.com/ng/journal/v44/n8/full/ng.2343.html">The yak genome and adaptation to life at high altitude (Nature 2012)</a><br>	
+		o	<a href="http://europepmc.org/abstract/MED/20436461">GREAT improves functional interpretation of cis-regulatory regions (Nature Biotech. 2010)</a><br>	
+	</font>
+	</div>
+		        <h2>Xfam databases<span class="arrow"></span> </h2>  
+            <div class="innertube">
+		<ul>
+		<li><a href="http://pfam.sanger.ac.uk/"><img src="/static/images/Pfam_logo.gif" height="15"/></a>   <a href="http://rfam.sanger.ac.uk/"><img src="/static/images/rfam_logo.png" height="15"/></a>   
+		<a href="http://dfam.janelia.org/"><img src="/static/images/dfam_logo.png" height="15"/></a>	 </li>
+		<li><a href="http://merops.sanger.ac.uk/"><img src="/static/images/meropslogo.png" height="15"/></a>   <a href="ftp://ftp.sanger.ac.uk/pub/databases/Pfam/AntiFam/">AntiFam</a> </li>
+		</ul>
+	
+	<!--<ul>
+		<li><a href="http://pfam.sanger.ac.uk/"><img src="/static/images/Pfam_logo.gif" height="15"/></a>	 </li>
+		<li><a href="http://rfam.sanger.ac.uk/"><img src="/static/images/rfam_logo.png" height="15"/></a>	 </li>
+		<li><a href="http://dfam.janelia.org/"><img src="/static/images/dfam_logo.png" height="15"/></a>	 </li>
+		<li><a href="http://merops.sanger.ac.uk/"><img src="/static/images/meropslogo.png" height="15"/></a> </li>	
+		<li><a href="ftp://ftp.sanger.ac.uk/pub/databases/Pfam/AntiFam/">AntiFam</a> </li>
+	</ul>	 -->
+		</div>
+</div>
+</div>
+
+<div id="rightcolumn">
+	<div id="container" style="margin-left:5%">  
+		        <h2>Citing TreeFam<span class="arrow"></span> </h2>  
+    <div class="innertube">
+    	<p>
+      		If you find TreeFam useful, please consider 
+      		<a href="[% helpBase %]?tab=helpReferencesBlock">citing</a> the references 
+      		that describe this work:
+    	</p>
+    <div class="citation">
+      <span class="title">
+        <a class="ext" 
+           href="http://europepmc.org/abstract/MED/18056084">
+          TreeFam: 2008 Update</a>
+      </span>
+      <span class="authors">
+        <!-- Jue Ruan, Heng Li, Zhongzhong Chen, Avril Coghlan, Lachlan James M. Coin, Yiran Guo, Jean-Karim H&eacute;rich&eacute;, Yafeng Hu, 
+        Karsten Kristiansen, Ruiqiang Li, Tao Liu, Alan Moses, Junjie Qin, S&oslash;ren Vang, Albert J. Vilella, 
+        Abel Ureta-Vidal, Lars Bolund, Jun Wang and Richard Durbin. -->
+        Jue Ruan, Heng Li, et al.
+      </span>
+      <span class="ref">
+        <span class="jrnl">Nucleic Acids Research</span>&nbsp;(2008) 
+        <br>doi: 10.1093/nar/gkm1005
+       </span>
+    </div>
+</div>
+		        <h2>Mirrors<span class="arrow"></span> </h2>  
+            <div class="innertube">
+    <p>The following are official TreeFam 
+      <a href="[% helpBase %]?tab=helpTheTeamBlock">mirror</a> sites:
+    </p>
+    [% PROCESS "components/mirrors.tt" %]
+</div>
+	</div>
+</div>
+    </div>
+<!-- <iframe id="widgetFrame" src="http://widgplus.com/templates/new/activity.php?plusid=115739728227274298589&textcolor=FFFFFF&bg=333&contentbg=555&linkcolor4D90FE" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:282px; height:362px;"></iframe> 
+-->
+    
+   <div id="mirrors">
+   </div>
+
+  <div class="cleaner"><!-- empty --></div>
+
+  <!-- <div id="restore" class="announcements" style="display: none">
+    <hr />
+    <p>
+      You have hidden the blog posts section. You can restore it  
+      <span class="link" id="restoreLink">here</span>. 
+    </p>
+  </div>
+-->
+  
+   </div> 
+
+<script type="text/javascript">
+ jQuery(document).ready(function(){
+	console.log("initialising my-slideshow");
+   
+	jQuery('#accordion').liteAccordion({ 
+                        "responsive" : true ,
+                        "theme":"stitch", 
+                        "rounded" : "true",
+                        //"maxContainerWidth" : "760",
+                        //"enumerateSlides" : "true", 
+                        });
+//jQuery('#accordion').liteAccordion({"theme":"stitch"});
+console.log("accordion loaded")
+	/* jQuery('#my-slideshow').bjqs({
+        'height' : 300,
+        'width' : 600,
+        'responsive' : true,
+	'showcontrols' : false,
+	'centercontrols' : true,
+	'automatic'       : false,
+    }); 
+      */
+	/*console.log("banner-fade initialised");
+	jQuery("featured").tabs({fx:{opacity: "toggle"}}).tabs("rotate", 5000, true);
+
+	jQuery(".slidingDiv").hide();
+        jQuery(".show_hide").show();
+        jQuery('.show_hide').click(function(){
+            jQuery(".slidingDiv").slideToggle();
+            jQuery(this).text(jQuery(this).text() == 'More ...' ? 'Less ...' : 'More ...');
+        });
+
+	*/
+	jQuery(function () {
+		        jQuery('#js-news').ticker(
+				{
+				controls: false,
+				titleText: 'TreeFam News',
+				//		htmlFeed: false,
+            	//		ajaxFeed: true,
+            	//		feedUrl: 'http://xfam.wordpress.com/feed/',
+            	//		feedType: 'xml'		
+			}
+			);
+		});
+	}); 
+  // hide the announcements or new features list when the user clicks the 
+  // "hide this" button
+  var hideThis = function( id ) {
+    $(id).hide();
+
+    // tell urchin that we've hidden the blog
+    try {
+      urchinTracker( "/index/hidBlog" );
+    } catch( e ) {}
+
+    var d = new Date();
+    var t = Math.round( d.getTime() / 1000 );
+    createCookie( 'hide_' + id, t, '365' ); 
+    $("restore").show();
+  };
+  
+  jQuery("restoreLink").click(function() {
+    console.log("in restore link");
+	['announcements','website_changes','posts'].each( function( type ) {
+      var cookieValue = readCookie( "hide_" + type );
+      if ( cookieValue != null ) {
+
+        // tell urchin that we've shown the blog
+        try {
+          urchinTracker( "/index/shownBlog" );
+        } catch( e ) {}
+
+
+        eraseCookie( "hide_" + type );
+        window.location = "[% c.uri_for('/') %]";
+      }
+    } );
+  } );
+   
+  
+  // load the latest blog posts
+jQuery(document).ready(function(){    
+	console.log("dom loaded")
+	var r = new Ajax.Request( "[% c.uri_for( '/announcements' ) %]",
+      { 
+        method:     'get',
+        parameters: { type: "posts" },
+        on204:      function( oResponse ) {
+          jQuery("restore").show();
+        },
+        // for the benefit of IE, we need to check for an out-and-out
+        // failure, as well 204 status
+        onFailure:  function( oResponse ) {
+          	console.log("could not get blog content")
+		jQuery("restore").show();
+        },
+        onSuccess:  function( oResponse ) {
+          jQuery("posts").insert( oResponse.responseText );
+          jQuery("posts").show();
+        }
+      }
+    );
+  } );
+
+  // ]]>
+</script>
+
+<!-- end of index page -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

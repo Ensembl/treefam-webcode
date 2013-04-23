@@ -1,0 +1,67 @@
+[%
+# species.tt
+# jt6 20060411 WTSI
+#
+# block showing the species tree. This is a wrapper around another
+# template, which is called using an XMLHttpRequest to SpeciesTree.pm.
+#
+# $Id: species.tt,v 1.30 2009-12-07 22:32:47 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+
+sharedRequirements.js.push( "tree_factory.js" ); # handles tree data
+
+sharedRequirements.js.push( "sunburst.js" );     # sunburst tree
+sharedRequirements.css.push( "sunburst.css" );
+
+sharedRequirements.css.push( "tree.css" );       # YUI tree 
+
+# this needs to be loaded before we try to load the canvas text library,
+# but if we include it specifically for IE, it gets added below everything
+# else. We can add it here safely, however, because excanvas checks to see
+# if canvas is implemented before trying to inject itself
+requirements.js.push( "excanvas.js" );
+
+# need to load the canvas.text.js file before trying to load the font file, 
+# otherwise it bails with an error about "face.glyphs is undefined"
+requirements.js.push( "canvas.text.js" );
+requirements.js.push( "faces/optimer-bold-normal.js" );
+
+#-------------------------------------------------------------------------------
+%]
+
+<!-- start species block -->
+<script language="javascript" type="text/javascript" src="http://thejit.org/static/v20/Jit/jit-yc.js"></script>
+<script language="javascript" type="text/javascript" src="http://thejit.org/static/v20/Jit/Examples/Sunburst/example2.js"></script>
+<div class="block" id="speciesBlock">
+  <div class="handle">
+    <h1>Species distribution</h1>
+  </div>
+  <div class="blockContent">
+      <div onload="init();" id="infovis"></div> 
+  </div>
+</div>
+
+
+<!-- end of species block -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

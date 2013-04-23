@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/code/!svn/ver/3042/trunk/RfamWeb/root/pages/search/taxonomy
+END
+resultsTable.tt
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/code/!svn/ver/3042/trunk/RfamWeb/root/pages/search/taxonomy/resultsTable.tt
+END
+uniqueSearchResults.tt
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/code/!svn/ver/2899/trunk/RfamWeb/root/pages/search/taxonomy/uniqueSearchResults.tt
+END
+taxonomyResults.tt
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/code/!svn/ver/2954/trunk/RfamWeb/root/pages/search/taxonomy/taxonomyResults.tt
+END
+taxSearchResults.tt
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/code/!svn/ver/2899/trunk/RfamWeb/root/pages/search/taxonomy/taxSearchResults.tt
+END
+uniqueResults.tt
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/code/!svn/ver/2899/trunk/RfamWeb/root/pages/search/taxonomy/uniqueResults.tt
+END

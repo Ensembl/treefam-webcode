@@ -1,0 +1,140 @@
+[%
+# sequence.tt
+# jt6 20070419 WTSI
+# 
+# build the sequence search block
+#
+# $Id: sequence.tt,v 1.4 2009-10-08 16:01:49 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+
+requirements.css.push( "search.css" );
+requirements.css.push( "forms.css" );
+requirements.cssIeAll.push( "forms_all_ie.css" );
+requirements.css.push( "buttons.css" );
+
+#-------------------------------------------------------------------------------
+%]
+
+<!-- start sequence search block -->
+
+<div class="block" id="searchSequenceBlock">
+  <div class="handle">
+    <h1>Sequence search</h1>
+  </div>
+  <div class="blockContent">
+<section id="maincontent" class="omega grid_24">
+      <h2 class=" strapline">HMMER hmmscan</h2>
+      <div id="ebi_mainContent"> 
+       <!-- InstanceBeginEditable name="mainContent" -->  
+       <a name="content"></a>  
+       <p id="details"> HMMER hmmscan searches a sequence against TreeFam - a profile HMM database. </p>  
+       <div id="use">  
+        <form action="/sequence_search" enctype="multipart/form-data"  method="post"> 
+         <input alt="tool" id="tool" name="tool" type="hidden" value="hmmer_hmmscan"> 
+         <div class="jd_toolParameterBox"> 
+          <fieldset> 
+           <legend>STEP 1 - Enter your input sequences</legend> 
+           <p> <label for="sequence"> <a href="../../pfa/hmmer_hmmscan/help/index.html#sequence" target="_help">Enter or paste</a> </label> a PROTEIN sequence in any <a href="../../pfa/hmmer_hmmscan/help/index.html#sequence" target="_help">supported</a> format: </p> 
+           <textarea cols="47" id="sequence" name="sequence" rows="7"></textarea> 
+           <p> Or <label for="upfile"> <a href="../../pfa/hmmer_hmmscan/help/index.html#upload" target="_help">upload</a> </label> a file: <input alt="upfile" id="upfile" name="upfile" type="file"> </p> 
+          </fieldset> 
+         </div> 
+         <div class="jd_toolParameterBox"> 
+          <fieldset> 
+           <legend>STEP 2 - Set your Parameters</legend> 
+           <ul class="jd_parameterGroup"> 
+            <li class="jd_parameterCellUp" style="width: 33%;"> <label for="evalue"> <a href="../../pfa/hmmer_hmmscan/help/index.html#evalue" target="_help">EXPECTATION VALUE</a> </label> 
+             <div> 
+              <select id="evalue" name="evalue"> <option value="1.0E-300">1e-300</option> <option value="1.0E-100">1e-100</option> <option value="1.0E-50">1e-50</option> <option value="1.0E-10">1e-10</option> <option value="1.0E-5">1e-5</option> <option value="1.0E-4">0.0001</option> <option value="0.0010">0.001</option> <option value="0.1">0.1</option> <option value="1.0">1</option> <option value="2.0">2</option> <option value="5.0">5</option> <option selected="selected" value="10.0">10</option> <option value="20.0">20</option> <option value="50.0">50</option> </select> 
+             </div> </li> 
+           </ul> 
+          </fieldset> 
+         </div> 
+         <div class="jd_toolParameterBox"> 
+          <fieldset> 
+           <legend>STEP 3 - Submit your job</legend> 
+           <div> 
+            <label> <input class="checkbox" id="notification" name="notification" type="checkbox">Be notified by email</label> 
+            <em>(Tick this box if you want to be notified by email when the results are available)</em> 
+           </div> 
+           <div id="submission" style="display: none;"> 
+            <div class="line"> 
+             <label for="email"> <a href="../../pfa/hmmer_hmmscan/help/index.html#email" target="_help">EMAIL:</a> </label> 
+             <input alt="email" class="textfield" id="email" name="email" size="15" type="text" value=""> 
+            </div> 
+            <div class="line"> 
+             <label for="title"> <a href="../../pfa/hmmer_hmmscan/help/index.html#title" target="_help">TITLE:</a> </label> 
+             <input alt="title" class="textfield" id="title" name="title" type="text" value=""> 
+             <em>If available, the title will be included in the subject of the notification email and can be used as a way to identify your analysis</em> 
+            </div> 
+           </div> 
+           <div id="jd_submitButtonPanel"> 
+            <input alt="submit" name="submit" type="submit" value="Submit" class="submit"> 
+           </div> 
+          </fieldset> 
+         </div> 
+        </form> 
+        <div class="center"> 
+         <p> If you plan to use these services during a course please <a href="http://www.ebi.ac.uk/support/index.php?query=Clustalw2">contact us</a>. </p> 
+        </div> 
+       </div> 
+       <!-- InstanceEndEditable --> 
+      </div>
+     </section>
+      </div>
+
+  <script type="text/javascript">
+    // <![CDATA[
+    
+    // a little check on the sequence length...
+    var lengthWarning = false;
+    checkLength = function() {
+
+      if( $F('seq').length > 2000 ) {
+        if( ! lengthWarning ) {
+          new Insertion.After( "seq",
+                               "<div class='error'>Your sequence must be &lt; 2kb<\/div>" );
+          lengthWarning = true;
+        }
+        return false;
+      } else {
+        return true;
+      }
+    };
+
+    var exSeq = "MAGNFWQSSHYLQWILDKQDLLKERQKDLKFLSEEEYWKLQIFFTNVIQALGEHLKLRQQ\n\
+VIATATVYFKRFYARYSLKSIDPVLMAPTCVFLASKVEEFGVVSNTRLIAAATSVLKTRF\n\
+SYAFPKEFPYRMNHILECEFYLLELMDCCLIVYHPYRPLLQYVQDMGQEDMLLPLAWRIV\n\
+NDTYRTDLCLLYPPFMIALACLHVACVVQQKDARQWFAELSVDMEKILEIIRVILKLYEQ\n\
+WKNFDERKEMATILSKMPKPKPPPNSEGEQGPNGSQNSSYSQS";
+    var exEntry = "ENSP00000428982";
+    // ]]>
+  </script>
+
+</div>
+
+<!-- end sequence search block -->
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

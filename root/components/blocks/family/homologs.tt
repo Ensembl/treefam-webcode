@@ -1,0 +1,204 @@
+[%
+# phylo.tt
+# jt6 20060515 WTSI
+#
+# block showing the phylogenetic tree for a family
+#
+# $Id: phylo.tt,v 1.7 2008-07-25 13:30:45 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+%]
+<div class="block" id="homologsBlock">
+  <div class="handle">
+    <h1>Sequences</h1>
+  </div>
+  <div class="blockContent">
+	<div id="homologSummaryTabs" class="nestedTabs yui-navset">
+
+      		<div class="yui-content">
+        		<div id="homologsOverview">
+		<p>
+      There are <strong>[% treefam.num_full %]</strong> sequences in this family. Download as <a href="[% c.uri_for( "/family",acc, "alignment") %]">Fasta</a>.
+    <!-- [% IF showAll %]
+      You can <a href="[% c.uri_for( '/family', acc, 'regions' ) %]">download</a>
+      the details of all regions as a tab-delimited file. The table of results 
+      below may be sorted by clicking on the column titles, or restored to the 
+      original order <span class="link" id="sortLink">here</span>. 
+    [% ELSIF showText %]
+      There are too many regions to show in this page, but you can still 
+      <a href="[% c.uri_for('/family', acc, 'regions' ) %]">download</a>
+      the details of all of them as a tab-delimited file.
+    [% ELSE %]
+      There are too many regions to show. If you really need a list of all 
+      regions for this family, please contact us at the address below and we 
+      will do our best to help. 
+    [% END %] -->
+    </p>
+	<div class="keyTable" id="sequences_table"></div>
+       
+    <script type="text/javascript" charset="utf-8">
+            jQuery.noConflict();
+    /* Data set - can contain whatever information you want */
+            var aDataSet =[% sequence_array_json %];
+                jQuery(document).ready(function() {           
+                jQuery('#sequences_table').html( '<table cellpadding="0" cellspacing="0" border="5" class="display" id="sequences_data"></table>' );
+                jQuery('#sequences_data').dataTable( {
+                    "aaData": aDataSet,
+	            "aLengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]],
+        	     "aoColumns": [
+                        { "sTitle": "Taxon" },
+                        { "sTitle": "Display_label" },
+                        { "sTitle": "HMM e-value" },
+                        { "sTitle": "Pfam matches" },
+                        { "sTitle": "Description" },
+                    ]
+                } );    
+            } );
+        </script>
+	
+			</div> <!-- Interactive tree div--> 
+						<!-- <div id="homologsDownload">
+				<h3>All homologs for this family</h3>
+			 	Click <button onclick="get_all_homologs()">here</button> to retrieve all homologs for this family		
+				<h3>Homology relationship for ID pair (protein IDs)</h3>
+				    Select two protein ids and get their homology relationship<br>
+				    ID A<select name="idA" id="idASelection"></select>
+				    ID B<select name="idB" id="idBSelection"></select>
+				    <button class="btn go" onclick="get_homologyType()">Go</button>
+				    <div  id="homolog_results_table"></div>
+				<h3>All homologs for species</h3>
+				    Select two protein ids and get their homology relationship<br>
+				    species<select name="speciesA" id="speciesASelection"></select>
+				    <button class="btn go" onclick="get_species_homologs()">Go</button>
+				    <div  id="species_results_table"></div>
+				<h3>Clade homologs</h3>
+				    select a taxonomic level <select name="taxLevel" id="taxLevelSelection"></select> and retrieve all homologs.
+				    <button class="btn go" onclick="get_homologyTaxLevel()">Go</button>
+			    	
+			<table id="results_table" border="2"  width="100%" cellpadding="3" cellspacing="3" style="display:none">
+					<tr align="left">
+						<th>ID 1</th>
+						<th>Taxon 1</th>
+						<th>ID 2</th>
+						<th>Taxon 2</th>
+						<th>Type</th>
+						<th>Tax level</th>
+					</tr>				
+					</table>
+			<div id="loadingDiv" class="modal"></div>
+			</div> <!-- Interactive tree div--> 
+		</div> <!-- yui content div -->
+	<div id="svgCanvas"> </div>
+             
+	<script type="text/javascript">
+		jQuery('#loadingDiv')
+		    .hide()  // hide it initially
+		    .ajaxStart(function() {
+			jQuery(this).show();
+		    })
+		    .ajaxStop(function() {
+			jQuery(this).hide();
+		    });
+	
+		// if someone clicks on tab
+		// load all ids for this family
+		jQuery('#homologsDownloadTab').click(function(){
+			var treefam_family = "[% treefam.acc%]";
+			var function2call =  "/family/"+treefam_family+"/all_ids"; 
+			jQuery.getJSON(function2call, function(data){
+					var optionsHTML = "";
+					jQuery.each(data, function() {
+					//	console.log(this);
+        					optionsHTML += "<option>" + this + "</option>";
+					});
+					console.log(optionsHTML);
+					jQuery("#idASelection").html(optionsHTML);
+					jQuery("#idBSelection").html(optionsHTML);
+			});	
+            // Now get all species
+			var treefam_family = "[% treefam.acc%]";
+			var function2call =  "/family/"+treefam_family+"/all_species"; 
+			console.log(function2call);
+			jQuery.getJSON(function2call, function(data){
+					var optionsHTML = "";
+					jQuery.each(data, function() {
+						console.log(this);
+        					optionsHTML += "<option>" + this + "</option>";
+					});
+					console.log(optionsHTML);
+					jQuery("#speciesASelection").html(optionsHTML);
+			});	 
+		});	
+		
+		function get_all_homologs(){
+			var function2call =  "/family/TF101003/homologs"; 
+			// Get the two selected IDS
+			var seq1 = jQuery("#idASelection option:selected").val();
+			var seq2 = jQuery("#idBSelection option:selected").val();
+			var treefam_family = "[% treefam.acc%]";
+			var function2call =  "/family/"+treefam_family+"/homologyType/"+seq1+"/"+seq2; 
+			//alert(function2call);return false;
+			// lets clear the old table first
+			jQuery("#results_table").find("tr:gt(0)").remove();
+			jQuery.getJSON(function2call, function(data){
+					jQuery.each(data, function() {
+  						//jQuery("#" + this).text("My id is " + this + ".");
+						console.log("data is "+this)
+						var msg = "<tr><td>"+this[0]+"</td><td>"+this[1]+"</td><td>"+this[2]+"</td><td>"+this[3]+"</td><td>"+this[4]+"</td><td>"+this[5]+"</td></tr>"
+						jQuery('#results_table tr:first').after(msg)
+					});
+			});
+			jQuery('#results_table').show('slow');
+		}
+		function get_homologyType(){
+			var function2call =  "/family/TF101003/homologs"; 
+			// Get the two selected IDS
+			var seq1 = jQuery("#idASelection option:selected").val();
+			var seq2 = jQuery("#idBSelection option:selected").val();
+			var treefam_family = "[% treefam.acc%]";
+			var function2call =  "/family/"+treefam_family+"/homologyType/"+seq1+"/"+seq2; 
+			alert(function2call);
+            //return false;
+			// lets clear the old table first
+			jQuery("#results_table").find("tr:gt(0)").remove();
+			jQuery.getJSON(function2call, function(data){
+					jQuery.each(data, function() {
+  						//jQuery("#" + this).text("My id is " + this + ".");
+						console.log("data is "+this)
+						var msg = "<tr><td>"+this[0]+"</td><td>"+this[1]+"</td><td>"+this[2]+"</td><td>"+this[3]+"</td><td>"+this[4]+"</td><td>"+this[5]+"</td></tr>"
+						jQuery('#results_table tr:first').after(msg)
+					});
+			});
+			jQuery('#results_table').show('slow');
+		}
+		</script>
+	<script type="text/javascript">
+    		var tabView = new YAHOO.widget.TabView('homologSummaryTabs');
+	</script>
+		
+</div> <!-- summaryTabs -->
+</div> <!-- block content -->
+</div> <!-- treeblock -->
+
+<!-- end of phyloBlock -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

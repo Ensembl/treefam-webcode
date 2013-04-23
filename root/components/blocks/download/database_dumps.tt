@@ -1,0 +1,120 @@
+[%
+# index.tt
+# jt6 20070426 WTSI
+# 
+# build a "browse" index page
+#
+# $Id: index.tt,v 1.6 2008-12-08 13:01:06 jt6 Exp $
+
+META title = "Browse TreeFam";
+#META fullPage = 1;
+
+#USE dumper;
+requirements.css.push( "buttons.css" );
+# For tables
+#requirements.js.push( "d3/d3.v2.min.js" );
+#requirements.js.push( "d3/d3.layout.js" );
+#requirements.css.push( "demo_table.css" );
+#requirements.css.push( "TreeFamily.css" );
+#requirements.js.push( "jquery/jquery-1.6.2.min.js" );
+#requirements.js.push( "jquery/jquery.tipsy.js" );
+#requirements.js.push( "jquery/jquery.dataTables.min.js" );
+
+## Zoom
+#requirements.css.push( "ajax_zoom/jquery.fancybox-1.2.6.css" );
+#requirements.css.push( "ajax_zoom/axZm.css" );
+#requirements.js.push( "ajax_zoom/jquery.axZm.js" );
+#requirements.js.push( "ajax_zoom/jquery.fancybox-1.2.6.js" );
+
+# Fancybox
+#requirements.css.push( "fancybox/jquery.fancybox.css" );
+#requirements.js.push( "fancyapps/lib/jquery.mousewheel-3.0.6.pack.js" );
+#requirements.js.push( "fancyapps/source/jquery.fancybox.pack.js" );
+
+#requirements.js.push( "magiczoom/magiczoom.js" );
+#requirements.css.push( "magiczoom/magiczoom.css" );
+# For Tree
+#requirements.js.push( "d3/d3.min.js" );
+#requirements.js.push( "d3/d3.v2.js" );
+#requirements.js.push( "d3/d3.time.js" );
+#requirements.js.push( "jquery/jquery-1.6.2.min.js" );
+#requirements.js.push( "d3/d3.layout.js" );
+#requirements.css.push( "speciestree.css" );
+
+#requirements.js.push( "featuredimagezoomer/featuredimagezoomer.js" );
+
+requirements.js.push( "prototype.js" );
+requirements.js.push( "sharedFunctions.js" );
+
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+
+#-------------------------------------------------------------------------------
+META title = "Download TreeFam";
+
+-%]
+
+<div class="block" id="downloadDatabaseBlock">
+  <div class="handle">
+    <h1>Database dumps</h1>
+  </div>
+  <div class="blockContent">
+<!-- FAMILIES -->
+<table>
+<tr><td><h3>Families</h3></td></tr>
+<tr><td><a href="/static/download/treefam_family_data.tar.gz">families (tar.gz, 1.7Gb)</a></td><td>alignment, tree, orthologs for each family</td></tr>
+<!-- ALIGNMENTS -->
+<tr><td><h3>Alignments</h3></td></tr>
+<tr><td><a href="/static/download/treefam9.fa.tar.gz">sequences (tar.gz, 183Mb)</a></td><td>fasta file with all families and sequences</td></tr>
+<!-- HMMs -->
+<tr><td><h3>HMMs</h3></td></tr>
+<tr><td>Hmmer <a href="/static/download/treefam9.hmm2.tar.gz">version 2 </a>/<a href="/static/download/treefam9.hmm3.tar.gz">version 3 </a>(tar.gz, 537Mb/735Mb)</a></td><td>HMMs of all TreeFam families</td></tr>
+
+<!--  TREES -->
+<tr><td><h3>Trees</h3></td></tr>
+<!--<tr><td><a href="/static/download/xml/Compara.68.protein.nh.emf.tar.gz">gene trees (newick, 45Mb)</a></td><td>gene trees for each family</td></tr>
+<tr><td><a href="/static/download/xml/Compara.68.protein.tree.phyloxml.xml.tar.gz">trees (phyloxml, 137Mb)</a></td><td>accessions, syMbols and names of TreeFam-A families</td></tr> -->
+<tr><td><a href="/static/download/treefam_species_tree9.phy">species tree (newick, 3,7Kb)</a></td><td>species tree used in this release</td></tr>
+
+<!--  SEQUENCES -->
+<!--<tr><td><h3>Sequences</h3></td></tr>
+<tr><td><a href="/static/download/emf/Compara.68.protein.aa.fasta.gz">aa_seq (fasta, 275Mb)</a></td><td>amino acid sequences</td></tr>
+<tr><td><a href="/static/download/emf/Compara.68.protein.cds.fasta.gz">cds_seq (fasta, 658Mb)</a></td><td>nucleotide sequences</td></tr> -->
+
+<!--  HOMOLOGS -->
+<tr><td><h3>Homologs</h3></td></tr>
+<tr><td><a href="/static/download/xml/treefam9.protein.alltrees.orthoxml.xml.gz">homologs_orthoxml (orthoxml, 52Mb)</a></td><td>homologs </td></tr>
+
+<tr><td><h3>Mappings to external DBs</h3></td></tr>
+<tr><td><font size=1>(Note that most TreeFam mappings are based on <a href="ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/idmapping/"> UniProt mappings</a></font>)</td></tr>
+
+<tr><td><a href="/static/download/ENS2allIDs.tab.tar.gz">ENS2allIDs.tab.tar.gz</a></td><td>Mappings from TreeFam identifiers (Ensebml) to other databases (e.g. UniProt, RefSeq)</td></tr>
+<tr><td><a href="http://www.genenames.org" ><img src="http://www.genenames.org/sites/genenames.org/themes/custom/genenames/genenames_logo.png" height="20px" /></a></td><td><a href="/static/download/hgnc_treefam_txt">hgnc_treefam.txt</a></td></tr>
+<!-- <tr><td><a href="http://www.wikigenes.org" ><img src="[% c.uri_for('/static/images/wikigenes.jpg') %]"  height="20px" /></a></td><td><a href="/static/download/wikigene_treefam_txt">wikigene_treefam.txt</a></td></tr> -->
+<tr><td><a href="http://www.pfam.sanger.ac.uk" ><img src="[% c.uri_for('/static/images/pfam_logo.gif') %]"  height="20px" /></a></td><td><a href="/static/download/pfam_hits.txt.tar.gz">pfam_hits.txt.tar.gz</a></td></tr>
+</table>  
+</div>
+</div>
+
+<!-- end of browse index page -->
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

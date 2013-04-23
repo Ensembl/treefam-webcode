@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/code/!svn/ver/6954/trunk/PfamSchemata
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/code/!svn/ver/2576/trunk/PfamSchemata/LICENSE
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/code/!svn/ver/4599/trunk/PfamSchemata/.project
+END
+iPfamWebUser.pm
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/code/!svn/ver/2576/trunk/PfamSchemata/iPfamWebUser.pm
+END
+PfamDB.pm
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/code/!svn/ver/3587/trunk/PfamSchemata/PfamDB.pm
+END
+RfamDB.pm
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/code/!svn/ver/4010/trunk/PfamSchemata/RfamDB.pm
+END
+WebUser.pm
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/code/!svn/ver/6934/trunk/PfamSchemata/WebUser.pm
+END
+WikiApprove.pm
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/code/!svn/ver/4897/trunk/PfamSchemata/WikiApprove.pm
+END
+PfamJobs.pm
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/code/!svn/ver/3703/trunk/PfamSchemata/PfamJobs.pm
+END
+iPfamDB.pm
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/code/!svn/ver/4902/trunk/PfamSchemata/iPfamDB.pm
+END
+PfamLive.pm
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/code/!svn/ver/3703/trunk/PfamSchemata/PfamLive.pm
+END

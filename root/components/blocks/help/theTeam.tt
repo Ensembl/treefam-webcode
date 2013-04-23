@@ -1,0 +1,89 @@
+[%
+# theTeam.tt
+# rdf 20060927 WTSI
+# 
+# build the theTeam block for the help pages
+#
+# $Id: theTeam.tt,v 1.3 2009-06-09 12:23:40 jt6 Exp $
+%]
+
+<!-- start theTeam block -->
+
+<div class="block" id="helpTheTeamBlock">
+  <div class="handle">
+    <h1>The TreeFam Consortium</h1>
+  </div>
+  <div class="blockContent">
+    <p>
+     	The TreeFam database is curated and maintained at the <a class="ext"  href="http://www.ebi.ac.uk/">European Bioinformatics Institute</a> and <a  href="http://www.sanger.ac.uk/">Wellcome Trust Sanger Institute</a>. 
+    </p>  
+  
+    <h3>European Bioinformatics Institute / Wellcome Trust Sanger Institute</h3>
+  
+    <ul>
+      <li>Alex Bateman - Head of protein resources at the <abbr title="European Bioinformatics Institute">EMBL-EBI</abbr></li>
+      <li>Fabian Schreiber - TreeFam project leader</li>
+      <li>Mateus Patricio - TreeFam</li>
+      <!-- <li>Person X</li> -->
+    </ul>
+    <h3>Collaborators</h3>
+    <h4>European Bioinformatics Institute (Cambridge, UK)</h4>
+    <ul>
+      <li>Javier Herrero - coordinator of Ensembl Compara</li>
+      <li>Matthieu Muffato - developer of Ensembl Compara Gene Tree pipeline</li>  
+      <li>Miguel Pignatelli - developer of Ensembl Compara Gene Tree pipeline</li>  
+    </ul>
+    <h4>Center of Genomic Regulation (Barcelona, Spain)</h4>
+    <ul>
+      <li>Toni Gabaldon - coordinator of Ensembl Compara</li>
+      <li>Jaime Huerta - developer of ETE</li>
+    </ul> 
+    
+  
+    <h3>Previous contributors</h3>
+  
+    <ul>
+	<li>Richard Durbin </li>       
+	<li>Jun Wan</li>       
+	<li>Avril Coghlan</li>
+	<li>Heng Li </li>       
+	<li>Jean-Karime Heriche</li>       
+	<li>Lachlan Coin </li> 
+	<li>Albert Viella </li>      
+	<li>many more... </li>       
+	
+    </ul>
+  
+    <p>
+      TreeFam is a collaborative venture and we hope to be able to interact
+      with as many people as possible to provide a quality database. Please
+      get in touch with us for information. You can 
+      <span class="link" onclick="tabPage.switchTab('helpContactUsBlock');">
+        contact us</span> in various ways, including the help desk email 
+      address that can be found at the bottom of every page.
+    </p>
+    
+  </div>
+</div>
+
+<!-- end theTeam block -->
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk), 
+Jennifer Daub (jd7@sanger.ac.uk) and Paul Gardner (pg5@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

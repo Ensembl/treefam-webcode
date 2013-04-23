@@ -1,0 +1,104 @@
+[%
+# linking.tt
+# rdf 20060927 WTSI
+# 
+# build the linking block for the help pages
+#
+# $Id: linking.tt,v 1.3 2009-06-09 12:23:40 jt6 Exp $
+%]
+
+<!-- start linking block -->
+
+<div class="block" id="helpLinkingBlock">
+  <div class="handle">
+    <h1>How to link to TreeFam?</h1>
+  </div>
+  <div class="blockContent">
+    <p>
+      TreeFam is maintained by researchers at: the 
+      <a class="ext" href="http://www.sanger.ac.uk/">Wellcome Trust 
+        Sanger Institute</a>, and 
+      <a class="ext" href="http://ebi.ac.uk/">European Bioinformatics Institute</a>, Cambridge, UK. 
+    </p>
+    <p>
+      Although we have no plans to change the locations of resources within 
+      this site dramatically, webmasters are advised to link only to the 
+      following types of page within the site.
+    </p>
+    
+    <h3>Home pages</h3>
+    <dl class="sitesList">
+      <dd>
+        <a href="http://treefam.org">http://treefam.org</a>
+      </dd>
+    </dl>
+    
+   <h3>Searching a protein sequence against TreeFam</h3>
+    <dl class="sitesList">
+      <dd>
+        <a href="http://treefam.org/search?tab=sequenceSearchBlock">
+          http://treefam.org/search?tab=sequenceSearchBlock</a>
+      </dd>
+      </dl>
+  <h3>Searching an ID against TreeFam</h3>
+    <dl class="sitesList">
+      <dd>
+        <a href="http://treefam.org/search/TF101001">
+          http://treefam.org/search/ENSP00000428982</a>
+      </dd>
+      </dl> 
+    <h3>Linking to TreeFam family pages</h3>
+    
+    <p>
+      You can refer to TreeFam families either by accession,sequence ID, or (HGNC) gene symbolID.
+    </p>
+    <p>
+      TreeFam accession numbers are more stable between releases than IDs and
+      we <strong>strongly</strong> recommend that you link by accession number.
+    </p>
+    <p>
+      Here are some examples of linking to TreeFam: 
+    </p>
+    <dl class="sitesList">
+      <dt>By accession:</dt>
+      <dd>
+        <a href="http://treefam.org/family/TF101001">
+          http://treefam.org/family/TF101001</a>
+      </dd>
+      <dt>By ID:</dt>
+      <dd>
+        <a href="http://treefam.org/family/F6WHE2_HORSE">
+          http://treefam.org/family/F6WHE2_HORSE</a>
+      </dd>
+      <dt>Using &quot;Gene symbol&quot;:</dt>
+      <dd>
+        <a href="http://treefam.org/family/BRCA2">
+          http://treefam.org/family/BRCA2</a>
+      </dd>
+    </dl>
+
+  
+  </div>
+</div>
+
+<!-- end linking block -->
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk), 
+Jennifer Daub (jd7@sanger.ac.uk) and Paul Gardner (pg5@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

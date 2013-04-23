@@ -1,0 +1,102 @@
+[%
+# summary.tt
+# jt6 20060406 WTSI
+# 
+# build the summary block for families
+#
+# $Id: summary.tt,v 1.11 2009-10-08 16:01:48 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+#PROCESS "components/require.tt";
+
+requirements.css.push( "buttons.css" );
+# For tables
+requirements.css.push( "demo_table.css" );
+requirements.css.push( "TreeFamily.css" );
+requirements.js.push( "jquery/jquery-1.6.2.min.js" );
+requirements.js.push( "jquery/jquery.dataTables.min.js" );
+
+## Zoom
+#requirements.css.push( "ajax_zoom/jquery.fancybox-1.2.6.css" );
+#requirements.css.push( "ajax_zoom/axZm.css" );
+#requirements.js.push( "ajax_zoom/jquery.axZm.js" );
+#requirements.js.push( "ajax_zoom/jquery.fancybox-1.2.6.js" );
+
+# Fancybox
+#requirements.css.push( "fancybox/jquery.fancybox.css" );
+#requirements.js.push( "fancyapps/lib/jquery.mousewheel-3.0.6.pack.js" );
+#requirements.js.push( "fancyapps/source/jquery.fancybox.pack.js" );
+
+#requirements.js.push( "magiczoom/magiczoom.js" );
+#requirements.css.push( "magiczoom/magiczoom.css" );
+# For Tree
+#requirements.js.push( "d3/d3.min.js" );
+requirements.js.push( "d3/d3.v2.js" );
+#requirements.js.push( "d3/d3.time.js" );
+#requirements.js.push( "jquery/jquery-1.6.2.min.js" );
+requirements.js.push( "d3/d3.layout.js" );
+requirements.css.push( "speciestree.css" );
+
+requirements.js.push( "featuredimagezoomer/featuredimagezoomer.js" );
+
+requirements.js.push( "prototype.js" );
+requirements.js.push( "sharedFunctions.js" );
+
+#-------------------------------------------------------------------------------
+-%]
+	
+
+<!-- start summary block -->
+<div class="block" id="browseSummaryBlock">
+  <div class="handle">
+    <h1>Summary</h1>
+  </div>
+  <div class="blockContent">
+The current TreeFam release has 101 species in 16,064 families.
+	There are several ways to browse the database   
+ 	<div style="align=center" id="BrowseSummaryContent">
+           	    <div id="leftBrowseSummary" >
+                        <div id="familiesDiv" class="BrowseSumm_box">
+				<h3>Families</h3><br>
+                        <a href="#browseFamiliesBlock"><img src="[% c.uri_for( "/static/images/logos/treefam_families.png" ) %]" style="width:30%;height:10%;"/></a>	
+		    </div>
+		    </div>
+		    <div id="centerBrowseSummary" >
+                        <div id="familiesDiv" class="BrowseSumm_box">
+				<h3>List of species</h3><br>
+				<a href="#browseSpeciesBlock"><img src="[% c.uri_for( "/static/images/logos/treefam_species.png" ) %]" style="width:30%;height:10%;"/></a>
+		    	</div>
+		    </div>
+		    <div id="rightBrowseSummary" >
+                        <div id="familiesDiv" class="BrowseSumm_box">
+				<h3>Species Tree</h3><br>
+				<a href="#browseSpeciesTreeBlock"><img src="[% c.uri_for( "/static/images/logos/treefam_species_tree.png" ) %]" style="width:30%;height:10%;"/></a>
+		    	</div>	
+		    </div>	
+        </div> 
+</div>
+</div>
+
+
+<!-- end summary block -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

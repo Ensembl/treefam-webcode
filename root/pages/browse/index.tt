@@ -1,0 +1,205 @@
+[%
+# index.tt
+# jt6 20070426 WTSI
+# 
+# build a "browse" index page
+#
+# $Id: index.tt,v 1.6 2008-12-08 13:01:06 jt6 Exp $
+
+META title = "Browse TreeFam";
+META fullPage = 1;
+
+USE dumper;
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+requirements.css.push( "index.css" );
+requirements.css.push( "browse.css" );
+
+requirements.css.push( "style.css" );
+requirements.css.push( "shadowbox.css" );
+requirements.css.push( "tipsy.css" );
+requirements.css.push( "d3-chart.css" );
+requirements.css.push( "visline.css" );
+requirements.css.push( "vispie.css" );
+
+requirements.js.push( "jquery/jquery-1.6.2.min.js" );
+requirements.js.push( "jquery/jquery.tipsy.js" );
+requirements.js.push( "shadowbox/shadowbox.js" );
+requirements.js.push( "scripts.js" );
+requirements.js.push( "d3/d3.js" );
+requirements.js.push( "d3/d3.csv.js" );
+requirements.js.push( "d3/d3.time.js" );
+requirements.js.push( "d3/d3.layout.js" );
+
+
+## Required for showing the tree
+sharedRequirements.js.push( "jsphylosvg-min.js" );
+sharedRequirements.js.push( "yui/yui.js" );
+sharedRequirements.js.push( "raphael-min.js" );
+sharedRequirements.js.push( "unitip/unitip.js" );
+sharedRequirements.css.push( "unitip/unitip.css" );
+#-------------------------------------------------------------------------------
+
+alphabet = [ "A" .. "Z" ];
+
+##
+# very small = < 10
+#  small = 10 - 30
+# normal = 30 - 10
+# big = 100 - 200
+# very big = > 200
+
+number_range = ["very small","small","normal","big","very big"];
+
+
+-%]
+
+        
+<!-- <link href='http://mbostock.github.com/d3/ex/bubble.css' rel='stylesheet' type='text/css' /> -->
+<!-- start of browse index page -->
+
+<section id="container">
+    <section id="topbox">
+		<section align="center"id="chartbox">
+            <!-- 
+<div align="center" class="chartboxheader">
+                           TreeFam  Visualizations
+                            <div class="chartbox_section_controls top_level_controls">
+                                <a href="#visualview1" class="first isactive">Fam</a><a href="#visualview2" class="isactive">Prot</a><a href="#visualview3" class="last isactive">GO</a>
+                            </div>
+                            <div class="gotop_controls"><a href="#topbox" class="gotop">top &uarr;</a></div>
+                        </div>
+ -->
+            <div align="center" id="visualview1">
+                            <div class="chartboxsubheader">TreeFam families</div>
+                            <div class="chartbox_section_controls"><a href="#visualview1" class="first isactive">Fam</a><a href="#visualview2" class="nonactive">Prot</a><a href="#visualview3" class="last nonactive">GO</a></div>
+
+                            <div class="gotop_subcontrols"><a href="#topbox" class="gotop">top &uarr;</a></div>
+							<div align id="families_table">should be here</div>
+							<script type="text/javascript" language="javascript" src="http://datatables.net/release-datatables/media/js/jquery.js"></script>
+							<script type="text/javascript" language="javascript" src="http://datatables.net/release-datatables/media/js/jquery.dataTables.js"></script>
+							<script type="text/javascript" charset="utf-8">
+												$.noConflict();
+										/* Data set - can contain whatever information you want */
+												var fDataSet =[% families_array_json %];
+													jQuery(document).ready(function() {           
+													jQuery('#families_table').html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="families_data"></table>' );
+													jQuery('#families_data').dataTable( {
+														"aaData": fDataSet,
+														"aoColumns": [
+															{ "sTitle": "Stable ID" },
+															{ "sTitle": "Gene count" },
+															{ "sTitle": "Aln length" },
+															{ "sTitle": "Aln identify %" },
+															{ "sTitle": "Orthologs" },
+															{ "sTitle": "Inparalogs" },
+														],
+														"aaSorting": [[1,'desc']]
+													} );    
+												} );
+							</script>  
+						</div>
+                            <!-- </div> -->
+            <p>
+            <div align="center" id="visualview2">
+                            <div class="chartboxsubheader">TreeFam Species</div>
+                            <div class="chartbox_section_controls"><a href="#visualview1" class="first nonactive">Fam</a><a href="#visualview2" class="isactive">Prot</a><a href="#visualview3" class="last nonactive">GO</a></div>
+
+                            <div class="gotop_subcontrols"><a href="#topbox" class="gotop">top &uarr;</a></div>
+
+								<span onclick="reveal( this, 'proteomes_tree2', false, true )" class="link moreLink">
+							        Show species tree...</span>
+								<div id="proteomes_tree2">the tree</div>
+									<script type="text/javascript">
+											console.log("in javascript from species tree\n");
+											window.onload = function(){
+												YUI().use('oop', 'json-stringify', 'io-base', 'event', 'event-delegate', function(Y){
+													var uri = "http://www.jsphylosvg.com//trees/8-coffee.xml";
+													console.log("loaded object \n");
+													uri += "?" + new Date().getTime();          
+													function complete(id, o, args) {
+														var data = o.responseXML; // Response data.
+														var dataObject = { newick: '(Capsaspora_owczarzaki,(Proterospongia,Monosiga_brevicollis)Codonosigidae,(Amphimedon_queenslandica,Trichoplax_adhaerens,(((((((((((((Tupaia_belangeri,((Cavia_porcellus,(Ictidomys_tridecemlineatus,(Rattus_norvegicus,Mus_musculus)Murinae,Dipodomys_ordii)Sciurognathi)Rodentia,(Oryctolagus_cuniculus,Ochotona_princeps)Lagomorpha)Glires,((Otolemur_garnettii,Microcebus_murinus)Strepsirrhini,((((Nomascus_leucogenys,(Pongo_abelii,(Homo_sapiens,Pan_troglodytes,Gorilla_gorilla)Homininae)Hominidae)Hominoidea,Macaca_mulatta)Catarrhini,Callithrix_jacchus)Simiiformes,Tarsius_syrichta)Haplorrhini)Primates)Euarchontoglires,(Procavia_capensis,Loxodonta_africana,Echinops_telfairi)Afrotheria,((Pteropus_vampyrus,Myotis_lucifugus)Chiroptera,Equus_caballus,(Vicugna_pacos,Bos_taurus,Sus_scrofa,Tursiops_truncatus)Cetartiodactyla,(Felis_catus,(Ailuropoda_melanoleuca,Canis_lupus_familiaris)Caniformia)Carnivora,(Sorex_araneus,Erinaceus_europaeus)Insectivora)Laurasiatheria,(Dasypus_novemcinctus,Choloepus_hoffmanni)Xenarthra)Eutheria,(Monodelphis_domestica,Macropus_eugenii,Sarcophilus_harrisii)Metatheria)Theria,Ornithorhynchus_anatinus)Mammalia,(Anolis_carolinensis,(Taeniopygia_guttata,(Meleagris_gallopavo,Gallus_gallus)Phasianidae)Neognathae)Sauria)Amniota,Xenopus_tropicalis)Tetrapoda,((((Tetraodon_nigroviridis,Takifugu_rubripes)Tetraodontidae,(Gasterosteus_aculeatus,Oryzias_latipes)Smegmamorpha)Percomorpha,Gadus_morhua)Holacanthopterygii,Danio_rerio)Clupeocephala)Euteleostomi,Petromyzon_marinus)Vertebrata,Branchiostoma_floridae,(Ciona_savignyi,Ciona_intestinalis)Ciona)Chordata,Strongylocentrotus_purpuratus)Deuterostomia,(Lottia_gigantea,(Ixodes_scapularis,((((Atta_cephalotes,Apis_mellifera)Aculeata,(((Drosophila_virilis,Drosophila_mojavensis)Drosophila,Drosophila_grimshawi,(Drosophila_willistoni,(Drosophila_pseudoobscura,Drosophila_persimilis)pseudoobscura_subgroup,((Drosophila_yakuba,Drosophila_simulans,Drosophila_sechellia,Drosophila_melanogaster,Drosophila_erecta)melanogaster_subgroup,Drosophila_ananassae)melanogaster_group)Sophophora)Drosophila,(Anopheles_gambiae,(Culex_quinquefasciatus,Aedes_aegypti)Culicinae)Culicidae)Diptera,Bombyx_mori,Tribolium_castaneum)Endopterygota,(Pediculus_humanus,Acyrthosiphon_pisum)Paraneoptera)Neoptera,(Parhyale_hawaiensis,Daphnia_pulex)Crustacea)Pancrustacea)Arthropoda,(Capitella_teleta,Helobdella_robusta)Annelida)Protostomia)Coelomata,(Pristionchus_pacificus,(Caenorhabditis_japonica,Caenorhabditis_brenneri,Caenorhabditis_remanei,Caenorhabditis_elegans,Caenorhabditis_briggsae)Caenorhabditis)Chromadorea,Schistosoma_mansoni)Bilateria,(Nematostella_vectensis,Hydra_magnipapillata)Cnidaria)Eumetazoa)Metazoa,(Spizellomyces_punctatus,Allomyces_macrogynus,Saccharomyces_cerevisiae,Phycomyces_blakesleeanus)Fungi)Opisthokonta;' };   
+														console.log("before making phylocanvas object \n");
+														phylocanvas = new Smits.PhyloCanvas(
+															dataObject,
+															'proteomes_tree', 
+															1000, 1000,
+															'Rectangular'
+														);
+														console.log("after making phylocanvas object \n");
+														init(); //unitip
+													};
+													Y.on('io:complete', complete, Y);
+													var request = Y.io(uri);
+												});
+											};
+									</script>
+								<div id="proteomes_table"></div>
+									<style type="text/css" title="currentStyle">
+									   @import "[% c.uri_for( "/static/css/demo_page.css" ) %]";
+									   @import "[% c.uri_for( "/static/css/demo_table.css" ) %]";
+									</style>
+									 <script type="text/javascript" language="javascript" src="[% c.uri_for( "/static/javascripts/jquerys/jquery.js" ) %]"></script>
+									 <script type="text/javascript" language="javascript" src="[% c.uri_for( "/static/javascripts/jquerys/jquery.js" ) %]"></script>
+									 <script type="text/javascript" charset="utf-8">
+											$.noConflict();
+							/* Data set - can contain whatever information you want */
+											var gDataSet =[% genomes_array_json %];
+											jQuery(document).ready(function() {           
+											jQuery('#proteomes_table').html( '<table cellpadding="0" cellspacing="0" border="2" class="display" id="proteomes_data"></table>' );
+											jQuery('#proteomes_data').dataTable( {
+											"aaData": gDataSet,
+											"aoColumns": [
+												{ "sTitle": "Species" },
+												{ "sTitle": "Taxon id" },
+												{ "sTitle": "Classification" },
+											],
+											"aaSorting": [[0,'desc']],
+											"bDeferRender": true,
+										} );    
+									} );
+									</script>  
+							    </div>	 
+                    <div align="center" id="visualview3">
+                            <div class="chartboxsubheader">GO categories</div>
+                            <div class="chartbox_section_controls"><a href="#visualview1" class="first nonactive">one</a><a href="#visualview2" class="nonactive">two</a><a href="#visualview3" class="last isactive">three</a></div>
+                            <div class="gotop_subcontrols"><a href="#topbox" class="gotop">top &uarr;</a></div>
+                    </div>
+        </section>
+	</section>
+</section>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- end of browse index page -->
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

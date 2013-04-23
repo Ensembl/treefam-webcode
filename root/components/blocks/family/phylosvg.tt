@@ -1,0 +1,68 @@
+
+[%
+# phylo.tt
+# jt6 20060515 WTSI
+#
+# block showing the phylogenetic tree for a family
+#
+# $Id: phylo.tt,v 1.7 2008-07-25 13:30:45 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+
+# the tabs script
+sharedRequirements.js.push( "control.tabs.2.1.1.js" );
+sharedRequirements.js.push( "jsphylosvg-min.js" );
+sharedRequirements.js.push( "jsphylosvg.js" );
+sharedRequirements.js.push( "raphael-min.js" );
+
+# unitip
+
+sharedRequirements.js.push( "unitip/unitip.js" );
+sharedRequirements.css.push( "unitip/unitip.css" );
+
+%]
+
+<div class="block" id="phylojsBlock">
+  <div class="handle">
+    <h1>Phylogenetic Tree</h1>
+  </div>
+   <div class="blockContent">
+
+   <script type="text/javascript">
+	window.onload = function(){
+			var dataObject = { newick: '(((Espresso:2,(Milk Foam:2,Espresso Macchiato:5,((Steamed Milk:2,Cappuccino:2,(Whipped Cream:1,Chocolate Syrup:1,Cafe Mocha:3):5):5,Flat White:2):5):5):1,Coffee arabica:0.1,(Columbian:1.5,((Medium Roast:1,Viennese Roast:3,American Roast:5,Instant Coffee:9):2,Heavy Roast:0.1,French Roast:0.2,European Roast:1):5,Brazilian:0.1):1):1,Americano:10,Water:1);'};
+			phylocanvas = new Smits.PhyloCanvas(
+				dataObject,
+				'svgCanvas', 
+				500, 500
+			);
+	};
+    </script>
+	<div id="svgCanvas"> </div>
+
+</div>
+</div>
+
+<!-- end of phyloBlock -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

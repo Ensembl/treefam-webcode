@@ -1,0 +1,85 @@
+
+[%
+# phylo.tt
+# jt6 20060515 WTSI
+#
+# block showing the phylogenetic tree for a family
+#
+# $Id: phylo.tt,v 1.7 2008-07-25 13:30:45 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+#PROCESS "components/require.tt";
+
+# the tabs script
+requirements.js.push( "jquery/jquery-1.6.2.min.js" );
+requirements.js.push( "jquery/jquery.simplemodal.1.4.1.min.js" );
+requirements.js.push( "yui/build/yui/yui.js" );
+requirements.js.push( "yui/build/loader/loader.js" );
+
+
+%]
+<div class="block" id="phylojsBlock">
+  <div class="handle">
+    <h1>Species Tree</h1>
+  </div>
+   <div class="blockContent" align="center">
+	    <div id="svgCanvas"> </div>
+        <script type="text/javascript">
+	            window.onload = function(){
+			            var dataObject = { newick: '(Capsaspora_owczarzaki:1.0,(Proterospongia:1.0,Monosiga_brevicollis:1.0):1.0,(Amphimedon_queenslandica:1.0,Trichoplax_adhaerens:1.0,(((((((((((((Tupaia_belangeri:1.0,((Cavia_porcellus:1.0,(Ictidomys_tridecemlineatus:1.0,(Rattus_norvegicus:1.0,Mus_musculus:1.0):1.0,Dipodomys_ordii:1.0):1.0):1.0,(Oryctolagus_cuniculus:1.0,Ochotona_princeps:1.0):1.0):1.0,((Otolemur_garnettii:1.0,Microcebus_murinus:1.0):1.0,((((Nomascus_leucogenys:1.0,(Pongo_abelii:1.0,(Homo_sapiens_HUMAN:1.0,Pan_troglodytes:1.0,Gorilla_gorilla:1.0):1.0):1.0):1.0,Macaca_mulatta:1.0):1.0,Callithrix_jacchus:1.0):1.0,Tarsius_syrichta:1.0):1.0):1.0):1.0,(Procavia_capensis:1.0,Loxodonta_africana:1.0,Echinops_telfairi:1.0):1.0,((Pteropus_vampyrus:1.0,Myotis_lucifugus:1.0):1.0,Equus_caballus:1.0,(Vicugna_pacos:1.0,Bos_taurus:1.0,Sus_scrofa:1.0,Tursiops_truncatus:1.0):1.0,(Felis_catus:1.0,(Ailuropoda_melanoleuca:1.0,Canis_lupus_familiaris:1.0):1.0):1.0,(Sorex_araneus:1.0,Erinaceus_europaeus:1.0):1.0):1.0,(Dasypus_novemcinctus:1.0,Choloepus_hoffmanni:1.0):1.0):1.0,(Monodelphis_domestica:1.0,Macropus_eugenii:1.0,Sarcophilus_harrisii:1.0):1.0):1.0,Ornithorhynchus_anatinus:1.0):1.0,(Anolis_carolinensis:1.0,(Taeniopygia_guttata:1.0,(Meleagris_gallopavo:1.0,Gallus_gallus:1.0):1.0):1.0):1.0):1.0,Xenopus_tropicalis:1.0):1.0,((((Tetraodon_nigroviridis:1.0,Takifugu_rubripes:1.0):1.0,(Gasterosteus_aculeatus:1.0,Oryzias_latipes:1.0):1.0):1.0,Gadus_morhua:1.0):1.0,Danio_rerio:1.0):1.0):1.0,Petromyzon_marinus:1.0):1.0,Branchiostoma_floridae:1.0,(Ciona_savignyi:1.0,Ciona_intestinalis:1.0):1.0):1.0,Strongylocentrotus_purpuratus:1.0):1.0,(Lottia_gigantea:1.0,(Ixodes_scapularis:1.0,((((Atta_cephalotes:1.0,Apis_mellifera:1.0):1.0,(((Drosophila_virilis:1.0,Drosophila_mojavensis:1.0):1.0,Drosophila_grimshawi:1.0,(Drosophila_willistoni:1.0,(Drosophila_pseudoobscura:1.0,Drosophila_persimilis:1.0):1.0,((Drosophila_yakuba:1.0,Drosophila_simulans:1.0,Drosophila_sechellia:1.0,Drosophila_melanogaster:1.0,Drosophila_erecta:1.0):1.0,Drosophila_ananassae:1.0):1.0):1.0):1.0,(Anopheles_gambiae:1.0,(Culex_quinquefasciatus:1.0,Aedes_aegypti:1.0):1.0):1.0):1.0,Bombyx_mori:1.0,Tribolium_castaneum:1.0):1.0,(Pediculus_humanus:1.0,Acyrthosiphon_pisum:1.0):1.0):1.0,(Parhyale_hawaiensis:1.0,Daphnia_pulex:1.0):1.0):1.0):1.0,(Capitella_teleta:1.0,Helobdella_robusta:1.0):1.0):1.0):1.0,(Pristionchus_pacificus:1.0,(Caenorhabditis_japonica:1.0,Caenorhabditis_brenneri:1.0,Caenorhabditis_remanei:1.0,Caenorhabditis_elegans:1.0,Caenorhabditis_briggsae:1.0):1.0):1.0,Schistosoma_mansoni:1.0):1.0,(Nematostella_vectensis:1.0,Hydra_magnipapillata:1.0):1.0):1.0):1.0,(Spizellomyces_punctatus:1.0,Allomyces_macrogynus:1.0,Saccharomyces_cerevisiae:1.0,Phycomyces_blakesleeanus:1.0):1.0);'};
+			        phylocanvas = new Smits.PhyloCanvas(
+				                    dataObject,
+				                    'svgCanvas', 
+				                    1000, 1000,
+				                    'circular'
+			            );
+	            };
+    </script> 
+	     <script type="text/javascript">
+	        window.onload = function(){
+		        YUI().use('oop', 'json-stringify', 'io-base', 'event', 'event-delegate', function(Y){
+			        var uri = '[% c.uri_for( "/static/trees/test_trees/12-coffee.xml") %]';
+			        //var uri = '[% c.uri_for( "/static/trees/test_trees/treefam9_spec_test.xml") %]';
+			        function complete(id, o, args) {
+				        var data = o.responseXML; // Response data.
+				        var dataObject = {
+							    xml: data,
+							    fileSource: true
+						    };		
+				    phylocanvas = new Smits.PhyloCanvas(
+					    dataObject,
+					    'svgCanvas', 
+					    800, 800,
+					    'circular'				
+				    );
+				    init(); //unitip
+			    };
+			    Y.on('io:complete', complete, Y);
+			    var request = Y.io(uri);
+		    });
+	    };
+        </script> 
+    </div>
+</div>
+<!-- end of phyloBlock -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

@@ -1,0 +1,184 @@
+[%
+# head.tt
+# jt6 20060314 WTSI
+#
+# the contents of the "head" section of the web page. This template controls the
+# importing of stylesheets, javascripts, etc., and decides which tab should be
+# shown, using a snippet of JS.
+#
+# $Id: head.tt,v 1.6 2009-10-08 16:00:54 jt6 Exp $
+
+# use uri_for to get the root for the static directory
+staticUri = c.uri_for( "/static" );
+sharedUri = c.uri_for( "/shared" );
+-%]
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+[% # if the stash contains a value for "refreshUri", we'll add a
+   # refresh header to redirect after the default delay of 5 seconds
+   # or after "refreshDelay" seconds, if specified
+IF refreshUri != "";
+  delay = refreshDelay ? refreshDelay : 5; -%]
+<meta http-equiv="Refresh" content="[% delay %]; URL=[% refreshUri %]" />
+[% END -%]
+
+<meta name="description" content="EMBL-EBI"><!-- Describe what this page is about -->
+<meta name="keywords" content="bioinformatics, europe, institute"><!-- A few keywords that relate to the content of THIS PAGE (not the whol project) -->
+<meta name="google-site-verification" content="eq1WuKgGD6MktqiC6SEQ1nXenynNOUMwrfDjrv5OxJk" />
+<meta name="google-site-verification" content="eq1WuKgGD6MktqiC6SEQ1nXenynNOUMwrfDjrv5OxJk" />
+<meta name="author" content="EMBL-EBI"><!-- Your [project-name] here -->
+
+<!-- ====================================================================== -->
+<!-- make the site RSS feed discoverable --> 
+
+<link href="http://xfam.wordpress.com/tag/treefam/feed/" 
+      rel="alternate"
+      type="application/rss+xml"
+      title="TreeFam News" />
+
+<!-- ====================================================================== -->
+<!-- third-party javascript libraries
+
+     we are now loading third-party libraries from remote sites. We get
+     prototype and scriptaculous from googleapis and the YUI components 
+     for tree viewing directly from yahoo
+--> 
+
+<!-- prototype / scriptaculous -->
+
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+<!--
+<script type="text/javascript">google.load("prototype", "1.7");</script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.1/scriptaculous.js?load=effects,builder,controls"></script>
+-->
+<!-- YUI -->
+<script type='text/javascript' src='[% staticUri %]/javascripts/yui/yahoo-dom-event.js'></script>
+<script type='text/javascript' src='[% staticUri %]/javascripts/yui/element-min.js'></script>
+<script type='text/javascript' src='[% staticUri %]/javascripts/yui/tabview-min.js'></script>
+<link rel="stylesheet" href="[% staticUri %]/css/yui/tabview.css" type="text/css" />
+
+<!--  
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/element/element-min.js"></script>
+
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/tabview/tabview-min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/tabview/assets/skins/sam/tabview.css"/>
+-->
+<!-- <script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/treeview/treeview-min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/treeview/assets/skins/sam/treeview.css" />
+-->
+
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/history/history-min.js"></script>
+
+<!-- google analytics -->
+<script type="text/javascript" src="http://js.sanger.ac.uk/urchin.js" ></script>
+
+<!-- prototip -->
+<!-- <script type='text/javascript' src='[% sharedUri %]/javascripts/prototip.js'></script>
+	<link rel='stylesheet' href='[% sharedUri %]/css/prototip.css' type='text/css' />
+-->
+<!-- ====================================================================== -->
+<!-- local javascript files -->
+
+<!-- local javascript -->
+<!-- <script type="text/javascript" src="[% sharedUri %]/javascripts/sharedFunctions.js"></script> -->
+
+<!-- ====================================================================== -->
+<!-- local stylesheets -->
+
+<!-- global stylesheet -->
+<!-- EBI compliance -->
+<!-- CSS: implied media=all -->
+
+<!-- for development the css file are not minified -->
+
+
+
+<link type="text/css" rel="stylesheet" href="/static/css/fonts/FortAwesome-Font-Awesome-13d5dd3/css/font-awesome.min.css"/>
+
+<link type="text/css" rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/mitigation/develop/ebi-mitigation.css"/>
+<!-- <link type="text/css" rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/mitigation/develop/embl-petrol-colours.css"/> -->
+<!--<link type="text/css" rel="stylesheet" href="[% staticUri %]/css/ebi_web/pdbe-green-colours.css"/> -->
+<script defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/cookiebanner.js"></script>
+<script defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/foot.js"></script>
+
+ <link rel="stylesheet" href="[% staticUri%]/css/ebi_web/embl-petrol-colours.css" type="text/css" media="screen" />   
+ <link rel="stylesheet" href="[% staticUri %]/css/ebi_web/ebi-mitigation.css" type="text/css" media="screen" />  
+ <!-- <link rel="stylesheet" href="[% staticUri %]/css/ebi_web/ebi-visual.css" type="text/css" media="screen" />  --> 
+
+<!-- Mitigation
+ <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/boilerplate-style.css">
+<link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/ebi-global.css" type="text/css" media="screen" />
+ <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/ebi-visual.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/984-24-col-fluid.css" type="text/css" media="screen" />
+-->
+<!-- you can replace this with [projectname]-colours.css. See http://frontier.ebi.ac.uk/web/style/colour for details of how to do this -->
+
+<!-- also inform ES so we can host your colour palette file -->
+
+<!-- <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/embl-petrol-colours.css" type="text/css" media="screen"> -->
+
+
+<!-- custom build (lacks most of the "advanced" HTML5 support -->
+<script src="//www.ebi.ac.uk/web_guidelines/js/libs/modernizr.custom.49274.js"></script>
+
+
+<!-- for production the above can be replaced with -->
+
+<!--
+
+<link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/mini/ebi-fluid-embl.css">
+
+-->
+
+<!-- end CSS-->
+
+<link rel="stylesheet" href="[% staticUri %]/css/treefam.css" type="text/css" />
+
+<!-- site-specific stylesheet -->
+
+
+
+ <link rel="stylesheet" href="[% staticUri %]/css/[% c.config.site %].css" type="text/css" /> 
+
+
+<!-- ====================================================================== -->
+<!-- load dynamically required stylesheets and javascript files-->
+
+[% 
+allRequirements = { local  => { uri  => staticUri,
+                                reqs => requirements },
+                    shared => { uri  => sharedUri,
+                                reqs => sharedRequirements } };
+
+PROCESS "components/load_requirements.tt" %]
+
+<!-- ====================================================================== -->
+<!-- set the favicon -->
+
+<link rel="shortcut icon" 
+      type="image/png" 
+      href="[% staticUri %]/images/favicon.png" />
+      
+<!-- ====================================================================== -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

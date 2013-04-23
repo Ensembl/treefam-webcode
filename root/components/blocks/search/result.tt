@@ -1,0 +1,143 @@
+[%
+# keyword.tt
+# jt6 20061108 WTSI
+# 
+# build the keyword search block
+#
+# $Id: keyword.tt,v 1.3 2009-10-08 16:01:49 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+
+requirements.css.push( "buttons.css" );
+requirements.css.push( "search.css" );
+requirements.css.push( "forms.css" );
+requirements.cssIeAll.push( "forms_all_ie.css" );
+
+#-------------------------------------------------------------------------------
+%]
+
+<!-- start keyword search block -->
+
+<div class="block" id="searchKeywordBlock">
+  <div class="handle">
+    <h1>Keyword search</h1>
+  </div>
+  <div class="blockContent">
+Great results will be here!!!!
+Big block
+Number of matching sequences: 
+Number of matching families: 
+    <p>
+      Search for keywords within the textual data in the TreeFam database.
+      <span class="moreLink" onclick="reveal(this,'kwNotes',false, true)">More...</span>
+    </p>
+
+    <div id="kwNotes" style="display: none">
+      <p>
+        The search currently covers the following sections of the database:
+      </p>
+      <ul>
+        <li>text fields within rfam entries, such as description and comments</li>
+        <li>Wikipedia annotations</li>
+      </ul>
+      <p>
+        You can perform the same search from anywhere within the Rfam site, using
+        the keyword search box at the top right-hand side of every page.
+      </p>
+      <hr />
+    </div>
+ Search results for TreeFam families:
+	<div id="families_table"></div>
+
+
+
+			<style type="text/css" title="currentStyle">
+			   @import "[% c.uri_for( "/static/css/demo_page.css" ) %]";
+			   @import "[% c.uri_for( "/static/css/demo_table.css" ) %]";
+			</style>
+			 <script type="text/javascript" language="javascript" src="[% c.uri_for( "/static/javascripts/jquery/jquery.js" ) %]"></script>
+			 <script type="text/javascript" language="javascript" src="[% c.uri_for( "/static/javascripts/jquery/jquery.dataTables.js" ) %]"></script>
+			 <script type="text/javascript" charset="utf-8">
+					$.noConflict();
+	/* Data set - can contain whatever information you want */
+					var familiesDataSet = [% families_array_json %] ;
+					jQuery(document).ready(function() {           
+					jQuery('#families_table').html( '<table cellpadding="0" cellspacing="0" border="2" class="display" id="genomes_data"></table>' );
+					jQuery('#genomes_data').dataTable( {
+					"aaData": familiesDataSet,
+					"aoColumnDefs": [
+						      {
+						              "fnRender": function ( o, val ) {
+							      return '<a href=genome/' + o.aData[1] + '>' + o.aData[0] + '</a>';
+									        },
+							"aTargets": [ 0 ]
+							}
+						],
+					"aoColumns": [
+						{ "sTitle": "Species" },
+						{ "sTitle": "Taxon id" },
+						{ "sTitle": "Classification" },
+					],
+					"aaSorting": [[0,'asc']],
+					"iDisplayLength": 50,
+					"sPaginationType": "full_numbers",
+					"bDeferRender": true,
+				} );    
+			} );
+			</script>   
+ Search results for TreeFam members:
+	<div id="members_table"></div>
+ <script type="text/javascript" charset="utf-8">
+					$.noConflict();
+	/* Data set - can contain whatever information you want */
+					var memberDataSet = [% member_array_json %] ;
+					jQuery(document).ready(function() {           
+					jQuery('#families_table').html( '<table cellpadding="0" cellspacing="0" border="2" class="display" id="genomes_data"></table>' );
+					jQuery('#genomes_data').dataTable( {
+					"aaData": memberDataSet,
+					"aoColumnDefs": [
+						      {
+						              "fnRender": function ( o, val ) {
+							      return '<a href=genome/' + o.aData[1] + '>' + o.aData[0] + '</a>';
+									        },
+							"aTargets": [ 0 ]
+							}
+						],
+					"aoColumns": [
+						{ "sTitle": "Species" },
+						{ "sTitle": "Taxon id" },
+						{ "sTitle": "Classification" },
+					],
+					"aaSorting": [[0,'asc']],
+					"iDisplayLength": 50,
+					"sPaginationType": "full_numbers",
+					"bDeferRender": true,
+				} );    
+			} );
+			</script>    
+  </div>
+
+</div>
+
+<!-- end keyword search block -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

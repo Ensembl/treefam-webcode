@@ -1,0 +1,97 @@
+
+[%
+# phylo.tt
+# jt6 20060515 WTSI
+#
+# block showing the phylogenetic tree for a family
+#
+# $Id: phylo.tt,v 1.7 2008-07-25 13:30:45 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+
+# the tabs script
+requirements.js.push( "control.tabs.2.1.1.js" );
+#sharedRequirements.js.push( "jsphylosvg-min.js" );
+#sharedRequirements.js.push( "jsphylosvg.js" );
+requirements.js.push( "raphael-min.js" );
+requirements.js.push( "newick.js" );
+requirements.js.push( "d3/d3.v2.js" );
+requirements.js.push( "d3/d3.phylogram.js" );
+
+# unitip
+
+requirements.js.push( "unitip/unitip.js" );
+requirements.css.push( "unitip/unitip.css" );
+
+%]
+
+<div class="block" id="phyloBlock">
+  <div class="handle">
+    <h1>Tree</h1>
+  </div>
+  <div class="blockContent">
+  <table>
+      <tr>
+        <td>
+          <h2>Circular Dendrogram</h2>
+          <div id='radialtree'></div>
+        </td>
+        <td>
+          <h2>Phylogram</h2>
+          <div id='phylogram'></div>
+        </td>
+      </tr>
+    </table>
+ </div> 
+<script type="text/javascript">
+      window.onload=function load() {
+        var newick = Newick.parse("((Human:0.5,Pan:0.5):1,Mouse:0.5);")
+  //      var newick = Newick.parse("[% c.uri_for("/family/tree",acc)  %]")
+//console.log("I am doing something with the following %s  datum", newick);
+//console.debug( "just a debug"  );
+        var newickNodes = []
+        function buildNewickNodes(node, callback) {
+          newickNodes.push(node)
+          if (node.branchset) {
+            for (var i=0; i < node.branchset.length; i++) {
+              buildNewickNodes(node.branchset[i])
+            }
+          }
+        }
+        buildNewickNodes(newick)
+        d3.phylogram.build('#phylogram', newick, {
+          width: 300,
+          height: 400
+        });
+        d3.phylogram.buildRadial('#radialtree', newick, {
+          width: 400,
+          skipLabels: true
+        })
+        
+      }
+    </script>
+ 
+</div>
+<!-- end of phyloBlock -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

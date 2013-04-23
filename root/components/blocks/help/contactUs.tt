@@ -1,0 +1,44 @@
+[%
+# contactUs.tt
+# rdf 20060927 WTSI
+# 
+# build the contactUS block for the help pages
+#
+# $Id: contactUs.tt,v 1.3 2009-06-09 12:23:40 jt6 Exp $
+%]
+
+<!-- start ContactUs block -->
+
+<div class="block" id="helpContactUsBlock">
+  <div class="handle">
+    <h1>How to contact TreeFam</h1>
+  </div>
+  <div class="blockContent">
+	There are several ways to contact the TreeFam database.
+	<ul>
+	<li>Contact TreeFam: Use the "Feedback" widget on the right of every page</li>
+	<li>Xfam blog: <a class="ext" href="http://xfam.wordpress.com/">Xfam blog</a> </li>
+	<li><span class="feed">RSS feed</span>: <a href="http://xfam.wordpress.com/tag/rfam/feed/">RSS feed</a></li>
+	<li><span class="twitter">Twitter</span>: <a class="ext" href="http://www.twitter.com/Xfam_WTSI">follow</a></li>
+	<li><span class="mendeley">Mendeley<img src="http://d1xgx7lp3wi2d0.cloudfront.net/livesite-2012111501/graphics/commonnew/logo-mendeley.png" style="width:60px;height:20px" /></span><a class="ext" href="http://www.mendeley.com/groups/2810871/treefam/">TreeFam</a></li>
+	</ul>
+  </div>
+</div>
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

@@ -1,0 +1,285 @@
+[%
+# summary.tt
+# jt6 20060406 WTSI
+# 
+# build the summary block for families
+#
+# $Id: summary.tt,v 1.11 2009-10-08 16:01:48 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+PROCESS "components/require.tt";
+requirements.css.push( "buttons.css" );
+requirements.css.push( "demo_table.css" );
+#requirements.css.push( "demo_page.css" );
+requirements.css.push( "TreeFamily.css" );
+#requirements.css.push( "wp.css" );
+#requirements.css.push( "popup/messi.css" );
+
+#requirements.css.push( "family.css" );
+#requirements.cssIe.push( "family_ie.css" );
+
+#requirements.js.push( "family.js" );
+#requirements.js.push( "d3/d3.js" );
+requirements.js.push( "d3/d3.v3.min.js" );
+requirements.js.push( "d3/d3.layout.js" );
+requirements.js.push( "d3/packages.js" );
+
+
+#requirements.js.push( "jquery/jquery.js" );
+#requirements.js.push( "jquery/jquery.dataTables.js" );
+requirements.js.push( "jquery/jquery-1.8.2.min.js" );
+requirements.js.push( "jquery/jquery.dataTables.min.js" );
+requirements.js.push( "jquery/jquery.tipsy.js" );
+requirements.css.push( "jquery/tipsy.css" );
+#requirements.js.push( "axzoomer-min.js" );
+requirements.js.push( "phylowidget/gene_tree.js" );
+requirements.js.push( "phylowidget/minimal_species_tree.js" );
+
+# BioJS component
+requirements.js.push( "biojs/Biojs.js" );
+requirements.js.push( "biojs/Biojs.Alignment.js" );
+
+#sparkline
+requirements.js.push( "sparkline/jquery.sparkline.min.js" );
+#zoomify
+#requirements.js.push( "craigfrancis-zoomify-c4d09d0/zoomify.js" );
+#requirements.css.push( "craigfrancis-zoomify-c4d09d0/zoomify.css" );
+
+# magiczoom
+requirements.js.push( "magiczoom/magiczoom.js" );
+requirements.css.push( "magiczoom/magiczoom.css" );
+# fancybox
+#requirements.js.push( "fancybox/source/jquery.fancybox.js" );
+#requirements.css.push( "fancybox/jquery.fancybox.css" );
+# starzoom
+#requirements.js.push( "starzoom/starzoom.js" );
+#requirements.css.push( "starzoom/starzoom.css" );
+#requirements.js.push( "popups/messi/messi.js" );
+
+# gzoom
+#requirements.css.push( "jquery-ui-1.8.18.custom.css" );
+#requirements.js.push( "jquery/ui.core.min.js" );
+#requirements.js.push( "jquery/ui.slider.min.js" );
+#requirements.js.push( "jquery/jquery.mousewheel.js" );
+#requirements.js.push( "gzoom/jquery.gzoom.js" );
+#requirements.css.push( "gzoom/jquery.gzoom.css" );
+
+#requirements.js.push( "featuredimagezoomer/featuredimagezoomer.js" );
+
+requirements.js.push( "prototype.js" );
+requirements.js.push( "sharedFunctions.js" );
+
+
+#-------------------------------------------------------------------------------
+# num of species in db:
+num_total_species = 109
+-%]
+<!-- start summary block -->
+<div class="block" id="familySummaryBlock">
+  <div class="handle">
+    <h1>Summary</h1>
+  </div>
+  <div  align="center" class="blockContent">
+    <div id="Summ_left" class="Summ_column">
+                <div id="one" class="Summ_box" style="display:table;">
+                        <table align="left">
+				<tr><td align="left" ><h2>Family info</h2></td><td></td></tr>
+					        <tr><td align="left"><b>Name: </b></td><td align="left"><i>[% treefam.symbol %]</i></td></tr>
+					        <tr><td align="left"><b>Accession: </b></td><td align="left">[% treefam.acc %]</td></tr>
+					        <tr><td align="left"><b>Description: </b></td><td align="left">[% treefam.description %] </td></tr>
+					         <!-- <tr><td align="left"><b>Species: </b></td><td align="left"> -->
+							<!-- <span class="sparkpie">[% summaryData.numSpecies %],[% 101 - summaryData.numSpecies %] </span>  -->
+							<!-- [% summaryData.numSpecies %]</td></tr> --> 
+					        <!-- <tr><td align="left"><b>Species: </b></td><td align="left"> 
+							[% IF summaryData.numSpecies * 100 / num_total_species < 10 %]
+							only a few
+							[% ELSIF summaryData.numSpecies * 100 / num_total_species < 50 %]
+							many
+							[% ELSE %]
+							a lot
+							[% END %]
+							([% summaryData.numSpecies %]/[% num_total_species %]) -->
+						</td></tr>
+					        <!-- <tr><td align="left"><b>Genes: </b></td><td align="left"><span class="sparkbullet">[% summaryData.numSequences %],500</span> [% summaryData.numSequences %]</td></tr> -->
+					        <!-- <tr><td align="left"><b>Genes: </b></td><td align="left">[% summaryData.numSequences %]</td></tr> -->
+					        <!-- <tr><td align="left" ><b>Alignment<br><font size="1">length: </font> </b></td><td align="left"> <span class="sparkbullet">[% summaryData.aln_length %],8000</span> [% summaryData.aln_length %] AA</td></tr> -->
+		<!-- 			        <tr><td align="left" ><b>Alignment<br><font size="1">length: </font> </b></td><td align="left">  [% summaryData.aln_length %] AA</td></tr>
+					         <tr><td align="left" ><b><font size="1">percent identity: </font> </b></td><td align="left"> -->
+							<!-- <span class="sparkpie">[% summaryData.aln_percent_identity %],[% 100 - summaryData.aln_percent_identity %] </span> -->
+							 <!-- [% summaryData.aln_percent_identity %] % ID</td></tr> --> 
+					        <!-- <tr><td align="left" ><b><font size="1">percent identity: </font> </b></td><td align="left"> 
+							[% IF summaryData.aln_percent_identity < 10 %]
+							less 
+							[% ELSIF summaryData.aln_percent_identity < 80 %]
+							
+							[% ELSE %]
+							strong
+							[% END %]
+							conserved
+								
+								([% summaryData.aln_percent_identity %] % ID)</td></tr> -->
+					        <tr><td align="left"><b>Taxonomic distribution: </b></td><td align="left">Metazoa</td></tr>
+				        </table>
+                </div>
+		<div id="two" class="Summ_box" style="display:table;">
+			[% oe = 0 %]
+					    <table align="left">
+						    <!-- <tr><td align="left" ><h3>ANNOTATION (<a href="#" id="annot_slide_ref" class="show_hide_annot"><font size="1">less...</font></a>)</h3></td></tr>--> 
+						    <tr><td align="left" ><h3>Domain(s) and Function(s)</h3></td></tr>
+					    </table>
+					    <div  class="slidingAnnotDiv" ><table align="left">
+							<tr><td  align="left" > <a href="http://pfam.sanger.ac.uk/" target="_blank"><img src="http://pfam.sanger.ac.uk/static/images/pfam_logo.gif" width="40px" height="20px" /></a></td><td align="left"> 
+                                        		[% IF treefam.pfam.size %]
+								[% FOREACH pfam_acc = treefam.pfam %] 
+					    				<a href="http://pfam.sanger.ac.uk/family/[% pfam_acc.id %]" target="_blank">[% pfam_acc.name %]</a> ([% pfam_acc.count %]% [% oe ==  0 ? " of seqs." : ""; oe = oe+1%])</a><br>
+				            			[% END %]
+							[% ELSE %]
+					    				no Pfam hits
+							[% END %]
+                            				</td></tr>
+							<tr><td  align="left" > <a href="http://www.genenames.org" target="_blank"><img src="http://www.genenames.org/sites/genenames.org/themes/custom/genenames/genenames_logo.png" width="40px" height="30px" /></a></td><td align="left">
+                                        		[% IF hgncs.size %]
+			                			[% FOREACH hgnc_id = hgncs %] 
+									<a href="http://www.genenames.org/data/hgnc_data.php?hgnc_id=[% hgnc_id.id %]" target="_blank"><i>[% hgnc_id.name %]</i></a><br>
+								[% END %] 
+							[% ELSE %]
+					    				no HGNC hits
+							[% END %]
+							</td></tr>
+							<!-- <tr><td  align="left" > <a href="http://www.ncbi.nlm.nih.gov/omim" ><img src="/static/images/omim_logo.gif" width="45px" height="30px" /></a></td><td align="left">
+								<a href="http://omim.org/entry/101400"><i>SAETHRE-CHOTZEN SYNDROME</i></a><br>
+							</td></tr> -->
+							<!-- </td></tr><tr><td  align="left" > <a href="http://www.wikipedia.org/" ><img src="/static/images/Wikipedia-logo.png" width="30px" height="30px" /></a></td><td align="left">
+					    			<a href="#familyWikipediaBlock" > [% wikigenes.size ? wikigenes.size : 0 %] article(s)</a> -->
+							</td></tr>
+						</table>
+						</div>
+                </div>
+	 	<!--<div id="three" class="Summ_box" style="display:table;">
+		<ul style="align=left">
+			<p><u>Toolbox:</u></p>
+				<li><a href="https://github.com/treefam/treefam_tools/tree/master/api_scripts"></a> Learn about the gene evolution.</li>
+				<li><a href="https://github.com/treefam/treefam_tools/tree/master/api_scripts"></a> get homologs/sequences.</li>
+				<li><a href="https://github.com/treefam/treefam_tools/tree/master/api_scripts"></a> get the HMM and use it to search for additional homologs.</li>
+				<li><a href="https://github.com/treefam/treefam_tools/tree/master/api_scripts"></a> Use TreeFam data in your next publication (<a id="use_popup">read more</a>)</li>
+		</ul>	
+		</div>-->
+	<!-- 	<div id="three" class="Summ_box" style="display:table;">
+               <table align="left">
+		<tr><td align="left" ><h3>DOWNLOAD</h3></td></tr>
+		<tr><td align="left" ><b>Alignment: </b></td><td align="left"><a href="[% c.uri_for( "family/",acc, "alignment") %]">Fasta</a>, <a href="[% c.uri_for( acc, "hmm") %]">HMM</a></td></tr>
+		<tr><td align="left" ><b>Tree: </b></td><td align="left"><a href="[% c.uri_for( acc, "tree/newick") %]">Newick</a>, <a href="[% c.uri_for( acc, "tree/phyloxml") %]">PhyloXML</a></td></tr>
+		<tr><td align="left" ><b>Homologs: </b></td><td align="left"><a href="[% c.uri_for( acc, "orthologs/table") %]">Table</a>, <a href="[% c.uri_for( acc, "orthologs/orthoxml") %]">OrthoXML</a></td></tr>
+	       </table>
+       </div> -->
+     </div>
+      <div id="Summ_right" class="Summ_column">
+              <div id="tree_content" class="Summ_box"><p>      
+			<h3>Which species have <i>[% treefam.symbol %]</i>? </h3> 
+			
+			<!-- <font size="1">(click <a>here</a> to trace the evolution of <i>[% treefam.symbol %]</i>)</font><br><br> -->                    
+        	        show percentage:
+	  			<a href="#" onclick="show_species_pies();return false">by species</a>/
+				<a href="#" onclick="show_gene_pies();return false">by sequence</a>
+				<div  id="minimal_species_tree"></div>
+				<font size="1"> Legend: present species/genes: dark green, missing species/genes: light green.</font>
+		      </p>
+               </div>
+           </div>
+<!-- <img width="300" height="300"  src="[% gene_tree_large %]" class="demo" /> -->
+</div>
+
+ <STYLE type="text/css">
+
+.gene_pies { visibility:hidden;}
+.species_pies { visibility:hidden;}
+</STYLE>
+<script type="text/javascript">
+    jQuery.noConflict ();
+    jQuery(document).ready(function(){
+        
+// draw minimal species tree
+		//var minimal_species_tree_json = "/static/trees/treefam9_minimal_species.json";
+				//var json_tree = "/family/TF101005/tree/json";
+
+		var minimal_species_tree_json = "[% c.uri_for( "/family",acc, "tree/minimal_species_json") %]";
+			//"/family/TF101005/tree/minimal_species_json";
+				//var json_tree = "/static/trees/gene_tree.json";
+	console.log("drawing minimal_species_tree with "+minimal_species_tree_json);	
+				var tree_hight = "300";
+				var tree_width = "450"
+				var show_pie_charts = 1;	
+				draw_minimal_species_tree({ json_tree : minimal_species_tree_json, 
+											show_pie_charts : show_pie_charts,
+											tree_hight : tree_hight,
+											tree_width : tree_width });
+	console.log("drawing minimal_species_tree with done");	
+
+	jQuery(".slidingDiv").show();
+        jQuery(".slidingAnnotDiv").show();
+        jQuery(".slidingNextDiv").hide();
+        jQuery(".show_hide").show();
+        jQuery('.show_hide_annot').click(function(){
+            jQuery(".slidingAnnotDiv").slideToggle();
+            jQuery(this).text(jQuery(this).text() == 'more...' ? 'less...' : 'more...');
+        });
+       jQuery('.show_hide_next').click(function(){
+            jQuery(".slidingNextDiv").slideToggle();
+            jQuery(this).text(jQuery(this).text() == 'more...' ? 'less...' : 'more...');
+        });
+ 
+	jQuery('.show_hide').click(function(){
+            jQuery(".slidingDiv").slideToggle();
+            jQuery(this).text(jQuery(this).text() == 'Show legend' ? 'Hide legend' : 'Show legend');
+        });
+        /*jQuery(".sparkpie").sparkline( {
+    		type: 'pie',
+    		width: '15px ',
+    		height: '15px',
+    		sliceColors: ['green','red']}
+	);  */
+	jQuery('.sparkpie').sparkline('html', { sliceColors: ['green','red'],type: 'pie', height: '2.0em' });
+	jQuery('.sparkbullet').sparkline('html', { type: 'bullet', height: '2.0em' , "disableTooltips": "true"});
+	 // popup window
+         jQuery("#use_popup").on('click', function() {
+            console.log("getting a new messi");
+            var methods_text = "Here is how you can use it in your publication.\
+                    <h3>Alignment</h3>\
+                    some text here\
+                    <h3>Tree building</h3>\
+                    some text here\
+                    <h3>Ortholoy prediction</h3>\
+                    and some text here.\
+            ";
+            new Messi(methods_text);
+        });
+
+});
+
+
+ 
+</script>
+</div>
+
+<!-- end summary block -->
+[%#
+Copyleft (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

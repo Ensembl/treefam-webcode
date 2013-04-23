@@ -1,0 +1,54 @@
+[%
+# summary.tt
+# jt6 20060406 WTSI
+# 
+# build the summary block for families
+#
+# $Id: summary.tt,v 1.11 2009-10-08 16:01:48 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+	
+requirements.js.push( "d3/d3.min.js" );
+requirements.js.push( "d3/d3.layout.min.js" );
+requirements.js.push( "d3/d3.geom.min.js" );
+requirements.js.push( "offenses.js" );
+requirements.css.push( "round_circle.css" );
+#-------------------------------------------------------------------------------
+-%]
+	<!-- start summary block -->
+<div class="block" id="familySummaryBlock">
+  <div class="handle">
+    <h1>Species count</h1>
+  </div>
+  <div  align="center" class="blockContent">
+  	<div class="wrap" id="main">
+    	
+		<div class="wrapi">
+      			<div class="screen" id="vis"></div>
+    		</div>
+ 	 </div>
+
+	</div>
+ </div>
+
+<!-- end summary block -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

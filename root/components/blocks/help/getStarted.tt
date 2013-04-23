@@ -1,0 +1,60 @@
+[%
+# getStarted.tt
+# rdf 20060927 WTSI
+# 
+# build the getStarted block for the help pages
+#
+# $Id: getStarted.tt,v 1.3 2009-06-09 12:23:40 jt6 Exp $
+%]
+
+<!-- start getStarted block -->
+
+<div class="block" id="helpGetStartedBlock">
+  <div class="handle">
+    <h1>Getting started with TreeFam</h1>
+  
+</div>
+    <h3>Which species are included and why?</h3>
+The following species are present in the current release of TreeFam. The majority of species come from EnsEMBL, with
+a few additions from non-EnsEMBL sources such as JGI.
+    <h3>How TreeFam is build</h3>
+  <div class="blockContent">
+    
+    <p> 
+      In addition to the quick links on the home page, every page in the Rfam
+      site includes a "search" link in the page header, which you can use to
+      access all of the search methods that we offer:
+    </p>
+    
+    </div> 
+    <h3>How you can use TreeFam</h3>
+  	<div class="blockContent">
+    		<h4>Study evolution of alpha tubulin</h4>
+    		<h4>Study lineage specific expansion </h4>
+            <h4>Study domain evolution of 9 metazoan species (+2 outgroups)</h4>
+                <a href="http://www.biomedcentral.com/1471-2148/12/138/abstract"> Paper</a>
+	
+	</div>
+</div>
+
+<!-- end getStarted block -->
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk), 
+Jennifer Daub (jd7@sanger.ac.uk) and Paul Gardner (pg5@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

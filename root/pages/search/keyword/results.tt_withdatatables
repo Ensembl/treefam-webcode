@@ -1,0 +1,264 @@
+[%
+# searchResults.tt
+# jt6 20060807 WTSI
+# 
+# keyword search results page
+#
+# $Id: results.tt,v 1.1 2008-09-12 09:27:14 jt6 Exp $
+
+META title = "Keyword/ID search results";
+META fullPage = 1;
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+#PROCESS "components/require.tt";
+
+#requirements.css.push( "family.css" );
+requirements.css.push( "buttons.css" );
+#requirements.cssIe.push( "family_ie.css" );
+
+#sharedRequirements.js.push( "tablekit.js" );
+
+#-------------------------------------------------------------------------------
+
+-%]
+
+<div class="key">
+
+  <h2>Keyword/ID search results</h2>
+
+  [% rowNums = {};
+  hitsSummary = BLOCK;
+    hitPlugins = 0 %]
+    <table id="keyTable" summary="summary of search results">
+      <thead>
+        <tr>
+          <td>Section</td>
+          <td class="desc">Description</td>
+          <td>Number of hits</td>
+        </tr>
+      </thead>
+      <tbody>
+         <tr class="odd" %]">
+          <td>Families</td><td>TreeFam families</td><td>[% no_family_hits %]</td>
+         </tr>
+         <tr class="even">
+            <td>Sequences</td><td>TreeFam sequences</td><td>[% no_sequence_hits %]</td>
+         </tr>
+        <tr class="odd">
+            <td>Xrefs</td><td>TreeFam external references</td><td>[% no_xrefs_hits %]</td>
+         </tr>
+	</tr>
+      </tbody>
+    </table>
+  [% END %]
+
+  <p>
+    We found <strong>[% no_total_hits %]</strong> unique 
+    result[% results.size > 1 ? "s" : "" %] for your query 
+    (&quot;<em>[% query %]</em>&quot;), in <strong>[% no_sections%]</strong>
+    sections of the database.
+  </p>
+  
+  [% hitsSummary %]
+</div> <!-- end of div "key" -->
+
+	[% IF no_family_hits == 0 %]
+	[% ELSE %]
+	<div  style="width: 100%;"  id="results_families">
+    	<h2>Families hits</h2>
+        <div style="border: 1px grey solid;width='200px' " id="families_table"></div>
+			<style type="text/css" title="currentStyle">
+			   @import "[% c.uri_for( "/static/css/demo_page.css" ) %]";
+			   @import "[% c.uri_for( "/static/css/demo_table.css" ) %]";
+			</style>
+			 <script type="text/javascript" language="javascript" src="[% c.uri_for( "/static/javascripts/jquery/jquery.js" ) %]"></script>
+			 <script type="text/javascript" language="javascript" src="[% c.uri_for( "/static/javascripts/jquery/jquery.dataTables.js" ) %]"></script>
+			 <script type="text/javascript" charset="utf-8">
+					$.noConflict();
+	/* Data set - can contain whatever information you want */
+					var fDataSet = [% families_array_json %]; 
+                    jQuery(document).ready(function() {           
+					jQuery('#families_table').html( '<table cellpadding="0" cellspacing="0"  class="display" id="families_data"></table>' );
+					var fTable = jQuery('#families_data').dataTable( {
+						//"bJQueryUI": true,
+						"aaData": fDataSet,
+						"sPaginationType": "full_numbers",
+						"aoColumnDefs": [
+						      {
+						              "fnRender": function ( o, val ) {
+							      return '<a href=[% c.uri_for( "/family/") %]' + o.aData[0] + '>' + o.aData[0] + '</a>';
+									        },
+							"aTargets": [ 0 ]
+							}
+						],
+						"aoColumns": [
+							{ "sTitle": "TreeFam ID" },
+							{ "sTitle": "No of genes" },
+							{ "sTitle": "Avg. % Identity" },
+							{ "sTitle": "Alignment length" },
+						],
+						"aaSorting": [[0,'asc']],
+					} );
+					//new FixedHeader( oTable, { "bottom": true } );	
+			} );
+			</script>  
+   <br>
+   <hr>
+   <br>
+</div> 
+	[% END %]
+<!-- results families -->
+	[% IF no_sequence_hits == 0 %]
+	[% ELSE %]
+    <!-- Sequence hits -->
+    <div class="gradientBoxesWithOuterShadows" id="sequences_div" style="display:none; width=90%; word-wrap: break-word;">
+	    <div id="sequences_header"></div> 
+	            <a  id="slide_ref_sequences" class="show_hideSequences">Show</a>
+	            <a " id="download_sequences">Download</a>
+            	    <div class="slidingDivSequences" id="sequences_container">
+		    </div> 
+    </div>
+		<!-- <div style="width: 100%;"  id="results_sequences">
+        <h2>Sequence hits</h2>
+        <div style="border: 1px grey solid;width='200px'" id="sequences_table"></div>
+			   			    <script type="text/javascript" language="javascript" src="[% c.uri_for( "/static/javascripts/jquery/jquery.js" ) %]"></script>
+			    <script type="text/javascript" language="javascript" src="[% c.uri_for( "/static/javascripts/jquery/jquery.dataTables.js" ) %]"></script>
+			    <script type="text/javascript" charset="utf-8">
+					    $.noConflict();
+	    /* Data set - can contain whatever information you want */
+					    var sDataSet = [% sequences_array_json %]; 
+                        jQuery(document).ready(function() {           
+					    jQuery('#sequences_table').html( '<table align="left" cellpadding="0" cellspacing="0"  class="display" id="sequences_data"></table>' );
+					    var sTable = jQuery('#sequences_data').dataTable( {
+						    //"bJQueryUI": true,
+						    "aaData": sDataSet,
+						    "sPaginationType": "full_numbers",
+						    "aoColumnDefs": [
+						        {
+   						                "fnRender": function ( o, val ) {
+							                            return '<a href=[% c.uri_for( "/sequence/") %]' + o.aData.stable_id + '>' + o.aData.stable_id + '</a>';
+									                },
+							            "aTargets": [ 0 ]
+							        },
+   						            {
+                                        "fnRender": function ( o, val ) {
+							                            return '<a href=[% c.uri_for( "/family/") %]' + o.aData.description + '>' + o.aData.description + '</a>';
+									                },
+							            "aTargets": [ 1 ]
+                                    },                                                        
+                                    {
+                                        "fnRender": function ( o, val ) {
+							                            var species_file = o.aData.taxon_name;
+                                                        var file_name = species_file.replace(/ /,"_");  
+                                                        //console.log(file_name); 
+                                                        var image_file = '<img src="/static/images/species_pictures/species_files/thumb_' + file_name + '.png"  > ' + o.aData.taxon_name + '</a>'; 
+                                                        //console.log(image_file); 
+                                                        return image_file; 
+									                },
+							            "aTargets": [ 2 ]
+                                    },
+					{
+                                        "fnRender": function ( o, val ) {
+							                            return o.aData.description;
+									                },
+							            "aTargets": [ 3 ]
+                                    },                                                        
+  					],
+						    "aoColumns": [
+							    { "sTitle": "Sequence ID" },
+							    { "sTitle": "corr. TreeFam family" },
+							    { "sTitle": "Species" },
+							    { "sTitle": "Description" },
+						    ],
+						    "aaSorting": [[0,'asc']],
+					    } );
+					    //new FixedHeader( oTable, { "bottom": true } );	
+			    } );
+			    </script>   -->
+	    <!--	</div> --> <!-- end of div "results" --> 
+	<!-- </div> --> <!-- end sequences results --> 		
+	[% END %]
+	[% IF no_xrefs_hits == 0 %]
+	[% ELSE %]
+    <!--
+	 <div style="width: 100%;"  id="results_xref">
+        <h2>Xref hits</h2>
+        <div style="border: 1px grey solid;width='200px'" id="xref_table"></div>
+			   			    <script type="text/javascript" language="javascript" src="[% c.uri_for( "/static/javascripts/jquery/jquery.js" ) %]"></script>
+			    <script type="text/javascript" language="javascript" src="[% c.uri_for( "/static/javascripts/jquery/jquery.dataTables.js" ) %]"></script>
+			    <script type="text/javascript" charset="utf-8">
+					    $.noConflict();
+	    /* Data set - can contain whatever information you want */
+					    var xDataSet = [% xrefs_array_json %]; 
+                        jQuery(document).ready(function() {           
+					    jQuery('#xref_table').html( '<table align="left" cellpadding="0" cellspacing="0"  class="display" id="xref_data"></table>' );
+					    var sTable = jQuery('#xref_data').dataTable( {
+						    //"bJQueryUI": true,
+						    "aaData": [xDataSet],
+						    "sPaginationType": "full_numbers",
+						    "aoColumnDefs": [
+						        {
+   						                "fnRender": function ( o, val ) {
+							                            return '<a href=[% c.uri_for( "/sequence/") %]' + o.aData.extID + '>' + o.aData.extID + '</a>';
+									                },
+							            "aTargets": [ 0 ]
+							        },
+   						            {
+                                        "fnRender": function ( o, val ) {
+							                            return o.aData.extName;
+									                },
+							            "aTargets": [ 1 ]
+                                    },{
+                                        "fnRender": function ( o, val ) {
+							                            return o.aData.dbName;
+									                },
+							            "aTargets": [ 2 ]
+                                    }, {
+                                        "fnRender": function ( o, val ) {
+							                            return '<a href=[% c.uri_for( "/family/") %]' + o.aData.gtName + '>' + o.aData.gtName + '</a>';
+									                },
+							            "aTargets": [ 3 ]
+                                    },                                                        
+                                    {
+                                        "fnRender": function ( o, val ) {
+							                            return  o.aData.description;
+									                },
+							            "aTargets": [ 4 ]
+                                    },                                                        
+						    ],
+						    "aoColumns": [
+							    { "sTitle": "External ID" },
+							    { "sTitle": "External DB ID" },
+							    { "sTitle": "Database" },
+							    { "sTitle": "corr. TreeFam family" },
+							    { "sTitle": "Description" },
+						    ],
+						    "aaSorting": [[0,'asc']],
+					    } );
+					    //new FixedHeader( oTable, { "bottom": true } );	
+			    } );
+			    </script>  
+	</div> <!-- end sequences results --> 		
+    -->
+[% END %]
+</div>
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

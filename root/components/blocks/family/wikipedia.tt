@@ -1,0 +1,84 @@
+[%
+# summary.tt
+# jt6 20060406 WTSI
+# 
+# build the summary block for families
+#
+# $Id: summary.tt,v 1.51 2010-01-07 13:54:20 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+#PROCESS "components/require.tt";
+
+#requirements.css.push( "family.css" );
+#requirements.css.push( "buttons.css" );
+#requirements.cssIe.push( "family_ie.css" );
+
+#requirements.js.push( "family.js" );
+
+#requirements.css.push( "wp.css" );
+
+
+#-------------------------------------------------------------------------------
+
+# make a boolean to show whether we have wikipedia articles or not
+hasWikiArticles = articles.size ? 1 : 0;
+
+# process the template that defines the blocks that do various things with
+# database links. We use it later to convert IDs in the Pfam comment and to
+# build tables of database links 
+PROCESS components/links.tt; %]
+
+<!-- start summary block -->
+
+<div class="block" id="familyWikipediaBlock" name="familyWikipediaBlock">
+  <div class="handle">
+    <h1>Annotation [% pfam.description %]</h1>
+  </div>
+  <div class="blockContent">
+    <p>
+      TreeFam includes annotations and additional family information from Wikipedia.
+    </p>
+
+<iframe id="wikipedia_iframe" width="100%" height="900px">
+<p>Your browser does not support iframes.</p>
+</iframe>  
+
+</div> [%# end of "blockContent" %]
+
+  <script type="text/javascript">
+	jQuery(document).ready(function($) {
+	var wikigene_article = "[% wikigenes.0.id %]";
+		console.log("trying to get wikigene : "+wikigene_article);
+  		// Code using $ as usual goes here.
+	$("#wikipedia_iframe").attr("src", "http://en.wikipedia.org/wiki/"+wikigene_article)
+	});  
+	//function get_wikipedia()
+	//{
+	//jQuery("#wikipedia_iframe").attr("src", "http://en.wikipedia.org/wiki/Cyclin");
+	//	alert("Iframe is loaded");
+	//}
+  </script>
+
+</div>
+
+<!-- end summary block -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: Rob Finn (rdf@sanger.ac.uk), John Tate (jt6@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

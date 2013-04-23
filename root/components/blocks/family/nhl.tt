@@ -1,0 +1,73 @@
+[%
+# summary.tt
+# jt6 20060406 WTSI
+# 
+# build the summary block for families
+#
+# $Id: summary.tt,v 1.11 2009-10-08 16:01:48 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+	
+requirements.js.push( "knockout.js" );
+requirements.js.push( "nhl.js" );
+#-------------------------------------------------------------------------------
+-%]
+	<!-- start summary block -->
+<div class="block" id="familySummaryBlock">
+  <div class="handle">
+    <h1>Species count</h1>
+  </div>
+  <div  align="center" class="blockContent">
+<div class="row">
+			<div class="span8">
+			 <p class="lead">NHL trades that have taken place since June 15 2012</p>
+			 <p class="lead"><em>Click arc for trade details, or hover over a team to highlight its trades.</em></p>
+			</div>
+		  <div class="span4" ><div class="well" style="height: 100px">
+		     
+		   <p><strong data-bind="text: tradeDate"></strong></p>
+			   <div class="row">	
+				<div class="span2">
+				<img data-bind="attr: {src: teamA}"></img>
+				<ul class="unstyled" data-bind="foreach: teamACompensation">
+					<li data-bind="text: $data"></li>
+				</ul>
+				</div>
+				
+			<div class="pull-right">
+				<img data-bind="attr: {src: teamB}"></img>
+				<ul class="unstyled" data-bind="foreach: teamBCompensation">
+					<li data-bind="text: $data"></li>
+				</ul>
+			</div>
+				
+		     </div>
+		</div>
+		</div>
+	
+	<div id="trades" class="span8"></div>
+
+	</div>
+ </div>
+
+<!-- end summary block -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]
