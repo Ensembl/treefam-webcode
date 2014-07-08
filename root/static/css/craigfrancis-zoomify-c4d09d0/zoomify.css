@@ -1,0 +1,58 @@
+
+	#image-zoom-wrapper {
+		text-align: left;
+		width: 800px;
+		height: 400px;
+		overflow: auto;
+		margin: 10px auto;
+		border: 1px solid #000;
+		background: #AAA url("./loader.gif") no-repeat 50% 50%;
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+		user-select: none;
+	}
+
+	#image-zoom-wrapper div.zoom-control {
+		width: 26px;
+		height: 26px;
+	}
+
+	#image-zoom-wrapper div.zoom-in,
+	#image-zoom-wrapper div.zoom-out {
+		background: url("./zoom-in.png") no-repeat 0 0;
+		position: absolute;
+		left: 10px;
+		top: 10px;
+	}
+
+	#image-zoom-wrapper div.zoom-out {
+		background-image: url("./zoom-out.png");
+		top: 46px;
+	}
+
+	#image-zoom-wrapper div.zoom-off {
+		background-position: 0 100%;
+	}
+
+	@media(max-device-width: 480px) {
+
+		#image-zoom-wrapper {
+			border-width: 5px;
+		}
+
+		#image-zoom-wrapper div.zoom-in,
+		#image-zoom-wrapper div.zoom-out {
+			background-image: url("./zoom-in-104.png");
+			width: 104px;
+			height: 104px;
+		}
+
+		#image-zoom-wrapper div.zoom-out {
+			background-image: url("./zoom-out-104.png");
+			left: auto;
+			right: 10px;
+			top: 10px;
+		}
+
+	}

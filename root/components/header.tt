@@ -72,7 +72,7 @@ sharedUri = c.uri_for( "/shared" );
 	<form id="local-search" name="local-search" action="[% c.uri_for( "/search/front_search" ) %]"  method="get" onsubmit="if (jQuery('#local-searchbox').val()=='') {alert('Please enter your search items.'); document.prompt.id.focus(); document.prompt.id.select(); return false;}">
 		<fieldset>
 			<label>
-			<input type="text" name="query" id="local-searchbox" onblur="displaySearchTreeFam(this);" onfocus="hideSearchTreeFam(this);" class="validate"/>
+			<input type="text" name="query" id="local-searchbox" onblur="displaySearchTreeFam(this);" onfocus="hideSearchTreeFam(this);" class="validate mygene_query_target"/>
 			</label>
 		<input type="submit" name="submit" value="Search" class="submit" />
 		<br><font size="1">Examples: <a href="#" onclick="jQuery('#local-searchbox').val('BRCA2');">BRCA2</a>,<a href="#" onclick="jQuery('#local-searchbox').val('ENSP00000428982');">ENSP00000428982</a>, or do a <a href="/search#tabview=tab2">sequence search</a></font>
@@ -89,7 +89,7 @@ sharedUri = c.uri_for( "/shared" );
 		<li><a href="/browse" title="Browse the TreeFam database">Browse</a></li>
 		<li><a href="/download" title="Download TreeFam data">Download</a></li>
 		<li><a href="/help" title="Get help">Help</a></li>
-		<li class="last"><a href="/forum" title="">Forum</a></li>
+		<li id="tenderwidget" class="last"><a href="/forum" title="">Forum</a></li>
 		</ul>
 	</nav>
 
@@ -110,6 +110,15 @@ sharedUri = c.uri_for( "/shared" );
 
 <!-- End suggested layout containers -->
 <div class="cleaner"><!-- empty --></div>
+<script type="text/javascript" charset="utf-8">
+  Tender = {
+    //hideToggle: true,
+    //sso: "unique-sso-token-of-current-user",
+    home: 'kb', 
+    widgetToggles: [document.getElementById('tenderwidget')]
+  }
+</script>
+<script src="https://treefam.tenderapp.com/tender_widget.js" type="text/javascript"></script>
 
 <!-- 
 <div id="getsat-widget-2751"></div>
@@ -125,6 +134,8 @@ jQuery('.validate').each(function(){
           return false; 
      }
  });
+
+
  
 /*  var uvOptions = {};
   (function() {
@@ -162,6 +173,7 @@ jQuery('.validate').each(function(){
   })();
 
 </script>
+
 <!-- header end -->
 [%#
 Copyright (c) 2007: Genome Research Ltd.

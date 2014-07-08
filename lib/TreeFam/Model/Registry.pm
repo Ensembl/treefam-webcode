@@ -21,7 +21,7 @@ has '_registry' => ( is => 'ro', lazy => 0, default => sub {
   Catalyst::Utils::ensure_class_loaded($class);
   $class->no_version_check(1);
   my $cfg = TreeFam->config()->{Registry};
-  my $fake_file = "/nfs/public/rw/xfam/treefam/dev/production_treefam_reg_conf.pm";
+  my $fake_file = "/nfs/public/rw/xfam/treefam/live/production_treefam_reg_conf.pm";
   #if($cfg->{file}) {
 $cfg->{file}   = $fake_file;
  if($cfg->{file}) {

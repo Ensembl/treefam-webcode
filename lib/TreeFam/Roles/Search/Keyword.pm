@@ -95,14 +95,26 @@ sub front_search : Chained( 'search' ) PathPart( 'front_search' ) Args()
     $to_search =$c->req->param('query') ;
     $c->stash->{query} = $to_search; 
     $c->stash->{entry} = $to_search; 
-    print "\tsearch members for ensemblID ... \n";
-    $c->log->debug("front_search : Chained( 'front_search' ) : $to_search\n") if $c->debug;
+    
+
+	
+    $c->log->debug("check for valid family id, if so redirect to page $to_search\n") if $c->debug;
+    #$to_search = TreeFam::SearchHelper::check_valid_family({"genetree_adaptor" => $c->stash->{'genetree_adaptor'},"to_search" => $to_search}); 
+    if($to_search =~ /^TF/){
+   			$c->log->debug("front_search: seems to be a family") if $c->debug;
+       			$c->res->redirect( $c->uri_for( '/family', $to_search) );    
+    
+    }
+	else{
+
+	print "\tsearch members for ensemblID ... \n";
+   	$c->log->debug("front_search : Chained( 'front_search' ) : $to_search\n") if $c->debug;
 	my $member = TreeFam::SearchHelper::search_members({"member_adaptor" => $c->stash->{'member_adaptor'}, "to_search" => $to_search});
 	if(defined($member)){
-	    print " give it to /sequence/$to_search\n";
-        $c->log->debug("front_search : redirecting to ".$c->uri_for('/sequence', $to_search)." $to_search\n") if $c->debug;
-        $c->response->redirect($c->uri_for('/sequence', $to_search));
-        return;
+	  	print " give it to /sequence/$to_search\n";
+        	$c->log->debug("front_search : redirecting to ".$c->uri_for('/sequence', $to_search)."\n") if $c->debug;
+        	$c->response->redirect($c->uri_for('/sequence', $to_search));
+        	return;
         }
 	else{ 
         print "not in members\n";
@@ -118,7 +130,7 @@ sub front_search : Chained( 'search' ) PathPart( 'front_search' ) Args()
             $c->response->redirect($c->uri_for('/search/keyword', $to_search));
 	        print " give it to /search/keyword/\n";
         }
-            
+        }    
     }
 }
 

@@ -1,0 +1,1290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phyloxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org">
+<phylogeny rooted="true" rerootable="false">
+  <name>Basidiomycota</name>
+  <clade>
+    <taxonomy>
+      <id provider="uniprot">5204</id>
+      <scientific_name>Basidiomycota</scientific_name>
+      <rank>phylum</rank>
+    </taxonomy>
+    <clade>
+      <clade>
+        <clade>
+          <taxonomy>
+            <id provider="uniprot">5302</id>
+            <scientific_name>Agaricomycotina</scientific_name>
+          </taxonomy>
+          <clade>
+            <taxonomy>
+              <id provider="uniprot">155619</id>
+              <scientific_name>Homobasidiomycetes</scientific_name>
+              <rank>class</rank>
+            </taxonomy>
+            <reference doi="10.1098/rspb.2002.2123">
+              <desc>Evolution of complex fruiting–body morphologies in homobasidiomycetes</desc>
+            </reference>
+            <clade>
+              <clade>
+                <clade>
+                  <taxonomy>
+                    <id provider="uniprot">452333</id>
+                    <scientific_name>Agaricomycetidae</scientific_name>
+                    <rank>subclass</rank>
+                  </taxonomy>
+                  <clade>
+                    <taxonomy>
+                      <id provider="uniprot">5338</id>
+                      <scientific_name>Agaricales</scientific_name>
+                      <rank>order</rank>
+                    </taxonomy>
+                    <clade>
+                      <clade>
+                        <clade>
+                          <taxonomy>
+                            <id provider="uniprot">192524</id>
+                            <scientific_name>Agaricus bisporus var. burnettii</scientific_name>
+                            <uri>http://toxicopoeia.com/botany/plants/image/Agaricus%20Bisporus.jpg</uri>
+                          </taxonomy>
+                        </clade>
+                        <clade>
+                          <taxonomy>
+                            <id provider="uniprot">5346</id>
+                            <code>COPCI</code>
+                            <scientific_name>Coprinopsis cinerea</scientific_name>
+                            <common_name>Inky cap fungus</common_name>
+                            <synonym>Hormographiella aspergillata</synonym>
+                            <rank>species</rank>
+                            <uri>http://www.commanster.eu/commanster/Mushrooms/Agaric/SpAgaric/Coprinopsis.cinerea.jpg</uri>
+                            <uri>http://www.pnas.org/content/107/26/cover-expansion.medium.gif</uri>
+                          </taxonomy>
+                        </clade>
+                      </clade>
+                      <clade>
+                        <taxonomy>
+                          <id provider="uniprot">29883</id>
+                          <code>LACBI</code>
+                          <scientific_name>Laccaria bicolor</scientific_name>
+                          <common_name>Bicoloured deceiver</common_name>
+                          <synonym>Laccaria laccata var. bicolor</synonym>
+                          <rank>species</rank>
+                          <uri>http://pixdaus.com/pics/1235286116huSt6Qa.jpg</uri>
+                          <uri>http://www.cegep-sept-iles.qc.ca/raymondboyer/champignons/Images/Laccaria_bicolor.jpg</uri>
+                        </taxonomy>
+                      </clade>
+                    </clade>
+                    <clade>
+                      <taxonomy>
+                        <id provider="uniprot">5322</id>
+                        <code>PLEOS</code>
+                        <scientific_name>Pleurotus ostreatus</scientific_name>
+                        <common_name>Oyster mushroom</common_name>
+                        <synonym>White-rot fungus</synonym>
+                        <rank>species</rank>
+                        <uri>http://botit.botany.wisc.edu/toms_fungi/images/post1.jpg</uri>
+                      </taxonomy>
+                    </clade>
+                  </clade>
+                  <clade>
+                    <taxonomy>
+                      <id provider="uniprot">85982</id>
+                      <scientific_name>Serpula lacrymans</scientific_name>
+                      <common_name>dry rot fungus</common_name>
+                      <rank>species</rank>
+                      <uri>http://i.pbase.com/o6/20/648320/1/70854037.koDBzHEv.SerpulalacrymansDryRot.jpg</uri>
+                    </taxonomy>
+                  </clade>
+                </clade>
+                <clade>
+                  <taxonomy>
+                    <id provider="uniprot">104355</id>
+                    <code>GLOTR</code>
+                    <scientific_name>Gloeophyllum trabeum</scientific_name>
+                    <common_name>Brown rot fungus</common_name>
+                    <rank>species</rank>
+                    <uri>http://www.commanster.eu/commanster/Mushrooms/Basidio/SpBasidio/Gloeophyllum.trabeum2.jpg</uri>
+                  </taxonomy>
+                </clade>
+              </clade>
+              <clade>
+                <taxonomy>
+                  <id provider="uniprot">5303</id>
+                  <scientific_name>Aphyllophorales</scientific_name>
+                  <authority>Gäum. (1926)</authority>
+                  <common_name>Shelf Fungi</common_name>
+                  <synonym>Polyporales</synonym>
+                  <rank>order</rank>
+                </taxonomy>
+                <clade>
+                  <taxonomy>
+                    <id provider="uniprot">83233</id>
+                    <scientific_name>Coriolaceae</scientific_name>
+                    <rank>family</rank>
+                  </taxonomy>
+                  <reference doi="10.1017/S1477200005001623">
+                    <desc>The phylogenetic distribution of resupinate forms across the major clades of mushroom-forming fungi (Homobasidiomycetes)</desc>
+                  </reference>
+                  <reference>
+                  </reference>
+                  <reference>
+                  </reference>
+                  <clade>
+                    <clade>
+                      <taxonomy>
+                        <common_name>Antrodia clade</common_name>
+                      </taxonomy>
+                      <clade>
+                        <taxonomy>
+                          <id provider="uniprot">104341</id>
+                          <scientific_name>Postia placenta</scientific_name>
+                          <rank>species</rank>
+                          <uri>http://www.commanster.eu/commanster/Mushrooms/Polypore/SuPolypore/Postia.placenta.jpg</uri>
+                        </taxonomy>
+                      </clade>
+                      <clade>
+                        <taxonomy>
+                          <id provider="uniprot">40483</id>
+                          <scientific_name>Fomitopsis pinicola</scientific_name>
+                          <authority>P. Karst. 1881</authority>
+                          <common_name>Red banded polypore</common_name>
+                          <synonym>Fomes pinicola</synonym>
+                          <rank>species</rank>
+                          <uri>http://content6.eol.org/content/2009/06/07/01/48471_large.jpg</uri>
+                        </taxonomy>
+                      </clade>
+                    </clade>
+                    <clade>
+                      <taxonomy>
+                        <common_name>core polyporoid clade</common_name>
+                      </taxonomy>
+                      <clade>
+                        <taxonomy>
+                          <id provider="uniprot">81056</id>
+                          <scientific_name>Wolfiporia cocos</scientific_name>
+                          <rank>species</rank>
+                          <uri>http://genome.jgi-psf.org/public/Wolco1/W_cocos_CA-b1.jpg</uri>
+                        </taxonomy>
+                      </clade>
+                      <clade>
+                        <taxonomy>
+                          <id provider="uniprot">5325</id>
+                          <code>TRAVE</code>
+                          <scientific_name>Trametes versicolor</scientific_name>
+                          <authority>(L.) Lloyd 1921</authority>
+                          <common_name>White-rot fungus</common_name>
+                          <synonym>Coriolus versicolor</synonym>
+                          <synonym>Bjerkandera versicolor</synonym>
+                          <rank>species</rank>
+                          <uri>http://www.mykoweb.com/CAF/photos/Trametes_versicolor(bab-1).jpg</uri>
+                          <uri>http://www.mykoweb.com/CAF/photos/Trametes_versicolor(bab-2).jpg</uri>
+                          <uri>http://www.mykoweb.com/CAF/photos/Trametes_versicolor(mgw-01).jpg</uri>
+                        </taxonomy>
+                      </clade>
+                    </clade>
+                  </clade>
+                  <clade>
+                    <taxonomy>
+                      <id provider="uniprot">42742</id>
+                      <code>CERSU</code>
+                      <scientific_name>Ceriporiopsis subvermispora</scientific_name>
+                      <rank>species</rank>
+                      <uri>http://www.jgi.doe.gov/sequencing/why/csubvermispora_blue.jpg</uri>
+                      <uri>http://www.micron.ac.uk/organisms/images/csu1.jpg</uri>
+                    </taxonomy>
+                  </clade>
+                </clade>
+                <clade>
+                  <taxonomy>
+                    <id provider="uniprot">114155</id>
+                    <scientific_name>Dichomitus squalens</scientific_name>
+                    <authority>(P. Karst.) D. A. Reid 1965</authority>
+                    <common_name>Red rot</common_name>
+                    <synonym>Polyporus anceps</synonym>
+                    <rank>species</rank>
+                    <uri>http://www.fs.fed.us/r3/resources/health/field-guide/images/large/sds-f199-large.jpg</uri>
+                  </taxonomy>
+                </clade>
+              </clade>
+            </clade>
+            <clade>
+              <taxonomy>
+                <id provider="uniprot">13563</id>
+                <code>HETAN</code>
+                <scientific_name>Heterobasidion annosum</scientific_name>
+                <common_name>Root rot fungus</common_name>
+                <rank>species</rank>
+                <uri>http://www.svims.ca/council/illust/Heterobasidion%20annosum%201%20Michael%20Beug.jpg</uri>
+              </taxonomy>
+            </clade>
+          </clade>
+          <clade>
+            <taxonomy>
+              <id provider="uniprot">5215</id>
+              <scientific_name>Tremellaceae</scientific_name>
+              <rank>family</rank>
+            </taxonomy>
+            <clade>
+              <taxonomy>
+                <id provider="uniprot">5207</id>
+                <code>CRYNE</code>
+                <scientific_name>Cryptococcus neoformans</scientific_name>
+                <synonym>Filobasidiella neoformans</synonym>
+                <rank>species</rank>
+                <uri>http://upload.wikimedia.org/wikipedia/commons/6/6f/Cryptococcus_neoformans_using_a_light_India_ink_staining_preparation_PHIL_3771_lores.jpg</uri>
+              </taxonomy>
+            </clade>
+            <clade>
+              <taxonomy>
+                <id provider="eol">1029985</id>
+                <code>TREME</code>
+                <scientific_name>Tremella mesenterica</scientific_name>
+                <authority>Pers. 1800</authority>
+                <common_name>Jelly fungus</common_name>
+                <synonym>Yellow Brain</synonym>
+                <synonym>Tremella lutescens</synonym>
+                <rank>species</rank>
+                <uri>http://content9.eol.org/content/2010/11/27/15/10947_large.jpg</uri>
+              </taxonomy>
+            </clade>
+          </clade>
+        </clade>
+        <clade>
+          <taxonomy>
+            <id provider="uniprot">5270</id>
+            <code>USTMA</code>
+            <scientific_name>Ustilago maydis</scientific_name>
+            <common_name>Smut fungus</common_name>
+            <rank>species</rank>
+            <uri>http://upload.wikimedia.org/wikipedia/commons/5/58/Ustilago_maydis_de_2.jpg</uri>
+          </taxonomy>
+        </clade>
+      </clade>
+      <clade>
+        <taxonomy>
+          <id provider="uniprot">29000</id>
+          <scientific_name>Pucciniomycotina</scientific_name>
+          <rank>subphylum</rank>
+        </taxonomy>
+        <clade>
+          <taxonomy>
+            <id provider="uniprot">5258</id>
+            <scientific_name>Pucciniales</scientific_name>
+            <common_name>rusts</common_name>
+            <rank>order</rank>
+          </taxonomy>
+          <clade>
+            <taxonomy>
+              <id provider="eol">1029947</id>
+              <code>PUCGR</code>
+              <scientific_name>Puccinia graminis</scientific_name>
+              <authority>Pers. 1794</authority>
+              <common_name>Black stem rust fungus</common_name>
+              <synonym>Wheat rust</synonym>
+              <rank>species</rank>
+              <uri>http://content6.eol.org/content/2010/11/27/13/00727_large.jpg</uri>
+            </taxonomy>
+          </clade>
+          <clade>
+            <taxonomy>
+              <id provider="eol">156696</id>
+              <code>MELLP</code>
+              <scientific_name>Melampsora laricis-populina</scientific_name>
+              <authority>Kleb. 1902</authority>
+              <synonym>Melampsora larici-populina</synonym>
+              <synonym>Melampsora laricipopulina</synonym>
+              <rank>species</rank>
+              <uri>http://content1.eol.org/content/2010/11/27/09/08680_large.jpg</uri>
+            </taxonomy>
+          </clade>
+        </clade>
+        <clade>
+          <taxonomy>
+            <id provider="uniprot">89013</id>
+            <scientific_name>mitosporic Sporidiobolales</scientific_name>
+          </taxonomy>
+          <clade>
+            <taxonomy>
+              <id provider="eol">1013696</id>
+              <scientific_name>Sporobolomyces roseus</scientific_name>
+              <authority>Kluyver &amp; C. B. Niel 1924</authority>
+              <rank>species</rank>
+              <uri>http://genome.jgi-psf.org/Sporo1/sporobolomyces_roseus.jpg</uri>
+            </taxonomy>
+          </clade>
+          <clade>
+            <taxonomy>
+              <id provider="uniprot">29898</id>
+              <code>RHOGR</code>
+              <scientific_name>Rhodotorula graminis</scientific_name>
+              <common_name>Yeast</common_name>
+              <rank>species</rank>
+              <uri>http://www.fgsc.net/homepageimages/image12.jpg</uri>
+            </taxonomy>
+          </clade>
+        </clade>
+      </clade>
+    </clade>
+    <clade>
+      <taxonomy>
+        <id provider="uniprot">148960</id>
+        <code>WALSE</code>
+        <scientific_name>Wallemia sebi</scientific_name>
+        <rank>species</rank>
+        <uri>http://genome.jgi-psf.org/public/Walse1/Walse1.jpg</uri>
+      </taxonomy>
+    </clade>
+  </clade>
+</phylogeny>
+<phylogeny rooted="true" rerootable="false">
+  <name>Holomycota</name>
+  <clade>
+    <taxonomy>
+      <scientific_name>Holomycota</scientific_name>
+      <synonym>Nucletmycea</synonym>
+    </taxonomy>
+    <clade>
+      <taxonomy>
+        <id provider="uniprot">4751</id>
+        <scientific_name>Fungi</scientific_name>
+        <rank>kingdom</rank>
+      </taxonomy>
+      <clade>
+        <clade>
+          <clade>
+            <clade>
+              <taxonomy>
+                <id provider="uniprot">451864</id>
+                <scientific_name>Dikarya</scientific_name>
+                <rank>subkingdom</rank>
+              </taxonomy>
+              <reference doi="10.1038/nature05110">
+              </reference>
+              <reference>
+              </reference>
+              <clade>
+                <taxonomy>
+                  <id provider="uniprot">5204</id>
+                  <scientific_name>Basidiomycota</scientific_name>
+                  <rank>phylum</rank>
+                </taxonomy>
+                <clade>
+                  <clade>
+                    <clade>
+                      <taxonomy>
+                        <id provider="uniprot">5302</id>
+                        <scientific_name>Agaricomycotina</scientific_name>
+                      </taxonomy>
+                      <clade>
+                        <taxonomy>
+                          <id provider="uniprot">155619</id>
+                          <scientific_name>Homobasidiomycetes</scientific_name>
+                          <rank>class</rank>
+                        </taxonomy>
+                        <reference doi="10.1098/rspb.2002.2123">
+                          <desc>Evolution of complex fruiting–body morphologies in homobasidiomycetes</desc>
+                        </reference>
+                        <clade>
+                          <clade>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">452333</id>
+                                <scientific_name>Agaricomycetidae</scientific_name>
+                                <rank>subclass</rank>
+                              </taxonomy>
+                              <clade>
+                                <taxonomy>
+                                  <id provider="uniprot">5338</id>
+                                  <scientific_name>Agaricales</scientific_name>
+                                  <rank>order</rank>
+                                </taxonomy>
+                                <clade>
+                                  <clade>
+                                    <clade>
+                                      <taxonomy>
+                                        <id provider="uniprot">192524</id>
+                                        <scientific_name>Agaricus bisporus var. burnettii</scientific_name>
+                                        <uri>http://toxicopoeia.com/botany/plants/image/Agaricus%20Bisporus.jpg</uri>
+                                      </taxonomy>
+                                    </clade>
+                                    <clade>
+                                      <taxonomy>
+                                        <id provider="uniprot">5346</id>
+                                        <code>COPCI</code>
+                                        <scientific_name>Coprinopsis cinerea</scientific_name>
+                                        <common_name>Inky cap fungus</common_name>
+                                        <synonym>Hormographiella aspergillata</synonym>
+                                        <rank>species</rank>
+                                        <uri>http://www.commanster.eu/commanster/Mushrooms/Agaric/SpAgaric/Coprinopsis.cinerea.jpg</uri>
+                                        <uri>http://www.pnas.org/content/107/26/cover-expansion.medium.gif</uri>
+                                      </taxonomy>
+                                    </clade>
+                                  </clade>
+                                  <clade>
+                                    <taxonomy>
+                                      <id provider="uniprot">29883</id>
+                                      <code>LACBI</code>
+                                      <scientific_name>Laccaria bicolor</scientific_name>
+                                      <common_name>Bicoloured deceiver</common_name>
+                                      <synonym>Laccaria laccata var. bicolor</synonym>
+                                      <rank>species</rank>
+                                      <uri>http://pixdaus.com/pics/1235286116huSt6Qa.jpg</uri>
+                                      <uri>http://www.cegep-sept-iles.qc.ca/raymondboyer/champignons/Images/Laccaria_bicolor.jpg</uri>
+                                    </taxonomy>
+                                  </clade>
+                                </clade>
+                                <clade>
+                                  <taxonomy>
+                                    <id provider="uniprot">5322</id>
+                                    <code>PLEOS</code>
+                                    <scientific_name>Pleurotus ostreatus</scientific_name>
+                                    <common_name>Oyster mushroom</common_name>
+                                    <synonym>White-rot fungus</synonym>
+                                    <rank>species</rank>
+                                    <uri>http://botit.botany.wisc.edu/toms_fungi/images/post1.jpg</uri>
+                                  </taxonomy>
+                                </clade>
+                              </clade>
+                              <clade>
+                                <taxonomy>
+                                  <id provider="uniprot">85982</id>
+                                  <scientific_name>Serpula lacrymans</scientific_name>
+                                  <common_name>dry rot fungus</common_name>
+                                  <rank>species</rank>
+                                  <uri>http://i.pbase.com/o6/20/648320/1/70854037.koDBzHEv.SerpulalacrymansDryRot.jpg</uri>
+                                </taxonomy>
+                              </clade>
+                            </clade>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">104355</id>
+                                <code>GLOTR</code>
+                                <scientific_name>Gloeophyllum trabeum</scientific_name>
+                                <common_name>Brown rot fungus</common_name>
+                                <rank>species</rank>
+                                <uri>http://www.commanster.eu/commanster/Mushrooms/Basidio/SpBasidio/Gloeophyllum.trabeum2.jpg</uri>
+                              </taxonomy>
+                            </clade>
+                          </clade>
+                          <clade>
+                            <taxonomy>
+                              <id provider="uniprot">5303</id>
+                              <scientific_name>Aphyllophorales</scientific_name>
+                              <authority>Gäum. (1926)</authority>
+                              <common_name>Shelf Fungi</common_name>
+                              <synonym>Polyporales</synonym>
+                              <rank>order</rank>
+                            </taxonomy>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">83233</id>
+                                <scientific_name>Coriolaceae</scientific_name>
+                                <rank>family</rank>
+                              </taxonomy>
+                              <reference doi="10.1017/S1477200005001623">
+                                <desc>The phylogenetic distribution of resupinate forms across the major clades of mushroom-forming fungi (Homobasidiomycetes)</desc>
+                              </reference>
+                              <reference>
+                              </reference>
+                              <reference>
+                              </reference>
+                              <clade>
+                                <clade>
+                                  <taxonomy>
+                                    <common_name>Antrodia clade</common_name>
+                                  </taxonomy>
+                                  <clade>
+                                    <taxonomy>
+                                      <id provider="uniprot">104341</id>
+                                      <scientific_name>Postia placenta</scientific_name>
+                                      <rank>species</rank>
+                                      <uri>http://www.commanster.eu/commanster/Mushrooms/Polypore/SuPolypore/Postia.placenta.jpg</uri>
+                                    </taxonomy>
+                                  </clade>
+                                  <clade>
+                                    <taxonomy>
+                                      <id provider="uniprot">40483</id>
+                                      <scientific_name>Fomitopsis pinicola</scientific_name>
+                                      <authority>P. Karst. 1881</authority>
+                                      <common_name>Red banded polypore</common_name>
+                                      <synonym>Fomes pinicola</synonym>
+                                      <rank>species</rank>
+                                      <uri>http://content6.eol.org/content/2009/06/07/01/48471_large.jpg</uri>
+                                    </taxonomy>
+                                  </clade>
+                                </clade>
+                                <clade>
+                                  <taxonomy>
+                                    <common_name>core polyporoid clade</common_name>
+                                  </taxonomy>
+                                  <clade>
+                                    <taxonomy>
+                                      <id provider="uniprot">81056</id>
+                                      <scientific_name>Wolfiporia cocos</scientific_name>
+                                      <rank>species</rank>
+                                      <uri>http://genome.jgi-psf.org/public/Wolco1/W_cocos_CA-b1.jpg</uri>
+                                    </taxonomy>
+                                  </clade>
+                                  <clade>
+                                    <taxonomy>
+                                      <id provider="uniprot">5325</id>
+                                      <code>TRAVE</code>
+                                      <scientific_name>Trametes versicolor</scientific_name>
+                                      <authority>(L.) Lloyd 1921</authority>
+                                      <common_name>White-rot fungus</common_name>
+                                      <synonym>Coriolus versicolor</synonym>
+                                      <synonym>Bjerkandera versicolor</synonym>
+                                      <rank>species</rank>
+                                      <uri>http://www.mykoweb.com/CAF/photos/Trametes_versicolor(bab-1).jpg</uri>
+                                      <uri>http://www.mykoweb.com/CAF/photos/Trametes_versicolor(bab-2).jpg</uri>
+                                      <uri>http://www.mykoweb.com/CAF/photos/Trametes_versicolor(mgw-01).jpg</uri>
+                                    </taxonomy>
+                                  </clade>
+                                </clade>
+                              </clade>
+                              <clade>
+                                <taxonomy>
+                                  <id provider="uniprot">42742</id>
+                                  <code>CERSU</code>
+                                  <scientific_name>Ceriporiopsis subvermispora</scientific_name>
+                                  <rank>species</rank>
+                                  <uri>http://www.jgi.doe.gov/sequencing/why/csubvermispora_blue.jpg</uri>
+                                  <uri>http://www.micron.ac.uk/organisms/images/csu1.jpg</uri>
+                                </taxonomy>
+                              </clade>
+                            </clade>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">114155</id>
+                                <scientific_name>Dichomitus squalens</scientific_name>
+                                <authority>(P. Karst.) D. A. Reid 1965</authority>
+                                <common_name>Red rot</common_name>
+                                <synonym>Polyporus anceps</synonym>
+                                <rank>species</rank>
+                                <uri>http://www.fs.fed.us/r3/resources/health/field-guide/images/large/sds-f199-large.jpg</uri>
+                              </taxonomy>
+                            </clade>
+                          </clade>
+                        </clade>
+                        <clade>
+                          <taxonomy>
+                            <id provider="uniprot">13563</id>
+                            <code>HETAN</code>
+                            <scientific_name>Heterobasidion annosum</scientific_name>
+                            <common_name>Root rot fungus</common_name>
+                            <rank>species</rank>
+                            <uri>http://www.svims.ca/council/illust/Heterobasidion%20annosum%201%20Michael%20Beug.jpg</uri>
+                          </taxonomy>
+                        </clade>
+                      </clade>
+                      <clade>
+                        <taxonomy>
+                          <id provider="uniprot">5215</id>
+                          <scientific_name>Tremellaceae</scientific_name>
+                          <rank>family</rank>
+                        </taxonomy>
+                        <clade>
+                          <taxonomy>
+                            <id provider="uniprot">5207</id>
+                            <code>CRYNE</code>
+                            <scientific_name>Cryptococcus neoformans</scientific_name>
+                            <synonym>Filobasidiella neoformans</synonym>
+                            <rank>species</rank>
+                            <uri>http://upload.wikimedia.org/wikipedia/commons/6/6f/Cryptococcus_neoformans_using_a_light_India_ink_staining_preparation_PHIL_3771_lores.jpg</uri>
+                          </taxonomy>
+                        </clade>
+                        <clade>
+                          <taxonomy>
+                            <id provider="eol">1029985</id>
+                            <code>TREME</code>
+                            <scientific_name>Tremella mesenterica</scientific_name>
+                            <authority>Pers. 1800</authority>
+                            <common_name>Jelly fungus</common_name>
+                            <synonym>Yellow Brain</synonym>
+                            <synonym>Tremella lutescens</synonym>
+                            <rank>species</rank>
+                            <uri>http://content9.eol.org/content/2010/11/27/15/10947_large.jpg</uri>
+                          </taxonomy>
+                        </clade>
+                      </clade>
+                    </clade>
+                    <clade>
+                      <taxonomy>
+                        <id provider="uniprot">5270</id>
+                        <code>USTMA</code>
+                        <scientific_name>Ustilago maydis</scientific_name>
+                        <common_name>Smut fungus</common_name>
+                        <rank>species</rank>
+                        <uri>http://upload.wikimedia.org/wikipedia/commons/5/58/Ustilago_maydis_de_2.jpg</uri>
+                      </taxonomy>
+                    </clade>
+                  </clade>
+                  <clade>
+                    <taxonomy>
+                      <id provider="uniprot">29000</id>
+                      <scientific_name>Pucciniomycotina</scientific_name>
+                      <rank>subphylum</rank>
+                    </taxonomy>
+                    <clade>
+                      <taxonomy>
+                        <id provider="uniprot">5258</id>
+                        <scientific_name>Pucciniales</scientific_name>
+                        <common_name>rusts</common_name>
+                        <rank>order</rank>
+                      </taxonomy>
+                      <clade>
+                        <taxonomy>
+                          <id provider="eol">1029947</id>
+                          <code>PUCGR</code>
+                          <scientific_name>Puccinia graminis</scientific_name>
+                          <authority>Pers. 1794</authority>
+                          <common_name>Black stem rust fungus</common_name>
+                          <synonym>Wheat rust</synonym>
+                          <rank>species</rank>
+                          <uri>http://content6.eol.org/content/2010/11/27/13/00727_large.jpg</uri>
+                        </taxonomy>
+                      </clade>
+                      <clade>
+                        <taxonomy>
+                          <id provider="eol">156696</id>
+                          <code>MELLP</code>
+                          <scientific_name>Melampsora laricis-populina</scientific_name>
+                          <authority>Kleb. 1902</authority>
+                          <synonym>Melampsora larici-populina</synonym>
+                          <synonym>Melampsora laricipopulina</synonym>
+                          <rank>species</rank>
+                          <uri>http://content1.eol.org/content/2010/11/27/09/08680_large.jpg</uri>
+                        </taxonomy>
+                      </clade>
+                    </clade>
+                    <clade>
+                      <taxonomy>
+                        <id provider="uniprot">89013</id>
+                        <scientific_name>mitosporic Sporidiobolales</scientific_name>
+                      </taxonomy>
+                      <clade>
+                        <taxonomy>
+                          <id provider="eol">1013696</id>
+                          <scientific_name>Sporobolomyces roseus</scientific_name>
+                          <authority>Kluyver &amp; C. B. Niel 1924</authority>
+                          <rank>species</rank>
+                          <uri>http://genome.jgi-psf.org/Sporo1/sporobolomyces_roseus.jpg</uri>
+                        </taxonomy>
+                      </clade>
+                      <clade>
+                        <taxonomy>
+                          <id provider="uniprot">29898</id>
+                          <code>RHOGR</code>
+                          <scientific_name>Rhodotorula graminis</scientific_name>
+                          <common_name>Yeast</common_name>
+                          <rank>species</rank>
+                          <uri>http://www.fgsc.net/homepageimages/image12.jpg</uri>
+                        </taxonomy>
+                      </clade>
+                    </clade>
+                  </clade>
+                </clade>
+                <clade>
+                  <taxonomy>
+                    <id provider="uniprot">148960</id>
+                    <code>WALSE</code>
+                    <scientific_name>Wallemia sebi</scientific_name>
+                    <rank>species</rank>
+                    <uri>http://genome.jgi-psf.org/public/Walse1/Walse1.jpg</uri>
+                  </taxonomy>
+                </clade>
+              </clade>
+              <clade>
+                <taxonomy>
+                  <id provider="uniprot">4890</id>
+                  <scientific_name>Ascomycota</scientific_name>
+                  <rank>phylum</rank>
+                </taxonomy>
+                <clade>
+                  <clade>
+                    <taxonomy>
+                      <id provider="uniprot">147538</id>
+                      <scientific_name>Pezizomycotina</scientific_name>
+                      <rank>subphylum</rank>
+                    </taxonomy>
+                    <clade>
+                      <clade>
+                        <clade>
+                          <taxonomy>
+                            <id provider="uniprot">147541</id>
+                            <scientific_name>Dothideomycetes</scientific_name>
+                            <rank>class</rank>
+                          </taxonomy>
+                          <clade>
+                            <taxonomy>
+                              <id provider="uniprot">41254</id>
+                              <scientific_name>Mycosphaerella</scientific_name>
+                              <rank>genus</rank>
+                            </taxonomy>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">83344</id>
+                                <scientific_name>Mycosphaerella fijiensis</scientific_name>
+                                <rank>species</rank>
+                                <uri>http://www.forestryimages.org/images/768x512/5393153.jpg</uri>
+                              </taxonomy>
+                            </clade>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">54734</id>
+                                <code>MYCGR</code>
+                                <scientific_name>Mycosphaerella graminicola</scientific_name>
+                                <synonym>Septoria tritici</synonym>
+                                <rank>species</rank>
+                                <uri>http://genome.jgi-psf.org/Mycgr3/Mycgr.jpg</uri>
+                              </taxonomy>
+                            </clade>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">85929</id>
+                                <scientific_name>Mycosphaerella populorum</scientific_name>
+                                <synonym>Septoria musiva</synonym>
+                                <rank>species</rank>
+                                <uri>http://www.eppo.org/QUARANTINE/fungi/Mycosphaerella_populorum/MYCOPP_02.jpg</uri>
+                              </taxonomy>
+                            </clade>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">64363</id>
+                                <code>MYCPJ</code>
+                                <scientific_name>Mycosphaerella pini</scientific_name>
+                                <common_name>Red band needle blight disease fungus</common_name>
+                                <synonym>Dothistroma septosporum</synonym>
+                                <synonym>Dothistroma pini</synonym>
+                                <rank>species</rank>
+                                <uri>http://www.eppo.org/QUARANTINE/fungi/Mycosphaerella_pini/SCIRPI_03.jpg</uri>
+                              </taxonomy>
+                            </clade>
+                          </clade>
+                          <clade>
+                            <taxonomy>
+                              <id provider="uniprot">715340</id>
+                              <scientific_name>Pleosporineae</scientific_name>
+                              <rank>suborder</rank>
+                            </taxonomy>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">28556</id>
+                                <scientific_name>Pleosporaceae</scientific_name>
+                                <rank>family</rank>
+                              </taxonomy>
+                              <clade>
+                                <taxonomy>
+                                  <id provider="uniprot">426418</id>
+                                  <code>PYRTR</code>
+                                  <scientific_name>Pyrenophora tritici-repentis (strain Pt-1C-BFP)</scientific_name>
+                                  <common_name>Wheat tan spot fungus</common_name>
+                                  <synonym>Drechslera tritici-repentis</synonym>
+                                  <uri>http://genome.jgi-psf.org/Pyrtr1/Pyrtr.jpg</uri>
+                                </taxonomy>
+                              </clade>
+                              <clade>
+                                <taxonomy>
+                                  <id provider="uniprot">5016</id>
+                                  <code>COCHE</code>
+                                  <scientific_name>Cochliobolus heterostrophus</scientific_name>
+                                  <synonym>Drechslera maydis</synonym>
+                                  <rank>species</rank>
+                                  <uri>http://genome.jgi-psf.org/CocheC5_1/cocheC5.jpg</uri>
+                                </taxonomy>
+                              </clade>
+                            </clade>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">13684</id>
+                                <code>PHANO</code>
+                                <scientific_name>Phaeosphaeria nodorum</scientific_name>
+                                <common_name>Glume blotch fungus</common_name>
+                                <synonym>Septoria nodorum</synonym>
+                                <rank>species</rank>
+                                <uri>http://content1.eol.org/content/2010/03/24/09/57568_large.jpg</uri>
+                              </taxonomy>
+                            </clade>
+                          </clade>
+                        </clade>
+                        <clade>
+                          <taxonomy>
+                            <id provider="uniprot">147550</id>
+                            <scientific_name>Sordariomycetes</scientific_name>
+                            <rank>class</rank>
+                          </taxonomy>
+                          <clade>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">5125</id>
+                                <scientific_name>Hypocreales</scientific_name>
+                                <rank>order</rank>
+                              </taxonomy>
+                              <clade>
+                                <taxonomy>
+                                  <id provider="uniprot">29875</id>
+                                  <code>TRIVE</code>
+                                  <scientific_name>Trichoderma virens</scientific_name>
+                                  <rank>species</rank>
+                                  <uri>http://www.jgi.doe.gov/sequencing/why/Trichodermacoiling.jpg</uri>
+                                </taxonomy>
+                              </clade>
+                              <clade>
+                                <taxonomy>
+                                  <id provider="uniprot">5518</id>
+                                  <code>GIBZE</code>
+                                  <scientific_name>Gibberella zeae</scientific_name>
+                                  <common_name>Wheat head blight fungus</common_name>
+                                  <synonym>Fusarium graminearum</synonym>
+                                  <rank>species</rank>
+                                  <uri>http://www.fao.org/docrep/006/y4011e/y4011e1k.jpg</uri>
+                                </taxonomy>
+                              </clade>
+                            </clade>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">148305</id>
+                                <code>MAGGR</code>
+                                <scientific_name>Magnaporthe grisea</scientific_name>
+                                <common_name>Rice blast fungus</common_name>
+                                <synonym>Pyricularia grisea</synonym>
+                                <rank>species</rank>
+                                <uri>http://www.plantcell.org/content/vol19/issue8/images/medium/PC198cvf1.gif</uri>
+                              </taxonomy>
+                            </clade>
+                          </clade>
+                          <clade>
+                            <taxonomy>
+                              <id provider="uniprot">5139</id>
+                              <scientific_name>Sordariales</scientific_name>
+                              <rank>order</rank>
+                            </taxonomy>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">35718</id>
+                                <scientific_name>Chaetomiaceae</scientific_name>
+                                <rank>family</rank>
+                              </taxonomy>
+                              <clade>
+                                <taxonomy>
+                                  <id provider="eol">1029505</id>
+                                  <code>CHAGB</code>
+                                  <scientific_name>Chaetomium globosum</scientific_name>
+                                  <authority>Kunze 1817</authority>
+                                  <common_name>Soil fungus</common_name>
+                                  <rank>species</rank>
+                                  <uri>http://www.inspectapedia.com/mold/Chaetomium_globosum_397_DJFs.jpg</uri>
+                                </taxonomy>
+                              </clade>
+                              <clade>
+                                <taxonomy>
+                                  <id provider="eol">193532</id>
+                                  <scientific_name>Thielavia terrestris</scientific_name>
+                                  <authority>Malloch &amp; Cain 1972</authority>
+                                  <synonym>Acremonium alabamense</synonym>
+                                  <rank>species</rank>
+                                  <uri>http://genome.jgi-psf.org/Thite1/Thite1.jpg</uri>
+                                </taxonomy>
+                              </clade>
+                            </clade>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">5141</id>
+                                <code>NEUCR</code>
+                                <scientific_name>Neurospora crassa</scientific_name>
+                                <rank>species</rank>
+                                <uri>http://genome.jgi-psf.org/Neute1/N.tetra.rosette.jpg</uri>
+                              </taxonomy>
+                            </clade>
+                          </clade>
+                        </clade>
+                      </clade>
+                      <clade>
+                        <taxonomy>
+                          <id provider="uniprot">28568</id>
+                          <scientific_name>Trichocomaceae</scientific_name>
+                          <rank>family</rank>
+                        </taxonomy>
+                        <clade>
+                          <clade>
+                            <taxonomy>
+                              <id provider="uniprot">331117</id>
+                              <code>NEOFI</code>
+                              <scientific_name>Neosartorya fischeri (strain ATCC 1020 / DSM 3700 / FGSC A1164 / NRRL 181)</scientific_name>
+                              <synonym>Aspergillus fischerianus</synonym>
+                              <uri>http://www.filgen.jp/Product/Bioscience/filgenarray/neosartorya.jpg</uri>
+                            </taxonomy>
+                          </clade>
+                          <clade>
+                            <taxonomy>
+                              <id provider="eol">195546</id>
+                              <code>EMENI</code>
+                              <scientific_name>Emericella nidulans</scientific_name>
+                              <authority>Vuill. 1927</authority>
+                              <synonym>Aspergillus nidulans</synonym>
+                              <rank>species</rank>
+                              <uri>http://www.mycology.adelaide.edu.au/images/nidulans3a.gif</uri>
+                            </taxonomy>
+                          </clade>
+                        </clade>
+                        <clade>
+                          <taxonomy>
+                            <id provider="uniprot">5052</id>
+                            <scientific_name>Aspergillus</scientific_name>
+                            <rank>genus</rank>
+                          </taxonomy>
+                          <clade>
+                            <taxonomy>
+                              <id provider="uniprot">5059</id>
+                              <code>ASPFL</code>
+                              <scientific_name>Aspergillus flavus</scientific_name>
+                              <rank>species</rank>
+                              <uri>http://www.clt.astate.edu/mhuss/Aspergillus%20flavus%20pict.jpg</uri>
+                            </taxonomy>
+                          </clade>
+                          <clade>
+                            <taxonomy>
+                              <id provider="uniprot">5061</id>
+                              <code>ASPNG</code>
+                              <scientific_name>Aspergillus niger</scientific_name>
+                              <rank>species</rank>
+                              <uri>http://www.moldbacteria.com/Aspergillus_niger.gif</uri>
+                            </taxonomy>
+                          </clade>
+                        </clade>
+                      </clade>
+                    </clade>
+                    <clade>
+                      <taxonomy>
+                        <id provider="uniprot">33183</id>
+                        <scientific_name>Onygenales</scientific_name>
+                        <rank>order</rank>
+                      </taxonomy>
+                      <clade>
+                        <taxonomy>
+                          <id provider="uniprot">5501</id>
+                          <code>COCIM</code>
+                          <scientific_name>Coccidioides immitis</scientific_name>
+                          <common_name>Valley fever fungus</common_name>
+                          <rank>species</rank>
+                          <uri>http://upload.wikimedia.org/wikipedia/commons/c/c5/Arthroconidia_of_Coccidioides_immitis_39G0040_lores.jpg</uri>
+                        </taxonomy>
+                      </clade>
+                      <clade>
+                        <taxonomy>
+                          <id provider="uniprot">336963</id>
+                          <code>UNCRE</code>
+                          <scientific_name>Uncinocarpus reesii (strain UAMH 1704)</scientific_name>
+                          <uri>http://www.devonian2.ualberta.ca/uamh/Images/Uncinocarpus.gif</uri>
+                        </taxonomy>
+                      </clade>
+                    </clade>
+                  </clade>
+                  <clade>
+                    <taxonomy>
+                      <id provider="uniprot">4892</id>
+                      <scientific_name>Saccharomycetales</scientific_name>
+                      <common_name>budding yeasts</common_name>
+                      <rank>order</rank>
+                    </taxonomy>
+                    <clade>
+                      <clade>
+                        <taxonomy>
+                          <id provider="uniprot">4893</id>
+                          <scientific_name>Saccharomycetaceae</scientific_name>
+                          <rank>family</rank>
+                        </taxonomy>
+                        <clade>
+                          <clade>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">4932</id>
+                                <code>YEAST</code>
+                                <scientific_name>Saccharomyces cerevisiae</scientific_name>
+                                <common_name>Baker&apos;s yeast</common_name>
+                                <rank>species</rank>
+                                <uri>http://pirun.ku.ac.th/~b4910076/saccharomyces_cerevisiae.jpg</uri>
+                              </taxonomy>
+                            </clade>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">27288</id>
+                                <code>SACCA</code>
+                                <scientific_name>Saccharomyces castellii</scientific_name>
+                                <common_name>Yeast</common_name>
+                                <rank>species</rank>
+                                <uri type="image">http://www.diark.org/img/species_pict/Naumovia_castellii_NRRL_Y_12630</uri>
+                              </taxonomy>
+                            </clade>
+                          </clade>
+                          <clade>
+                            <taxonomy>
+                              <id provider="uniprot">4905</id>
+                              <code>PICAN</code>
+                              <scientific_name>Pichia angusta</scientific_name>
+                              <common_name>Yeast</common_name>
+                              <synonym>Hansenula polymorpha</synonym>
+                              <rank>species</rank>
+                              <uri>http://genome.jgi-psf.org/Hanpo1/Hanpo1.gif</uri>
+                            </taxonomy>
+                          </clade>
+                        </clade>
+                        <clade>
+                          <clade>
+                            <taxonomy>
+                              <id provider="uniprot">33169</id>
+                              <code>ASHGO</code>
+                              <scientific_name>Ashbya gossypii</scientific_name>
+                              <common_name>Yeast</common_name>
+                              <synonym>Eremothecium gossypii</synonym>
+                              <rank>species</rank>
+                              <uri>http://www.biologie.uni-osnabrueck.de/Genetik/images/smycel.jpg</uri>
+                            </taxonomy>
+                          </clade>
+                          <clade>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">28985</id>
+                                <code>KLULA</code>
+                                <scientific_name>Kluyveromyces lactis</scientific_name>
+                                <common_name>Yeast</common_name>
+                                <synonym>Candida sphaerica</synonym>
+                                <rank>species</rank>
+                                <uri>http://www.genomenewsnetwork.org/gnn_images/sequenced_genomes/kluyveromyces_lactis.jpg</uri>
+                              </taxonomy>
+                            </clade>
+                            <clade>
+                              <taxonomy>
+                                <id provider="uniprot">4914</id>
+                                <code>KLUWA</code>
+                                <scientific_name>Kluyveromyces waltii</scientific_name>
+                                <common_name>Yeast</common_name>
+                                <rank>species</rank>
+                                <uri type="image">http://www.diark.org/img/species_pict/Kluyveromyces_waltii_NCYC_2644</uri>
+                              </taxonomy>
+                            </clade>
+                          </clade>
+                        </clade>
+                      </clade>
+                      <clade>
+                        <clade>
+                          <taxonomy>
+                            <id provider="uniprot">5475</id>
+                            <scientific_name>Candida</scientific_name>
+                            <rank>genus</rank>
+                          </taxonomy>
+                          <clade>
+                            <taxonomy>
+                              <id provider="uniprot">5476</id>
+                              <code>CANAL</code>
+                              <scientific_name>Candida albicans</scientific_name>
+                              <common_name>Yeast</common_name>
+                              <rank>species</rank>
+                              <uri>http://www.reviberoammicol.com/photo_gallery/Candida/albicans/Candida_albicans_01.jpeg</uri>
+                            </taxonomy>
+                          </clade>
+                          <clade>
+                            <taxonomy>
+                              <id provider="uniprot">5482</id>
+                              <code>CANTR</code>
+                              <scientific_name>Candida tropicalis</scientific_name>
+                              <common_name>Yeast</common_name>
+                              <rank>species</rank>
+                              <uri>http://www.medmicro.wisc.edu/resources/imagelib/mycology/images/c_tropicalis.jpg</uri>
+                              <uri>http://i.ehow.com/images/a04/u2/3c/candida-tropicalis-symptoms-200X200.jpg</uri>
+                            </taxonomy>
+                          </clade>
+                        </clade>
+                        <clade>
+                          <taxonomy>
+                            <id provider="uniprot">4959</id>
+                            <code>DEBHA</code>
+                            <scientific_name>Debaryomyces hansenii</scientific_name>
+                            <common_name>Yeast</common_name>
+                            <synonym>Torulaspora hansenii</synonym>
+                            <rank>species</rank>
+                            <uri type="image">http://www.diark.org/img/species_pict/Debaryomyces_hansenii_CBS767</uri>
+                          </taxonomy>
+                        </clade>
+                      </clade>
+                    </clade>
+                    <clade>
+                      <taxonomy>
+                        <id provider="uniprot">4952</id>
+                        <code>YARLI</code>
+                        <scientific_name>Yarrowia lipolytica</scientific_name>
+                        <synonym>Candida lipolytica</synonym>
+                        <rank>species</rank>
+                        <uri>http://www.biotechnologie.de/BIO/Redaktion/Bilder/de/Newsfotos/hefe-yarrowia-lipo,property=bild,bereich=bio,sprache=de.jpg</uri>
+                      </taxonomy>
+                    </clade>
+                  </clade>
+                </clade>
+                <clade>
+                  <taxonomy>
+                    <id provider="uniprot">451866</id>
+                    <scientific_name>Taphrinomycotina</scientific_name>
+                    <rank>subphylum</rank>
+                  </taxonomy>
+                  <clade>
+                    <taxonomy>
+                      <id provider="uniprot">4895</id>
+                      <scientific_name>Schizosaccharomyces</scientific_name>
+                      <rank>genus</rank>
+                    </taxonomy>
+                    <clade>
+                      <taxonomy>
+                        <id provider="uniprot">4896</id>
+                        <code>SCHPO</code>
+                        <scientific_name>Schizosaccharomyces pombe</scientific_name>
+                        <common_name>Fission yeast</common_name>
+                        <rank>species</rank>
+                        <uri>http://www.micron.ac.uk/organisms/images/yeast3a.jpg</uri>
+                      </taxonomy>
+                    </clade>
+                    <clade>
+                      <taxonomy>
+                        <id provider="uniprot">4897</id>
+                        <code>SCHJP</code>
+                        <scientific_name>Schizosaccharomyces japonicus</scientific_name>
+                        <common_name>Fission yeast</common_name>
+                        <rank>species</rank>
+                        <uri>http://mic.sgmjournals.org/content/vol149/issue4/images/medium/frontcover.gif</uri>
+                      </taxonomy>
+                    </clade>
+                  </clade>
+                  <clade>
+                    <taxonomy>
+                      <id provider="uniprot">4754</id>
+                      <code>PNECA</code>
+                      <scientific_name>Pneumocystis carinii</scientific_name>
+                      <rank>species</rank>
+                      <uri>http://upload.wikimedia.org/wikipedia/commons/6/6e/Pneumocystis.jpg</uri>
+                    </taxonomy>
+                  </clade>
+                </clade>
+              </clade>
+            </clade>
+            <clade>
+              <taxonomy>
+                <id provider="uniprot">451507</id>
+                <scientific_name>Mucoromycotina</scientific_name>
+                <rank>subphylum</rank>
+              </taxonomy>
+              <clade>
+                <taxonomy>
+                  <id provider="uniprot">34489</id>
+                  <scientific_name>Mucoraceae</scientific_name>
+                  <rank>family</rank>
+                </taxonomy>
+                <clade>
+                  <taxonomy>
+                    <id provider="uniprot">36080</id>
+                    <code>MUCCI</code>
+                    <scientific_name>Mucor circinelloides</scientific_name>
+                    <synonym>Mucor griseo-roseus</synonym>
+                    <rank>species</rank>
+                    <uri>http://genome.jgi-psf.org/Mucci2/Mucci.jpg</uri>
+                  </taxonomy>
+                </clade>
+                <clade>
+                  <taxonomy>
+                    <id provider="uniprot">4837</id>
+                    <code>PHYBL</code>
+                    <scientific_name>Phycomyces blakesleeanus</scientific_name>
+                    <rank>species</rank>
+                    <uri>http://genome.jgi-psf.org/Phybl1/Phycomyces.jpg</uri>
+                  </taxonomy>
+                </clade>
+                <clade>
+                  <taxonomy>
+                    <id provider="uniprot">64495</id>
+                    <code>RHIOR</code>
+                    <scientific_name>Rhizopus oryzae</scientific_name>
+                    <synonym>Rhizopus delemar</synonym>
+                    <rank>species</rank>
+                    <uri>http://www.mycology.adelaide.edu.au/images/rhizopus2.gif</uri>
+                  </taxonomy>
+                </clade>
+              </clade>
+              <clade>
+                <taxonomy>
+                  <id provider="uniprot">78898</id>
+                  <scientific_name>Mortierella verticillata</scientific_name>
+                  <rank>species</rank>
+                  <uri>http://zygomycetes.org/images/174.jpg</uri>
+                </taxonomy>
+              </clade>
+            </clade>
+          </clade>
+          <clade>
+            <taxonomy>
+              <id provider="uniprot">28583</id>
+              <code>ALLMA</code>
+              <scientific_name>Allomyces macrogynus</scientific_name>
+              <rank>species</rank>
+              <uri>http://content6.eol.org/content/2009/06/06/01/65335_large.jpg</uri>
+            </taxonomy>
+          </clade>
+        </clade>
+        <clade>
+          <taxonomy>
+            <id provider="uniprot">451435</id>
+            <scientific_name>Chytridiomycetes</scientific_name>
+            <rank>class</rank>
+          </taxonomy>
+          <clade>
+            <taxonomy>
+              <id provider="uniprot">109871</id>
+              <code>BATDE</code>
+              <scientific_name>Batrachochytrium dendrobatidis</scientific_name>
+              <common_name>Frog chytrid fungus</common_name>
+              <rank>species</rank>
+              <uri>http://bioweb.uwlax.edu/bio203/2010/schams_kell/220px-Batrachochytrium_dendrobatidis.jpg</uri>
+            </taxonomy>
+          </clade>
+          <clade>
+            <taxonomy>
+              <code>SPIPN</code>
+              <scientific_name>Spizellomyces punctatus</scientific_name>
+              <rank>species</rank>
+              <uri>http://www.umich.edu/~mycology/chytridiomycetes_files/page10-1002-thumb.jpg</uri>
+            </taxonomy>
+          </clade>
+        </clade>
+      </clade>
+      <clade>
+        <taxonomy>
+          <id provider="uniprot">6035</id>
+          <code>ENCCU</code>
+          <scientific_name>Encephalitozoon cuniculi</scientific_name>
+          <common_name>Microsporidian parasite</common_name>
+          <rank>species</rank>
+          <uri>http://www.nature.com/modpathol/journal/v15/n5/images/3880566f8.jpg</uri>
+        </taxonomy>
+      </clade>
+    </clade>
+    <clade>
+      <reference doi="10.1093/molbev/msp185">
+      </reference>
+      <clade>
+        <taxonomy>
+          <id provider="uniprot">691883</id>
+          <scientific_name>Fonticula alba</scientific_name>
+          <synonym>Fonticula alba Worley, Raper &amp; Hohl. 1979</synonym>
+          <rank>species</rank>
+          <uri>http://www.pnas.org/content/105/43/16641/F1.small.gif</uri>
+        </taxonomy>
+      </clade>
+      <clade>
+        <taxonomy>
+          <id provider="uniprot">154970</id>
+          <scientific_name>Nuclearia simplex</scientific_name>
+          <rank>species</rank>
+          <uri>http://content10.eol.org/content/2008/12/10/22/76428_large.jpg</uri>
+        </taxonomy>
+      </clade>
+    </clade>
+  </clade>
+</phylogeny>
+
+</phyloxml>

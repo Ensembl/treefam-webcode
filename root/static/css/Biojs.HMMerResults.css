@@ -1,0 +1,231 @@
+//text {
+//	font-size:10px;
+//}
+
+text.model_organism {
+	font-size:12px;
+	font-weight: bold;
+}
+
+text.species_name {
+	font-style:italic;
+}
+path.link {
+            fill: none;
+            stroke: gray;
+            stroke-width: 2.5px;
+        }
+
+        path.selected {
+            stroke: darkred;
+            fill: none;
+            stroke-width: 5px;
+        }
+
+.tv_tree_container {
+	//background: #ff8e00;
+	height: 660px;
+	overflow: scroll;
+	//width: 800px;
+	//border: 1px solid #000;
+	//padding: 10px;
+	 padding: 20px;
+}
+
+.middle-display{ }
+
+.tv_general_info_container {
+	padding: 10px;
+	height: 40%;
+	max-height:210px;
+	overflow: scroll;
+    background-color: #FEFEFE;
+    box-shadow: 0 1px 5px #3D3D3D;
+	-moz-border-radius: 1em 1em 1em 1em;
+	border-radius: 1em 1em 1em 1em;
+	margin-top: 9px;
+}
+
+
+circle {
+  //fill: white;
+ // stroke: black;
+  stroke-width: 5.5px;  
+}
+
+text.domainlabel{
+	color : white;
+}
+
+
+
+.tv_tooltip, .tv_tooltip-pending-removal {
+  position: absolute;
+  background-color: rgba(255,255,255,1);
+  padding: 10px;
+  border: 1px solid #ddd;
+  z-index: 10000;
+  display: inline-block;
+  font-family: Arial;
+  font-size: 13px;
+  border-radius: 10px;
+
+  pointer-events: none;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.tv_contentcontainer {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+
+.tv_breadcrumbs {
+    color: #48402E;
+    box-shadow: 0 1px 5px #3D3D3D;
+    font-size: 1em;
+    //height: 40px;
+    padding-bottom: 0;
+    padding-left: 11px;
+    padding-top: 4px;
+    width: 99%;
+	-moz-border-radius: 1em 1em 1em 1em;
+	border-radius: 1em 1em 1em 1em;
+}
+
+.tv_homesidebar {
+    float: right;
+    font-size: 0.9em;
+    margin-left: 13px;
+    margin-top: 0;
+    padding-bottom: 10px;
+    padding-top: 0;
+    width: 19%;
+	height: 650px;
+	-moz-border-radius: 1em 1em 1em 1em;
+	border-radius: 1em 1em 1em 1em;
+	
+}
+.tv_contentcontainer .tv_homecontent {
+    margin-bottom: 9px;
+	margin-top: 9px;
+}
+.tv_homecontent {
+    background-color: #FEFEFE;
+    box-shadow: 0 1px 5px #3D3D3D;
+    color: #48402E;
+    //float: right;
+    font-size: 0.9em;
+    //padding-bottom: 23px;
+    //padding-right: 10px;
+    width: 79.6%;
+	-moz-border-radius: 1em 1em 1em 1em;
+	border-radius: 1em 1em 1em 1em;
+	
+}
+.clearfloat {
+    clear: both;
+    font-size: 1px;
+    height: 0;
+    line-height: 0;
+}
+
+div.inline { float:right; }
+
+
+.annotation_div {
+    filter: alpha(opacity=50); /* internet explorer */
+    -khtml-opacity: 0.5;      /* khtml, old safari */
+    -moz-opacity: 0.5;       /* mozilla, netscape */
+    opacity: 0.5;           /* fx, safari, opera */
+}
+
+.dotted_line {
+border-left: 1px dotted gray !important;
+margin-left: 5px !important;
+padding-left: 5px !important;
+}
+
+ol.entries li, ol.signatures li {
+    list-style: none outside none;
+	height: 45px;
+    margin: 0;
+    padding: 0;
+	
+}
+li { margin:0 14px; float:left;}
+.active{height:50px;}
+
+
+.prot_entries .top-row {
+    border: 0 solid red;
+    overflow: auto;
+}
+
+.prot_entries li.entry {
+margin-bottom: 9px;
+}
+
+
+.top-row .top-left {
+    background-color: transparent;
+    background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0.85), rgba(247, 247, 247, 0.85));
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    float: left;
+    font-size: 90%;
+    height: 24px;
+    line-height: 24px;
+    margin-bottom: 2px;
+    margin-right: 12px;
+    padding: 1px 0 1px 6px;
+    width: 70px;
+}
+
+.prot_entries .top-row .top-right {
+    border: 0 solid blue;
+    float: left;
+    font-size: 90%;
+    padding: 1px 0;
+}
+	
+.bottom-row {
+    border: 0 solid green;
+    margin-top: -20px;
+    overflow: auto;
+}
+.bottom-row .bot-row-line-bot {
+    border-bottom: 1px solid #D8D8D8;
+    margin: 0 76px 0 90px;
+}
+.bot-row-line-top {
+    border-top: 1px solid #D8D8D8;
+    margin: 0 76px 0 90px;
+}
+
+ol.entries, ol.signatures {
+margin: 0;
+padding: 0;
+}
+
+
+ol.entries li, ol.signatures li {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+
+.prot_entries .bot-row ol.signatures li {
+border: 0px solid purple;
+overflow: auto;
+clear: both;
+}
+ol.entries li, ol.signatures li {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+

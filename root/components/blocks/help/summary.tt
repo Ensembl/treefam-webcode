@@ -65,7 +65,7 @@ CALL release_date.append( d.2, ":", d.1, ":", d.0 );
       You can use the TreeFam
       website to obtain information about an individual family, or browse
       our families and genome annotations. Alternatively you can download
-      all of the TreeFam data from our <a  href="ftp://ftp.sanger.ac.uk/pub/databases/TreeFam/CURRENT">FTP site</a>.  
+      all of the TreeFam data from our <a  href="/download">download page</a>.  
     </p> 
     <p>For each TreeFam family we provide:</p>
     <dl>

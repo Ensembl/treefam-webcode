@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Star Zoom Quick Start</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <!-- Include jQuery libary script. -->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+        <!-- Include Star Zoom script. -->
+        <script type="text/javascript" src="starzoom.js"></script>
+         <!-- Call 'quickStart' function. -->
+        <script type="text/javascript">StarZoom.quickStart();</script>
+        <style>
+            /* CSS for the viewport. */
+            #viewport {
+                position:relative;
+                width:512px;
+                height:512px;
+                border:1px solid #ccc;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Set the "image" property to tell Star Zoom where the image directory is. -->
+        <div id="viewport" class="starzoom" data-starzoom = '{"image":"sample-image_jpg"}'></div>
+    </body>
+</html>

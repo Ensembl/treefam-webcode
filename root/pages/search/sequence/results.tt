@@ -17,11 +17,20 @@ USE wrap;
 PROCESS "components/require.tt";
 #requirements.js.push( "prototype.js" );
 requirements.js.push( "jquery/jquery-1.8.2.min.js" );
+requirements.js.push( "d3/d3.v3.js" );
+requirements.js.push( "jquery/jquery.tipsy.js" );
+requirements.css.push( "jquery/tipsy.css" );
+requirements.js.push( "tree_insertion.js" );
+requirements.js.push( "smartupdater.4.0.js" );
 requirements.js.push( "hmmerscan.js" );
+# BIOJS hmmer output
+requirements.js.push( "biojs/Biojs.js" );
+requirements.js.push( "biojs/Biojs.HMMerResults.js" );
+requirements.js.push( "biojs/Biojs.Tree.js" );
+requirements.js.push( "biojs/tree_functions.js" );
+requirements.css.push( "Biojs.HMMerResults.css" );
+requirements.css.push( "Biojs.Tree.css" );
 
-#requirements.js.push( "results.js" );
-#requirements.js.push( "ejs_production.js" );
-# requirements.js.push( "ejs_fulljslint.js" );
 
 requirements.css.push( "search.css" );
 requirements.css.push( "buttons.css" );
@@ -30,7 +39,7 @@ requirements.css.push( "buttons.css" );
 #requirements.js.push( "tablekit.js" );
 
 requirements.css.push( "job.css" );
-requirements.cssIe.push( "job_ie.css" );
+#requirements.cssIe.push( "job_ie.css" );
 
 #-------------------------------------------------------------------------------
 
@@ -72,13 +81,80 @@ END; # of "IF rest.error" -%]
 			don&apos;t close this window or browse to a different page until the
 			results are loaded. 
 		</p>
-		<div id="loadingMessage">
-			<img id="spinner" class="loadingBar"
+		<div style="background-color:white">
+		<table  style="text-align:center;margin-left: auto;margin-right: auto; padding:20px; border-spacing: 7px;">
+		<tr>
+			<td align='right'><div id="loadingMessagePfam">Pfam hits:  </div></td>
+			<td align='left'><img id="pfamscan_spinner" class="loadingBar"    style="display:none"  alt="Searching..." src="[% c.uri_for( "/shared/images/blank.gif" ) %]" />
+			<div style="display:inline" id="pfamscan_status">Waiting ...</div>
+			</td>
+		</tr>
+	 	<tr>	
+			<td align='right'><div id="loadingMessageTreeFam">TreeFam hits:  </div></td>
+			<td align='left'><img id="treefamscan_spinner" class="loadingBar" style="display:none" alt="Searching..." src="[% c.uri_for( "/shared/images/blank.gif" ) %]" />
+			<div style="display:inline" id="treefamscan_status">Waiting ...</div>
+			</td>
+		</tr>	
+		[% IF tree_insertion %]
+		<tr>
+			<td align='right'><div id="loadingMessageAlignment">Alignment:   </div></td>
+			<td align='left'>	<img id="alignment_spinner" class="loadingBar" style="display:none" 
 					 alt="Searching..."
 					 src="[% c.uri_for( "/shared/images/blank.gif" ) %]" />
-					 <br />
+			<div style="display:inline" id="alignment_status">Waiting ...</div>
+		<td>
+		</tr>
+		<tr>
+		<td align='right'><div id="loadingMessageTreeBuilding">Add to tree:   </div></td>
+			<td align='left'>	<img id="tree_spinner" class="loadingBar" style="display:none" alt="Searching..." src="[% c.uri_for( "/shared/images/blank.gif" ) %]" />
+			<div style="display:inline" id="tree_status">Waiting ...</div>
+			<td>
+		</tr>
+		[% END %]	
+		</table>
 		</div>
 	</div>
+	<div id="pfam_results" style="display:none">
+		<h3>Pfam hits</h3>
+		<div style="color:red;" id="pfam_hits_status"  style="display:none" ></div>
+		<div id='PfamBlock'   style="text-align:center;margin-left: auto;margin-right: auto; background-color:white" ></div>
+	</div>
+
+	<div id="treefam_results" style="display:none">
+	<h3>TreeFam hits</h3>
+		<div style="color:red;" id="treefam_hits_status" ></div>
+		<div id='TreeFamBlock' style="text-align:center;margin-left: auto;margin-right: auto; background-color:white"   ></div>
+	</div>
+	[% IF tree_insertion %]
+	<div id="download_section" style="display:none">
+		<h3>Download options</h3>
+	</div>
+	<div id="tree_results" style="display:none">
+		<h3>TreeFam gene tree</h3>
+		Query sequence shown in red, download: 
+		<div style="display:inline" id="tree_download"></div>
+		<div style="display:inline" id="alignment_download"></div>
+		
+		<div style="color:red;" id="tree_insertion_status"  style="display:none" ></div>
+		<div class="tv_contentcontainer" id="tv_contentcontainer"   >
+			<div class="tv_breadcrumbs">
+						<div id="tv_controls" class="icon icon-functional" data-icon="s">Settings</div>
+ 			<div> 
+					<div class="tv_homecontent"  style="text-align:center;margin-left: auto;margin-right: auto; " >	
+					<div  class="tree_container" id="tree"></div>
+  				</div>
+    		</div>
+			<div class="clearfloat"></div>
+
+			</div> 
+		</div>
+	</div>
+		[% END %]
+
+
+<div id="matches"></div>
+<div id="statusSU"></div>
+
 
 	<div id="summary" 
        class="showOC"
@@ -150,76 +226,33 @@ END; # of "IF rest.error" -%]
 </div>
 
 <script type="text/javascript">
-    jQuery(document).ready(function(){
+	
+console.log("before loading");
+	jQuery(document).ready(function(){
 		console.log("about to start job");
 		var status;
 		var values  = new Object();
 		var seq = "[% seq %]";
-		console.log("submitting Job...");
-		var job_id = submit_job({seq : seq});
-      	
+		var tree_insertion = "[% tree_insertion %]";
+		var tree_algorithm = "[% tree_algorithm %]";
+		//var tree_insertion = "tree_insertion";
+
+		console.log("submitting Job..."+tree_insertion);
+		console.log("submitting Job... algorithm "+tree_algorithm);
+		var myTreeInsertionObject = new TreeInsertion({method: "pfamscan", seq: seq, tree_insertion : tree_insertion, tree_algorithm: tree_algorithm });
+		var myTreeInsertionObject = new TreeInsertion({method: "treefamscan", seq: seq, tree_insertion : tree_insertion, tree_algorithm: tree_algorithm});
+		
 
 
-	//	var job_id = "hmmer_hmmscan-R20130322-110646-0336-89187840-hx";
-		//values["job_id"] = job_id;
-		//console.log("Job submitted...");
-		//console.log("Checking status");
-		//check_status({job_id : job_id});	
-		
-		//console.log("getting results");
-		var result_type = "tblout";
-		
-		//get_results({job_id : job_id, result_type : result_type});	
-		get_results({job_id : job_id, result_type : result_type});	
-	jQuery('#families_table').html( '<table cellpadding="0" cellspacing="0" border="5" class="display" id="families_data"></table>' );
-		        jQuery('#families_data').dataTable( {
-						"sAjaxSource": "/search/families4keyword/"+ to_search,
-						"bProcessing": true,
-						"oLanguage": {
-							 "sSearch": "Search",
-							"sProcessing": '<img alt="Spinner" src="/static/images/ajax-loader.gif" />',
-							"sEmptyTable": "Nothing found!"
-						},
-						"fnServerData": function ( sSource, aoData, fnCallback ) {
-							    jQuery.getJSON( sSource, aoData, function (json) {
-									fnCallback(json)
-								} );
-								var no_of_families = [% no_family_hits %]
-								console.log("well, we have "+ no_of_families+" families")
-								jQuery("#no_families").text(no_of_families)
-						    },
-						"sAjaxDataProp": "",
-						"aLengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]],
-							"aoColumnDefs": [
-										    {
-											      "fnRender": function ( o, val ) {
-							                            return '<a href=/family/' + o.aData.gtName + '>' + o.aData.gtName + '</a>'		    ;
-													    },
-												  "aTargets": [ 0 ]
-											 },
-							    {
-											      "fnRender": function ( o, val ) {
-													    return o.aData.symbol;
-													    },
-												  "aTargets": [ 1 ]
-											 }, 
-							     {
-											      "fnRender": function ( o, val ) {
-													    return o.aData.name;
-													    },
-												  "aTargets": [ 2 ]
-											 },],
-							     "aoColumns": [
-							    { "sTitle": "TreeFam family", sDefaultContent: "n/a" },
-							    { "sTitle": "Symbol", sDefaultContent: "n/a" },
-							    { "sTitle": "Description", sDefaultContent: "n/a" }],	
-					}); 
-	
-		console.log("well, this is the end");
-		return;
-		
+
+		//var myTreeInsertionObject = new TreeInsertion({method: "alignment", seq: seq, tree_insertion : tree_insertion});
+		//var myTreeInsertionObject = new TreeInsertion({method:"tree_building", seq: seq, tree_insertion : tree_insertion, 
+		//						selected_family: "TF105041", alignment_job_id : "mafft_addseq-R20130702-161404-0874-12865946-pg"});
 			
 	});
+
+console.log("after document ready");
+
   </script>
 
 [%#

@@ -36,6 +36,8 @@ use Bio::EnsEMBL::Compara::DBSQL::GeneTreeAdaptor;
 use Bio::EnsEMBL::Compara::GeneTree;
 use Bio::AlignIO;
 use namespace::autoclean;
+use TreeFam::HomologyHelper;
+use TreeFam::SearchHelper;
 
 #use treefam::nhx_plot;
 
@@ -99,6 +101,11 @@ sub submit_job : Chained( '/' )
     $c->stash->{template} = 'pages/search/sequence/result.tt';
     return;	
 }
+
+
+
+
+
 #-------------------------------------------------------------------------------
 
 =head1 METHODS
@@ -112,6 +119,37 @@ retrieve and present the results.
 Start and end of a chain.
 
 =cut
+sub get_seq_info : Chained( '/' ) PathPart( 'get_seq_info' ) Args(1){
+    my ( $this, $c, $id ) = @_;
+    my $tf_family = "NaN";
+    my $homology_type = "";
+    $c->log->debug("in get_seq_info with $id") if $c->debug;
+    #$c->log->debug("perl path is @INC") if $c->debug;
+    my ($homology_data,$sequence_data);
+    $c->forward('get_adaptors');
+    my $member_adaptor = $c->stash->{'member_adaptor'};
+    my $homology_adaptor = $c->stash->{'homology_adaptor'};
+    my $genetree_adaptor = $c->stash->{'genetree_adaptor'};
+    my $to_search = $id;
+    my $result_data; 
+    $c->log->debug("in get_seq_info with $to_search") if $c->debug;
+    
+    #my $homologies = TreeFam::HomologyHelper::get_homologs_for_gene({"homology_adaptor" => $homology_adaptor, "genetree_adaptor" => $genetree_adaptor, "source_object" => "test"});
+	
+    my $resultset = TreeFam::SearchHelper::get_MemberInformation4seq({"member_adaptor" => $member_adaptor, "to_search" => $to_search, "genetree_adaptor"=> $genetree_adaptor,"homology_adaptor" =>$homology_adaptor});
+
+    if(!$resultset){
+        $c->error("No results found");
+    }
+    else{
+       $result_data = encode_json $resultset;
+    }
+        $c->res->content_type('application/json');
+     
+     $c->res->body( $result_data);
+
+}
+
 
 sub sequence_search : Chained( '/' ) 
                       PathPart( 'sequence_test' ) 
@@ -163,10 +201,11 @@ sub sequence_page : Chained( '/' )
   $c->log->debug( 'Sequence::sequence_page: building page of hits for a sequence' )
     if $c->debug;
     
-  my ( $entry ) = $tainted_entry =~ m/^(\w+)(\.\d+)?$/;
+  my ( $entry ) = $tainted_entry;
+  #my ( $entry ) = $tainted_entry =~ m/^(\w+)(\.\d+)?$/;
 
   unless ( defined $entry ) {
-    $c->log->debug( 'Sequence::sequence_page: no valid sequence accession found' )
+    $c->log->debug( 'Sequence::sequence_page: no valid sequence accession found for '.$entry.' was ['.$tainted_entry.']' )
       if $c->debug;  
 
     $c->stash->{errorMsg} = 'You must supply a valid sequence accession';

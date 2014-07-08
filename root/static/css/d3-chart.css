@@ -1,0 +1,209 @@
+#chartbox {
+	position: relative;
+	padding-top: 10px;
+}
+.chartboxheader {
+	background: #000000;
+	width: 798px;
+	margin-bottom: 10px;
+	padding: 12px 46px;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px; 
+	color: #FFFFFF;
+	font: 22px "CaviarDreamsRegular", Verdana, sans-serif;
+	font-weight: bold;
+}
+
+.chartbox_section_controls {
+	position: absolute;
+	right: 0;
+	-moz-right: 0;
+	-webkit-right: 0;
+	top: 0;
+	margin: 12px 51px 0 0;
+}
+.top_level_controls {
+	margin: 18px 51px 0 0;
+}
+#visualview1, #visualview2, #visualview3 {
+	position: relative;
+}
+.isactive, .isactive:active, .isactive:visited, .nonactive, .nonactive:active, .nonactive:visited {
+  font: 11px Helvetica Neue;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: #EC008C;
+  background-image: -moz-linear-gradient(top, rgba(255,255,255,.25), rgba(255,255,255,.11));
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgba(255,255,255,.25)),color-stop(1, rgba(255,255,255,.11)));
+  background-image: -webkit-linear-gradient(rgba(255,255,255,.25), rgba(255,255,255,.11));
+  color: #fff;
+  text-rendering: optimizeLegibility;
+  text-shadow: 0 -1px 1px #222;
+  padding: 6px 10px 6px 10px;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #222;
+  margin: 0;
+  -moz-box-shadow: 0 1px 3px #000;
+  -webkit-box-shadow: 0 1px 3px #000;
+}
+.nonactive, .nonactive:active, .nonactive:visited {
+	background-color: #222;
+}
+.isactive:hover, .nonactive:hover {
+	background-color: #797979;
+}
+.first {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.last {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.gotop_controls, .gotop_subcontrols {
+	position: absolute;
+	top: 0;
+	right: 0;
+	-moz-right: 0;
+	-webkit-right: 0;
+	margin: 17px 12px 0 0;
+}
+.gotop_subcontrols {
+	margin: 12px 15px 0 0;
+}
+.gotop, gotop:active, .gotop:visited {
+	text-decoration: none;
+	font-size: 10px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.gotop:hover {
+	color: #FFFF00;
+}
+
+
+
+.chartboxsubheader {
+	background: #797979;
+	width: 788px;
+	margin-bottom: 10px;
+	margin-left: 5px;
+	padding: 12px 46px;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px; 
+	color: #FFFFFF;
+	font: 22px "CaviarDreamsRegular", Verdana, sans-serif;
+	font-weight: bold;
+}
+#chart {
+	position: relative;
+	margin-left: 5px;
+	padding-bottom: 20px;
+	border-bottom: 2px dotted #C7C7C7;
+	width: 880px;
+}
+
+text {
+	font: 10px sans-serif;
+}
+rect.background {
+	fill: #FFFFFF;
+}
+.axis {
+	shape-rendering: crispEdges;
+}
+.axis path {
+	fill: none;
+	stroke: #000000;
+}
+.x.axis .minor {
+	stroke-opacity: .2;
+}
+.axis line {
+	fill: none;
+	stroke: #000000;
+}
+
+text.title {
+	font: 200 60px Helvetica Neue;
+	fill: #666666;
+}
+text.axistitle {
+	font: 10px Helvetica Neue;
+	fill: #666666;
+}
+#chart_controls {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 10px 0 0 48px;
+	z-index: 10;
+}
+.buttonbar, .buttonbar:active, .buttonbar:visited {
+  font: 11px Helvetica Neue;
+  background-color: #222;
+  background-image: -moz-linear-gradient(top, rgba(255,255,255,.25), rgba(255,255,255,.11));
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgba(255,255,255,.25)),color-stop(1, rgba(255,255,255,.11)));
+  background-image: -webkit-linear-gradient(rgba(255,255,255,.25), rgba(255,255,255,.11));
+  color: #fff;
+  text-rendering: optimizeLegibility;
+  text-shadow: 0 -1px 1px #222;
+  padding: 6px 15px 6px 15px;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #222;
+  margin: 0;
+  -moz-box-shadow: 0 1px 3px #999;
+  -webkit-box-shadow: 0 1px 3px #999;
+}
+.firstbar {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.lastbar {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.activebar {
+	background-color: #EC008C;
+}
+#chart_controls button:hover {
+	background-color: #797979;
+}
+
+
+.tipsy-inner {
+	text-align: left;
+}
+.tipsy-inner a {
+	color: white;
+}
+.charthoveringinfobox {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 6px 15px;
+	background: #000000;
+	color: #FFFF00;
+	font: 12px Arial, sans-serif;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px; 
+}
+
+#infoboxspacearea {
+}
+.infoboxpanelA, .infoboxpanelB, .infoboxpanelC, .infoboxpanelD, .infoboxpanelE {
+	position: relative;
+	margin-left: -5px;
+	padding-top: 20px;
+	background:green;
+	margin-top: 2px;
+	width: 720px;
+}
+

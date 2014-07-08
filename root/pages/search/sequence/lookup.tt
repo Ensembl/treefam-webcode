@@ -35,8 +35,7 @@ oe = 0;
 <!-- start of "results" -->
 <div class="whitebg">
 
-<div class="key"
-     id="sequenceHitsKey">
+<div class="key" id="sequenceHitsKey">
 
   <h2>TreeFam keyword hits on sequence "[% entry %]"</h2>
 	<!-- [% IF initial_entry %]
@@ -65,11 +64,15 @@ oe = 0;
 
 </div> <!-- end of div "key" -->
 
-<div id="results">  
+<div class="keyTable"  id="results">  
     <h2>Member info</h2>
-
+	TreeFam family : <div style="display: inline" id="treefam_family"></div><br>
+	Species : <div style="display: inline" id="species"></div><br>
+	Annotation : <div style="display: inline" id="annotation"></div>
     <h2>Sequences</h2>
-    	
+    	Protein:<div id="protein_seq"></div>	
+    	CDS:<div id="cds_seq"></div>	
+
     <h2 id="homologies"><img src="[% c.uri_for( "/static/images/logos/treefam_search_homologs4gene.png" ) %]" style="width:35px;height:25px;"/>Homologies</h2>
  	<div class="keyTable" id="homologies_table"></div> 
 	
@@ -83,6 +86,41 @@ oe = 0;
     /* Data set - can contain whatever information you want */
     jQuery(document).ready(function() {          
 		var valid_entry = "[% entry %]"
+
+	// get Member information
+	jQuery.ajax({
+  	url: "/get_seq_info/"+valid_entry,
+  	method: 'POST',
+	dataType: "json",
+ 	 success: function(data) {
+  		 //var json = jQuery.parseJSON(data);
+		 //alert("User "+data.member.stable_id+" created with ID "+data.member.taxon_name+"!")
+   	 	 // alert("ERROR: "+data)
+  		var chunks = [];
+		var seq_length = 60;
+		for (var i = 0, charsLength = data.sequences.protein.seq.length; i < charsLength; i += seq_length) {
+    			chunks.push(data.sequences.protein.seq.substring(i, i + seq_length));
+		}
+				
+		jQuery("#protein_seq").html(chunks.join("<br>"));
+		chunks = [];
+		var seq_length = 60;
+		for (var i = 0, charsLength = data.sequences.cds.seq.length; i < charsLength; i += seq_length) {
+    			chunks.push(data.sequences.cds.seq.substring(i, i + seq_length));
+		}	
+  		jQuery("#cds_seq").html(chunks.join("<br>"));
+  		jQuery("#treefam_family").html("<a href='/family/"+data.member.family+"' >"+data.member.family+"</a>");
+  		jQuery("#annotation").html(data.member.description);
+  		jQuery("#species").html(data.member.taxon_name);
+
+	},
+  	error: function(data, statusCode) {
+   	 alert("ERROR: "+data)
+  	}
+	});
+
+
+	
 	if(valid_entry)	{
                 jQuery('#homologies_table').html( '<table cellpadding="0" cellspacing="0" border="5" class="display" id="homologies_data"></table>' );
 		jQuery('#homologies_data').dataTable( {

@@ -14,52 +14,31 @@ META fullPage = 1;
 
 PROCESS "components/require.tt";
 
-requirements.css.push( "index.css" );
-requirements.css.push( "treefam.css" );
+#requirements.css.push( "index.css" );
+#requirements.css.push( "treefam.css" );
 #requirements.css.push( "TreeFamily.css" );
 requirements.css.push( "buttons.css" );
-requirements.css.push( "landing_page_style.css" );
-requirements.css.push( "jquery/jquery.fancybox-1.3.4.css" );
+requirements.css.push( "landing_page.css" );
 #requirements.css.push( "slider/style.css" );
 requirements.js.push( "jquery/jquery-1.8.2.min.js" );
 requirements.js.push( "jquery/jquery-ui-1.8.2.custom.min.js" );
-requirements.js.push( "jquery/jquery.fancybox-1.3.4.pack.js" );
+#requirements.js.push( "jquery/jquery.fancybox-1.3.4.pack.js" );
+#requirements.css.push( "jquery/jquery.fancybox-1.3.4.css" );
+#requirements.js.push( "jquery/jquery.fancybox.pack.js" );
+#requirements.css.push( "jquery/jquery.fancybox.css" );
 # This will be our own implementation of autocomplete
-#requirements.js.push( "treefam_autocomplete.js" );
 requirements.js.push( "prototype.js" );
 requirements.js.push( "sharedFunctions.js" );
-#
-#requirements.css.push( "jcobb-basic-jquery-slider-e15b5ee/bjqs.css" );
-#requirements.js.push( "jcobb-basic-jquery-slider-e15b5ee/js/bjqs-1.3.js" );
-
-# slider: http://css-tricks.com/examples/AnythingSlider/demos.html#&panel1-4&panel2-1&panel3-3
-#requirements.js.push( "anythingslider/jquery.easing.1.2.js" );
-#requirements.js.push( "anythingslider/jquery.anythingslider.min.js" );
-#requirements.js.push( "anythingslider/jquery.colorbox-min.js" );
-#requirements.css.push( "anythingslider/anythingslider.css" );
-#requirements.css.push( "anythingslider/colorbox.css" );
 
 
-# slider   http://tympanus.net/codrops/2010/04/28/pretty-simple-content-slider-with-jquery-and-css3/
-#requirements.js.push( "PrettySimpleContentSlider/jquery-package-min.js" );
-#requirements.css.push( "PrettySimpleContentSlider/style.css" );
+requirements.js.push( "d3/d3.v3.min.js" );
+requirements.js.push( "jquery/jquery.tipsy.js" );
+requirements.css.push( "jquery/tipsy.css" );
+requirements.js.push( "phylowidget/minimal_species_tree.js" );
 
-# slider: http://www.gayadesign.com/scripts/presentationCycle/
-#requirements.js.push( "presentationCycle/presentationCycle.js" );
-#requirements.js.push( "presentationCycle/jquery.cycle.all.min.js" );
-#requirements.css.push( "presentationCycle/presentationCycle.css" );
-#requirements.css.push( "presentationCycle/style.css" );
+#requirements.js.push( "treefam_autocomplete.js" );
 
-# accordion
-requirements.css.push( "accordion/liteaccordion.css" );
-requirements.js.push( "accordion/liteaccordion.jquery.js" );
-
-
-# News ticker
-requirements.css.push( "jquerynewsticker/ticker-style.css" );
-requirements.js.push( "jquerynewsticker/jquery.ticker.js" );
-
-#requirements.cssIeAll.push( "index_all_ie.css" );
+# css fonts
 
 #-------------------------------------------------------------------------------
 
@@ -79,124 +58,115 @@ requirements.js.push( "jquerynewsticker/jquery.ticker.js" );
   // ]]>
 </script>
 
-<div id="index" >
-	<div id="pancy">
+<div id="index" class="whitebg">
+	<div id="pancy"  >
 	    <div class="wrap">
-	    
 	    	<div class="intro">
-		    	
-		    	<a href="index.htm" id="logo"><img src="/static/images/treefam_logo.png" alt="TreeFam"></a><br><br><br><br>
-		    	<h1>The Database of <br>animal gene trees<br>and orthology predictions</h1>
-		    	<!--<p>We provide gene<br>
-		    	gene trees as well as<br>
-		    	orthologs and paralogs</p> -->
-		    	
-		    	<a href="/download" class="downloadButton">
-		    		<span class="slidingDoor">
-			    		<span class="title">Download!</span>
-			    		<span class="detail">
-			    			<span class="left"><strong>version:</strong> 9</span>
-			    			<span class="left"><strong>update:</strong> 1/5/13</span> 
-			    		</span>
-		    		</span>
-		    	</a>
-		    	
-		    	
-		    	
+		    <br>	
+		    	<b><font size="5">TreeFam 9</font></b><br><font size ="2"> (March 2013, 109 species, 15,736 families)</font>
+	    	        <br>
+	    	        <br>
+			TreeFam is a database composed of phylogenetic trees inferred from animal genomes. It provides orthology/parology predictions as well the evolutionary history of genes.<br>
+			<font size="1">(see the <a href="/family/TF105041">BRCA2</a> gene family page as an example)</font>.
+	    	        <br>
+	    	        <br>
+
+
+
+	  <!-- <h3><i class="icon-download icon-large"></i> Get TreeFam data</h3>
+		You can download <a href="/download">all pairwise homologs</a> (orthologs/paralogs) or use our <a href="/help#tabview=tab3">scripts</a> to get customized data, e.g. get homologs for your species of interest.
+	    	        <br>
+	    	        <br>
+	  <h3><i class="icon-wrench icon-large"></i> Analyse your own data</h3>
+		Use our tool <a href="https://github.com/treefam/treefam_tools/tree/master/treefam_scan">TreeFamscan</a> to check your data for matches to TreeFam families. This is useful, if you e.g. want to check if your gene predictions are correct.
+	    	        <br>
+	    	        <br> -->
+	  
+
+	<h3><i class="icon-search icon-large"></i> Search TreeFam</h3>
+		<form method="post" 
+            id="proteinSeqSearchForm"
+            action="[% c.uri_for( "/search/sequence" ) %]"
+            enctype="multipart/form-data">
+
+        <div class="row">
+          <textarea cols="50" 
+                    rows="10"
+                    name="seq"
+                    id="seq">Enter Sequence here</textarea>
+        </div>
+     <input type="checkbox" id="tree_insertion" name="tree_insertion" value="tree_insertion" checked>Insert into tree<br> 
+	<div id="show_tree_options"  style="display: inline;">
+		<h3>Tree insertion algorithm</h3>
+     			<input type="radio" id="tree_insertion_parsimony" name="tree_insertion_algorithm" value="tree_insertion_parsimony">using Parsimony (super-fast, but might insert into several branches)<br> 
+     			<input type="radio" id="tree_insertion_likelihood" name="tree_insertion_algorithm" value="tree_insertion_likelihood">using ML (fast - might take a bit longer than Parsimony, more accurate)<br> 
+
+		</div>
+        <div class="row">
+          <label class="blankLabel"></label>
+           <input class="submit" 
+                 type="submit" 
+                 name="submit" 
+                 value="Submit"
+                 onclick="if(!$('seq').present()){return false};"/> 
+          <input class="reset"
+                 type="reset"
+                 name="reset"
+                 value="Reset" />
+          <input class="example" 
+                 type="button"
+                 value="Example" 
+                 onclick="$('seq').value=exSeq;" />
+        </div>
+
+      </form>
+		</p>
+		<!--<img src="https://si0.twimg.com/profile_images/2843133017/5490329bafb10688b3f6146a52484b15.png" width="30" height="30" alt="citing_treefam">Curious what TreeFam is?
+		Click <a class="various" data-fancybox-type="iframe" href="http://slid.es/fabianschreiber/treefam/embed">here</a>. -->
+		<!-- You can find our previous website under <a href="http://legacy.treefam.org">legacy.treefam.org</a>.-->
+		    <p id="randomtreetext"></p>
+	
 	    	</div><!-- intro close -->
-	    	
+		<div class="logo">	<p id="randomtreetext"></p>
+	    	</div>	
 	    	<div class="preview">
-	    	<svg width="400" height="300" transform="translate(40,40)"><g transform="translate(80,0)"><path class="link" stroke-width="1.5px" stroke="black" d="M0,237.890625C16.666666666666664,237.890625 16.666666666666664,194.53125 33.33333333333333,194.53125"></path><path class="link" stroke-width="1.5px" stroke="black" d="M0,237.890625C100,237.890625 100,281.25 200,281.25"></path><path class="link" stroke-width="1.5px" stroke="black" d="M33.33333333333333,194.53125C50,194.53125 50,133.59375 66.66666666666667,133.59375"></path><path class="link" stroke-width="1.5px" stroke="black" d="M33.33333333333333,194.53125C116.66666666666666,194.53125 116.66666666666666,206.25 200,206.25"></path><path class="link" stroke-width="1.5px" stroke="black" d="M33.33333333333333,194.53125C116.66666666666666,194.53125 116.66666666666666,243.75 200,243.75"></path><path class="link" stroke-width="1.5px" stroke="black" d="M66.66666666666667,133.59375C83.33333333333334,133.59375 83.33333333333334,98.4375 100,98.4375"></path><path class="link" stroke-width="1.5px" stroke="black" d="M66.66666666666667,133.59375C133.33333333333334,133.59375 133.33333333333334,168.75 200,168.75"></path><path class="link" stroke-width="1.5px" stroke="black" d="M100,98.4375C116.66666666666667,98.4375 116.66666666666667,65.625 133.33333333333334,65.625"></path><path class="link" stroke-width="1.5px" stroke="black" d="M100,98.4375C150,98.4375 150,131.25 200,131.25"></path><path class="link" stroke-width="1.5px" stroke="black" d="M133.33333333333334,65.625C150,65.625 150,37.5 166.66666666666669,37.5"></path><path class="link" stroke-width="1.5px" stroke="black" d="M133.33333333333334,65.625C166.66666666666669,65.625 166.66666666666669,93.75 200,93.75"></path><path class="link" stroke-width="1.5px" stroke="black" d="M166.66666666666669,37.5C183.33333333333334,37.5 183.33333333333334,18.75 200,18.75"></path><path class="link" stroke-width="1.5px" stroke="black" d="M166.66666666666669,37.5C183.33333333333334,37.5 183.33333333333334,56.25 200,56.25"></path><g class="node" transform="translate(0,237.890625)"><g class="blank_circles"><g class="blank_circles2"><path fill="red" class="species_pies" style="visibility: visible;" d="M6.123031769111886e-16,-10A10,10 0 0,1 7.608737271566007,-6.488999701978902L0,0Z"></path><path fill="green" class="species_pies" style="visibility: visible;" d="M7.608737271566007,-6.488999701978902A10,10 0 1,1 -1.836909530733566e-15,-10L0,0Z"></path></g><path fill="red" class="gene_pies" d="M6.123031769111886e-16,-10A10,10 0 0,1 6.123031769111886e-16,-10L0,0Z"></path><path fill="green" class="gene_pies" d="M0,10A10,10 0 1,1 0,-10A10,10 0 1,1 0,10Z"></path></g><text x="-70" y="-10" class="labels" original-title="">Eukaryota</text></g><g class="node" transform="translate(33.33333206176758,194.53125)"><g class="blank_circles"><g class="blank_circles2"><path fill="red" class="species_pies" style="visibility: visible;" d="M6.123031769111886e-16,-10A10,10 0 0,1 6.167188726285431,-7.871834806090502L0,0Z"></path><path fill="green" class="species_pies" style="visibility: visible;" d="M6.167188726285431,-7.871834806090502A10,10 0 1,1 -1.0718693727734818e-14,-10L0,0Z"></path></g><path fill="red" class="gene_pies" d="M6.123031769111886e-16,-10A10,10 0 0,1 1.2659245357374929,-9.919548128307953L0,0Z"></path><path fill="green" class="gene_pies" d="M1.2659245357374929,-9.919548128307953A10,10 0 1,1 7.0448746662676864e-15,-10L0,0Z"></path></g><text x="-70" y="-10" class="labels">Metazoa</text></g><g class="node" transform="translate(66.66666412353516,133.59375)"><g class="blank_circles"><g class="blank_circles2"><path fill="red" class="species_pies" style="visibility: visible;" d="M6.123031769111886e-16,-10A10,10 0 0,1 2.1497044021102423,-9.766205557100866L0,0Z"></path><path fill="green" class="species_pies" style="visibility: visible;" d="M2.1497044021102423,-9.766205557100866A10,10 0 1,1 -1.836909530733566e-15,-10L0,0Z"></path></g><path fill="red" class="gene_pies" d="M6.123031769111886e-16,-10A10,10 0 0,1 5.136773915734062,8.57983413234977L0,0Z"></path><path fill="green" class="gene_pies" d="M5.136773915734062,8.57983413234977A10,10 0 1,1 -1.836909530733566e-15,-10L0,0Z"></path></g><text x="-70" y="-10" class="labels">Chordata</text></g><g class="node" transform="translate(100,98.4375)"><g class="blank_circles"><g class="blank_circles2"><path fill="red" class="species_pies" style="visibility: visible;" d="M6.123031769111886e-16,-10A10,10 0 0,1 6.123031769111886e-16,-10L0,0Z"></path><path fill="green" class="species_pies" style="visibility: visible;" d="M0,10A10,10 0 1,1 0,-10A10,10 0 1,1 0,10Z"></path></g><path fill="red" class="gene_pies" d="M6.123031769111886e-16,-10A10,10 0 0,1 5.136773915734062,8.57983413234977L0,0Z"></path><path fill="green" class="gene_pies" d="M5.136773915734062,8.57983413234977A10,10 0 1,1 -1.836909530733566e-15,-10L0,0Z"></path></g><text x="-70" y="-10" class="labels">Vertebrata</text></g><g class="node" transform="translate(133.3333282470703,65.625)"><g class="blank_circles"><g class="blank_circles2"><path fill="red" class="species_pies" style="visibility: visible;" d="M6.123031769111886e-16,-10A10,10 0 0,1 1.5643446504023093,-9.876883405951379L0,0Z"></path><path fill="green" class="species_pies" style="visibility: visible;" d="M1.5643446504023093,-9.876883405951379A10,10 0 1,1 -1.836909530733566e-15,-10L0,0Z"></path></g><path fill="red" class="gene_pies" d="M6.123031769111886e-16,-10A10,10 0 1,1 -5.136773915734065,8.57983413234977L0,0Z"></path><path fill="green" class="gene_pies" d="M-5.136773915734065,8.57983413234977A10,10 0 0,1 -1.836909530733566e-15,-10L0,0Z"></path></g><text x="-70" y="-10" class="labels">Mammalia</text></g><g class="node" transform="translate(166.6666717529297,37.5)"><g class="blank_circles"><g class="blank_circles2"><path fill="red" class="species_pies" style="visibility: visible;" d="M6.123031769111886e-16,-10A10,10 0 0,1 6.123031769111886e-16,-10L0,0Z"></path><path fill="green" class="species_pies" style="visibility: visible;" d="M0,10A10,10 0 1,1 0,-10A10,10 0 1,1 0,10Z"></path></g><path fill="red" class="gene_pies" d="M6.123031769111886e-16,-10A10,10 0 1,1 -9.096319953545182,-4.154150130018869L0,0Z"></path><path fill="green" class="gene_pies" d="M-9.096319953545182,-4.154150130018869A10,10 0 0,1 7.0448746662676864e-15,-10L0,0Z"></path></g><text x="-70" y="-10" class="labels">Euarchontoglires</text></g><g class="node" transform="translate(200,18.75)"><g class="blank_circles"><g class="blank_circles2"><path fill="red" class="species_pies" style="visibility: visible;" d="M6.123031769111886e-16,-10A10,10 0 0,1 6.123031769111886e-16,-10L0,0Z"></path><path fill="green" class="species_pies" style="visibility: visible;" d="M0,10A10,10 0 1,1 0,-10A10,10 0 1,1 0,10Z"></path></g><path fill="red" class="gene_pies" d="M6.123031769111886e-16,-10A10,10 0 1,1 -5.929079290546402,-8.052702575310589L0,0Z"></path><path fill="green" class="gene_pies" d="M-5.929079290546402,-8.052702575310589A10,10 0 0,1 7.0448746662676864e-15,-10L0,0Z"></path></g><text x="12" y="4" class="labels">Primates</text></g><g class="node" transform="translate(200,56.25)"><g class="blank_circles"><g class="blank_circles2"><path fill="red" class="species_pies" style="visibility: visible;" d="M6.123031769111886e-16,-10A10,10 0 0,1 6.123031769111886e-16,-10L0,0Z"></path><path fill="green" class="species_pies" style="visibility: visible;" d="M0,10A10,10 0 1,1 0,-10A10,10 0 1,1 0,10Z"></path></g><path fill="red" class="gene_pies" d="M6.123031769111886e-16,-10A10,10 0 1,1 -4.297949120891719,-9.02926538286621L0,0Z"></path><path fill="green" class="gene_pies" d="M-4.297949120891719,-9.02926538286621A10,10 0 0,1 -1.836909530733566e-15,-10L0,0Z"></path></g><text x="12" y="4" class="labels" original-title="">Glires</text></g><g class="node" transform="translate(200,93.75)"><g class="blank_circles"><g class="blank_circles2"><path fill="red" class="species_pies" style="visibility: visible;" d="M6.123031769111886e-16,-10A10,10 0 0,1 4.647231720437686,-8.8545602565321L0,0Z"></path><path fill="green" class="species_pies" style="visibility: visible;" d="M4.647231720437686,-8.8545602565321A10,10 0 1,1 -1.0718693727734818e-14,-10L0,0Z"></path></g><path fill="red" class="gene_pies" d="M6.123031769111886e-16,-10A10,10 0 1,1 -6.90079011482112,-7.237340381050702L0,0Z"></path><path fill="green" class="gene_pies" d="M-6.90079011482112,-7.237340381050702A10,10 0 0,1 -1.836909530733566e-15,-10L0,0Z"></path></g><text x="12" y="4" class="labels">Laurasiatheria</text></g><g class="node" transform="translate(200,131.25)"><g class="blank_circles"><g class="blank_circles2"><path fill="red" class="species_pies" style="visibility: visible;" d="M6.123031769111886e-16,-10A10,10 0 1,1 -10,1.2246063538223773e-15L0,0Z"></path><path fill="green" class="species_pies" style="visibility: visible;" d="M-10,1.2246063538223773e-15A10,10 0 0,1 -1.836909530733566e-15,-10L0,0Z"></path></g><path fill="red" class="gene_pies" d="M6.123031769111886e-16,-10A10,10 0 1,1 -2.5114798718107934,-9.679487013963563L0,0Z"></path><path fill="green" class="gene_pies" d="M-2.5114798718107934,-9.679487013963563A10,10 0 0,1 -1.836909530733566e-15,-10L0,0Z"></path></g><text x="12" y="4" class="labels">non-Mammals</text></g><g class="node" transform="translate(200,168.75)"><g class="blank_circles"><g class="blank_circles2"><path fill="red" class="species_pies" style="visibility: visible;" d="M6.123031769111886e-16,-10A10,10 0 0,1 6.123031769111886e-16,-10L0,0Z"></path><path fill="green" class="species_pies" style="visibility: visible;" d="M0,10A10,10 0 1,1 0,-10A10,10 0 1,1 0,10Z"></path></g><path fill="red" class="gene_pies" d="M6.123031769111886e-16,-10A10,10 0 1,1 -1.26592453573749,-9.919548128307953L0,0Z"></path><path fill="green" class="gene_pies" d="M-1.26592453573749,-9.919548128307953A10,10 0 0,1 7.0448746662676864e-15,-10L0,0Z"></path></g><text x="12" y="4" class="labels">non-Vertebrata</text></g><g class="node" transform="translate(200,206.25)"><g class="blank_circles"><g class="blank_circles2"><path fill="red" class="species_pies" style="visibility: visible;" d="M6.123031769111886e-16,-10A10,10 0 0,1 8.021231927550438,-5.971585917027862L0,0Z"></path><path fill="green" class="species_pies" style="visibility: visible;" d="M8.021231927550438,-5.971585917027862A10,10 0 1,1 -1.836909530733566e-15,-10L0,0Z"></path></g><path fill="red" class="gene_pies" d="M6.123031769111886e-16,-10A10,10 0 1,1 -9.93838464461254,-1.1083819990101091L0,0Z"></path><path fill="green" class="gene_pies" d="M-9.93838464461254,-1.1083819990101091A10,10 0 0,1 -1.836909530733566e-15,-10L0,0Z"></path></g><text x="12" y="4" class="labels">Arthropoda</text></g><g class="node" transform="translate(200,243.75)"><g class="blank_circles"><g class="blank_circles2"><path fill="red" class="species_pies" style="visibility: visible;" d="M6.123031769111886e-16,-10A10,10 0 0,1 2.8173255684142964,9.594929736144973L0,0Z"></path><path fill="green" class="species_pies" style="visibility: visible;" d="M2.8173255684142964,9.594929736144973A10,10 0 1,1 -1.836909530733566e-15,-10L0,0Z"></path></g><path fill="red" class="gene_pies" d="M6.123031769111886e-16,-10A10,10 0 1,1 -4.861967361004687,-8.738493770697849L0,0Z"></path><path fill="green" class="gene_pies" d="M-4.861967361004687,-8.738493770697849A10,10 0 0,1 -1.836909530733566e-15,-10L0,0Z"></path></g><text x="12" y="4" class="labels">Nematoda</text></g><g class="node" transform="translate(200,281.25)"><g class="blank_circles"><g class="blank_circles2"><path fill="red" class="species_pies" style="visibility: visible;" d="M0,10A10,10 0 1,1 0,-10A10,10 0 1,1 0,10Z"></path><path fill="green" class="species_pies" style="visibility: visible;" d="M-1.836909530733566e-15,-10A10,10 0 0,1 -1.836909530733566e-15,-10L0,0Z"></path></g><path fill="red" class="gene_pies" d="M0,10A10,10 0 1,1 0,-10A10,10 0 1,1 0,10Z"></path><path fill="green" class="gene_pies" d="M-1.836909530733566e-15,-10A10,10 0 0,1 -1.836909530733566e-15,-10L0,0Z"></path></g><text x="12" y="4" class="labels">Outgroup</text></g></g></svg>
 	    		<!--<img src="img/preview.png" alt="preview">-->
-	    	
-	    	</div><!-- preview close -->
-	    	
-	    	<div class="titleSeparator">
-	    		<h2>How TreeFam can help you</h2>
-	    	</div>
-	    	<a href="#" rel="left" class="arrow arrowLeft" style="height: 106px;"></a>
-	    	<div class="sliderContainer">
-		    	<ul class="slider" style="width: 2800px;">
-		    		<li>
-		    			<div class="oneOfFour">
-		    				<a href="/static/images/landing_page/TreeFam_d3tree_large.png" class="lightbox" title="Example caption"><img src="/static/images/landing_page/TreeFam_d3tree_small.png" alt="Gene tree example"></a>
-		    			</div>
-		    			<div class="threeOfFour last">
-		    				<h4>TreeFam is...</h4>
-		    				<p>
-			    				a database of phylogenetic trees for animal genes. <br>
-		    				    For each gene family, we display an accurate gene tree, annotations (e.g. Pfam domains), sequences, homologs. 
-		    				</p>
-		    			</div>
-	<!--	    			<div class="oneOfFour">
-		    				<a href="/static/images/landing_page/TreeFam_BRCA_large.png" class="lightbox" title="Example caption"><img src="/static/images/landing_page/TreeFam_BRCA_small.png" alt="TreeFam family example"></a>
-		    			</div> -->
-		    		</li>
-		    		<li>
-		    			<div class="FourOfFour last">
-		    				<h4>TreeFam release 9 has ...</h4>
-		    				<p>a total of 109 species in 15,321 families. You can download all data <a href="">here</a>.</p>
-		    				<p>Click <a href="/help#tabview=tab1">here</a> to find about how we make a new release and click <a href="">here</a> to view the our species tree</p>
-		    			</div>
-		    		</li>
-		    		<li>
-						<div class="oneOfFour">
-							<a href="/static/images/landing_page/scr02.jpg" class="lightbox" rel="group1"><img src="/static/images/landing_page/scr02-thumb.jpg" alt="thumb"></a>
-						</div>
-		    			<div class="threeOfFour last">
-		    				<h4>Get ...</h4>
-		    				<p><a href="/download">all pairwise homologs</a> (orthologs/paralogs) or use our <a href="/help#tabview=tab3">scripts</a> to e.g. get homologs for your species of interest</p>
-		    			</div>
-		    		</li>
-
-		    		<li>
-		    			<div class="oneOfFour">
-			    				<a href="/static/images/landing_page/TreeFamScan_large.png" class="lightbox" rel="group2"><img src="/static/images/landing_page/TreeFamScan_small.png" alt="thumb"></a>
-		    			</div>
-						<div class="threeOfFour last">
-							<h4>Analyse your own data ...</h4>
-							<p>using out tool <a href="">TreeFamscan</a>. It checks your data for matches to TreeFam families. 
-							This is useful, if you e.g. want to check if your gene predictions are correct</p>
-		    			</div>
-		    		</li>
-		    	</ul>
-		    	<ul class="sliderController" style="width: 100px;">
-		    		<!--<li class="current"><a href="#"></a></li>
-		    		<li><a href="#"></a></li>
-		    		<li><a href="#"></a></li> 
-		    		<li><a href="#"></a></li> -->
-		    		</ul>
-	    	</div>
-	    	 <a href="#" rel="right" class="arrow arrowRight" style="height: 106px;"></a>
-	    	<div class="clear"></div>    	
+			<div  style="font-size='1'" id="minimal_species_tree"></div>
+	    		<font size="2">Species Tree used in TreeFam 9. See full tree <a href="/browse#tabview=tab2">here</a>.</font>
+		</div><!-- preview close -->
 
 	    	<div class="titleSeparator">
-	    		<h2>Information</h2>
+	    		<h2>The TreeFam project</h2>
 	    	</div>
 
 	    	<!-- <span class="subtitle">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet.</span> -->
-
+<div class="whitebg">
 <div id="contentwrapper">
     <div id="contentcolumn">
 		<div id="posts" class="announcements" >
-			<!-- <span onclick="hideThis('posts');" class="closer" style="float: right; cursor: pointer">Hide this</span> -->
-			<div id="container" style="margin-left: 10px;margin-right: 20px;">  
-				       <h3 ><img src="/static/images/landing_page/announcement.png" width="20" height="20" alt="citing_treefam"> Recent TreeFam <a class="ext" href="http://xfam.wordpress.com/"> blog</a> posts</h3>  
-            <p style="color:grey">
+				       <h3 ><img src="/static/images/landing_page/announcement.png" width="20" height="20" alt="citing_treefam"> TreeFam <a  href="http://xfam.wordpress.com/category/treefam/">news</a></h3>  
+			<div id="container" style="margin-left: 10px;margin-right: 20px; text-align: justify; overflow:auto; max-height:200px;">  
+            		<p style="color:grey">
 				<ul>
-				<li><img src="/static/images/landing_page/documentation.png" width="15" height="15" alt="citing_treefam"><b> TreeFam: What is in the next release</b><br>
-				 <font size="2">(posted 10 December 2012)</font><br>
-Behind the scenes we are working hard on building the next TreeFam release, which will be TreeFam 9.
-TreeFam 9 will have 109 species, that is a 37% increase over TreeFam 8. Most of the species come from EnsEMBL (v.69) and EnsEMBL genomes (v.16) with a few ones coming from JGI. <a href="http://xfam.wordpress.com/2012/12/10/treefam-whats-in-the-next-release/">[...]</a> </li>
-
-<li><img src="/static/images/landing_page/documentation.png" width="15" height="15" alt="citing_treefam"><b> We are on the move</b><br>
-<font size="2"> (posted 1 November 2012)</font><br>
-After 15 great years at the Sanger Institute we are on the move. On the 1st November, the Cambridge Xfam group will be taking up residence at the European Bioinformatics Institute on the other side of the Wellcome Trust Genome Campus. We will keep running the websites at Sanger for a bit longer, but eventually we will <a href="http://xfam.wordpress.com/2012/11/01/were-on-the-move/">[...]</a></li>
-
-<li><img src="/static/images/landing_page/documentation.png" width="15" height="15" alt="citing_treefam"><b> TreeFam is back with a new release!</b><br> 
-<font size="2">(posted 27 March 2012)</font><br>
-As some of you will already be aware, the Xfam family has recently gained a new member: the TreeFam database.
-TreeFam aims to provide phylogenetic trees and orthology predictions for all animal genes.<a href="http://xfam.wordpress.com/2012/03/27/treefam-is-back-with-a-new-release/">[...]</a></li>
+				<li>
+					<img src="/static/images/landing_page/documentation.png" width="15" height="15" alt="citing_treefam"><b>TreeFam 9 is now available: </b>  
+					<a href="http://xfam.wordpress.com/2013/05/03/treefam-9-is-now-available/">[...]</a><br><font size="1">(posted 3 May 2013)</font>
+				 </li>
+				<br>
+				<li>
+					<img src="/static/images/landing_page/documentation.png" width="15" height="15" alt="citing_treefam"><b> TreeFam: What is in the next release: </b><a href="http://xfam.wordpress.com/2012/12/10/treefam-whats-in-the-next-release/">[...]</a>
+					<br><font size="1">(posted 10 December 2012)</font>
+				</li>
+				<br>
+				<li>
+					<img src="/static/images/landing_page/documentation.png" width="15" height="15" alt="citing_treefam"><b> We are on the move: </b><a href="http://xfam.wordpress.com/2012/11/01/were-on-the-move/">[...]</a>
+					<br><font size="1">(posted 1 November 2012)</font>
+				</li>
+				<br>
+				<li>
+					<img src="/static/images/landing_page/documentation.png" width="15" height="15" alt="citing_treefam"><b> TreeFam is back with a new release: </b><a href="http://xfam.wordpress.com/2012/03/27/treefam-is-back-with-a-new-release/">[...]</a> 
+					<br><font size="1">(posted 27 March 2012)</font>
+</li>
 	</ul>
 	</p>
             </div>
@@ -206,21 +176,52 @@ TreeFam aims to provide phylogenetic trees and orthology predictions for all ani
 
 <div id="leftcolumn">
 	<div id="container" style="margin-right:9%; ">  
+			<h3><img src="/static/images/landing_page/industry.png" width="20" height="20" alt="citing_treefam"> Use cases</h3>  
+            <p style="color:#888">
+            	<ul>
+            	<li>Protein domains: <a href="http://pfam.sanger.ac.uk/"><img src="/static/images/Pfam_logo.gif" height="10"/></a></li>   
+            	<li>RNA families:  <a href="http://rfam.sanger.ac.uk/"><img src="/static/images/rfam_logo.png" height="10"/></a></li>
+				<li>Repetitive DNA: <a href="http://dfam.janelia.org/"><img src="/static/images/dfam_logo.png" height="10"/></a>	 </li>
+				<li>Peptidases: <a href="http://merops.sanger.ac.uk/"><img src="/static/images/meropslogo.png" height="10"/></a>  </li>
+				<li>Spurious ORFs: <a href="ftp://ftp.sanger.ac.uk/pub/databases/Pfam/AntiFam/"><img src="/static/images/antifam_logo.png" height="10"/></a> </li>
+			</ul>
+		</p>
+	</div><div id="container" style="margin-right:9%; ">  
 			<h3><img src="/static/images/landing_page/industry.png" width="20" height="20" alt="citing_treefam"> Xfam databases</h3>  
             <p style="color:#888">
             	<ul>
-            	<li>Protein domains: <a href="http://pfam.sanger.ac.uk/"><img src="/static/images/Pfam_logo.gif" height="15"/></a></li>   
-            	<li>RNA families:  <a href="http://rfam.sanger.ac.uk/"><img src="/static/images/rfam_logo.png" height="15"/></a></li>
-				<li>Repetitive DNA: <a href="http://dfam.janelia.org/"><img src="/static/images/dfam_logo.png" height="15"/></a>	 </li>
-				<li>Peptidases: <a href="http://merops.sanger.ac.uk/"><img src="/static/images/meropslogo.png" height="15"/></a>  </li>
-				<li>Spurious ORFs: <a href="ftp://ftp.sanger.ac.uk/pub/databases/Pfam/AntiFam/">AntiFam</a> </li>
+            	<li>Protein domains: <a href="http://pfam.sanger.ac.uk/"><img src="/static/images/Pfam_logo.gif" height="10"/></a></li>   
+            	<li>RNA families:  <a href="http://rfam.sanger.ac.uk/"><img src="/static/images/rfam_logo.png" height="10"/></a></li>
+				<li>Repetitive DNA: <a href="http://dfam.janelia.org/"><img src="/static/images/dfam_logo.png" height="10"/></a>	 </li>
+				<li>Peptidases: <a href="http://merops.sanger.ac.uk/"><img src="/static/images/meropslogo.png" height="10"/></a>  </li>
+				<li>Spurious ORFs: <a href="ftp://ftp.sanger.ac.uk/pub/databases/Pfam/AntiFam/"><img src="/static/images/antifam_logo.png" height="10"/></a> </li>
 			</ul>
 		</p>
-</div>
+	</div>
 </div>
 
 <div id="rightcolumn">
-	<div id="container" style="margin-left:5%">  
+	<div id="container" style="margin-left:5%; text-align: justify;">  
+		        <h3><img src="/static/images/landing_page/publication.png" width="20" height="20" alt="citing_treefam"> Using TreeFam</h3>  
+    	<p>
+      		If you find TreeFam useful, please consider 
+      		<a href="/help?tab=helpReferencesBlock">citing</a> the references 
+      		that describe this work:<br>
+      <span class="title">
+        <a class="ext" 
+           href="http://europepmc.org/abstract/MED/18056084">
+          TreeFam: 2008 Update</a>
+      </span>
+      <span class="authors">
+        Jue Ruan, Heng Li, et al.
+      </span>
+      <span class="ref">
+        <span class="jrnl">Nucleic Acids Research</span>&nbsp;(2008) 
+        <br>doi: 10.1093/nar/gkm1005
+       </span>
+    	</p>
+</div>
+<div id="container" style="margin-left:5%; text-align: justify;">  
 		        <h3><img src="/static/images/landing_page/publication.png" width="20" height="20" alt="citing_treefam"> Citing TreeFam</h3>  
     	<p>
       		If you find TreeFam useful, please consider 
@@ -243,15 +244,96 @@ TreeFam aims to provide phylogenetic trees and orthology predictions for all ani
 
 	</div>
 </div>
+</div>
     </div>	    	
+	<div class="cleaner"><!-- empty --></div>
 	    </div><!-- wrap close -->
     </div><!-- fancy close -->  
    </div> 
-
 <script type="text/javascript">
+var exSeq = ">sp|P02008|HBAZ_HUMAN Hemoglobin subunit zeta OS=Homo sapiens GN=HBZ PE=1 SV=2";
+exSeq += "MSLTKTERTIIVSMWAKISTQADTIGTETLERLFLSHPQTKTYFPHFDLHPGSAQLRAHG";
+exSeq += "SKVVAAVGDAVKSIDDIGGALSKLSELHAYILRVDPVNFKLLSHCLLVTLAARFPADFTA";
+exSeq += "EAHAAWDKFLSVVSSVLTEKYR";
+var SEARCH_TREEFAM = "Search TreeFam...";
+	jQuery("#tree_insertion_parsimony").prop('checked', true);
+	jQuery("#tree_insertion").click(function () {
+            jQuery("#show_tree_options").toggle();
+        });
+
+jQuery('textarea')
+  .focus(function() {
+        if (this.value === this.defaultValue) {
+            this.value = '';
+        }
+  })
+  .blur(function() {
+        if (this.value === '') {
+            this.value = this.defaultValue;
+        }
+});
+
+
+    function displaySearchTreeFam(queryEl) {
+        if (queryEl == null) {
+            return;
+        }
+        if (queryEl.value == null || queryEl.value.trim() == "") {
+            queryEl.value = SEARCH_TREEFAM;
+        }
+    }
+
+    function hideSearchTreeFam(queryEl) {
+        if (queryEl == null || queryEl.value == null) {
+            return;
+        }
+        if (queryEl.value.trim() == SEARCH_TREEFAM) {
+            queryEl.value = "";
+        }
+    }
+
+
   // load the latest blog posts
 jQuery(document).ready(function(){    
-	if( jQuery(".slider").length ){
+        jQuery("#tree_insertion").attr('checked', 'checked');
+	displaySearchTreeFam(document.getElementById('local-searchbox'));
+	jQuery(".fancybox").fancybox();
+	jQuery(".various").fancybox({
+		'minWidth' : 800,
+		'minHeight' : 800,
+	});
+	//jQuery(".lightbox").fancybox({
+	//	'speedIn'		:	600, 
+	//	'speedOut'		:	200
+	//});
+var randomtrees = {
+	
+	"trees": [
+        {"name": "CCNB", "id": "TF101001", "annotation":"Cyclin B"},
+        {"name": "UBE2E", "id": "TF101117", "annotation": "Ubiquitin-conjugating enzyme E2 E"},
+        {"name": "BRCA2", "id": "TF105041", "annotation": "breast cancer 2, early onset"},
+        {"name": "HSPA5", "id": "TF105044", "annotation": "heat shock 70kDa protein 5"},
+        {"name": "POLR1D", "id": "TF103035", "annotation": "polymerase (DNA directed), delta 1, catalytic subunit"},
+        {"name": "", "id": "", "annotation": ""},
+        {"name": "", "id": "", "annotation": ""},
+        {"name": "", "id": "", "annotation": ""},
+    ]
+};
+var randomnumber=Math.floor(Math.random()*4);
+console.log("taking number "+randomnumber);
+ 	var chosen_tree = randomtrees.trees[randomnumber].id;	
+        var chosen_gene = randomtrees.trees[randomnumber].name;	
+        var chosen_annotation = randomtrees.trees[randomnumber].annotation;	
+
+	var minimal_species_tree_json = "/static/trees/front_page_tree.json";
+	console.log("chosen tree is "+chosen_tree);
+	//var minimal_species_tree_json = "/family/"+chosen_tree+"/tree/minimal_species_json";
+				//var json_tree = "/static/trees/gene_tree.json";
+			console.log("drawing minimal_species_tree with "+minimal_species_tree_json);	
+			var show_pie_charts = 0;
+			draw_minimal_species_tree({ json_tree : minimal_species_tree_json, show_pie_charts : show_pie_charts });	
+	//jQuery("#randomtreetext").html("<font size='2'>Species tree with the major taxonomic groups containing the <b><a href='/family/"+chosen_tree+"'>"+chosen_gene+"</a></b> gene ("+chosen_annotation+").</font><br><font size='1'>Click <a href='/family/"+chosen_tree+"'>here</a> to go to the family page of "+chosen_gene+" or <a href='/browse#tabview=tab2'>here</a> to view the full species Tree</font>");
+if( jQuery(".slider").length ){
 		
 		// Init the slider
 		var slider = jQuery(".slider"),

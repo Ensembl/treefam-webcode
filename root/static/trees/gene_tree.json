@@ -1,0 +1,1377 @@
+{
+   "name" : "",
+   "children" : [
+      {
+         "name" : "Tetrapoda",
+         "children" : [
+            {
+               "name" : "Amniota",
+               "children" : [
+                  {
+                     "name" : "Sauropsida",
+                     "children" : [
+                        {
+                           "name" : "Neognathae",
+                           "children" : [
+                              {
+                                 "name" : "Phasianidae",
+                                 "children" : [
+                                    {
+                                       "domains" : [
+                                          {
+                                             "name" : "BRCA1",
+                                             "domain_start" : 100,
+                                             "domain_stop" : 120
+                                          },
+                                          {
+                                             "name" : "BRCA2",
+                                             "domain_start" : 200,
+                                             "domain_stop" : 240
+                                          }
+                                       ],
+                                       "common_name" : "NaN",
+                                       "seq_length" : 400,
+                                       "duplication" : "N",
+                                       "name" : "ENSGALP00000027524",
+                                       "type" : "leaf",
+                                       "bootstrap" : "NaN",
+                                       "taxon" : "Gallus_gallus"
+                                    },
+                                    {
+                                       "domains" : [
+                                          {
+                                             "name" : "BRCA1",
+                                             "domain_start" : 100,
+                                             "domain_stop" : 120
+                                          },
+                                          {
+                                             "name" : "BRCA2",
+                                             "domain_start" : 200,
+                                             "domain_stop" : 240
+                                          }
+                                       ],
+                                       "common_name" : "NaN",
+                                       "seq_length" : 400,
+                                       "duplication" : "N",
+                                       "name" : "ENSMGAP00000015990",
+                                       "type" : "leaf",
+                                       "bootstrap" : "NaN",
+                                       "taxon" : "Meleagris_gallopavo"
+                                    }
+                                 ],
+                                 "bootstrap" : "100",
+                                 "taxon" : null,
+                                 "common_name" : "NaN",
+                                 "seq_length" : 400,
+                                 "duplication" : "N",
+                                 "type" : "node"
+                              },
+                              {
+                                 "domains" : [
+                                    {
+                                       "name" : "BRCA1",
+                                       "domain_start" : 100,
+                                       "domain_stop" : 120
+                                    },
+                                    {
+                                       "name" : "BRCA2",
+                                       "domain_start" : 200,
+                                       "domain_stop" : 240
+                                    }
+                                 ],
+                                 "common_name" : "NaN",
+                                 "seq_length" : 400,
+                                 "duplication" : "N",
+                                 "name" : "ENSTGUP00000012130",
+                                 "type" : "leaf",
+                                 "bootstrap" : "NaN",
+                                 "taxon" : "Taeniopygia_guttata"
+                              }
+                           ],
+                           "bootstrap" : "100",
+                           "taxon" : null,
+                           "common_name" : "NaN",
+                           "seq_length" : 400,
+                           "duplication" : "N",
+                           "type" : "node"
+                        },
+                        {
+                           "domains" : [
+                              {
+                                 "name" : "BRCA1",
+                                 "domain_start" : 100,
+                                 "domain_stop" : 120
+                              },
+                              {
+                                 "name" : "BRCA2",
+                                 "domain_start" : 200,
+                                 "domain_stop" : 240
+                              }
+                           ],
+                           "common_name" : "NaN",
+                           "seq_length" : 400,
+                           "duplication" : "N",
+                           "name" : "ENSPSIP00000012858",
+                           "type" : "leaf",
+                           "bootstrap" : "NaN",
+                           "taxon" : "Pelodiscus_sinensis"
+                        }
+                     ],
+                     "bootstrap" : "100",
+                     "taxon" : null,
+                     "common_name" : "NaN",
+                     "seq_length" : 400,
+                     "duplication" : "N",
+                     "type" : "node"
+                  },
+                  {
+                     "name" : "Mammalia",
+                     "children" : [
+                        {
+                           "name" : "Theria",
+                           "children" : [
+                              {
+                                 "name" : "Eutheria",
+                                 "children" : [
+                                    {
+                                       "name" : "Eutheria",
+                                       "children" : [
+                                          {
+                                             "name" : "Xenarthra",
+                                             "children" : [
+                                                {
+                                                   "domains" : [
+                                                      {
+                                                         "name" : "BRCA1",
+                                                         "domain_start" : 100,
+                                                         "domain_stop" : 120
+                                                      },
+                                                      {
+                                                         "name" : "BRCA2",
+                                                         "domain_start" : 200,
+                                                         "domain_stop" : 240
+                                                      }
+                                                   ],
+                                                   "common_name" : "NaN",
+                                                   "seq_length" : 400,
+                                                   "duplication" : "N",
+                                                   "name" : "ENSCHOP00000007822",
+                                                   "type" : "leaf",
+                                                   "bootstrap" : "NaN",
+                                                   "taxon" : "Choloepus_hoffmanni"
+                                                },
+                                                {
+                                                   "domains" : [
+                                                      {
+                                                         "name" : "BRCA1",
+                                                         "domain_start" : 100,
+                                                         "domain_stop" : 120
+                                                      },
+                                                      {
+                                                         "name" : "BRCA2",
+                                                         "domain_start" : 200,
+                                                         "domain_stop" : 240
+                                                      }
+                                                   ],
+                                                   "common_name" : "NaN",
+                                                   "seq_length" : 400,
+                                                   "duplication" : "N",
+                                                   "name" : "ENSDNOP00000013476",
+                                                   "type" : "leaf",
+                                                   "bootstrap" : "NaN",
+                                                   "taxon" : "Dasypus_novemcinctus"
+                                                }
+                                             ],
+                                             "bootstrap" : "100",
+                                             "taxon" : null,
+                                             "common_name" : "NaN",
+                                             "seq_length" : 400,
+                                             "duplication" : "N",
+                                             "type" : "node"
+                                          },
+                                          {
+                                             "name" : "Afrotheria",
+                                             "children" : [
+                                                {
+                                                   "name" : "Afrotheria",
+                                                   "children" : [
+                                                      {
+                                                         "domains" : [
+                                                            {
+                                                               "name" : "BRCA1",
+                                                               "domain_start" : 100,
+                                                               "domain_stop" : 120
+                                                            },
+                                                            {
+                                                               "name" : "BRCA2",
+                                                               "domain_start" : 200,
+                                                               "domain_stop" : 240
+                                                            }
+                                                         ],
+                                                         "common_name" : "NaN",
+                                                         "seq_length" : 400,
+                                                         "duplication" : "N",
+                                                         "name" : "ENSLAFP00000002234",
+                                                         "type" : "leaf",
+                                                         "bootstrap" : "NaN",
+                                                         "taxon" : "Loxodonta_africana"
+                                                      },
+                                                      {
+                                                         "domains" : [
+                                                            {
+                                                               "name" : "BRCA1",
+                                                               "domain_start" : 100,
+                                                               "domain_stop" : 120
+                                                            },
+                                                            {
+                                                               "name" : "BRCA2",
+                                                               "domain_start" : 200,
+                                                               "domain_stop" : 240
+                                                            }
+                                                         ],
+                                                         "common_name" : "NaN",
+                                                         "seq_length" : 400,
+                                                         "duplication" : "N",
+                                                         "name" : "ENSPCAP00000000440",
+                                                         "type" : "leaf",
+                                                         "bootstrap" : "NaN",
+                                                         "taxon" : "Procavia_capensis"
+                                                      }
+                                                   ],
+                                                   "bootstrap" : "83",
+                                                   "taxon" : null,
+                                                   "common_name" : "NaN",
+                                                   "seq_length" : 400,
+                                                   "duplication" : "N",
+                                                   "type" : "node"
+                                                },
+                                                {
+                                                   "domains" : [
+                                                      {
+                                                         "name" : "BRCA1",
+                                                         "domain_start" : 100,
+                                                         "domain_stop" : 120
+                                                      },
+                                                      {
+                                                         "name" : "BRCA2",
+                                                         "domain_start" : 200,
+                                                         "domain_stop" : 240
+                                                      }
+                                                   ],
+                                                   "common_name" : "NaN",
+                                                   "seq_length" : 400,
+                                                   "duplication" : "N",
+                                                   "name" : "ENSETEP00000003277",
+                                                   "type" : "leaf",
+                                                   "bootstrap" : "NaN",
+                                                   "taxon" : "Echinops_telfairi"
+                                                }
+                                             ],
+                                             "bootstrap" : "83",
+                                             "taxon" : null,
+                                             "common_name" : "NaN",
+                                             "seq_length" : 400,
+                                             "duplication" : "N",
+                                             "type" : "node"
+                                          }
+                                       ],
+                                       "bootstrap" : "12",
+                                       "taxon" : null,
+                                       "common_name" : "NaN",
+                                       "seq_length" : 400,
+                                       "duplication" : "N",
+                                       "type" : "node"
+                                    },
+                                    {
+                                       "name" : "Eutheria",
+                                       "children" : [
+                                          {
+                                             "name" : "Euarchontoglires",
+                                             "children" : [
+                                                {
+                                                   "name" : "Euarchontoglires",
+                                                   "children" : [
+                                                      {
+                                                         "name" : "Primates",
+                                                         "children" : [
+                                                            {
+                                                               "name" : "Haplorrhini",
+                                                               "children" : [
+                                                                  {
+                                                                     "name" : "Simiiformes",
+                                                                     "children" : [
+                                                                        {
+                                                                           "name" : "Catarrhini",
+                                                                           "children" : [
+                                                                              {
+                                                                                 "name" : "Hominoidea",
+                                                                                 "children" : [
+                                                                                    {
+                                                                                       "name" : "Hominidae",
+                                                                                       "children" : [
+                                                                                          {
+                                                                                             "name" : "Homininae",
+                                                                                             "children" : [
+                                                                                                {
+                                                                                                   "name" : "Homininae",
+                                                                                                   "children" : [
+                                                                                                      {
+                                                                                                         "domains" : [
+                                                                                                            {
+                                                                                                               "name" : "BRCA1",
+                                                                                                               "domain_start" : 100,
+                                                                                                               "domain_stop" : 120
+                                                                                                            },
+                                                                                                            {
+                                                                                                               "name" : "BRCA2",
+                                                                                                               "domain_start" : 200,
+                                                                                                               "domain_stop" : 240
+                                                                                                            }
+                                                                                                         ],
+                                                                                                         "common_name" : "NaN",
+                                                                                                         "seq_length" : 400,
+                                                                                                         "duplication" : "N",
+                                                                                                         "name" : "ENSP00000369497",
+                                                                                                         "type" : "leaf",
+                                                                                                         "bootstrap" : "NaN",
+                                                                                                         "taxon" : "Homo_sapiens"
+                                                                                                      },
+                                                                                                      {
+                                                                                                         "domains" : [
+                                                                                                            {
+                                                                                                               "name" : "BRCA1",
+                                                                                                               "domain_start" : 100,
+                                                                                                               "domain_stop" : 120
+                                                                                                            },
+                                                                                                            {
+                                                                                                               "name" : "BRCA2",
+                                                                                                               "domain_start" : 200,
+                                                                                                               "domain_stop" : 240
+                                                                                                            }
+                                                                                                         ],
+                                                                                                         "common_name" : "NaN",
+                                                                                                         "seq_length" : 400,
+                                                                                                         "duplication" : "N",
+                                                                                                         "name" : "ENSPTRP00000009812",
+                                                                                                         "type" : "leaf",
+                                                                                                         "bootstrap" : "NaN",
+                                                                                                         "taxon" : "Pan_troglodytes"
+                                                                                                      }
+                                                                                                   ],
+                                                                                                   "bootstrap" : "100",
+                                                                                                   "taxon" : null,
+                                                                                                   "common_name" : "NaN",
+                                                                                                   "seq_length" : 400,
+                                                                                                   "duplication" : "N",
+                                                                                                   "type" : "node"
+                                                                                                },
+                                                                                                {
+                                                                                                   "domains" : [
+                                                                                                      {
+                                                                                                         "name" : "BRCA1",
+                                                                                                         "domain_start" : 100,
+                                                                                                         "domain_stop" : 120
+                                                                                                      },
+                                                                                                      {
+                                                                                                         "name" : "BRCA2",
+                                                                                                         "domain_start" : 200,
+                                                                                                         "domain_stop" : 240
+                                                                                                      }
+                                                                                                   ],
+                                                                                                   "common_name" : "NaN",
+                                                                                                   "seq_length" : 400,
+                                                                                                   "duplication" : "N",
+                                                                                                   "name" : "ENSGGOP00000015446",
+                                                                                                   "type" : "leaf",
+                                                                                                   "bootstrap" : "NaN",
+                                                                                                   "taxon" : "Gorilla_gorilla"
+                                                                                                }
+                                                                                             ],
+                                                                                             "bootstrap" : "100",
+                                                                                             "taxon" : null,
+                                                                                             "common_name" : "NaN",
+                                                                                             "seq_length" : 400,
+                                                                                             "duplication" : "N",
+                                                                                             "type" : "node"
+                                                                                          },
+                                                                                          {
+                                                                                             "domains" : [
+                                                                                                {
+                                                                                                   "name" : "BRCA1",
+                                                                                                   "domain_start" : 100,
+                                                                                                   "domain_stop" : 120
+                                                                                                },
+                                                                                                {
+                                                                                                   "name" : "BRCA2",
+                                                                                                   "domain_start" : 200,
+                                                                                                   "domain_stop" : 240
+                                                                                                }
+                                                                                             ],
+                                                                                             "common_name" : "NaN",
+                                                                                             "seq_length" : 400,
+                                                                                             "duplication" : "N",
+                                                                                             "name" : "ENSPPYP00000005997",
+                                                                                             "type" : "leaf",
+                                                                                             "bootstrap" : "NaN",
+                                                                                             "taxon" : "Pongo_abelii"
+                                                                                          }
+                                                                                       ],
+                                                                                       "bootstrap" : "100",
+                                                                                       "taxon" : null,
+                                                                                       "common_name" : "NaN",
+                                                                                       "seq_length" : 400,
+                                                                                       "duplication" : "N",
+                                                                                       "type" : "node"
+                                                                                    },
+                                                                                    {
+                                                                                       "domains" : [
+                                                                                          {
+                                                                                             "name" : "BRCA1",
+                                                                                             "domain_start" : 100,
+                                                                                             "domain_stop" : 120
+                                                                                          },
+                                                                                          {
+                                                                                             "name" : "BRCA2",
+                                                                                             "domain_start" : 200,
+                                                                                             "domain_stop" : 240
+                                                                                          }
+                                                                                       ],
+                                                                                       "common_name" : "NaN",
+                                                                                       "seq_length" : 400,
+                                                                                       "duplication" : "N",
+                                                                                       "name" : "ENSNLEP00000001277",
+                                                                                       "type" : "leaf",
+                                                                                       "bootstrap" : "NaN",
+                                                                                       "taxon" : "Nomascus_leucogenys"
+                                                                                    }
+                                                                                 ],
+                                                                                 "bootstrap" : "100",
+                                                                                 "taxon" : null,
+                                                                                 "common_name" : "NaN",
+                                                                                 "seq_length" : 400,
+                                                                                 "duplication" : "N",
+                                                                                 "type" : "node"
+                                                                              },
+                                                                              {
+                                                                                 "domains" : [
+                                                                                    {
+                                                                                       "name" : "BRCA1",
+                                                                                       "domain_start" : 100,
+                                                                                       "domain_stop" : 120
+                                                                                    },
+                                                                                    {
+                                                                                       "name" : "BRCA2",
+                                                                                       "domain_start" : 200,
+                                                                                       "domain_stop" : 240
+                                                                                    }
+                                                                                 ],
+                                                                                 "common_name" : "NaN",
+                                                                                 "seq_length" : 400,
+                                                                                 "duplication" : "N",
+                                                                                 "name" : "ENSMMUP00000009432",
+                                                                                 "type" : "leaf",
+                                                                                 "bootstrap" : "NaN",
+                                                                                 "taxon" : "Macaca_mulatta"
+                                                                              }
+                                                                           ],
+                                                                           "bootstrap" : "100",
+                                                                           "taxon" : null,
+                                                                           "common_name" : "NaN",
+                                                                           "seq_length" : 400,
+                                                                           "duplication" : "N",
+                                                                           "type" : "node"
+                                                                        },
+                                                                        {
+                                                                           "domains" : [
+                                                                              {
+                                                                                 "name" : "BRCA1",
+                                                                                 "domain_start" : 100,
+                                                                                 "domain_stop" : 120
+                                                                              },
+                                                                              {
+                                                                                 "name" : "BRCA2",
+                                                                                 "domain_start" : 200,
+                                                                                 "domain_stop" : 240
+                                                                              }
+                                                                           ],
+                                                                           "common_name" : "NaN",
+                                                                           "seq_length" : 400,
+                                                                           "duplication" : "N",
+                                                                           "name" : "ENSCJAP00000034250",
+                                                                           "type" : "leaf",
+                                                                           "bootstrap" : "NaN",
+                                                                           "taxon" : "Callithrix_jacchus"
+                                                                        }
+                                                                     ],
+                                                                     "bootstrap" : "100",
+                                                                     "taxon" : null,
+                                                                     "common_name" : "NaN",
+                                                                     "seq_length" : 400,
+                                                                     "duplication" : "N",
+                                                                     "type" : "node"
+                                                                  },
+                                                                  {
+                                                                     "domains" : [
+                                                                        {
+                                                                           "name" : "BRCA1",
+                                                                           "domain_start" : 100,
+                                                                           "domain_stop" : 120
+                                                                        },
+                                                                        {
+                                                                           "name" : "BRCA2",
+                                                                           "domain_start" : 200,
+                                                                           "domain_stop" : 240
+                                                                        }
+                                                                     ],
+                                                                     "common_name" : "NaN",
+                                                                     "seq_length" : 400,
+                                                                     "duplication" : "N",
+                                                                     "name" : "ENSTSYP00000000441",
+                                                                     "type" : "leaf",
+                                                                     "bootstrap" : "NaN",
+                                                                     "taxon" : "Tarsius_syrichta"
+                                                                  }
+                                                               ],
+                                                               "bootstrap" : "100",
+                                                               "taxon" : null,
+                                                               "common_name" : "NaN",
+                                                               "seq_length" : 400,
+                                                               "duplication" : "N",
+                                                               "type" : "node"
+                                                            },
+                                                            {
+                                                               "name" : "Strepsirrhini",
+                                                               "children" : [
+                                                                  {
+                                                                     "domains" : [
+                                                                        {
+                                                                           "name" : "BRCA1",
+                                                                           "domain_start" : 100,
+                                                                           "domain_stop" : 120
+                                                                        },
+                                                                        {
+                                                                           "name" : "BRCA2",
+                                                                           "domain_start" : 200,
+                                                                           "domain_stop" : 240
+                                                                        }
+                                                                     ],
+                                                                     "common_name" : "NaN",
+                                                                     "seq_length" : 400,
+                                                                     "duplication" : "N",
+                                                                     "name" : "ENSMICP00000010933",
+                                                                     "type" : "leaf",
+                                                                     "bootstrap" : "NaN",
+                                                                     "taxon" : "Microcebus_murinus"
+                                                                  },
+                                                                  {
+                                                                     "domains" : [
+                                                                        {
+                                                                           "name" : "BRCA1",
+                                                                           "domain_start" : 100,
+                                                                           "domain_stop" : 120
+                                                                        },
+                                                                        {
+                                                                           "name" : "BRCA2",
+                                                                           "domain_start" : 200,
+                                                                           "domain_stop" : 240
+                                                                        }
+                                                                     ],
+                                                                     "common_name" : "NaN",
+                                                                     "seq_length" : 400,
+                                                                     "duplication" : "N",
+                                                                     "name" : "ENSOGAP00000009477",
+                                                                     "type" : "leaf",
+                                                                     "bootstrap" : "NaN",
+                                                                     "taxon" : "Otolemur_garnettii"
+                                                                  }
+                                                               ],
+                                                               "bootstrap" : "100",
+                                                               "taxon" : null,
+                                                               "common_name" : "NaN",
+                                                               "seq_length" : 400,
+                                                               "duplication" : "N",
+                                                               "type" : "node"
+                                                            }
+                                                         ],
+                                                         "bootstrap" : "100",
+                                                         "taxon" : null,
+                                                         "common_name" : "NaN",
+                                                         "seq_length" : 400,
+                                                         "duplication" : "N",
+                                                         "type" : "node"
+                                                      },
+                                                      {
+                                                         "domains" : [
+                                                            {
+                                                               "name" : "BRCA1",
+                                                               "domain_start" : 100,
+                                                               "domain_stop" : 120
+                                                            },
+                                                            {
+                                                               "name" : "BRCA2",
+                                                               "domain_start" : 200,
+                                                               "domain_stop" : 240
+                                                            }
+                                                         ],
+                                                         "common_name" : "NaN",
+                                                         "seq_length" : 400,
+                                                         "duplication" : "N",
+                                                         "name" : "ENSTBEP00000013856",
+                                                         "type" : "leaf",
+                                                         "bootstrap" : "NaN",
+                                                         "taxon" : "Tupaia_belangeri"
+                                                      }
+                                                   ],
+                                                   "bootstrap" : "73",
+                                                   "taxon" : null,
+                                                   "common_name" : "NaN",
+                                                   "seq_length" : 400,
+                                                   "duplication" : "N",
+                                                   "type" : "node"
+                                                },
+                                                {
+                                                   "name" : "Glires",
+                                                   "children" : [
+                                                      {
+                                                         "name" : "Rodentia",
+                                                         "children" : [
+                                                            {
+                                                               "name" : "Sciurognathi",
+                                                               "children" : [
+                                                                  {
+                                                                     "name" : "Sciurognathi",
+                                                                     "children" : [
+                                                                        {
+                                                                           "name" : "Murinae",
+                                                                           "children" : [
+                                                                              {
+                                                                                 "domains" : [
+                                                                                    {
+                                                                                       "name" : "BRCA1",
+                                                                                       "domain_start" : 100,
+                                                                                       "domain_stop" : 120
+                                                                                    },
+                                                                                    {
+                                                                                       "name" : "BRCA2",
+                                                                                       "domain_start" : 200,
+                                                                                       "domain_stop" : 240
+                                                                                    }
+                                                                                 ],
+                                                                                 "common_name" : "NaN",
+                                                                                 "seq_length" : 400,
+                                                                                 "duplication" : "N",
+                                                                                 "name" : "ENSMUSP00000038576",
+                                                                                 "type" : "leaf",
+                                                                                 "bootstrap" : "NaN",
+                                                                                 "taxon" : "Mus_musculus"
+                                                                              },
+                                                                              {
+                                                                                 "domains" : [
+                                                                                    {
+                                                                                       "name" : "BRCA1",
+                                                                                       "domain_start" : 100,
+                                                                                       "domain_stop" : 120
+                                                                                    },
+                                                                                    {
+                                                                                       "name" : "BRCA2",
+                                                                                       "domain_start" : 200,
+                                                                                       "domain_stop" : 240
+                                                                                    }
+                                                                                 ],
+                                                                                 "common_name" : "NaN",
+                                                                                 "seq_length" : 400,
+                                                                                 "duplication" : "N",
+                                                                                 "name" : "ENSRNOP00000001475",
+                                                                                 "type" : "leaf",
+                                                                                 "bootstrap" : "NaN",
+                                                                                 "taxon" : "Rattus_norvegicus"
+                                                                              }
+                                                                           ],
+                                                                           "bootstrap" : "100",
+                                                                           "taxon" : null,
+                                                                           "common_name" : "NaN",
+                                                                           "seq_length" : 400,
+                                                                           "duplication" : "N",
+                                                                           "type" : "node"
+                                                                        },
+                                                                        {
+                                                                           "domains" : [
+                                                                              {
+                                                                                 "name" : "BRCA1",
+                                                                                 "domain_start" : 100,
+                                                                                 "domain_stop" : 120
+                                                                              },
+                                                                              {
+                                                                                 "name" : "BRCA2",
+                                                                                 "domain_start" : 200,
+                                                                                 "domain_stop" : 240
+                                                                              }
+                                                                           ],
+                                                                           "common_name" : "NaN",
+                                                                           "seq_length" : 400,
+                                                                           "duplication" : "N",
+                                                                           "name" : "ENSDORP00000006609",
+                                                                           "type" : "leaf",
+                                                                           "bootstrap" : "NaN",
+                                                                           "taxon" : "Dipodomys_ordii"
+                                                                        }
+                                                                     ],
+                                                                     "bootstrap" : "7",
+                                                                     "taxon" : null,
+                                                                     "common_name" : "NaN",
+                                                                     "seq_length" : 400,
+                                                                     "duplication" : "N",
+                                                                     "type" : "node"
+                                                                  },
+                                                                  {
+                                                                     "domains" : [
+                                                                        {
+                                                                           "name" : "BRCA1",
+                                                                           "domain_start" : 100,
+                                                                           "domain_stop" : 120
+                                                                        },
+                                                                        {
+                                                                           "name" : "BRCA2",
+                                                                           "domain_start" : 200,
+                                                                           "domain_stop" : 240
+                                                                        }
+                                                                     ],
+                                                                     "common_name" : "NaN",
+                                                                     "seq_length" : 400,
+                                                                     "duplication" : "N",
+                                                                     "name" : "ENSSTOP00000004979",
+                                                                     "type" : "leaf",
+                                                                     "bootstrap" : "NaN",
+                                                                     "taxon" : "Ictidomys_tridecemlineatus"
+                                                                  }
+                                                               ],
+                                                               "bootstrap" : "1",
+                                                               "taxon" : null,
+                                                               "common_name" : "NaN",
+                                                               "seq_length" : 400,
+                                                               "duplication" : "N",
+                                                               "type" : "node"
+                                                            },
+                                                            {
+                                                               "domains" : [
+                                                                  {
+                                                                     "name" : "BRCA1",
+                                                                     "domain_start" : 100,
+                                                                     "domain_stop" : 120
+                                                                  },
+                                                                  {
+                                                                     "name" : "BRCA2",
+                                                                     "domain_start" : 200,
+                                                                     "domain_stop" : 240
+                                                                  }
+                                                               ],
+                                                               "common_name" : "NaN",
+                                                               "seq_length" : 400,
+                                                               "duplication" : "N",
+                                                               "name" : "ENSCPOP00000004635",
+                                                               "type" : "leaf",
+                                                               "bootstrap" : "NaN",
+                                                               "taxon" : "Cavia_porcellus"
+                                                            }
+                                                         ],
+                                                         "bootstrap" : "1",
+                                                         "taxon" : null,
+                                                         "common_name" : "NaN",
+                                                         "seq_length" : 400,
+                                                         "duplication" : "N",
+                                                         "type" : "node"
+                                                      },
+                                                      {
+                                                         "name" : "Lagomorpha",
+                                                         "children" : [
+                                                            {
+                                                               "domains" : [
+                                                                  {
+                                                                     "name" : "BRCA1",
+                                                                     "domain_start" : 100,
+                                                                     "domain_stop" : 120
+                                                                  },
+                                                                  {
+                                                                     "name" : "BRCA2",
+                                                                     "domain_start" : 200,
+                                                                     "domain_stop" : 240
+                                                                  }
+                                                               ],
+                                                               "common_name" : "NaN",
+                                                               "seq_length" : 400,
+                                                               "duplication" : "N",
+                                                               "name" : "ENSOCUP00000014514",
+                                                               "type" : "leaf",
+                                                               "bootstrap" : "NaN",
+                                                               "taxon" : "Oryctolagus_cuniculus"
+                                                            },
+                                                            {
+                                                               "domains" : [
+                                                                  {
+                                                                     "name" : "BRCA1",
+                                                                     "domain_start" : 100,
+                                                                     "domain_stop" : 120
+                                                                  },
+                                                                  {
+                                                                     "name" : "BRCA2",
+                                                                     "domain_start" : 200,
+                                                                     "domain_stop" : 240
+                                                                  }
+                                                               ],
+                                                               "common_name" : "NaN",
+                                                               "seq_length" : 400,
+                                                               "duplication" : "N",
+                                                               "name" : "ENSOPRP00000014082",
+                                                               "type" : "leaf",
+                                                               "bootstrap" : "NaN",
+                                                               "taxon" : "Ochotona_princeps"
+                                                            }
+                                                         ],
+                                                         "bootstrap" : "100",
+                                                         "taxon" : null,
+                                                         "common_name" : "NaN",
+                                                         "seq_length" : 400,
+                                                         "duplication" : "N",
+                                                         "type" : "node"
+                                                      }
+                                                   ],
+                                                   "bootstrap" : "0",
+                                                   "taxon" : null,
+                                                   "common_name" : "NaN",
+                                                   "seq_length" : 400,
+                                                   "duplication" : "N",
+                                                   "type" : "node"
+                                                }
+                                             ],
+                                             "bootstrap" : "0",
+                                             "taxon" : null,
+                                             "common_name" : "NaN",
+                                             "seq_length" : 400,
+                                             "duplication" : "N",
+                                             "type" : "node"
+                                          },
+                                          {
+                                             "name" : "Laurasiatheria",
+                                             "children" : [
+                                                {
+                                                   "name" : "Laurasiatheria",
+                                                   "children" : [
+                                                      {
+                                                         "name" : "Laurasiatheria",
+                                                         "children" : [
+                                                            {
+                                                               "name" : "Laurasiatheria",
+                                                               "children" : [
+                                                                  {
+                                                                     "name" : "Cetartiodactyla",
+                                                                     "children" : [
+                                                                        {
+                                                                           "name" : "Cetartiodactyla",
+                                                                           "children" : [
+                                                                              {
+                                                                                 "name" : "Cetartiodactyla",
+                                                                                 "children" : [
+                                                                                    {
+                                                                                       "domains" : [
+                                                                                          {
+                                                                                             "name" : "BRCA1",
+                                                                                             "domain_start" : 100,
+                                                                                             "domain_stop" : 120
+                                                                                          },
+                                                                                          {
+                                                                                             "name" : "BRCA2",
+                                                                                             "domain_start" : 200,
+                                                                                             "domain_stop" : 240
+                                                                                          }
+                                                                                       ],
+                                                                                       "common_name" : "NaN",
+                                                                                       "seq_length" : 400,
+                                                                                       "duplication" : "N",
+                                                                                       "name" : "ENSTTRP00000010004",
+                                                                                       "type" : "leaf",
+                                                                                       "bootstrap" : "NaN",
+                                                                                       "taxon" : "Tursiops_truncatus"
+                                                                                    },
+                                                                                    {
+                                                                                       "domains" : [
+                                                                                          {
+                                                                                             "name" : "BRCA1",
+                                                                                             "domain_start" : 100,
+                                                                                             "domain_stop" : 120
+                                                                                          },
+                                                                                          {
+                                                                                             "name" : "BRCA2",
+                                                                                             "domain_start" : 200,
+                                                                                             "domain_stop" : 240
+                                                                                          }
+                                                                                       ],
+                                                                                       "common_name" : "NaN",
+                                                                                       "seq_length" : 400,
+                                                                                       "duplication" : "N",
+                                                                                       "name" : "ENSBTAP00000001311",
+                                                                                       "type" : "leaf",
+                                                                                       "bootstrap" : "NaN",
+                                                                                       "taxon" : "Bos_taurus"
+                                                                                    }
+                                                                                 ],
+                                                                                 "bootstrap" : "73",
+                                                                                 "taxon" : null,
+                                                                                 "common_name" : "NaN",
+                                                                                 "seq_length" : 400,
+                                                                                 "duplication" : "N",
+                                                                                 "type" : "node"
+                                                                              },
+                                                                              {
+                                                                                 "domains" : [
+                                                                                    {
+                                                                                       "name" : "BRCA1",
+                                                                                       "domain_start" : 100,
+                                                                                       "domain_stop" : 120
+                                                                                    },
+                                                                                    {
+                                                                                       "name" : "BRCA2",
+                                                                                       "domain_start" : 200,
+                                                                                       "domain_stop" : 240
+                                                                                    }
+                                                                                 ],
+                                                                                 "common_name" : "NaN",
+                                                                                 "seq_length" : 400,
+                                                                                 "duplication" : "N",
+                                                                                 "name" : "ENSSSCP00000028073",
+                                                                                 "type" : "leaf",
+                                                                                 "bootstrap" : "NaN",
+                                                                                 "taxon" : "Sus_scrofa"
+                                                                              }
+                                                                           ],
+                                                                           "bootstrap" : "73",
+                                                                           "taxon" : null,
+                                                                           "common_name" : "NaN",
+                                                                           "seq_length" : 400,
+                                                                           "duplication" : "N",
+                                                                           "type" : "node"
+                                                                        },
+                                                                        {
+                                                                           "domains" : [
+                                                                              {
+                                                                                 "name" : "BRCA1",
+                                                                                 "domain_start" : 100,
+                                                                                 "domain_stop" : 120
+                                                                              },
+                                                                              {
+                                                                                 "name" : "BRCA2",
+                                                                                 "domain_start" : 200,
+                                                                                 "domain_stop" : 240
+                                                                              }
+                                                                           ],
+                                                                           "common_name" : "NaN",
+                                                                           "seq_length" : 400,
+                                                                           "duplication" : "N",
+                                                                           "name" : "ENSVPAP00000000821",
+                                                                           "type" : "leaf",
+                                                                           "bootstrap" : "NaN",
+                                                                           "taxon" : "Vicugna_pacos"
+                                                                        }
+                                                                     ],
+                                                                     "bootstrap" : "100",
+                                                                     "taxon" : null,
+                                                                     "common_name" : "NaN",
+                                                                     "seq_length" : 400,
+                                                                     "duplication" : "N",
+                                                                     "type" : "node"
+                                                                  },
+                                                                  {
+                                                                     "domains" : [
+                                                                        {
+                                                                           "name" : "BRCA1",
+                                                                           "domain_start" : 100,
+                                                                           "domain_stop" : 120
+                                                                        },
+                                                                        {
+                                                                           "name" : "BRCA2",
+                                                                           "domain_start" : 200,
+                                                                           "domain_stop" : 240
+                                                                        }
+                                                                     ],
+                                                                     "common_name" : "NaN",
+                                                                     "seq_length" : 400,
+                                                                     "duplication" : "N",
+                                                                     "name" : "ENSECAP00000013146",
+                                                                     "type" : "leaf",
+                                                                     "bootstrap" : "NaN",
+                                                                     "taxon" : "Equus_caballus"
+                                                                  }
+                                                               ],
+                                                               "bootstrap" : "87",
+                                                               "taxon" : null,
+                                                               "common_name" : "NaN",
+                                                               "seq_length" : 400,
+                                                               "duplication" : "N",
+                                                               "type" : "node"
+                                                            },
+                                                            {
+                                                               "name" : "Caniformia",
+                                                               "children" : [
+                                                                  {
+                                                                     "domains" : [
+                                                                        {
+                                                                           "name" : "BRCA1",
+                                                                           "domain_start" : 100,
+                                                                           "domain_stop" : 120
+                                                                        },
+                                                                        {
+                                                                           "name" : "BRCA2",
+                                                                           "domain_start" : 200,
+                                                                           "domain_stop" : 240
+                                                                        }
+                                                                     ],
+                                                                     "common_name" : "NaN",
+                                                                     "seq_length" : 400,
+                                                                     "duplication" : "N",
+                                                                     "name" : "ENSAMEP00000009909",
+                                                                     "type" : "leaf",
+                                                                     "bootstrap" : "NaN",
+                                                                     "taxon" : "Ailuropoda_melanoleuca"
+                                                                  },
+                                                                  {
+                                                                     "domains" : [
+                                                                        {
+                                                                           "name" : "BRCA1",
+                                                                           "domain_start" : 100,
+                                                                           "domain_stop" : 120
+                                                                        },
+                                                                        {
+                                                                           "name" : "BRCA2",
+                                                                           "domain_start" : 200,
+                                                                           "domain_stop" : 240
+                                                                        }
+                                                                     ],
+                                                                     "common_name" : "NaN",
+                                                                     "seq_length" : 400,
+                                                                     "duplication" : "N",
+                                                                     "name" : "ENSCAFP00000009557",
+                                                                     "type" : "leaf",
+                                                                     "bootstrap" : "NaN",
+                                                                     "taxon" : "Canis_familiaris"
+                                                                  }
+                                                               ],
+                                                               "bootstrap" : "100",
+                                                               "taxon" : null,
+                                                               "common_name" : "NaN",
+                                                               "seq_length" : 400,
+                                                               "duplication" : "N",
+                                                               "type" : "node"
+                                                            }
+                                                         ],
+                                                         "bootstrap" : "87",
+                                                         "taxon" : null,
+                                                         "common_name" : "NaN",
+                                                         "seq_length" : 400,
+                                                         "duplication" : "N",
+                                                         "type" : "node"
+                                                      },
+                                                      {
+                                                         "name" : "Chiroptera",
+                                                         "children" : [
+                                                            {
+                                                               "domains" : [
+                                                                  {
+                                                                     "name" : "BRCA1",
+                                                                     "domain_start" : 100,
+                                                                     "domain_stop" : 120
+                                                                  },
+                                                                  {
+                                                                     "name" : "BRCA2",
+                                                                     "domain_start" : 200,
+                                                                     "domain_stop" : 240
+                                                                  }
+                                                               ],
+                                                               "common_name" : "NaN",
+                                                               "seq_length" : 400,
+                                                               "duplication" : "N",
+                                                               "name" : "ENSMLUP00000012516",
+                                                               "type" : "leaf",
+                                                               "bootstrap" : "NaN",
+                                                               "taxon" : "Myotis_lucifugus"
+                                                            },
+                                                            {
+                                                               "domains" : [
+                                                                  {
+                                                                     "name" : "BRCA1",
+                                                                     "domain_start" : 100,
+                                                                     "domain_stop" : 120
+                                                                  },
+                                                                  {
+                                                                     "name" : "BRCA2",
+                                                                     "domain_start" : 200,
+                                                                     "domain_stop" : 240
+                                                                  }
+                                                               ],
+                                                               "common_name" : "NaN",
+                                                               "seq_length" : 400,
+                                                               "duplication" : "N",
+                                                               "name" : "ENSPVAP00000000225",
+                                                               "type" : "leaf",
+                                                               "bootstrap" : "NaN",
+                                                               "taxon" : "Pteropus_vampyrus"
+                                                            }
+                                                         ],
+                                                         "bootstrap" : "99",
+                                                         "taxon" : null,
+                                                         "common_name" : "NaN",
+                                                         "seq_length" : 400,
+                                                         "duplication" : "N",
+                                                         "type" : "node"
+                                                      }
+                                                   ],
+                                                   "bootstrap" : "99",
+                                                   "taxon" : null,
+                                                   "common_name" : "NaN",
+                                                   "seq_length" : 400,
+                                                   "duplication" : "N",
+                                                   "type" : "node"
+                                                },
+                                                {
+                                                   "name" : "Insectivora",
+                                                   "children" : [
+                                                      {
+                                                         "domains" : [
+                                                            {
+                                                               "name" : "BRCA1",
+                                                               "domain_start" : 100,
+                                                               "domain_stop" : 120
+                                                            },
+                                                            {
+                                                               "name" : "BRCA2",
+                                                               "domain_start" : 200,
+                                                               "domain_stop" : 240
+                                                            }
+                                                         ],
+                                                         "common_name" : "NaN",
+                                                         "seq_length" : 400,
+                                                         "duplication" : "N",
+                                                         "name" : "ENSEEUP00000008968",
+                                                         "type" : "leaf",
+                                                         "bootstrap" : "NaN",
+                                                         "taxon" : "Erinaceus_europaeus"
+                                                      },
+                                                      {
+                                                         "domains" : [
+                                                            {
+                                                               "name" : "BRCA1",
+                                                               "domain_start" : 100,
+                                                               "domain_stop" : 120
+                                                            },
+                                                            {
+                                                               "name" : "BRCA2",
+                                                               "domain_start" : 200,
+                                                               "domain_stop" : 240
+                                                            }
+                                                         ],
+                                                         "common_name" : "NaN",
+                                                         "seq_length" : 400,
+                                                         "duplication" : "N",
+                                                         "name" : "ENSSARP00000002541",
+                                                         "type" : "leaf",
+                                                         "bootstrap" : "NaN",
+                                                         "taxon" : "Sorex_araneus"
+                                                      }
+                                                   ],
+                                                   "bootstrap" : "100",
+                                                   "taxon" : null,
+                                                   "common_name" : "NaN",
+                                                   "seq_length" : 400,
+                                                   "duplication" : "N",
+                                                   "type" : "node"
+                                                }
+                                             ],
+                                             "bootstrap" : "95",
+                                             "taxon" : null,
+                                             "common_name" : "NaN",
+                                             "seq_length" : 400,
+                                             "duplication" : "N",
+                                             "type" : "node"
+                                          }
+                                       ],
+                                       "bootstrap" : "0",
+                                       "taxon" : null,
+                                       "common_name" : "NaN",
+                                       "seq_length" : 400,
+                                       "duplication" : "N",
+                                       "type" : "node"
+                                    }
+                                 ],
+                                 "bootstrap" : "0",
+                                 "taxon" : null,
+                                 "common_name" : "NaN",
+                                 "seq_length" : 400,
+                                 "duplication" : "N",
+                                 "type" : "node"
+                              },
+                              {
+                                 "name" : "Marsupialia",
+                                 "children" : [
+                                    {
+                                       "name" : "Marsupialia",
+                                       "children" : [
+                                          {
+                                             "domains" : [
+                                                {
+                                                   "name" : "BRCA1",
+                                                   "domain_start" : 100,
+                                                   "domain_stop" : 120
+                                                },
+                                                {
+                                                   "name" : "BRCA2",
+                                                   "domain_start" : 200,
+                                                   "domain_stop" : 240
+                                                }
+                                             ],
+                                             "common_name" : "NaN",
+                                             "seq_length" : 400,
+                                             "duplication" : "N",
+                                             "name" : "ENSSHAP00000012162",
+                                             "type" : "leaf",
+                                             "bootstrap" : "NaN",
+                                             "taxon" : "Sarcophilus_harrisii"
+                                          },
+                                          {
+                                             "domains" : [
+                                                {
+                                                   "name" : "BRCA1",
+                                                   "domain_start" : 100,
+                                                   "domain_stop" : 120
+                                                },
+                                                {
+                                                   "name" : "BRCA2",
+                                                   "domain_start" : 200,
+                                                   "domain_stop" : 240
+                                                }
+                                             ],
+                                             "common_name" : "NaN",
+                                             "seq_length" : 400,
+                                             "duplication" : "N",
+                                             "name" : "ENSMODP00000033276",
+                                             "type" : "leaf",
+                                             "bootstrap" : "NaN",
+                                             "taxon" : "Monodelphis_domestica"
+                                          }
+                                       ],
+                                       "bootstrap" : "100",
+                                       "taxon" : null,
+                                       "common_name" : "NaN",
+                                       "seq_length" : 400,
+                                       "duplication" : "N",
+                                       "type" : "node"
+                                    },
+                                    {
+                                       "domains" : [
+                                          {
+                                             "name" : "BRCA1",
+                                             "domain_start" : 100,
+                                             "domain_stop" : 120
+                                          },
+                                          {
+                                             "name" : "BRCA2",
+                                             "domain_start" : 200,
+                                             "domain_stop" : 240
+                                          }
+                                       ],
+                                       "common_name" : "NaN",
+                                       "seq_length" : 400,
+                                       "duplication" : "N",
+                                       "name" : "ENSMEUP00000009812",
+                                       "type" : "leaf",
+                                       "bootstrap" : "NaN",
+                                       "taxon" : "Macropus_eugenii"
+                                    }
+                                 ],
+                                 "bootstrap" : "100",
+                                 "taxon" : null,
+                                 "common_name" : "NaN",
+                                 "seq_length" : 400,
+                                 "duplication" : "N",
+                                 "type" : "node"
+                              }
+                           ],
+                           "bootstrap" : "100",
+                           "taxon" : null,
+                           "common_name" : "NaN",
+                           "seq_length" : 400,
+                           "duplication" : "N",
+                           "type" : "node"
+                        },
+                        {
+                           "domains" : [
+                              {
+                                 "name" : "BRCA1",
+                                 "domain_start" : 100,
+                                 "domain_stop" : 120
+                              },
+                              {
+                                 "name" : "BRCA2",
+                                 "domain_start" : 200,
+                                 "domain_stop" : 240
+                              }
+                           ],
+                           "common_name" : "NaN",
+                           "seq_length" : 400,
+                           "duplication" : "N",
+                           "name" : "ENSOANP00000024376",
+                           "type" : "leaf",
+                           "bootstrap" : "NaN",
+                           "taxon" : "Ornithorhynchus_anatinus"
+                        }
+                     ],
+                     "bootstrap" : "100",
+                     "taxon" : null,
+                     "common_name" : "NaN",
+                     "seq_length" : 400,
+                     "duplication" : "N",
+                     "type" : "node"
+                  }
+               ],
+               "bootstrap" : "100",
+               "taxon" : null,
+               "common_name" : "NaN",
+               "seq_length" : 400,
+               "duplication" : "N",
+               "type" : "node"
+            },
+            {
+               "domains" : [
+                  {
+                     "name" : "BRCA1",
+                     "domain_start" : 100,
+                     "domain_stop" : 120
+                  },
+                  {
+                     "name" : "BRCA2",
+                     "domain_start" : 200,
+                     "domain_stop" : 240
+                  }
+               ],
+               "common_name" : "NaN",
+               "seq_length" : 400,
+               "duplication" : "N",
+               "name" : "ENSXETP00000060681",
+               "type" : "leaf",
+               "bootstrap" : "NaN",
+               "taxon" : "Xenopus_tropicalis"
+            }
+         ],
+         "bootstrap" : "NaN",
+         "taxon" : null,
+         "common_name" : "NaN",
+         "seq_length" : 400,
+         "duplication" : "N",
+         "type" : "node"
+      }
+   ],
+   "bootstrap" : "NaN",
+   "taxon" : "NaN",
+   "common_name" : "NaN",
+   "seq_length" : 400,
+   "duplication" : "N",
+   "type" : "node"
+}
+

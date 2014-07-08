@@ -36,7 +36,7 @@ use Bio::EnsEMBL::Compara::DBSQL::GeneTreeAdaptor;
 use Bio::EnsEMBL::Compara::GeneTree;
 use Bio::AlignIO;
 use namespace::autoclean;
-
+use TreeFam::SearchHelper;
 #use treefam::nhx_plot;
 
 BEGIN
@@ -131,7 +131,10 @@ sub genome : Chained( '/' ) PathPart( 'genome' ) Args( 1 )
     #$c->log->debug("retrieve data for the family for $entry\n") if $c->debug;
     
 	$c->forward( 'get_data'  ) if defined $entry;
+	$c->log->debug("back from retrieving data. ncbi_id is ".$c->stash->{ncbi_id}."\n") if $c->debug;
+	
 	$c->forward( 'get_genomes_list', [$entry] ) if defined $entry;
+	$c->forward( 'get_wikipedia_link', [$entry] ) if defined $entry;
 	#$c->log->debug("back from retrieving data\n") if $c->debug;
 
     #$c->forward( 'get_family_sequences', [ $entry ] ) if defined $entry;
@@ -236,12 +239,31 @@ sub get_data : Private {
   $proteomeSpecies{sequence_coverage} =  "NaN";
   $proteomeSpecies{residue_coverage} = "NaN";
     
+  $c->stash->{ncbi_id} = $found_genome->taxon_id;
   $c->stash->{proteomeSpecies} = \%proteomeSpecies;
   $c->log->debug("Family::family: entry: %proteomeSpecies") if $c->debug;
   $c->log->debug("Found taxonomy: ".$proteomeSpecies{ncbi_taxid}{taxonomy}."") if $c->debug;
   
  
   
+}
+sub get_wikipedia_link : Private {
+  my ( $this, $c ) = @_;
+  my $to_search = $c->stash->{ncbi_id}; 
+
+  $c->log->debug( 'getting wikipedia entry for '.$to_search.'' ) if $c->debug;
+    $c->forward('get_adaptors');
+    my $genome_db_adaptor = $c->stash->{'genomedb_adaptor'};
+    my $wikipedia_id = TreeFam::SearchHelper::get_wikipedia4species({"db_adaptor" => $genome_db_adaptor, "to_search" => $to_search});
+    $c->log->debug( 'got wikipedia id '.$wikipedia_id.' --> good' ) if $c->debug;
+    if($wikipedia_id =~ /^\d+$/){
+	$c->stash->{wikipedia_id} =  "http://en.wikipedia.org/wiki/index.html?curid=".$wikipedia_id;
+    }
+    else{
+	$c->stash->{wikipedia_id} =  $wikipedia_id;
+    }
+    	$c->log->debug( 'got wikipedia id '.$c->stash->{wikipedia_id}.' --> good' ) if $c->debug;
+
 }
 sub get_genomes_list : Private {
   my ( $this, $c ) = @_;

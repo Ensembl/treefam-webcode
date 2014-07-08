@@ -1,0 +1,345 @@
+.wrapi {
+  width: 900px;
+  margin: 0 auto;
+}
+svg {
+  display: block;
+}
+nav {
+  display: inline-block;
+}
+nav ul li {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 15px;
+}
+nav ul li a {
+  color: #666;
+  font-weight: bold;
+  text-decoration: none;
+}
+nav ul li.active a {
+  color: #fff;
+}
+nav ul li.active a:before {
+  content: "* ";
+}
+g.compass .direction {
+  fill: #1e1e1e;
+  fill-opacity: 0.5;
+  stroke: #fff;
+  stroke-width: 1px;
+  stroke-opacity: 0.1;
+}
+g.compass .zoom {
+  fill: none;
+}
+g.compass .back {
+  fill: none;
+}
+g.compass .chevron {
+  stroke: #fff;
+  stroke-width: 2px;
+}
+g.compass .zoom g:hover .chevron,
+g.compass .pan g:hover .chevron {
+  stroke: #66a6ff;
+  stroke-width: 2px;
+}
+.pr circle {
+  fill-opacity: 0.3;
+  fill: #ff69b4;
+}
+.dr circle {
+  fill: #ffa500;
+}
+.mo circle {
+  fill-opacity: 0.3;
+  fill: #f00;
+}
+.ho circle {
+  fill-opacity: 0.7;
+  fill: #f00;
+}
+.bu circle {
+  fill-opacity: 0.2;
+  fill: #0f0;
+}
+.we circle {
+  fill-opacity: 0.3;
+  fill: #0f0;
+}
+.ar circle {
+  fill-opacity: 0.3;
+  fill: #ffa500;
+}
+.q5-0 {
+  fill-opacity: 0;
+  fill: #0f0;
+}
+.q5-1 {
+  fill-opacity: 0.2;
+  fill: #0f0;
+}
+.q5-2 {
+  fill-opacity: 0.4;
+  fill: #0f0;
+}
+.q5-3 {
+  fill-opacity: 0.6;
+  fill: #0f0;
+}
+.q5-4 {
+  fill-opacity: 0.8;
+  fill: #0f0;
+}
+.q5-5 {
+  fill-opacity: 1;
+  fill: #0f0;
+}
+.q10-0 {
+  fill-opacity: 0;
+  fill: #0f0;
+}
+.q10-1 {
+  fill-opacity: 0.1;
+  fill: #0f0;
+}
+.q10-2 {
+  fill-opacity: 0.2;
+  fill: #0f0;
+}
+.q10-3 {
+  fill-opacity: 0.3;
+  fill: #0f0;
+}
+.q10-4 {
+  fill-opacity: 0.4;
+  fill: #0f0;
+}
+.q10-5 {
+  fill-opacity: 0.5;
+  fill: #0f0;
+}
+.q10-6 {
+  fill-opacity: 0.6;
+  fill: #0f0;
+}
+.q10-7 {
+  fill-opacity: 0.7;
+  fill: #0f0;
+}
+.q10-8 {
+  fill-opacity: 0.8;
+  fill: #0f0;
+}
+.q10-9 {
+  fill-opacity: 0.9;
+  fill: #0f0;
+}
+.q10-10 {
+  fill-opacity: 1;
+  fill: #0f0;
+}
+.q3-0 {
+  fill-opacity: 0;
+  fill: #0f0;
+}
+.q3-1 {
+  fill-opacity: 0.3333333333333333;
+  fill: #0f0;
+}
+.q3-2 {
+  fill-opacity: 0.6666666666666666;
+  fill: #0f0;
+}
+.q3-3 {
+  fill-opacity: 1;
+  fill: #0f0;
+}
+.q20-0 {
+  fill-opacity: 0;
+  fill: #0f0;
+}
+.q20-1 {
+  fill-opacity: 0.047619047619047616;
+  fill: #0f0;
+}
+.q20-2 {
+  fill-opacity: 0.09523809523809523;
+  fill: #0f0;
+}
+.q20-3 {
+  fill-opacity: 0.14285714285714285;
+  fill: #0f0;
+}
+.q20-4 {
+  fill-opacity: 0.19047619047619047;
+  fill: #0f0;
+}
+.q20-5 {
+  fill-opacity: 0.23809523809523808;
+  fill: #0f0;
+}
+.q20-6 {
+  fill-opacity: 0.2857142857142857;
+  fill: #0f0;
+}
+.q20-7 {
+  fill-opacity: 0.3333333333333333;
+  fill: #0f0;
+}
+.q20-8 {
+  fill-opacity: 0.38095238095238093;
+  fill: #0f0;
+}
+.q20-9 {
+  fill-opacity: 0.42857142857142855;
+  fill: #0f0;
+}
+.q20-10 {
+  fill-opacity: 0.47619047619047616;
+  fill: #0f0;
+}
+.q20-11 {
+  fill-opacity: 0.5238095238095238;
+  fill: #0f0;
+}
+.q20-12 {
+  fill-opacity: 0.5714285714285714;
+  fill: #0f0;
+}
+.q20-13 {
+  fill-opacity: 0.6190476190476191;
+  fill: #0f0;
+}
+.q20-14 {
+  fill-opacity: 0.6666666666666666;
+  fill: #0f0;
+}
+.q20-15 {
+  fill-opacity: 0.7142857142857143;
+  fill: #0f0;
+}
+.q20-16 {
+  fill-opacity: 0.7619047619047619;
+  fill: #0f0;
+}
+.q20-17 {
+  fill-opacity: 0.8095238095238095;
+  fill: #0f0;
+}
+.q20-18 {
+  fill-opacity: 0.8571428571428571;
+  fill: #0f0;
+}
+.q20-19 {
+  fill-opacity: 0.9047619047619048;
+  fill: #0f0;
+}
+.q20-20 {
+  fill-opacity: 0.9523809523809523;
+  fill: #0f0;
+}
+.sunburst text {
+  font-weight: bold;
+}
+.sunburst path {
+  stroke: #fff;
+  stroke-width: 0.5;
+  stroke-opacity: 1;
+}
+.sunburst path.nhood {
+  fill: #000;
+  stroke: #fff;
+  stroke-opacity: 1;
+  stroke-width: 1px;
+}
+.sunburst path.nhood:hover {
+  stroke: #f00;
+  stroke-opacity: 1;
+  stroke-width: 1px;
+}
+.sunburst #label {
+  fill: #fff;
+}
+.sunburst .rule {
+  stroke-width: 4px;
+  stroke: #fff;
+}
+div.offense {
+  display: inline-block;
+}
+.screen {
+  margin: 0 auto;
+  min-height: 600px;
+}
+.screen text {
+  font-size: 11px;
+  fill: #222;
+  fill-opacity: 0.9;
+}
+.type {
+  fill-opacity: 0.8;
+  fill: url("/img/paper.png");
+}
+.type text {
+  fill: #fff;
+  font-weight: bold;
+}
+.type text.nhlbl {
+  fill: #333;
+  font-weight: normal;
+}
+text.num {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+text.lbl {
+  font-weight: bold;
+  font-size: 16px;
+  fill: #111;
+}
+text.xlbl,
+text.ylbl {
+  font-size: 9px;
+  fill: #333;
+}
+text.max {
+  font-size: 9px;
+  fill: #a52a2a;
+}
+.ic {
+  stroke: #333;
+  stroke-width: 1px;
+  fill: none;
+  stroke-opacity: 0.4;
+}
+.type.on {
+  fill-opacity: 1;
+}
+.type text {
+  cursor: default;
+}
+.bar {
+  fill: #927750;
+  fill-opacity: 0.5;
+  shape-rendering: crispedges;
+}
+.bar.day {
+  fill: #cab242;
+}
+.ytick {
+  shape-rendering: crispedges;
+  stroke: #927750;
+  stroke-width: 1px;
+  stroke-opacity: 0.2;
+}
+.hourpath {
+  fill: none;
+  stroke: #c0a673;
+  stroke-width: 1;
+  stroke-opacity: 1;
+}
+

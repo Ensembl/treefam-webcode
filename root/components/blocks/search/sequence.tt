@@ -30,7 +30,7 @@ requirements.css.push( "buttons.css" );
     <p>
       Find TreeFam families within your sequence of interest. Paste your
       protein sequence into the box below, to have it searched for 
-      matching TreeFam families. 
+      matching TreeFam families. The back-end service for this Profile search was provided by <a href="http://www.ebi.ac.uk/Tools/webservices/">EMBL-EBI Web Production</a>.
     </p>   
 
       <hr />
@@ -44,7 +44,41 @@ requirements.css.push( "buttons.css" );
         [% seqSearchError %]
       </div>
       [% END %]
-      
+     <form method="post" 
+            id="proteinSeqSearchForm"
+            action="[% c.uri_for( "/search/sequence" ) %]"
+            enctype="multipart/form-data">
+
+        <div class="row">
+          <textarea cols="50" 
+                    rows="10"
+                    name="seq"
+                    id="seq">Enter Sequence here</textarea>
+        </div>
+     <input type="checkbox" id="tree_insertion" name="tree_insertion" value="tree_insertion" checked>Insert into tree<br> 
+	<div id="show_tree_options"  style="display: inline;">
+		<h3>Tree insertion algorithm</h3>
+     			<input type="radio" id="tree_insertion_parsimony" name="tree_insertion_algorithm" value="tree_insertion_parsimony">using Parsimony (super-fast, but might insert into several branches)<br> 
+     			<input type="radio" id="tree_insertion_likelihood" name="tree_insertion_algorithm" value="tree_insertion_likelihood">using ML (fast - might take a bit longer than Parsimony, more accurate)<br> 
+
+		</div>
+        <div class="row">
+          <label class="blankLabel"></label>
+           <input class="submit" 
+                 type="submit" 
+                 name="submit" 
+                 value="Submit"
+                 onclick="if(!$('seq').present()){return false};"/> 
+          <input class="reset"
+                 type="reset"
+                 name="reset"
+                 value="Reset" />
+          <input class="example" 
+                 type="button"
+                 value="Example" 
+                 onclick="$('seq').value=exSeq;" />
+        </div>
+<!-- 
       <form method="post" 
             id="proteinSeqSearchForm"
             action="[% c.uri_for( "/search/sequence" ) %]"
@@ -55,8 +89,9 @@ requirements.css.push( "buttons.css" );
           <textarea cols="60" 
                     rows="10"
                     name="seq"
-                    id="seq"> Enter Sequence</textarea>
+                    id="seq">Enter Sequence here</textarea>
         </div>
+     <input type="checkbox" id="tree_insertion" name="tree_insertion" value="tree_insertion">Insert into tree<br> 
   
         <div class="row">
           <label class="blankLabel">Submit</label>
@@ -74,57 +109,35 @@ requirements.css.push( "buttons.css" );
                  value="Example" 
                  onclick="$('seq').value=exSeq;" />
         </div>
-
+	-->
       </form>
-      
       <div class="cleaner"><!-- empty --></div>
-     <!-- 
-      <hr />
 
-      <p>
-        You can also see the TreeFam hits for a given sequence. Enter an EMBL 
-        sequence accession.
-      </p>
-
-      <form method="post" 
-            id="proteinSeqLookupForm"
-            action="[% c.uri_for( "/sequence" ) %]"
-            enctype="multipart/form-data">
-
-        <div class="row">
-          <label for="entry">Look up sequence</label>
-          <input name="entry"
-                 id="entryField"
-                 type="text"
-                 maxlength="100"
-                 size="20" />
-        </div>
-
-        <div class="row">
-          <label class="blankLabel">Submit</label>
-          <input class="submit" 
-                 type="submit" 
-                 name="submit" 
-                 value="Submit"
-                 onclick="if(!$('entryField').present()){return false};"/>
-          <input class="reset"
-                 type="reset"
-                 name="reset"
-                 value="Reset" />
-          <input class="example" 
-                 type="button"
-                 value="Example" 
-                 onclick="$('entryField').value=exEntry;" />
-        </div>
-
-      </form>
-  --> 
     </div>
     
   </div>
 
   <script type="text/javascript">
     // <![CDATA[
+var exSeq = "MAGNFWQSSHYLQWILDKQDLLKERQKDLKFLSEEEYWKLQIFFTNVIQALGEHLKLRQQVIATATVYFKRFYARYSLKSIDPVLMAPTCVFLASKVEEFGVVSNTRLIAAATSVLKTRFSYAFPKEFPYRMNHILECEFYLLELMDCCLIVYHPYRPLLQYVQDMGQEDMLLPLAWRIVNDTYRTDLCLLYPPFMIALACLHVACVVQQKDARQWFAELSVDMEKILEIIRVILKLYEQWKNFDERKEMATILSKMPKPKPPPNSEGEQGPNGSQNSSYSQS";
+var SEARCH_TREEFAM = "Search TreeFam...";
+	jQuery("#tree_insertion_parsimony").prop('checked', true);
+	jQuery("#tree_insertion").click(function () {
+            jQuery("#show_tree_options").toggle();
+        });
+
+jQuery('textarea')
+  .focus(function() {
+        if (this.value === this.defaultValue) {
+            this.value = '';
+        }
+  })
+  .blur(function() {
+        if (this.value === '') {
+            this.value = this.defaultValue;
+        }
+});
+
     
     // a little check on the sequence length...
     var lengthWarning = false;
@@ -150,7 +163,20 @@ requirements.css.push( "buttons.css" );
     var exSeq = "MAGNFWQSSHYLQWILDKQDLLKERQKDLKFLSEEEYWKLQIFFTNVIQALGEHLKLRQQVIATATVYFKRFYARYSLKSIDPVLMAPTCVFLASKVEEFGVVSNTRLIAAATSVLKTRFSYAFPKEFPYRMNHILECEFYLLELMDCCLIVYHPYRPLLQYVQDMGQEDMLLPLAWRIVNDTYRTDLCLLYPPFMIALACLHVACVVQQKDARQWFAELSVDMEKILEIIRVILKLYEQWKNFDERKEMATILSKMPKPKPPPNSEGEQGPNGSQNSSYSQS";
 var exEntry = "ENSP00000428982";
     // ]]>
-  </script>
+  
+jQuery('textarea')
+  .focus(function() {
+        if (this.value === this.defaultValue) {
+            this.value = '';
+        }
+  })
+  .blur(function() {
+        if (this.value === '') {
+            this.value = this.defaultValue;
+        }
+});
+
+</script>
 
 </div>
 

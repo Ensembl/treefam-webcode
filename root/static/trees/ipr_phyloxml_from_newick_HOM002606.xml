@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><phyloxml xmlns="http://www.phyloxml.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.00/phyloxml.xsd">
+<phylogeny rooted="true">
+  <clade>
+    <clade>
+      <branch_length>0.11720499999999992</branch_length>
+      <confidence type="bootstrap">99.0</confidence>
+      <clade>
+        <branch_length>0.188029</branch_length>
+        <confidence type="bootstrap">100.0</confidence>
+        <clade>
+          <name>VV07G07820</name>
+          <branch_length>0.291419</branch_length>
+        <taxonomy><code>vvi</code></taxonomy><sequence><domain_architecture length="283"/></sequence></clade>
+        <clade>
+          <branch_length>0.329191</branch_length>
+          <clade>
+            <name>OSINDICA_04G29220</name>
+            <branch_length>0.167151</branch_length>
+          <taxonomy><code>osaindica</code></taxonomy><sequence><domain_architecture length="273"/></sequence></clade>
+          <clade>
+            <name>OS04G37590</name>
+            <branch_length>0.034225</branch_length>
+          <taxonomy><code>osa</code></taxonomy><sequence><domain_architecture length="414"/></sequence></clade>
+        </clade>
+      </clade>
+      <clade>
+        <branch_length>0.250315</branch_length>
+        <confidence type="bootstrap">100.0</confidence>
+        <clade>
+          <branch_length>0.025529</branch_length>
+          <confidence type="bootstrap">70.0</confidence>
+          <clade>
+            <branch_length>0.034723</branch_length>
+            <confidence type="bootstrap">74.0</confidence>
+            <clade>
+              <branch_length>0.002695</branch_length>
+              <confidence type="bootstrap">25.0</confidence>
+              <clade>
+                <branch_length>0.01087</branch_length>
+                <confidence type="bootstrap">37.0</confidence>
+                <clade>
+                  <branch_length>0.002954</branch_length>
+                  <confidence type="bootstrap">23.0</confidence>
+                  <clade>
+                    <branch_length>0.027316</branch_length>
+                    <confidence type="bootstrap">95.0</confidence>
+                    <clade>
+                      <branch_length>0.0351</branch_length>
+                      <confidence type="bootstrap">97.0</confidence>
+                      <clade>
+                        <name>FV5G19580</name>
+                        <branch_length>0.169582</branch_length>
+                      <taxonomy><code>fve</code></taxonomy><sequence><domain_architecture length="287"/></sequence></clade>
+                      <clade>
+                        <name>FV5G19590</name>
+                        <branch_length>0.085362</branch_length>
+                      <taxonomy><code>fve</code></taxonomy><sequence><domain_architecture length="329"/></sequence></clade>
+                    </clade>
+                    <clade>
+                      <branch_length>0.060647</branch_length>
+                      <confidence type="bootstrap">100.0</confidence>
+                      <clade>
+                        <branch_length>0.017925</branch_length>
+                        <confidence type="bootstrap">100.0</confidence>
+                        <clade>
+                          <name>MD00G077630</name>
+                          <branch_length>0.0</branch_length>
+                        <taxonomy><code>mdo</code></taxonomy><sequence><domain_architecture length="327"/></sequence></clade>
+                        <clade>
+                          <name>MD00G279750</name>
+                          <branch_length>0.0</branch_length>
+                        <taxonomy><code>mdo</code></taxonomy><sequence><domain_architecture length="327"/></sequence></clade>
+                      </clade>
+                      <clade>
+                        <name>MD11G021230</name>
+                        <branch_length>0.028697</branch_length>
+                      <taxonomy><code>mdo</code></taxonomy><sequence><domain_architecture length="352"/></sequence></clade>
+                    </clade>
+                  </clade>
+                  <clade>
+                    <branch_length>0.008316</branch_length>
+                    <confidence type="bootstrap">36.0</confidence>
+                    <clade>
+                      <branch_length>0.026427</branch_length>
+                      <confidence type="bootstrap">68.0</confidence>
+                      <clade>
+                        <branch_length>0.18059</branch_length>
+                        <confidence type="bootstrap">100.0</confidence>
+                        <clade>
+                          <name>AT4G08980</name>
+                          <branch_length>0.009072</branch_length>
+                        <taxonomy><code>ath</code></taxonomy><sequence><domain_architecture length="318"/></sequence></clade>
+                        <clade>
+                          <name>AL6G30030</name>
+                          <branch_length>0.012181</branch_length>
+                        <taxonomy><code>aly</code></taxonomy><sequence><domain_architecture length="318"><domain confidence="220.0" from="105" to="129">IPR006553</domain><domain confidence="7.0" from="130" to="155">IPR006553</domain><domain confidence="130.0" from="188" to="212">IPR006553</domain></domain_architecture></sequence></clade>
+                      </clade>
+                      <clade>
+                        <name>CP00036G01570</name>
+                        <branch_length>0.071135</branch_length>
+                      <taxonomy><code>cpa</code></taxonomy><sequence><domain_architecture length="321"><domain confidence="1.2E-4" from="9" to="55">IPR001810</domain></domain_architecture></sequence></clade>
+                    </clade>
+                    <clade>
+                      <name>TC08G008790</name>
+                      <branch_length>0.091325</branch_length>
+                    <taxonomy><code>tca</code></taxonomy><sequence><domain_architecture length="322"/></sequence></clade>
+                  </clade>
+                </clade>
+                <clade>
+                  <branch_length>0.057027</branch_length>
+                  <confidence type="bootstrap">87.0</confidence>
+                  <clade>
+                    <branch_length>0.048865</branch_length>
+                    <confidence type="bootstrap">92.0</confidence>
+                    <clade>
+                      <branch_length>0.102568</branch_length>
+                      <confidence type="bootstrap">100.0</confidence>
+                      <clade>
+                        <name>MT5G098180</name>
+                        <branch_length>0.186468</branch_length>
+                      <taxonomy><code>mtr</code></taxonomy><sequence><domain_architecture length="253"/></sequence></clade>
+                      <clade>
+                        <name>MT5G064480</name>
+                        <branch_length>0.096292</branch_length>
+                      <taxonomy><code>mtr</code></taxonomy><sequence><domain_architecture length="317"/></sequence></clade>
+                    </clade>
+                    <clade>
+                      <name>LJ0G080940</name>
+                      <branch_length>0.304134</branch_length>
+                    <taxonomy><code>lja</code></taxonomy><sequence><domain_architecture length="298"/></sequence></clade>
+                  </clade>
+                  <clade>
+                    <branch_length>0.101657</branch_length>
+                    <confidence type="bootstrap">100.0</confidence>
+                    <clade>
+                      <name>GM06G10680</name>
+                      <branch_length>0.00854</branch_length>
+                    <taxonomy><code>gma</code></taxonomy><sequence><domain_architecture length="322"/></sequence></clade>
+                    <clade>
+                      <name>GM04G10850</name>
+                      <branch_length>0.002035</branch_length>
+                    <taxonomy><code>gma</code></taxonomy><sequence><domain_architecture length="322"/></sequence></clade>
+                  </clade>
+                </clade>
+              </clade>
+              <clade>
+                <name>VV18G03820</name>
+                <branch_length>0.135874</branch_length>
+              <taxonomy><code>vvi</code></taxonomy><sequence><domain_architecture length="293"/></sequence></clade>
+            </clade>
+            <clade>
+              <branch_length>0.020207</branch_length>
+              <confidence type="bootstrap">88.0</confidence>
+              <clade>
+                <branch_length>0.063495</branch_length>
+                <confidence type="bootstrap">100.0</confidence>
+                <clade>
+                  <name>RC29908G02100</name>
+                  <branch_length>0.059564</branch_length>
+                <taxonomy><code>rco</code></taxonomy><sequence><domain_architecture length="330"/></sequence></clade>
+                <clade>
+                  <name>ME07027G00470</name>
+                  <branch_length>0.061988</branch_length>
+                <taxonomy><code>mes</code></taxonomy><sequence><domain_architecture length="323"/></sequence></clade>
+              </clade>
+              <clade>
+                <name>PT02G09740</name>
+                <branch_length>0.101457</branch_length>
+              <taxonomy><code>ptr</code></taxonomy><sequence><domain_architecture length="322"/></sequence></clade>
+            </clade>
+          </clade>
+          <clade>
+            <branch_length>0.049782</branch_length>
+            <confidence type="bootstrap">100.0</confidence>
+            <clade>
+              <branch_length>0.009148</branch_length>
+              <confidence type="bootstrap">55.0</confidence>
+              <clade>
+                <name>CP00055G00870</name>
+                <branch_length>0.122119</branch_length>
+              <taxonomy><code>cpa</code></taxonomy><sequence><domain_architecture length="304"/></sequence></clade>
+              <clade>
+                <name>TC01G008650</name>
+                <branch_length>0.077202</branch_length>
+              <taxonomy><code>tca</code></taxonomy><sequence><domain_architecture length="320"><domain confidence="2.9E-4" from="9" to="54">IPR001810</domain></domain_architecture></sequence></clade>
+            </clade>
+            <clade>
+              <branch_length>0.008027</branch_length>
+              <confidence type="bootstrap">50.0</confidence>
+              <clade>
+                <branch_length>0.08515</branch_length>
+                <confidence type="bootstrap">100.0</confidence>
+                <clade>
+                  <name>FV0G22380</name>
+                  <branch_length>0.165866</branch_length>
+                <taxonomy><code>fve</code></taxonomy><sequence><domain_architecture length="319"/></sequence></clade>
+                <clade>
+                  <name>MD01G001350</name>
+                  <branch_length>0.081318</branch_length>
+                <taxonomy><code>mdo</code></taxonomy><sequence><domain_architecture length="330"/></sequence></clade>
+              </clade>
+              <clade>
+                <name>VV00G17860</name>
+                <branch_length>0.103894</branch_length>
+              <taxonomy><code>vvi</code></taxonomy><sequence><domain_architecture length="318"/></sequence></clade>
+            </clade>
+          </clade>
+        </clade>
+        <clade>
+          <branch_length>0.119747</branch_length>
+          <confidence type="bootstrap">100.0</confidence>
+          <clade>
+            <branch_length>0.030724</branch_length>
+            <confidence type="bootstrap">93.0</confidence>
+            <clade>
+              <branch_length>0.09155</branch_length>
+              <confidence type="bootstrap">100.0</confidence>
+              <clade>
+                <name>OSINDICA_06G11080</name>
+                <branch_length>0.0</branch_length>
+              <taxonomy><code>osaindica</code></taxonomy><sequence><domain_architecture length="318"/></sequence></clade>
+              <clade>
+                <name>OS06G11630</name>
+                <branch_length>0.0</branch_length>
+              <taxonomy><code>osa</code></taxonomy><sequence><domain_architecture length="318"/></sequence></clade>
+            </clade>
+            <clade>
+              <branch_length>0.019033</branch_length>
+              <confidence type="bootstrap">80.0</confidence>
+              <clade>
+                <name>BD1G45630</name>
+                <branch_length>0.041405</branch_length>
+              <taxonomy><code>bdi</code></taxonomy><sequence><domain_architecture length="320"/></sequence></clade>
+              <clade>
+                <name>BD1G57260</name>
+                <branch_length>0.120718</branch_length>
+              <taxonomy><code>bdi</code></taxonomy><sequence><domain_architecture length="331"/></sequence></clade>
+            </clade>
+          </clade>
+          <clade>
+            <branch_length>0.043565</branch_length>
+            <confidence type="bootstrap">100.0</confidence>
+            <clade>
+              <branch_length>0.027946</branch_length>
+              <confidence type="bootstrap">88.0</confidence>
+              <clade>
+                <branch_length>0.009776</branch_length>
+                <confidence type="bootstrap">61.0</confidence>
+                <clade>
+                  <branch_length>0.02354</branch_length>
+                  <confidence type="bootstrap">86.0</confidence>
+                  <clade>
+                    <name>ZM03G13000</name>
+                    <branch_length>0.12732</branch_length>
+                  <taxonomy><code>zma</code></taxonomy><sequence><domain_architecture length="205"/></sequence></clade>
+                  <clade>
+                    <name>ZM04G27400</name>
+                    <branch_length>0.004342</branch_length>
+                  <taxonomy><code>zma</code></taxonomy><sequence><domain_architecture length="336"/></sequence></clade>
+                </clade>
+                <clade>
+                  <name>ZM05G40970</name>
+                  <branch_length>0.058369</branch_length>
+                <taxonomy><code>zma</code></taxonomy><sequence><domain_architecture length="333"/></sequence></clade>
+              </clade>
+              <clade>
+                <name>SB04G027350</name>
+                <branch_length>0.029997</branch_length>
+              <taxonomy><code>sbi</code></taxonomy><sequence><domain_architecture length="366"/></sequence></clade>
+            </clade>
+            <clade>
+              <branch_length>0.022244</branch_length>
+              <confidence type="bootstrap">80.0</confidence>
+              <clade>
+                <branch_length>0.055687</branch_length>
+                <confidence type="bootstrap">100.0</confidence>
+                <clade>
+                  <name>OS02G52130</name>
+                  <branch_length>0.0</branch_length>
+                <taxonomy><code>osa</code></taxonomy><sequence><domain_architecture length="325"/></sequence></clade>
+                <clade>
+                  <name>OSINDICA_02G50370</name>
+                  <branch_length>0.0</branch_length>
+                <taxonomy><code>osaindica</code></taxonomy><sequence><domain_architecture length="325"/></sequence></clade>
+              </clade>
+              <clade>
+                <name>BD3G58610</name>
+                <branch_length>0.096836</branch_length>
+              <taxonomy><code>bdi</code></taxonomy><sequence><domain_architecture length="338"/></sequence></clade>
+            </clade>
+          </clade>
+        </clade>
+      </clade>
+    </clade>
+    <clade>
+      <branch_length>0.10378300000000007</branch_length>
+      <confidence type="bootstrap">68.0</confidence>
+      <clade>
+        <name>SM00028G00130</name>
+        <branch_length>0.32211</branch_length>
+      <taxonomy><code>smo</code></taxonomy><sequence><domain_architecture length="224"><domain confidence="0.2" from="120" to="145">IPR006553</domain><domain confidence="40.0" from="181" to="205">IPR006553</domain></domain_architecture></sequence></clade>
+      <clade>
+        <name>SM00007G00480</name>
+        <branch_length>0.74758</branch_length>
+      <taxonomy><code>smo</code></taxonomy><sequence><domain_architecture length="287"><domain confidence="0.0032" from="22" to="62">IPR001810</domain><domain confidence="11.0" from="122" to="147">IPR006553</domain><domain confidence="0.0020" from="148" to="173">IPR006553</domain><domain confidence="120.0" from="212" to="236">IPR006553</domain><domain confidence="68.0" from="237" to="262">IPR006553</domain><domain confidence="1.0E-4" from="18" to="60">IPR001810</domain></domain_architecture></sequence></clade>
+    </clade>
+  </clade>
+</phylogeny>
+</phyloxml>

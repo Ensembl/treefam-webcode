@@ -1,0 +1,27 @@
+
+/* 
+ * HTML5 âœ° Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling. 
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ *
+ * Detailed information about this CSS: h5bp.com/css
+ * 
+ * ==|== normalize ==========================================================
+*/
+
+
+/* =============================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/* Logo images */
+div#headerdiv img.logo { margin-bottom: 2px;  margin-left: 20px} /* This was necessary for the InterPro logo... */
+
+
+div#local-search form fieldset input.form-text,
+div#local-search form fieldset input#local-searchbox,
+form#local-search fieldset input#local-searchbox { 
+	font-size: 123.1%;	/* fontsize = 16px */
+	width: 70%;		
+}

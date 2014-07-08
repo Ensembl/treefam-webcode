@@ -1,0 +1,28 @@
+#collapse_demo {
+  #background: #B0E5B8;
+  border: 1px solid #628066;
+  border-width: 0 1px 0px 0;
+  overflow:hidden;
+  margin-bottom:20px;
+}
+#collapse_demo h2 a {
+  #font-size: 18px;
+  background: url("../images/sprite.png") 15px 13px no-repeat;
+  display: block;
+  padding: 9px;
+  padding-left: 32px;
+  margin: 0;
+  color: #628066;
+  text-decoration: none;
+  font-weight: normal;
+  border-bottom: 1px solid #628066;
+}
+#collapse_demo h2.open a {background-position: 14px -24px;}
+#collapse_demo h2 + div,
+#collapse_demo h2 + ul,
+#collapse_demo h2 + p {
+  padding: 10px;
+  background: #fff;
+  margin:0;
+}
+

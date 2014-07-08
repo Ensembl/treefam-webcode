@@ -14,13 +14,13 @@
     <h1>How to contact TreeFam</h1>
   </div>
   <div class="blockContent">
-	There are several ways to contact the TreeFam database.
+	There are several ways to contact the TreeFam database. 
 	<ul>
-	<li>Contact TreeFam: Use the "Feedback" widget on the right of every page</li>
-	<li>Xfam blog: <a class="ext" href="http://xfam.wordpress.com/">Xfam blog</a> </li>
-	<li><span class="feed">RSS feed</span>: <a href="http://xfam.wordpress.com/tag/rfam/feed/">RSS feed</a></li>
-	<li><span class="twitter">Twitter</span>: <a class="ext" href="http://www.twitter.com/Xfam_WTSI">follow</a></li>
-	<li><span class="mendeley">Mendeley<img src="http://d1xgx7lp3wi2d0.cloudfront.net/livesite-2012111501/graphics/commonnew/logo-mendeley.png" style="width:60px;height:20px" /></span><a class="ext" href="http://www.mendeley.com/groups/2810871/treefam/">TreeFam</a></li>
+	<li>TreeFam forum: click on the Forum link in the header to go to our forum.</li>
+	<li>Xfam blog: <a href="http://xfam.wordpress.com/">Xfam blog</a> </li>
+	<!-- <li><span class="feed">RSS feed</span>: <a href="http://xfam.wordpress.com/tag/rfam/feed/">RSS feed</a></li> -->
+	<li><span class="twitter">Twitter</span>: <a  href="http://www.twitter.com/Xfam_WTSI">follow</a></li>
+	<li><span class="mendeley">Mendeley<img src="http://d1xgx7lp3wi2d0.cloudfront.net/livesite-2012111501/graphics/commonnew/logo-mendeley.png" style="width:60px;height:20px" /></span><a  href="http://www.mendeley.com/groups/2810871/treefam/">TreeFam</a></li>
 	</ul>
   </div>
 </div>

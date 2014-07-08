@@ -1,0 +1,24 @@
+#control { width:100%;}
+#menu { font: 0.8em Arial, sans-serif; }
+#menu { padding: 0; }
+#menu li { display: inline; }
+#menu li a { background: #ccf; padding: 10px; float:left; border-right: 1px solid #ccf; border-bottom: none; text-decoration: none; color: #000; font-weight: bold;}
+#menu li.active a { background: #eef; }
+
+.content { float: left; clear: both; border: 1px solid #ccf; border-top: none; border-left: none; background: #eef; padding: 0px 10px 0px; width: 800px; }
+
+.clearfix:before,
+        .clearfix:after {
+          content: ".";
+          display: block;
+          height: 0;
+          overflow: hidden;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .clearfix {
+            zoom: 1; /* IE < 8 */
+        }

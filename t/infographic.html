@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+	<head>
+  		<meta charset="utf-8">
+		<title>3angular | Visual Analytics Project - A Race to Entitlement</title>
+    	<link rel="stylesheet" href="http://3angular.roberryarts.com/css/style.css" media="screen" />
+    	<link rel="stylesheet" href="http://3angular.roberryarts.com/css/shadowbox.css" media="screen" />
+    	<link rel="stylesheet" href="http://3angular.roberryarts.com/css/tipsy.css" type="text/css" />
+    	<link rel="stylesheet" href="http://3angular.roberryarts.com/css/d3-chart.css" type="text/css" />
+
+    	<link rel="stylesheet" href="http://3angular.roberryarts.com/css/visline.css" type="text/css" />
+    	<link rel="stylesheet" href="http://3angular.roberryarts.com/css/vispie.css" type="text/css" />
+    	<script src="http://3angular.roberryarts.com/lib/jquery/jquery-1.6.2.min.js"></script>
+    	<script src="http://3angular.roberryarts.com/lib/jquery/jquery.tipsy.js"></script>
+    	<script src="http://3angular.roberryarts.com/lib/jquery/jquery.scrollTo.js"></script>
+    	<script src="http://3angular.roberryarts.com/lib/shadowbox/shadowbox.js"></script>
+    	<script src="http://3angular.roberryarts.com/js/scripts.js"></script>	
+		<script src="http://3angular.roberryarts.com/lib/d3/d3.js"></script>
+
+		<script src="http://3angular.roberryarts.com/lib/d3/d3.csv.js"></script>
+		<script src="http://3angular.roberryarts.com/lib/d3/d3.time.js"></script>
+		<script src="http://3angular.roberryarts.com/lib/d3/d3.layout.js"></script>
+	</head>
+	<body ng:controller="PageRouter_Main">
+		<section id="container">
+			<section id="box">
+
+				<section id="topbox">
+					<header><img src="images/va-3angular-website-header-v01-700px.jpg"></header>
+					<footer>
+						<ul id="leftlinks">
+							<li id="leftlinks_whatiscoe"><a href="#/whatiscoe">What is COE?</a></li>
+							<li id="leftlinks_thebiddingprocess"><a href="#/thebiddingprocess">The Bidding Process</a></li>
+							<li id="leftlinks_jargondefined"><a href="#/jargondefined">Jargons Defined</a></li>
+
+						</ul>
+						<ul id="rightlinks">
+							<li><a href="#/home"><img src="http://3angular.roberryarts.com/images/home.png" width="12px" height="12px"></a></li>
+							<li><a href="html/aboutus.html" rel="shadowbox[Mixed]">About Us</a></li>
+							<li><a href="">Project Wiki</a>
+								<ul>
+									<li><a href="https://wiki.smu.edu.sg/1112t1is428/3angular_._Project_Proposal_._A_Race_to_Entitlement" target="_blank">Project Proposal</a></li>
+
+									<li><a href="https://wiki.smu.edu.sg/1112t1is428/3angular_._Initial_Project_Presentation_._A_Race_to_Entitlement" target="_blank">Project Presentation</a></li>
+									<li><a href="https://wiki.smu.edu.sg/1112t1is428/3angular_._Progress_Update_._A_Race_to_Entitlement" target="_blank">Project Progress Updates</a></li>
+									<li><a href="http://cl.ly/BBrr" rel="shadowbox[Mixed]">Project Presentation Slides PDF</a></li>
+									<li><a href="http://cl.ly/Baey" rel="shadowbox[Mixed]">Project Poster</a></li>
+									<li><a href="http://cl.ly/BuRu" target="_blank">Research Paper</a></li>								</ul>
+							</li>
+
+						</ul>
+					</footer>
+				</section>
+				
+				<section id="contentbox">
+					<section id="infobox" role="content">
+						<ng:view></ng:view>
+					</section>
+					<section id="togglelink_section">
+						<section id="togglelink_text">Find out more..</section>
+
+						<section id="togglelink_more"><a href="">More Info</a></section>
+						<section id="togglelink_less"><a href="">Less Info</a></section>
+					</section>
+					<section id="chartbox">
+						<div class="chartboxheader">
+							TreeFam family page
+							<div class="chartbox_section_controls top_level_controls">
+								<a href="#visualview1" class="first isactive">Summary</a><a href="#visualview2" class="isactive">Tree</a><a href="#visualview3" class="last isactive">Alignment</a>
+
+							</div>
+							<div class="gotop_controls"><a href="#topbox" class="gotop">top &uarr;</a></div>
+						</div>
+						<div id="visualview1">
+							<div class="chartboxsubheader">Summary</div>
+							<div class="chartbox_section_controls"><a href="#visualview1" class="first isactive">Summary</a><a href="#visualview2" class="nonactive">Tree</a><a href="#visualview3" class="last nonactive">Alignment</a></div>
+
+							<div class="gotop_subcontrols"><a href="#topbox" class="gotop">top &uarr;</a></div>
+							
+							<div id="vispie_charts">
+								<script type="text/javascript" src="http://3angular.roberryarts.com/vispie_data.js"></script>
+								<div id="vispie_charts_legend"><img src="http://3angular.roberryarts.com/images/va-3angular-website-piechart-legend-v01-880px.jpg" /></div>
+								<div id="vispie_charts_header">
+									<div class="vispie_charts_left"><span class="vispie_charts_headertext">Bids Quota</span></div>
+									<div class="vispie_charts_center"><span class="vispie_charts_headertext">Bids Received</span></div>
+
+									<div class="vispie_charts_right"><span class="vispie_charts_headertext">Successful Bids</span></div>
+								</div>
+								<div id="vispie_charts_top">
+									<div id="vispie_bidsquota1st" class="vispie_charts_left"></div>
+									<div id="vertical_spacerone" class="vertical_spacer"></div>
+									<div id="vispie_bidsreceived1st" class="vispie_charts_center"></div>
+									<div id="vertical_spacertwo" class="vertical_spacer"></div>
+									<div id="vispie_successfulbids1st" class="vispie_charts_right"></div>
+
+								</div>
+								<div id="vispie_charts_bottom">
+									<div id="vispie_bidsquota2nd" class="vispie_charts_left"></div>
+									<div id="vispie_bidsreceived2nd" class="vispie_charts_center"></div>
+									<div id="vispie_successfulbids2nd" class="vispie_charts_right"></div>
+								</div>
+								<div id="piechart_controls">
+									<button class="first isactive" id="prevyear"><<</button><div id="vispie_year"></div><button class="last isactive" id="nextyear">>></button>
+
+								</div>
+								<script type="text/javascript" src="http://3angular.roberryarts.com/vispie_all.js"></script>
+							</div>
+						</div>
+						<div id="visualview2">
+							<div class="chartboxsubheader">Phylogenetic Tree</div>
+							<div class="chartbox_section_controls"><a href="#visualview1" class="first nonactive">Summary</a><a href="#visualview2" class="isactive">Tree</a><a href="#visualview3" class="last nonactive">Alignment</a></div>
+
+							<div class="gotop_subcontrols"><a href="#topbox" class="gotop">top &uarr;</a></div>
+							
+							<div id="visline_charts">
+								<div id="visline_charts_top">
+									<div id="visline_population">
+										<script type="text/javascript" src="http://3angular.roberryarts.com/visline_population.js"></script>	
+									</div>
+									<div id="visline_gdp">
+										<script type="text/javascript" src="http://3angular.roberryarts.com/visline_gdp.js"></script>	
+									</div>
+
+								</div>
+								<div id="visline_charts_bottom">
+									<div id="visline_publicridership">
+										<script type="text/javascript" src="http://3angular.roberryarts.com/visline_publicridership.js"></script>	
+									</div>
+									<div id="visline_inflation">
+										<script type="text/javascript" src="http://3angular.roberryarts.com/visline_inflation.js"></script>	
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div id="visualview3">
+							<div class="chartboxsubheader">Multiple Sequence Alignment</div>
+							<div class="chartbox_section_controls"><a href="#visualview1" class="first nonactive">Summary</a><a href="#visualview2" class="nonactive">Tree</a><a href="#visualview3" class="last isactive">Alignment</a></div>
+
+							<div class="gotop_subcontrols"><a href="#topbox" class="gotop">top &uarr;</a></div>
+							<div id="chart">
+								<script type="text/javascript" src="http://3angular.roberryarts.com/d3-chart.js"></script>	
+								<div id="chart_controls">
+									<button class="buttonbar firstbar activebar" id="round1">Round 1</button><button class="buttonbar lastbar" id="round2">Round 2</button>
+								</div>
+							</div>
+
+							<div id="infoboxspacearea"><img src="http://3angular.roberryarts.com/images/va-3angular-website-categories-mainheader-v01-880px.jpg" /></div>
+						</div>
+					</section>
+				</section>
+				
+				<section id="footerlinks">
+					<ul>
+						<li><a href="http://www.lta.gov.sg/" target="_blank">Singapore Land Transport Authority (LTA)</a></li>
+						<li><a href="http://www.onemotoring.com.sg" target="_blank">ONE.Motoring.SG</a></li>
+
+						<li><a href="http://www.singstat.gov.sg/" target="_blank">Singapore Department of Statistics (SingStat)</a></li>
+					</ul>
+				</section>
+				<section id="bottombox">
+					<section id="copyright">3angular &copy; <time datetime="2011-09-26">2011</time> <sup>.</sup> </section>
+
+				</section>
+    		</section>
+    	</section>
+		<script src="http://3angular.roberryarts.com/lib/angular/angular.js" ng:autobind></script>
+		<script src="http://3angular.roberryarts.com/js/controllers.js"></script>
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-6472026-5']);
+			_gaq.push(['_setDomainName', '.roberryarts.com']);
+			_gaq.push(['_trackPageview']);
+			(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	</body>
+
+</html>

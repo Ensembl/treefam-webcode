@@ -89,35 +89,35 @@ from the DB.
 
 =cut
 #  /family/
-sub get_adaptors : Chained( '/' ) PathPart( 'family' ) CaptureArgs(0)
+sub get_adaptors : Private 
 {
   my ($self, $c) = @_;
   
   #my $reg = $c->model('Registry');
   my $reg = 'Bio::EnsEMBL::Registry'; 
-  my $compara_name = $c->request()->param('compara');
+  my $compara_name = $c->request()->param('compara') || "TreeFam";
   
-  try {
-            #my $ma = $reg->get_adaptor($compara_name, 'compara', 'member');
+  #try {
+            my $ma = $reg->get_adaptor($compara_name, 'compara', 'member');
             #$c->go('ReturnError', 'custom', ["No member adaptor found for $compara_name"]) unless $ma;
-            #$c->stash(member_adaptor => $ma);
+            $c->stash(member_adaptor => $ma);
           
             my $ha = $reg->get_adaptor($compara_name, 'compara', 'homology');
-            $c->go('ReturnError', 'custom', ["No homology adaptor found for $compara_name"]) unless $ha;
+            #$c->go('ReturnError', 'custom', ["No homology adaptor found for $compara_name"]) unless $ha;
             $c->stash(homology_adaptor => $ha);
             
             my $gt = $reg->get_adaptor($compara_name, 'compara', 'GeneTree');
-            $c->go('ReturnError', 'custom', ["No genetree adaptor found for $compara_name"]) unless $gt;
+            #$c->go('ReturnError', 'custom', ["No genetree adaptor found for $compara_name"]) unless $gt;
             #$c->stash(genetree_adaptor => $gt);
             $c->stash->{'genetree_adaptor'} = $gt;
             #$c->log->debug("here is what we saved\n");
             #$c->log->debug(dump($c->stash->{'genetree_adaptor'}));
             #$c->log->debug(dump($gt));
             #$c->log->debug("done\n");
-            }
-  catch {
-            $c->go('ReturnError', 'from_ensembl', [$_]);
-  }; 
+            #}
+  #catch {
+            #$c->go('ReturnError', 'from_ensembl', [$_]);
+  #}; 
 
 }
 
@@ -146,12 +146,13 @@ sub family_check : Chained( '/' ) PathPart( 'family' ) CaptureArgs(1)
     $c->log->debug("family_begin : Chained( '/' ) PathPart( 'family' )\n") if $c->debug;
     $c->log->debug("Check if valid id \n") if $c->debug;
     
-    my $registry = 'Bio::EnsEMBL::Registry'; 
-    my $genetree_adaptor = $registry->get_adaptor('TreeFam', 'Compara', 'GeneTree');
-    $c->go('ReturnError', 'custom', ["No genetree adaptor found for TreeFam"]) unless $genetree_adaptor;
-    $c->stash->{'genetree_adaptor'} = $genetree_adaptor;
-
-    $to_search = TreeFam::SearchHelper::check_valid_family({"genetree_adaptor" => $genetree_adaptor,"to_search" => $to_search}); 
+    #my $registry = 'Bio::EnsEMBL::Registry'; 
+    #my $genetree_adaptor = $registry->get_adaptor('TreeFam', 'Compara', 'GeneTree');
+    #$c->go('ReturnError', 'custom', ["No genetree adaptor found for TreeFam"]) unless $genetree_adaptor;
+    #$c->stash->{'genetree_adaptor'} = $genetree_adaptor;
+    $c->forward( 'get_adaptors');
+    $to_search = TreeFam::SearchHelper::check_valid_family({member_adaptor => $c->stash->{'member_adaptor'}, "genetree_adaptor" => $c->stash->{'genetree_adaptor'},"to_search" => $to_search}); 
+    #$to_search = TreeFam::SearchHelper::check_valid_family({"genetree_adaptor" => $genetree_adaptor,"to_search" => $to_search}); 
     $c->log->debug("mapped ID is $to_search \n");
    
     if(!$to_search ){
@@ -200,7 +201,7 @@ sub family_data : Chained( 'family_check' ) PathPart( '' ) Args(0)
    	
     $c->log->debug('Family::family_page: adding summary info') if $c->debug;
     # Get Summary data
-	$c->forward('get_summary_data');
+    $c->forward('get_summary_data');
     if(! exists ($c->stash->{summaryData})){
     
     }   	
@@ -439,7 +440,8 @@ sub json_tree : Chained( 'check_tree' ) PathPart( 'json' ) Args(0 )
  {
      my ( $this, $c ) = @_;
      my ($acc,$format) = ($c->stash->{acc}, $c->stash->{format}); 
-     $c->log->debug( "trying to tree data for " . $c->stash->{acc} . " format phyloxml\n" ) if $c->debug;
+     $c->stash->{tree_format} = "json_tree";
+     $c->log->debug( "trying to tree data for " . $c->stash->{acc} . " format $format\n" ) if $c->debug;
      $c->forward('get_tree_json', "json_tree");
      # cache the page (fragment) for one week
      #$c->cache_page( 604800 );
@@ -447,14 +449,43 @@ sub json_tree : Chained( 'check_tree' ) PathPart( 'json' ) Args(0 )
      $c->res->content_type('text/plain');
      #$c->res->header('Content-disposition' => "attachment; filename=$filename" );
      $c->res->body( $c->stash->{treeData} );
- }
+}
+sub model_tree : Chained( 'check_tree' ) PathPart( 'model_json' ) Args(0 )
+ {
+     my ( $this, $c ) = @_;
+     my ($acc,$format) = ($c->stash->{acc}, $c->stash->{format}); 
+     $c->stash->{tree_format} = "model_tree_json";
+     $c->log->debug( "in model_tree: trying to tree data for " . $c->stash->{acc} . " format $format\n" ) if $c->debug;
+     $c->forward('get_tree_json', "model_tree_json");
+     # cache the page (fragment) for one week
+     #$c->cache_page( 604800 );
+     my $filename = '';
+     $c->log->debug( "we are back from the get_tree\n" ) if $c->debug;
+     $c->res->content_type('text/plain');
+     #$c->res->header('Content-disposition' => "attachment; filename=$filename" );
+     $c->res->body( $c->stash->{treeData} );
+}
+sub wormbase_tree : Chained( 'check_tree' ) PathPart( 'wormbase_json' ) Args(0 )
+ {
+     my ( $this, $c ) = @_;
+     my ($acc,$format) = ($c->stash->{acc}, $c->stash->{format}); 
+	$c->stash->{tree_format} = "wormbase_tree_json";
+     $c->log->debug( "trying to tree data for " . $c->stash->{acc} . " format $format\n" ) if $c->debug;
+     $c->forward('get_tree_json', "wormbase_tree_json");
+     # cache the page (fragment) for one week
+     #$c->cache_page( 604800 );
+     my $filename = '';
+     $c->res->content_type('text/plain');
+     #$c->res->header('Content-disposition' => "attachment; filename=$filename" );
+     $c->res->body( $c->stash->{treeData} );
+}
 
 # checks /family/3/tree
 sub minimal_species_json_tree : Chained( 'check_tree' ) PathPart( 'minimal_species_json' ) Args(0 )
  {
      my ( $this, $c ) = @_;
      my ($acc,$format) = ($c->stash->{acc}, $c->stash->{format}); 
-     $c->log->debug( "trying to tree data for " . $c->stash->{acc} . " format phyloxml\n" ) if $c->debug;
+     $c->log->debug( "trying to tree data for " . $c->stash->{acc} . " format minimal_json\n" ) if $c->debug;
      $c->forward('get_minimal_species_tree_json', "minimal_species_json_tree");
      # cache the page (fragment) for one week
      #$c->cache_page( 604800 );
@@ -469,7 +500,7 @@ sub phyloxml : Chained( 'check_tree' ) PathPart( 'phyloxml' ) Args(0 )
  {
      my ( $this, $c ) = @_;
      my ($acc,$format) = ($c->stash->{acc}, $c->stash->{format}); 
-     $c->log->debug( "trying to tree data for " . $c->stash->{acc} . " format phyloxml\n" ) if $c->debug;
+     $c->log->debug( "trying to get old phyloxml function tree data for " . $c->stash->{acc} . " format phyloxml\n" ) if $c->debug;
      $c->forward('get_tree_phyloxml', "phyloxml");
      # cache the page (fragment) for one week
      #$c->cache_page( 604800 );
@@ -485,8 +516,8 @@ sub show_alignment : Chained( 'family_check' ) PathPart( 'alignment' ) Args( 0 )
 #sub show_alignment : Chained( 'family_check' ) PathPart( 'alignment_backup' ) Args( 0 )
 {
     my ( $this, $c ) = @_;
-
-    #$c->log->debug("trying to get data for $integer \n") if $c->debug;
+	
+    $c->log->debug("in family, but alignment method trying to get data for integer \n") if $c->debug;
     #$c->stash->{acc} = $integer;
     $c->forward('get_alignment');
 
@@ -745,7 +776,9 @@ sub get_tree_json : Private
      # see if we can extract the pre-built tree object from cache
      my $cacheKey = 'treeData' . $c->stash->{acc};
      my $treeData;
-     #my $treeData = $c->cache->get($cacheKey);
+     my $format = $c->stash->{tree_format};
+	#my $treeData = $c->cache->get($cacheKey);
+     $c->log->debug("trying to get tree in format: $format") if $c->debug;
      $c->log->debug("stash has $cacheKey") if $c->debug;
      if ( defined $treeData )
      {
@@ -758,21 +791,35 @@ sub get_tree_json : Private
          $c->log->debug("looking for $treefam_family_id id\n") if $c->debug;
               my $genetree_adaptor = $c->stash->{'genetree_adaptor'};
          my $tree             = $genetree_adaptor->fetch_by_stable_id($treefam_family_id);
- 	    if ( !defined($tree) || $tree eq '' )
-     	{
+ 	    if ( !defined($tree) || $tree eq '' ){
      		$c->log->debug('Family::Tree::get_summary Could not find tree using stable_id') if $c->debug;
  	     	#try with root_id
  	    	$tree             = $genetree_adaptor->fetch_by_root_id($treefam_family_id);
  	        if ( !defined($tree) || $tree eq '' ){
-     	    	print "Could not get tree\n";
- 	            $c->log->debug('Family::Tree::get_summary Could not get tree') if $c->debug;
- 	            $c->stash->{errorMsg} = 'We could not find a tree for the given accession number ' . $c->stash->{acc};
- 	            return;
- 			}
+     	    		print "Could not get tree\n";
+ 	            	$c->log->debug('Family::Tree::get_summary Could not get tree') if $c->debug;
+ 	            	$c->stash->{errorMsg} = 'We could not find a tree for the given accession number ' . $c->stash->{acc};
+ 	            	return;
+ 		}
  		}	           
  		    my $root_of_tree = $tree->root;	
- 		        $treeData = $tree->get_value_for_tag('json_tree');
- 	            $c->log->debug('Family::Tree::get_tree phyloxml') if $c->debug;
+ 	            	$c->log->debug("format is now $format") if $c->debug;
+		    
+		    if($format eq "full_tree_json" || $format eq "json_tree"){
+ 	            	$c->log->debug('get tree full_tree_json') if $c->debug;
+			
+			$treeData = $tree->get_value_for_tag('json_tree');
+		    }
+			elsif($format eq "model_tree_json"){
+ 	            		$c->log->debug('get tree model_tree_json') if $c->debug;
+				$treeData = $tree->get_value_for_tag('model_tree_json');
+			}
+			elsif ($format eq "wormbase_tree_json"){
+ 	            		$c->log->debug('get tree wormbase_tree_json') if $c->debug;
+				$treeData = $tree->get_value_for_tag('wormbase_tree_json');
+			}
+             			$c->log->debug("treeData is ".$treeData) if $c->debug;
+
                 unless ( defined $treeData )
          {
              $c->log->debug('Family::Tree::get_tree_data: failed to retrieve tree data') if $c->debug;
@@ -1101,7 +1148,17 @@ sub get_summary_data : Private
         $avg_seq_species = $avg_seq_species =~ m/(\d+\.\d)/;
     }
     $summaryData->{avg_seq_per_species} = $avg_seq_species? $avg_seq_species : 'NaN';
-    
+   $c->stash->{numSequences}              = $tree->get_value_for_tag('numSequences');
+	$c->stash->{json_tree_string}= $tree->get_value_for_tag('json_tree');
+	$c->stash->{numSpecies}                = $tree->get_value_for_tag('numspecies');
+    	$c->stash->{aln_percent_identity}      = $tree->get_value_for_tag('aln_percent_identity');
+    	$c->stash->{aln_percent_identity}      =~ s/\.\d*//g;
+    	$c->stash->{percentIdentity}      = $c->stash->{aln_percent_identity};
+    	$c->stash->{aln_length}                = $tree->get_value_for_tag('aln_length');
+    	$c->stash->{description} = $tree->get_value_for_tag('fam_description');   
+    	$c->stash->{symbol} = $tree->get_value_for_tag('fam_symbol');   
+    	$c->stash->{treefam_acc} = $tree->stable_id;   
+ 
 
 	#$summaryData->{fasta_aln}                = $tree->get_value_for_tag('fasta_aln');
 	#$summaryData->{"homologs_array_json"} = $tree->get_value_for_tag('homologs_array_json'); 

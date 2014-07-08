@@ -1,0 +1,85 @@
+
+      {
+         "name" : "Opisthokonta",
+         "children" : [
+            {
+               "name" : "Bilateria",
+               "children" : [
+                  {
+                     "length" : "5",
+                     "common_name" : "NaN",
+                     "seq_length" : 400,
+                     "duplication" : "N",
+                     "name" : "Primates",
+                     "type" : "node",
+                     "bootstrap" : "NaN",
+                     "taxon" : "NaN",
+                              "gene_presence" : [4,13]
+                  },
+                  {
+                     "name" : "Ecdysozoa",
+                     "children" : [
+                        {
+                           "length" : "5",
+                           "common_name" : "NaN",
+                           "seq_length" : 400,
+                           "duplication" : "N",
+                           "name" : "Arthropoda",
+                           "type" : "node",
+                           "bootstrap" : "NaN",
+                           "taxon" : "NaN",
+                                    "gene_presence" : [4,13]
+                        },
+                        {
+                           "length" : "5",
+                           "common_name" : "NaN",
+                           "seq_length" : 400,
+                           "duplication" : "N",
+                           "name" : "Roundworms",
+                           "type" : "node",
+                           "bootstrap" : "NaN",
+                           "taxon" : "NaN",
+                                    "gene_presence" : [4,13]
+                        }
+                     ],
+                     "bootstrap" : "NaN",
+                     "taxon" : "NaN",
+                     "common_name" : "NaN",
+                     "length" : "5",
+                     "seq_length" : 400,
+                     "duplication" : "N",
+                     "type" : "node",
+                              "gene_presence" : [4,13]
+                  }
+               ],
+               "bootstrap" : "NaN",
+               "taxon" : "NaN",
+               "common_name" : "NaN",
+               "length" : "5",
+               "seq_length" : 400,
+               "duplication" : "N",
+               "type" : "node",
+                        "gene_presence" : [4,13]
+            },
+            {
+               "length" : "5",
+               "common_name" : "NaN",
+               "seq_length" : 400,
+               "duplication" : "N",
+               "name" : "Outgroup",
+               "type" : "node",
+               "bootstrap" : "NaN",
+               "taxon" : "NaN",
+             "gene_presence" : [4,13] 
+            }
+         ],
+         "bootstrap" : "NaN",
+         "taxon" : "NaN",
+         "common_name" : "NaN",
+         "length" : "5",
+         "seq_length" : 400,
+         "duplication" : "N",
+         "type" : "node",
+         "gene_presence" : [4,13]
+      }
+  

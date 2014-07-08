@@ -1,0 +1,18 @@
+body {
+    font-family: sans-serif;
+    font-size: 11px;
+    color: #ffffff;
+}
+
+.container {
+    width: 602px;
+    margin: 0px auto;
+}
+
+h1, a {
+    color: #DE8F26;
+}
+
+p {
+    padding-bottom: 10px;
+}

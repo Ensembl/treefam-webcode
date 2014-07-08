@@ -1,0 +1,149 @@
+.Summ_column {
+        float: left;
+        margin: 0.5em;
+ }
+ #Summ_left {
+ 	border-radius:7px;
+	-moz-border-radius:7px;
+	background:#ebebeb;
+        max-width: 300px;
+	padding:5px;
+}
+ #Summ_right {
+ 	border-radius:7px;
+	-moz-border-radius:7px;
+	background:#ebebeb;
+	padding:5px;
+    max-width: 60%;
+ }
+ .Summ_box {
+	background-color: white;
+        margin: 10em; 
+	padding: 10px;
+      	margin: 0 auto;
+ 	border-radius:7px;
+	-moz-border-radius:7px;
+	/*background-color: #fff;
+	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1); */
+}
+
+
+      #Summ_left .Summ_box {
+        width: 93%;
+	border: 1px solid #DDD;
+      }
+      #Summ_right .Summ_box {
+      }
+.circleBase {
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    border-radius: 999px;
+    behavior: url(PIE.htc);
+}
+.circle1 {
+    width: 10px;
+    height: 10px;
+    background: red;
+    border: 1px solid #000
+}
+.circle2 {
+    width: 10px;
+    height: 10px;
+    background: green;
+    border: 1px solid #000
+}
+
+.rectangularBase {
+height: 5px;
+width: 12px;
+-moz-border-radius: 4px 10px 4px 10px;
+border-radius: 4px 10px 4px 10px;
+}
+
+.rect_outgroup {background: #F78181 }
+.rect_mammals {background: #A9F5F2 }
+.rect_protostomia {background: #A9F5BC	}
+.rect_deuterostomia {background: #CEF6F5 }
+.rect_primates {background: #01DFD7	}
+
+
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   speak for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('../images/ajax-loader.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}
+
+.spinner {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -50px; /* half width of the spinner gif */
+	margin-top: -50px; /* half height of the spinner gif */
+	text-align:center;
+	z-index:1234;
+	overflow: auto;
+	width: 100px; /* width of the spinner gif */
+	height: 102px; /*hight of the spinner gif +2px to fix IE8 issue */
+}
+
+/*  BROWSE PAGE */
+#BrowseSummarycontent, #leftBrowseSummary, #rightBrowseSummary, #centerBrowseSummary { height: 100%; }
+  #BrowseSummarycontent { width: 100%; }
+  #leftBrowseSummary, #centerBrowseSummary, #rightBrowseSummary { 
+	border-radius:7px;
+	-moz-border-radius:7px;
+	background:#ebebeb;
+	display:inline-block; 
+  }
+  #leftBrowseSummary, #centerBrowseSummary, #rightBrowseSummary { width: 33%;}
+ .BrowseSumm_box {
+	background-color: white;
+        margin: 1em; 
+	padding: 1px;
+ 	border-radius:7px;
+	-moz-border-radius:7px;
+	/*background-color: #fff;
+	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1); */
+}
+  /* media query for IE 6-7 */
+  @media, 
+    { 
+    #leftBrowseSummary, #centerBrowseSummary, #rightBrowseSummary { display:inline; }
+    }
+
+li.leaf {
+	list-style-type: none;
+	background: url('/static/images/logos/Leaf.png') no-repeat top left;
+	height: 26px;
+	padding-left: 25px;
+}
+

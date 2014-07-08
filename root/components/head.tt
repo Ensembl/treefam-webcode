@@ -106,7 +106,7 @@ IF refreshUri != "";
 
  <link rel="stylesheet" href="[% staticUri%]/css/ebi_web/embl-petrol-colours.css" type="text/css" media="screen" />   
  <link rel="stylesheet" href="[% staticUri %]/css/ebi_web/ebi-mitigation.css" type="text/css" media="screen" />  
- <!-- <link rel="stylesheet" href="[% staticUri %]/css/ebi_web/ebi-visual.css" type="text/css" media="screen" />  --> 
+  <!-- <link rel="stylesheet" href="[% staticUri %]/css/ebi_web/ebi-visual.css" type="text/css" media="screen" />  -->
 
 <!-- Mitigation
  <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/develop/boilerplate-style.css">

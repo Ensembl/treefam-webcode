@@ -52,7 +52,7 @@ __PACKAGE__->config->{server_pid}  = $$;
 # config file in httpd.conf rather than in the code
 #my( $conf ) = $ENV{TREEFAMWEB_CONFIG} =~ m/([\d\w\/-]+)/;
 
-my $conf = '/nfs/public/rw/xfam/treefam/dev/treefam.conf';
+my $conf = '/nfs/public/rw/xfam/treefam/live/treefam.conf';
 print "using config $conf\n";
 # set up the ConfigLoader plugin. Point to the configuration file
 __PACKAGE__->config->{'Plugin::ConfigLoader'}->{file} = $conf;

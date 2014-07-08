@@ -1,0 +1,644 @@
+<phyloxml xmlns="http://www.phyloxml.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd">
+  <phylogeny rooted="true">
+    <clade>
+      <clade>
+        <name>Eutheria</name>
+        <events>
+          <speciations>1</speciations>
+        </events>
+        <clade>
+          <name>Eutheria</name>
+          <branch_length>0.0028</branch_length>
+          <events>
+            <speciations>1</speciations>
+          </events>
+          <clade>
+            <name>Laurasiatheria</name>
+            <branch_length>0.0285</branch_length>
+            <events>
+              <speciations>1</speciations>
+            </events>
+            <clade>
+              <name>Laurasiatheria</name>
+              <branch_length>0.0046</branch_length>
+              <events>
+                <speciations>1</speciations>
+              </events>
+              <clade>
+                <name>Chiroptera</name>
+                <branch_length>0.0162</branch_length>
+                <events>
+                  <speciations>1</speciations>
+                </events>
+                <clade>
+                  <name>ENSPVAP00000009006</name>
+                  <branch_length>0</branch_length>
+                  <taxonomy>
+                    <scientific_name>Pteropus vampyrus</scientific_name>
+                    <common_name>large flying fox</common_name>
+                    <uri>http://static.ensembl.org/i/species/48//Pteropus_vampyrus.png</uri>
+                  </taxonomy>
+                  <sequence>
+                    <domain_architecture length="639">
+                      <domain confidence="1.1e-16" from="521" to="589">PP1c_bdg</domain>
+                    </domain_architecture>
+                  </sequence>
+                </clade>
+                <clade>
+                  <name>G1P3R3_MYOLU</name>
+                  <branch_length>0</branch_length>
+                  <taxonomy>
+                    <scientific_name>Myotis lucifugus</scientific_name>
+                    <common_name>little brown bat</common_name>
+                    <uri>http://static.ensembl.org/i/species/48//Myotis_lucifugus.png</uri>
+                  </taxonomy>
+                  <sequence>
+                    <domain_architecture length="646">
+                      <domain confidence="1.4e-19" from="517" to="594">PP1c_bdg</domain>
+                    </domain_architecture>
+                  </sequence>
+                </clade>
+              </clade>
+              <clade>
+                <name>F6PQN6_HORSE</name>
+                <branch_length>0</branch_length>
+                <taxonomy>
+                  <scientific_name>Equus caballus</scientific_name>
+                  <common_name>horse</common_name>
+                  <uri>http://static.ensembl.org/i/species/48//Equus_caballus.png</uri>
+                </taxonomy>
+                <sequence>
+                  <domain_architecture length="666">
+                    <domain confidence="1.8e-16" from="544" to="614">PP1c_bdg</domain>
+                  </domain_architecture>
+                </sequence>
+              </clade>
+            </clade>
+            <clade>
+              <name>Laurasiatheria</name>
+              <branch_length>0.0067</branch_length>
+              <events>
+                <speciations>1</speciations>
+              </events>
+              <clade>
+                <name>Cetartiodactyla</name>
+                <branch_length>0.0348</branch_length>
+                <events>
+                  <speciations>1</speciations>
+                </events>
+                <clade>
+                  <name>Cetartiodactyla</name>
+                  <branch_length>0.0043</branch_length>
+                  <events>
+                    <speciations>1</speciations>
+                  </events>
+                  <clade>
+                    <name>ENSTTRP00000001173</name>
+                    <branch_length>0</branch_length>
+                    <taxonomy>
+                      <scientific_name>Tursiops truncatus</scientific_name>
+                      <common_name>bottlenosed dolphin</common_name>
+                      <uri>http://static.ensembl.org/i/species/48//Tursiops_truncatus.png</uri>
+                    </taxonomy>
+                    <sequence>
+                      <domain_architecture length="563">
+                        <domain confidence="2e-17" from="446" to="514">PP1c_bdg</domain>
+                      </domain_architecture>
+                    </sequence>
+                  </clade>
+                  <clade>
+                    <name>G3X6A2_BOVIN</name>
+                    <branch_length>0</branch_length>
+                    <taxonomy>
+                      <scientific_name>Bos taurus</scientific_name>
+                      <common_name>cattle</common_name>
+                      <uri>http://static.ensembl.org/i/species/48//Bos_taurus.png</uri>
+                    </taxonomy>
+                    <sequence>
+                      <domain_architecture length="670">
+                        <domain confidence="2.4e-17" from="550" to="620">PP1c_bdg</domain>
+                      </domain_architecture>
+                    </sequence>
+                  </clade>
+                </clade>
+                <clade>
+                  <name>F1RIN9_PIG</name>
+                  <branch_length>0</branch_length>
+                  <taxonomy>
+                    <scientific_name>Sus scrofa</scientific_name>
+                    <common_name>pig</common_name>
+                    <uri>http://static.ensembl.org/i/species/48//Sus_scrofa.png</uri>
+                  </taxonomy>
+                  <sequence>
+                    <domain_architecture length="654">
+                      <domain confidence="1e-18" from="536" to="604">PP1c_bdg</domain>
+                    </domain_architecture>
+                  </sequence>
+                </clade>
+              </clade>
+              <clade>
+                <name>Carnivora</name>
+                <branch_length>0.0566</branch_length>
+                <events>
+                  <speciations>1</speciations>
+                </events>
+                <clade>
+                  <name>Caniformia</name>
+                  <branch_length>0.0084</branch_length>
+                  <events>
+                    <speciations>1</speciations>
+                  </events>
+                  <clade>
+                    <name>F1PAL9_CANFA</name>
+                    <branch_length>0</branch_length>
+                    <taxonomy>
+                      <scientific_name>Canis familiaris</scientific_name>
+                      <common_name>NaN</common_name>
+                      <uri>http://static.ensembl.org/i/species/48//Canis_familiaris.png</uri>
+                    </taxonomy>
+                  </clade>
+                  <clade>
+                    <name>D2H7Y3_AILME</name>
+                    <branch_length>0</branch_length>
+                    <taxonomy>
+                      <scientific_name>Ailuropoda melanoleuca</scientific_name>
+                      <common_name>giant panda</common_name>
+                      <uri>http://static.ensembl.org/i/species/48//Ailuropoda_melanoleuca.png</uri>
+                    </taxonomy>
+                    <sequence>
+                      <domain_architecture length="610">
+                        <domain confidence="4.7e-18" from="486" to="555">PP1c_bdg</domain>
+                      </domain_architecture>
+                    </sequence>
+                  </clade>
+                </clade>
+                <clade>
+                  <name>ENSFCAP00000003084</name>
+                  <branch_length>0</branch_length>
+                  <taxonomy>
+                    <scientific_name>Felis catus</scientific_name>
+                    <common_name>domestic cat</common_name>
+                    <uri>http://static.ensembl.org/i/species/48//Felis_catus.png</uri>
+                  </taxonomy>
+                  <sequence>
+                    <domain_architecture length="660">
+                      <domain confidence="4.7e-18" from="542" to="611">PP1c_bdg</domain>
+                    </domain_architecture>
+                  </sequence>
+                </clade>
+              </clade>
+            </clade>
+          </clade>
+          <clade>
+            <name>Euarchontoglires</name>
+            <branch_length>0.0315</branch_length>
+            <events>
+              <speciations>1</speciations>
+            </events>
+            <clade>
+              <name>Euarchontoglires</name>
+              <branch_length>0.0048</branch_length>
+              <events>
+                <speciations>1</speciations>
+              </events>
+              <clade>
+                <name>Primates</name>
+                <branch_length>0.0055</branch_length>
+                <events>
+                  <speciations>1</speciations>
+                </events>
+                <clade>
+                  <name>Haplorrhini</name>
+                  <branch_length>0.0138</branch_length>
+                  <events>
+                    <speciations>1</speciations>
+                  </events>
+                  <clade>
+                    <name>Simiiformes</name>
+                    <branch_length>0.0575</branch_length>
+                    <events>
+                      <speciations>1</speciations>
+                    </events>
+                    <clade>
+                      <name>Catarrhini</name>
+                      <branch_length>0.0147</branch_length>
+                      <events>
+                        <speciations>1</speciations>
+                      </events>
+                      <clade>
+                        <name>Hominoidea</name>
+                        <branch_length>0.0091</branch_length>
+                        <events>
+                          <speciations>1</speciations>
+                        </events>
+                        <clade>
+                          <name>Hominidae</name>
+                          <branch_length>0.0027</branch_length>
+                          <events>
+                            <speciations>1</speciations>
+                          </events>
+                          <clade>
+                            <name>Homininae</name>
+                            <branch_length>0.0077</branch_length>
+                            <events>
+                              <speciations>1</speciations>
+                            </events>
+                            <clade>
+                              <name>Homininae</name>
+                              <branch_length>0.0009</branch_length>
+                              <events>
+                                <speciations>1</speciations>
+                              </events>
+                              <clade>
+                                <name>H2QGT0_PANTR</name>
+                                <branch_length>0</branch_length>
+                                <taxonomy>
+                                  <scientific_name>Pan troglodytes</scientific_name>
+                                  <common_name>chimpanzee</common_name>
+                                  <uri>http://static.ensembl.org/i/species/48//Pan_troglodytes.png</uri>
+                                </taxonomy>
+                                <sequence>
+                                  <domain_architecture length="674">
+                                    <domain confidence="9.4e-18" from="544" to="619">PP1c_bdg</domain>
+                                  </domain_architecture>
+                                </sequence>
+                              </clade>
+                              <clade>
+                                <name>G3QTZ7_GORGO</name>
+                                <branch_length>0</branch_length>
+                                <taxonomy>
+                                  <scientific_name>Gorilla gorilla</scientific_name>
+                                  <common_name>western gorilla</common_name>
+                                  <uri>http://static.ensembl.org/i/species/48//Gorilla_gorilla.png</uri>
+                                </taxonomy>
+                                <sequence>
+                                  <domain_architecture length="675">
+                                    <domain confidence="9.4e-18" from="545" to="620">PP1c_bdg</domain>
+                                  </domain_architecture>
+                                </sequence>
+                              </clade>
+                            </clade>
+                            <clade>
+                              <name>PR15A_HUMAN</name>
+                              <branch_length>0</branch_length>
+                              <taxonomy>
+                                <scientific_name>Homo sapiens</scientific_name>
+                                <common_name>human</common_name>
+                                <uri>http://static.ensembl.org/i/species/48//Homo_sapiens.png</uri>
+                              </taxonomy>
+                              <sequence>
+                                <domain_architecture length="674">
+                                  <domain confidence="4.1e-17" from="544" to="619">PP1c_bdg</domain>
+                                </domain_architecture>
+                              </sequence>
+                            </clade>
+                          </clade>
+                          <clade>
+                            <name>H2NZI7_PONAB</name>
+                            <branch_length>0</branch_length>
+                            <taxonomy>
+                              <scientific_name>Pongo abelii</scientific_name>
+                              <common_name>Sumatran orangutan</common_name>
+                              <uri>http://static.ensembl.org/i/species/48//Pongo_abelii.png</uri>
+                            </taxonomy>
+                            <sequence>
+                              <domain_architecture length="676">
+                                <domain confidence="9.1e-18" from="544" to="620">PP1c_bdg</domain>
+                              </domain_architecture>
+                            </sequence>
+                          </clade>
+                        </clade>
+                        <clade>
+                          <name>G1QXK1_NOMLE</name>
+                          <branch_length>0</branch_length>
+                          <taxonomy>
+                            <scientific_name>Nomascus leucogenys</scientific_name>
+                            <common_name>Northern white-cheeked gibbon</common_name>
+                            <uri>http://static.ensembl.org/i/species/48//Nomascus_leucogenys.png</uri>
+                          </taxonomy>
+                          <sequence>
+                            <domain_architecture length="681">
+                              <domain confidence="7.3e-17" from="550" to="625">PP1c_bdg</domain>
+                            </domain_architecture>
+                          </sequence>
+                        </clade>
+                      </clade>
+                      <clade>
+                        <name>F7HHP1_MACMU</name>
+                        <branch_length>0</branch_length>
+                        <taxonomy>
+                          <scientific_name>Macaca mulatta</scientific_name>
+                          <common_name>Rhesus monkey</common_name>
+                          <uri>http://static.ensembl.org/i/species/48//Macaca_mulatta.png</uri>
+                        </taxonomy>
+                        <sequence>
+                          <domain_architecture length="678">
+                            <domain confidence="2.4e-16" from="555" to="622">PP1c_bdg</domain>
+                          </domain_architecture>
+                        </sequence>
+                      </clade>
+                    </clade>
+                    <clade>
+                      <name>F7F9S5_CALJA</name>
+                      <branch_length>0</branch_length>
+                      <taxonomy>
+                        <scientific_name>Callithrix jacchus</scientific_name>
+                        <common_name>white-tufted-ear marmoset</common_name>
+                        <uri>http://static.ensembl.org/i/species/48//Callithrix_jacchus.png</uri>
+                      </taxonomy>
+                      <sequence>
+                        <domain_architecture length="630">
+                          <domain confidence="6.4e-16" from="543" to="607">PP1c_bdg</domain>
+                        </domain_architecture>
+                      </sequence>
+                    </clade>
+                  </clade>
+                  <clade>
+                    <name>ENSTSYP00000002722</name>
+                    <branch_length>0</branch_length>
+                    <taxonomy>
+                      <scientific_name>Tarsius syrichta</scientific_name>
+                      <common_name>Philippine tarsier</common_name>
+                      <uri>http://static.ensembl.org/i/species/48//Tarsius_syrichta.png</uri>
+                    </taxonomy>
+                    <sequence>
+                      <domain_architecture length="422">
+                        <domain confidence="2.7e-18" from="288" to="362">PP1c_bdg</domain>
+                      </domain_architecture>
+                    </sequence>
+                  </clade>
+                </clade>
+                <clade>
+                  <name>Strepsirrhini</name>
+                  <branch_length>0.0232</branch_length>
+                  <events>
+                    <speciations>1</speciations>
+                  </events>
+                  <clade>
+                    <name>ENSMICP00000012150</name>
+                    <branch_length>0</branch_length>
+                    <taxonomy>
+                      <scientific_name>Microcebus murinus</scientific_name>
+                      <common_name>gray mouse lemur</common_name>
+                      <uri>http://static.ensembl.org/i/species/48//Microcebus_murinus.png</uri>
+                    </taxonomy>
+                    <sequence>
+                      <domain_architecture length="660">
+                        <domain confidence="8.4e-10" from="561" to="604">PP1c_bdg</domain>
+                      </domain_architecture>
+                    </sequence>
+                  </clade>
+                  <clade>
+                    <name>H0WWF1_OTOGA</name>
+                    <branch_length>0</branch_length>
+                    <taxonomy>
+                      <scientific_name>Otolemur garnettii</scientific_name>
+                      <common_name>small-eared galago</common_name>
+                      <uri>http://static.ensembl.org/i/species/48//Otolemur_garnettii.png</uri>
+                    </taxonomy>
+                    <sequence>
+                      <domain_architecture length="682">
+                        <domain confidence="7.7e-19" from="566" to="637">PP1c_bdg</domain>
+                      </domain_architecture>
+                    </sequence>
+                  </clade>
+                </clade>
+              </clade>
+              <clade>
+                <name>ENSTBEP00000008891</name>
+                <branch_length>0</branch_length>
+                <taxonomy>
+                  <scientific_name>Tupaia belangeri</scientific_name>
+                  <common_name>northern tree shrew</common_name>
+                  <uri>http://static.ensembl.org/i/species/48//Tupaia_belangeri.png</uri>
+                </taxonomy>
+                <sequence>
+                  <domain_architecture length="648">
+                    <domain confidence="1.7e-17" from="527" to="594">PP1c_bdg</domain>
+                  </domain_architecture>
+                </sequence>
+              </clade>
+            </clade>
+            <clade>
+              <name>Glires</name>
+              <branch_length>0.0067</branch_length>
+              <events>
+                <speciations>1</speciations>
+              </events>
+              <clade>
+                <name>Rodentia</name>
+                <branch_length>0.0163</branch_length>
+                <events>
+                  <speciations>1</speciations>
+                </events>
+                <clade>
+                  <name>Sciurognathi</name>
+                  <branch_length>0.0044</branch_length>
+                  <events>
+                    <speciations>1</speciations>
+                  </events>
+                  <clade>
+                    <name>Sciurognathi</name>
+                    <branch_length>0.0182</branch_length>
+                    <events>
+                      <speciations>1</speciations>
+                    </events>
+                    <clade>
+                      <name>Murinae</name>
+                      <branch_length>0.2915</branch_length>
+                      <events>
+                        <speciations>1</speciations>
+                      </events>
+                      <clade>
+                        <name>PR15A_RAT</name>
+                        <branch_length>0</branch_length>
+                        <taxonomy>
+                          <scientific_name>Rattus norvegicus</scientific_name>
+                          <common_name>Norway rat</common_name>
+                          <uri>http://static.ensembl.org/i/species/48//Rattus_norvegicus.png</uri>
+                        </taxonomy>
+                        <sequence>
+                          <domain_architecture length="578">
+                            <domain confidence="6.2e-18" from="459" to="526">PP1c_bdg</domain>
+                          </domain_architecture>
+                        </sequence>
+                      </clade>
+                      <clade>
+                        <name>B2RRL7_MOUSE</name>
+                        <branch_length>0</branch_length>
+                        <taxonomy>
+                          <scientific_name>Mus musculus</scientific_name>
+                          <common_name>house mouse</common_name>
+                          <uri>http://static.ensembl.org/i/species/48//Mus_musculus.png</uri>
+                        </taxonomy>
+                        <sequence>
+                          <domain_architecture length="657">
+                            <domain confidence="1.1e-17" from="545" to="612">PP1c_bdg</domain>
+                          </domain_architecture>
+                        </sequence>
+                      </clade>
+                    </clade>
+                    <clade>
+                      <name>ENSDORP00000010294</name>
+                      <branch_length>0</branch_length>
+                      <taxonomy>
+                        <scientific_name>Dipodomys ordii</scientific_name>
+                        <common_name>Ords kangaroo rat</common_name>
+                        <uri>http://static.ensembl.org/i/species/48//Dipodomys_ordii.png</uri>
+                      </taxonomy>
+                      <sequence>
+                        <domain_architecture length="652">
+                          <domain confidence="6.8e-19" from="524" to="600">PP1c_bdg</domain>
+                        </domain_architecture>
+                      </sequence>
+                    </clade>
+                  </clade>
+                  <clade>
+                    <name>I3MYZ3_SPETR</name>
+                    <branch_length>0</branch_length>
+                    <taxonomy>
+                      <scientific_name>Ictidomys tridecemlineatus</scientific_name>
+                      <common_name>thirteen-lined ground squirrel</common_name>
+                      <uri>http://static.ensembl.org/i/species/48//Ictidomys_tridecemlineatus.png</uri>
+                    </taxonomy>
+                    <sequence>
+                      <domain_architecture length="590">
+                        <domain confidence="2.4e-19" from="453" to="530">PP1c_bdg</domain>
+                      </domain_architecture>
+                    </sequence>
+                  </clade>
+                </clade>
+                <clade>
+                  <name>H0W1M9_CAVPO</name>
+                  <branch_length>0</branch_length>
+                  <taxonomy>
+                    <scientific_name>Cavia porcellus</scientific_name>
+                    <common_name>Domestic guinea pig</common_name>
+                    <uri>http://static.ensembl.org/i/species/48//Cavia_porcellus.png</uri>
+                  </taxonomy>
+                  <sequence>
+                    <domain_architecture length="526">
+                      <domain confidence="1.9e-17" from="449" to="522">PP1c_bdg</domain>
+                    </domain_architecture>
+                  </sequence>
+                </clade>
+              </clade>
+              <clade>
+                <name>Lagomorpha</name>
+                <branch_length>0.1067</branch_length>
+                <events>
+                  <speciations>1</speciations>
+                </events>
+                <clade>
+                  <name>G1TEF9_RABIT</name>
+                  <branch_length>0</branch_length>
+                  <taxonomy>
+                    <scientific_name>Oryctolagus cuniculus</scientific_name>
+                    <common_name>rabbit</common_name>
+                    <uri>http://static.ensembl.org/i/species/48//Oryctolagus_cuniculus.png</uri>
+                  </taxonomy>
+                  <sequence>
+                    <domain_architecture length="630">
+                      <domain confidence="3.1e-19" from="489" to="570">PP1c_bdg</domain>
+                    </domain_architecture>
+                  </sequence>
+                </clade>
+                <clade>
+                  <name>ENSOPRP00000002182</name>
+                  <branch_length>0</branch_length>
+                  <taxonomy>
+                    <scientific_name>Ochotona princeps</scientific_name>
+                    <common_name>American pika</common_name>
+                    <uri>http://static.ensembl.org/i/species/48//Ochotona_princeps.png</uri>
+                  </taxonomy>
+                  <sequence>
+                    <domain_architecture length="609">
+                      <domain confidence="2.4e-17" from="483" to="549">PP1c_bdg</domain>
+                    </domain_architecture>
+                  </sequence>
+                </clade>
+              </clade>
+            </clade>
+          </clade>
+        </clade>
+        <clade>
+          <name>Eutheria</name>
+          <branch_length>0.0087</branch_length>
+          <events>
+            <speciations>1</speciations>
+          </events>
+          <clade>
+            <name>Afrotheria</name>
+            <branch_length>0.0378</branch_length>
+            <events>
+              <speciations>1</speciations>
+            </events>
+            <clade>
+              <name>Afrotheria</name>
+              <branch_length>0.0288</branch_length>
+              <events>
+                <speciations>1</speciations>
+              </events>
+              <clade>
+                <name>G3UNC1_LOXAF</name>
+                <branch_length>0</branch_length>
+                <taxonomy>
+                  <scientific_name>Loxodonta africana</scientific_name>
+                  <common_name>African savanna elephant</common_name>
+                  <uri>http://static.ensembl.org/i/species/48//Loxodonta_africana.png</uri>
+                </taxonomy>
+                <sequence>
+                  <domain_architecture length="651">
+                    <domain confidence="1e-07" from="551" to="607">PP1c_bdg</domain>
+                  </domain_architecture>
+                </sequence>
+              </clade>
+              <clade>
+                <name>ENSPCAP00000009303</name>
+                <branch_length>0</branch_length>
+                <taxonomy>
+                  <scientific_name>Procavia capensis</scientific_name>
+                  <common_name>cape rock hyrax</common_name>
+                  <uri>http://static.ensembl.org/i/species/48//Procavia_capensis.png</uri>
+                </taxonomy>
+                <sequence>
+                  <domain_architecture length="667">
+                    <domain confidence="4.6e-16" from="533" to="608">PP1c_bdg</domain>
+                  </domain_architecture>
+                </sequence>
+              </clade>
+            </clade>
+            <clade>
+              <name>ENSETEP00000008569</name>
+              <branch_length>0</branch_length>
+              <taxonomy>
+                <scientific_name>Echinops telfairi</scientific_name>
+                <common_name>small Madagascar hedgehog</common_name>
+                <uri>http://static.ensembl.org/i/species/48//Echinops_telfairi.png</uri>
+              </taxonomy>
+              <sequence>
+                <domain_architecture length="558">
+                  <domain confidence="2e-15" from="444" to="510">PP1c_bdg</domain>
+                </domain_architecture>
+              </sequence>
+            </clade>
+          </clade>
+          <clade>
+            <name>ENSCHOP00000005697</name>
+            <branch_length>0</branch_length>
+            <taxonomy>
+              <scientific_name>Choloepus hoffmanni</scientific_name>
+              <common_name>Hoffmanns two-fingered sloth</common_name>
+              <uri>http://static.ensembl.org/i/species/48//Choloepus_hoffmanni.png</uri>
+            </taxonomy>
+            <sequence>
+              <domain_architecture length="359">
+                <domain confidence="8.9e-17" from="222" to="301">PP1c_bdg</domain>
+              </domain_architecture>
+            </sequence>
+          </clade>
+        </clade>
+      </clade>
+    </clade>
+  </phylogeny>
+</phyloxml>

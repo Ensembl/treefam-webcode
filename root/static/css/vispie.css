@@ -1,0 +1,135 @@
+.vispieBidsQuota1stpie_pietext_total, .vispieBidsQuota2ndpie_pietext_total,
+.vispieBidsReceived1stpie_pietext_total, .vispieBidsReceived2ndpie_pietext_total,
+.vispieSuccessfulBids1stpie_pietext_total, .vispieSuccessfulBids2ndpie_pietext_total {
+	font-size: 12px;
+	fill: #797979;
+}
+.vispieBidsQuota1stpie_pierect, .vispieBidsQuota2ndpie_pierect,
+.vispieBidsReceived1stpie_pierect, .vispieBidsReceived2ndpie_pierect,
+.vispieSuccessfulBids1stpie_pierect, .vispieSuccessfulBids2ndpie_pierect {
+	fill: #000000;
+}
+.vispieBidsQuota1stpie_pietext, .vispieBidsQuota2ndpie_pietext,
+.vispieBidsReceived1stpie_pietext, .vispieBidsReceived2ndpie_pietext,
+.vispieSuccessfulBids1stpie_pietext, .vispieSuccessfulBids2ndpie_pietext {
+	font-size: 14px;
+	font-weight: bold;
+	stroke-width: 1.2px;
+	fill: #FFFFFF;
+}
+
+.vispieBidsQuota1stpie_pierect_title, .vispieBidsQuota2ndpie_pierect_title,
+.vispieBidsReceived1stpie_pierect_title, .vispieBidsReceived2ndpie_pierect_title,
+.vispieSuccessfulBids1stpie_pierect_title, .vispieSuccessfulBids2ndpie_pierect_title  {
+	fill: #797979;
+}
+.pietext_blank {
+	fill: #FFFFFF;
+}
+
+#vertical_spacerone {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 20px 0 0 305px;
+}
+#vertical_spacertwo {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 20px 0 0 585px;
+}
+.vertical_spacer {
+	border-right: 2px dotted #C7C7C7;
+	min-height: 500px;
+}
+
+#vispie_charts {
+	position: relative;
+	min-height: 740px;
+}
+#vispie_charts_legend {
+	position: relative;
+	padding: 0;
+}
+#vispie_charts_header {
+	position: relative;
+	min-height: 45px;
+	width: 880px;
+}
+.vispie_charts_left {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0 0 0 50px;
+}
+.vispie_charts_center {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0 0 0 330px;
+}
+.vispie_charts_right {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0 0 0 615px;
+}
+.vispie_charts_headertext {
+	font-size: 16px;
+	font-weight: bold;
+	font-variant: small-caps;
+	color: #000000;
+	padding: 12px 50px;
+	width: 125px;
+	text-align: center;
+	display: block;
+}
+
+#vispie_charts_top {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 130px 0 0 0;
+}
+#vispie_charts_bottom {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 430px 0 0 0;
+}
+
+#piechart_controls {
+	position: relative;
+	top: 0;
+	left: 0;
+	padding: 0;
+	margin: 605px 0 35px 245px;
+	width: 400px;
+	height: 50px;
+}
+#piechart_controls button {
+	font-size: 30px;
+}
+#prevyear {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#nextyear {
+	position: absolute;
+	top: 0;
+	right: 0;
+	-moz-right: 0;
+	-webkit-right: 0;
+}
+
+#vispie_year {
+}
+.vispie_printyear {
+	font-size: 60px;
+	fill: #EC008C;
+}
+
+
+

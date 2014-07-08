@@ -27,6 +27,7 @@ Here you find the following information on how to use TreeFam data:
 <li><a href="#access">Accessing TreeFam</a></li>
 <li><a href="#linking">Linking to TreeFam</a></li>
 <li><a href="#citing">Citing TreeFam</a></li>
+<li><a href="#sourcecode">Source Code</a></li>
 </ul>
 
 
@@ -44,7 +45,7 @@ There are several ways to get data from TreeFam.
   You can download and find installation instructions <a href="http://www.ensembl.org/info/docs/api/compara/index.html" >here</a>.<br>
  
   <h4>How to use the API</h4>
-  Below is an example script showing various uses of the API. You can find all scripts in our <a href="https://github.com/fabsta/TreeFam">GitHub</a> repository.
+  Below is an example script showing various uses of the API. You can find all scripts in our <a href="https://github.com/treefam/treefam_tools/tree/master/">GitHub</a> repository.
 
 <ul>
 <p>Basic scripts:</p>
@@ -57,11 +58,12 @@ There are several ways to get data from TreeFam.
 </ul>
     If you need additional information, please feel free to contact TreeFam using the right "Feedback" button.
   <h3>MySQL server</h3>
+	You can login to the TreeFam database using the following command.
   <pre class="code">
       <code class="javasript">
-      	to come...
+      	mysql -hmysql-treefam-public.ebi.ac.uk -P4418 -u treefam_ro
 	</code>
-    </pre>
+    </pre> Information about the schema as well as a tutorial can be found <a href="http://www.ensembl.org/info/docs/api/compara/index.html" >here</a>.
 <!-- <h3>Restful interface</h3>
   <h3>Information for a gene family</h3>
   Given a TreeFam family, e.g. TF101003
@@ -241,8 +243,9 @@ There are several ways to get data from TreeFam.
       	</span>
     	</div>
 
-
-
+<h2 name="sourcecode" id="sourcecode">Website source code</h2>
+The website's source code is published under <a href="http://www.gnu.org/licenses/gpl.html">GNU GENERAL PUBLIC LICENSE version 3</a>
+and can be downloaded <a href="https://github.com/treefam/treefam_web">here</a>.
 </div>
 [%#
 Copyright (c) 2007: Genome Research Ltd.

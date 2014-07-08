@@ -9,6 +9,16 @@
 #-------------------------------------------------------------------------------
 # specify required stylesheets and javascript files 
 
+# try to change "NaN" to "awaiting annotation"
+IF treefam.symbol  == "NaN";
+	treefam.symbol = "awaiting annotation";
+END;
+
+IF treefam.description  == "NaN";
+	treefam.description = "awaiting annotation";
+END;
+
+
 PROCESS "components/require.tt";
 requirements.css.push( "buttons.css" );
 requirements.css.push( "demo_table.css" );
@@ -34,8 +44,19 @@ requirements.js.push( "jquery/jquery.dataTables.min.js" );
 requirements.js.push( "jquery/jquery.tipsy.js" );
 requirements.css.push( "jquery/tipsy.css" );
 #requirements.js.push( "axzoomer-min.js" );
-requirements.js.push( "phylowidget/gene_tree.js" );
+#requirements.js.push( "phylowidget/gene_tree.js" );
 requirements.js.push( "phylowidget/minimal_species_tree.js" );
+
+
+# biojs
+requirements.css.push( "Biojs.Tree.css" );
+requirements.js.push( "biojs/Biojs.js" );
+requirements.js.push( "biojs/Biojs.Tree.js" );
+requirements.js.push( "biojs/tree_functions.js" );
+
+#requirements.css.push( "phylowidget/treefam.css" );
+requirements.js.push( "phylowidget/new_code/gene_tree.js" );
+#requirements.js.push( "phylowidget/new_code/tree_functions.js" );
 
 # BioJS component
 requirements.js.push( "biojs/Biojs.js" );
@@ -184,7 +205,7 @@ num_total_species = 109
 	  			<a href="#" onclick="show_species_pies();return false">by species</a>/
 				<a href="#" onclick="show_gene_pies();return false">by sequence</a>
 				<div  id="minimal_species_tree"></div>
-				<font size="1"> Legend: present species/genes: dark green, missing species/genes: light green.</font>
+				<font size="1"> Legend: dark green shows present species/genes. Light green shows missing species/genes.</font>
 		      </p>
                </div>
            </div>

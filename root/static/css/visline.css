@@ -1,0 +1,89 @@
+#visline_charts {
+	position: relative;
+	margin-left: 5px;
+	font: 10px sans-serif;
+	padding: 0 0 30px 0;
+}
+
+.axislines {
+  stroke: #797979;
+  stroke-width: 2px;
+  stroke-opacity: .2;
+  shape-rendering: crispEdges;
+}
+.vislinesubtitle {
+	font: 200 26px Helvetica Neue;
+	font-weight: bold;
+	fill: #797979;
+}
+.axistitle {
+	font: 10px Helvetica Neue;
+	fill: #666666;
+}
+.infotitle {
+	font: 11px Helvetica Neue;
+	font-style: italic;
+	fill: #EC008C;
+}
+.yeartext {
+	font-weight: bold;	
+	font-size: 9px;
+}
+.xhighlight {
+	stroke: #4B0049;
+	stroke-width: 2px;
+	stroke-opacity: .32;
+}
+
+
+#visline_charts_top {
+	position: relative;
+	border-bottom: 1px dotted #797979;
+	padding-bottom: 25px;
+}
+#visline_population {
+	position: relative;
+}
+#visline_gdp {
+	position: absolute;
+	top: 0;
+	right: 0;
+	-moz-right: 0;
+	-webkit-right: 0;
+}
+
+#visline_charts_bottom {
+	position: relative;
+}
+#visline_publicridership {
+	position: relative;
+}
+#visline_inflation {
+	position: absolute;
+	top: 0;
+	right: 0;
+	-moz-right: 0;
+	-webkit-right: 0;
+}
+.vislineGDP_background, .vislineInflation_background, .vislinePopulation_background, .vislinePublicRidership_background {
+	fill: white;
+}
+.vislineGDP_line, .vislineInflation_line, .vislinePopulation_line, .vislinePublicRidership_line {
+	fill: none;
+	stroke: #EC008C;
+	stroke-width: 2px;
+}
+.vislineGDP_circledot, .vislineInflation_circledot, .vislinePopulation_circledot, .vislinePublicRidership_circledot {
+	 fill: #FFFFFF;
+	 stroke: #4B0049;
+	 stroke-width: 1.5px;
+}
+.vislineGDP_circledot_hover, .vislineInflation_circledot_hover, .vislinePopulation_circledot_hover, .vislinePublicRidership_circledot_hover {
+	 fill: #EC008C;
+	 stroke: #4B0049;
+	 stroke-width: 2px;
+}
+
+
+
+

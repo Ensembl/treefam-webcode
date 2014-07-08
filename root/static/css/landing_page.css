@@ -1,0 +1,596 @@
+/* - -- --- ---- ----- RESET ----- ---- --- -- - */
+/*#body, h1, h2, h3, h3, h4, h5, h6, p, ul, ol, li, form, input, img, blockquote, code, pre{
+#	border:0;
+	margin:0;
+	padding:0;
+	border: none;
+}
+*/
+/* - -- --- LOAD CUSTOM FONT --- -- - */
+
+@font-face {
+	font-family: 'DroidSansRegular';
+	#src: url('../font/DroidSans-webfont.eot');
+	src: local('DroidSans'), 
+		url('../font/DroidSans-webfont.woff') format('woff'), 
+		url('../font/DroidSans-webfont.ttf') format('truetype'), 
+		url('../font/DroidSans-webfont.svg#webfontLahtyDxO') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'DroidSansBold';
+	src: url('../font/DroidSans-Bold-webfont.eot');
+	src: local('DroidSans Bold'), 
+		url('../font/DroidSans-Bold-webfont.woff') format('woff'), 
+		url('../font/DroidSans-Bold-webfont.ttf') format('truetype'), 
+		url('../font/DroidSans-Bold-webfont.svg#webfont8VfWbLAP') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+/* - -- --- ---- ----- MAIN LAYOUT ----- ---- --- -- - */
+
+#main-left {
+float: left;
+text-align: center;
+width: 300px;
+}
+
+#main-right {
+float: right;
+padding: 10px 10px 0 10px;
+margin: auto;
+margin-bottom: 10px;
+width: 600px;
+}
+#main {
+padding: 10px;
+width: 950px;
+margin: auto;
+}
+
+path.link {
+            fill: none;
+            stroke: gray;
+            stroke-width: 2.5px;
+}
+
+#pancy{
+	padding: 0px 0 20px;
+}
+
+.wrap{
+	width: 90%;
+	#margin: 0 auto;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.intro{
+	float: left;
+	text-align: justify;
+	width: 41%;
+	#padding: 0 40px 40px 0;
+}
+
+.downloadInfo{
+	display: block;
+	padding: 25px 0 0 0;
+	font-size: 12px;
+	clear: both;
+}
+
+.downloadInfo strong{
+	padding: 0 5px 0 0;
+	color: #cc3333;
+}
+
+.preview{
+	float: right;
+	width: 50%;
+	padding: 63px 0px 0px 0px;
+}
+
+#logo{
+	float: left;
+	margin: 0 0 20px;
+}
+
+
+#tabs{
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#tabs li{
+  float: left;
+  margin: 0 .5em 0 0;
+}
+
+#tabs a{
+  position: relative;
+  background: #ddd;
+  background-image: linear-gradient(to bottom, #fff, #ddd);  
+  padding: .7em 3.5em;
+  float: left;
+  text-decoration: none;
+  color: #444;
+  text-shadow: 0 1px 0 rgba(255,255,255,.8);
+  border-radius: 5px 0 0 0;
+  box-shadow: 0 2px 2px rgba(0,0,0,.4);
+}
+
+#tabs a:hover,
+#tabs a:hover::after,
+#tabs a:focus,
+#tabs a:focus::after{
+  background: #fff;
+}
+
+#tabs a:focus{
+  outline: 0;
+}
+
+#tabs a::after{
+  content:'';
+  position:absolute;
+  z-index: 1;
+  top: 0;
+  right: -.5em;  
+  bottom: 0;
+  width: 1em;
+  background: #ddd;
+  background-image: linear-gradient(to bottom, #fff, #ddd);  
+  box-shadow: 2px 2px 2px rgba(0,0,0,.4);
+  transform: skew(10deg);
+  border-radius: 0 5px 0 0;  
+}
+
+#tabs #current a,
+#tabs #current a::after{
+  background: #fff;
+  z-index: 3;
+}
+
+#content
+{
+    background: #fff;
+    padding: 2em;
+    height: 150px;
+    position: relative;
+    z-index: 2;	
+    border-radius: 0 5px 5px 5px;
+    box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
+}
+
+/* - -- --- SLIDER --- -- - */
+
+.sliderContainer{
+	float: left;
+	width: 700px;
+	margin: 0 0 20px;
+	overflow: hidden;
+	position: relative;
+}
+
+ul {
+	list-style-type: none;
+	padding:0; 
+	margin:0;
+}
+
+ul.slider{
+	position: relative;
+	width: 10000px;
+	left: 0;
+	top: 0;
+	list-style: none;
+	overflow: hidden;
+}
+
+ul.slider li{
+	float: left;
+	width: 700px;
+}
+
+ul.slider li img{
+	display: block;
+	width: 140px;
+	height: 85px;
+	padding: 8px;
+	margin: 0 0 5px 3px;
+	background: #fff;
+	-webkit-box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+	box-shadow: 1px 2px 3px rgba(0,0,0,0.5);		
+}
+
+ul.slider li p{
+#	color: #fff;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+}
+
+ul.sliderController{
+	margin: 10px auto 0;
+	list-style: none;
+	overflow: hidden;
+}
+
+ul.sliderController li{
+	float: left;
+	padding: 0 6px;
+}
+
+ul.sliderController li a{
+	display: block;
+	height: 13px;
+	width: 13px;
+	background: url(/static/images/landing_page/controller.png) no-repeat 0 0;
+}
+
+ul.sliderController li a:hover, ul.sliderController li.current a{
+	background-position: 0 -13px;
+}
+
+a.arrow{
+	float: left;
+	width: 50px;
+	height: 34px;
+	margin: 0;
+}
+
+a.arrow:active{
+	margin-top: 1px;
+}
+
+a.arrow.arrowLeft{
+	background: url(/static/images/landing_page/arrow-left.png) no-repeat left center;
+}
+
+a.arrow.arrowRight{
+	background: url(/static/images/landing_page/arrow-right.png) no-repeat right center;
+}
+
+/* - -- SLIDER COLUMNS -- - */
+
+.oneOfFour{
+	width: 163px;
+	float: left;
+	margin-right: 16px;
+}
+
+.oneOfFour.last{
+	margin-right: 0;
+}
+
+.twoOfFour{
+	width: 342px;
+	float: left;
+	margin-right: 16px;
+}
+
+.twoOfFour.last{
+	margin-right: 0;
+}
+
+.threeOfFour{
+	width: 521px;
+	float: left;
+	margin-right: 16px;	
+}
+
+.threeOfFour.last{
+	margin-right: 0;
+}
+
+
+
+
+
+/* - -- --- FOOTER --- -- - */
+
+#footer{
+#	margin: 40px 0 0 0;
+	font-size: 12px;
+	line-height: 2em;
+	color: #fff;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+	text-align: center;
+}
+
+#footer a{
+	text-decoration: underline;
+	color: #fff;
+}
+
+.social{
+	margin: 10px 0 0 0;
+	text-align: center;
+	list-style: none;
+}
+
+.social li{
+	display: inline;
+	padding: 0 3px;	
+}
+
+.social li img{
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+	box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.social li img:hover{
+	margin: 0 0 -1px 0;
+}
+
+/* - -- --- FORM --- -- - */
+
+.form{
+	float: left;
+	width: 210px;
+	padding: 8px 12px;
+	font-size: 14px;
+	line-height: 1em;
+	color: #333;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #fff #d5d5d5 #a0a0a0;
+	background: #f9f9f9;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.25);
+	-moz-box-shadow: inset 0 0 10px rgba(0,0,0,0.25);
+	box-shadow: inset 0 0 10px rgba(0,0,0,0.25);
+}
+
+input:focus, input:active, textarea:focus{
+    outline: none;
+}
+
+input::-moz-focus-inner { 
+	border: 0;
+}
+
+textarea{
+    resize: none;
+    -moz-resize: none; /* FF4 - via @sambowler */
+    overflow: auto;
+}
+
+.form::-webkit-input-placeholder{
+	color: #333;
+}
+
+.form:-moz-placeholder{
+	color: #333;
+}
+
+/* - -- --- TYPOGRAPHY AND OTHER STYLES --- -- - */
+
+
+
+#h2{
+#	font: normal 22px/1em DroidSansBold, arial;
+#}
+
+.titleSeparator{
+	//margin: 0 0 30px 0;
+	text-align: center;
+	background: url(/static/images/landing_page/separator.png) repeat-x 0 center;
+	clear: both;
+}
+
+.titleSeparator h2{
+	display: inline-block;
+	padding: 0 30px;
+	background-color:rgba(255, 255, 255, 0.85);
+#	background: url(/static/images/landing_page/bg.jpg) repeat;
+}
+h3{
+	text-transform: uppercase;
+
+}
+
+#h3{
+#	height: 28px;
+#	margin: 0 0 20px;
+#	font: normal 25px/28px DroidSansBold, arial;
+#	text-align: center;
+#}
+
+h4{
+	margin: 0 0 10px;
+#	font: normal 16px/1.3em DroidSansBold, arial;
+	text-transform: uppercase;
+}
+
+#h5{
+#	margin: 0 0 6px;
+#	font: normal 15px/1em DroidSansBold, arial;
+#}
+
+.subtitle{
+	display: block;
+	margin: 0 0 30px;
+	text-align: center;
+}
+
+.downloadButton{
+	float: left;
+	height: 71px;
+	margin: 0 0 1px 0;
+	padding: 0 12px 0 0;
+	color: #fff;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+	background: url(/static/images/landing_page/download-button.png) no-repeat right -71px;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+	overflow: hidden;
+}
+
+.downloadButton .slidingDoor{
+    float: left;
+    height: 71px;
+    margin: 0;
+    padding: 0 0 0 12px;
+    background: url(/static/images/landing_page/download-button.png) no-repeat 0 0;
+    cursor: pointer;
+}
+
+.downloadButton .title{
+	float: left;
+	padding: 7px 5px;
+	font: normal 29px/1em DroidSansBold, arial;
+}
+
+.downloadButton .detail{
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+
+.downloadButton .detail span{
+	float: left;
+	margin: 0 5px;
+	font: normal 12px/1em arial;
+}
+
+.downloadButton:active{
+	margin: 1px 0 0 0;
+}
+
+.intro p{
+	margin-bottom: 20px;
+	#font-size: 20px;
+	#padding-left: 17px;
+	line-height: 1.4em;
+}
+
+.separator{
+	height: 2px;
+	margin: 0 0 25px;
+	background: url(../img/separator.png) repeat-x 0 center;
+	clear: both;
+}
+
+.center{
+	text-align: center;
+}
+
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+}
+
+.clear{
+	clear: both;
+}
+
+#::selection{
+#	background: #82bde1;
+#	color: #fff;
+#}
+
+#::-moz-selection{
+#	background: #82bde1;
+#	color: #fff;
+#}
+.news font{
+padding-left:18px;
+}
+.news li{
+padding-top:10px;
+padding-left:14px;
+}
+#contentwrapper{
+float: left;
+width: 99%;
+#margin-top: 2%;
+padding-top: 2%;
+}
+#contentcolumn{
+margin: 0 30% 0 30%; /*Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth*/
+#box-shadow: 0 0 10px #000;
+}
+
+#leftcolumn{
+float: left;
+width: 30%; /*Width of left column in percentage*/
+margin-left: -99%;
+#background: #C8FC98;
+#box-shadow: 0 0 10px #000;
+#margin-top: 2%;
+padding-top: 2%;
+}
+
+
+#rightcolumn{
+float: left;
+width: 30%; /*Width of right column in pixels*/
+margin-left: -30%; /*Set margin to that of -(RightColumnWidth)*/
+#background: #FDE95E;
+#box-shadow: 0 0 10px #000;
+#margin-top: 2%;
+padding-top: 2%;
+}
+
+.innertube{
+margin: 10px; /*Margins for inner DIV inside each column (to provide padding)*/
+margin-top: 0;
+border-width:2px;
+#border-style:solid;
+#border-radius:5px 5px 5px 5px;
+#box-shadow: 1px 1px 8px #AAAAAA;
+#padding: 5px;
+}
+.gutter {
+margin-left: 10px;
+margin-right: 10px;
+
+
+
+}
+
+
+#container p {
+	padding-left : 23px;
+	text-align: justify;
+}
+.container .h3 {
+	padding-left : 10px;
+}
+#container {
+    #background: #666;
+    margin: auto;
+    #width: 500px;
+    #height: 700px;
+    #padding-top: 10px;
+	border-radius:5px 5px 5px 5px;
+	#box-shadow: 1px 1px 8px #AAAAAA;
+    #font-family: helvetica, arial, sans-serif;
+    font-size: small;
+    }
+
+#container .arrow {
+     width: 0; height: 0;
+     line-height: 0;
+     border-left: 20px solid transparent;
+     border-top: 10px solid #c8c8c8;
+     top: 104%;
+     left: 0;
+     position: absolute;
+}
+
