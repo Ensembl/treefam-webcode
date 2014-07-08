@@ -53,6 +53,7 @@ use namespace::autoclean;
 ## Use TreeFam helpers
 use TreeFam::HomologyHelper;
 use TreeFam::SearchHelper;
+use TreeFam::Production_modules;
 
 BEGIN
 {
@@ -106,6 +107,9 @@ sub get_adaptors : Private
             #$c->go('ReturnError', 'custom', ["No homology adaptor found for $compara_name"]) unless $ha;
             $c->stash(homology_adaptor => $ha);
             
+            my $gm = $reg->get_adaptor($compara_name, 'compara', 'genomedb');
+            #$c->go('ReturnError', 'custom', ["No homology adaptor found for $compara_name"]) unless $ha;
+            $c->stash(genomedb_adaptor => $gm);
             my $gt = $reg->get_adaptor($compara_name, 'compara', 'GeneTree');
             #$c->go('ReturnError', 'custom', ["No genetree adaptor found for $compara_name"]) unless $gt;
             #$c->stash(genetree_adaptor => $gt);
@@ -187,30 +191,19 @@ sub family_data : Chained( 'family_check' ) PathPart( '' ) Args(0)
     # retrieve data for the family
     $c->log->debug("retrieve data for the family for ".$c->stash->{acc}."\n") if $c->debug;
     
-	#$c->forward( 'get_data', [$entry] ) if defined $entry;
-	#$c->log->debug("back from retrieving data\n") if $c->debug;
-
-    #$c->forward( 'get_family_sequences', [ $entry ] ) if defined $entry;
-    
-	#$c->log->debug("Reading sunburst data\n") if $c->debug;
-	#$c->forward('get_sunburst_data', [$entry]);
-	
-	# Wikipedia content
-	#$c->log->debug('Family::family_page: Retrieving wikipedia content') if $c->debug;
-    #$c->forward('get_wikipedia');
-   	
     $c->log->debug('Family::family_page: adding summary info') if $c->debug;
     # Get Summary data
     $c->forward('get_summary_data');
     if(! exists ($c->stash->{summaryData})){
     
     }   	
-    $c->log->debug('Family::family_page: adding sunburst info') if $c->debug;
     # Get Summary data
 	#$c->forward('get_sunburst_data');
-    if(! exists ($c->stash->{sunburst_data})){
-        $c->stash->{no_sunburst}  = 1;
-    } 	
+    #if(! exists ($c->stash->{sunburst_data})){
+    #    $c->stash->{no_sunburst}  = 1;
+    #} 	
+    $c->log->debug('Family::family_page: we are done here getting summary information') if $c->debug;
+
     $c->stash->{pageType} = 'family';
     $c->stash->{template} = 'pages/layout.tt';
 }
@@ -306,6 +299,32 @@ sub get_all_ids : Chained( 'family_check' ) PathPart( 'all_ids' ) Args(0){
     $c->res->body( $data );
  
 }
+
+
+sub get_seqDomains : Chained( 'family_check' ) PathPart( 'get_seqDomains' ) Args(0){
+    my ( $this, $c ) = @_;
+
+	my $family_id = $c->stash->{acc};
+        $c->log->debug("looking for $family_id id\n") if $c->debug;
+         my $genetree_adaptor = $c->stash->{'genetree_adaptor'};
+         my $genomedb_adaptor = $c->stash->{'genomedb_adaptor'};
+         my $member_adaptor = $c->stash->{'member_adaptor'};
+         #my $tree             = $genetree_adaptor->fetch_by_stable_id($treefam_family_id);
+	my $json_text;
+	TreeFam::SearchHelper::get_alignments_domains4family({"genetree_adaptor"=> $genetree_adaptor,
+                                                                          "genomedb_adaptor"=> $genomedb_adaptor,
+                                                                          "member_adaptor"=> $member_adaptor,
+                                                                          "family_id" => $family_id,
+                                                                          "json_result" => \$json_text});
+
+     my $filename = '';
+     $c->res->content_type('text/plain');
+     #$c->res->header('Content-disposition' => "attachment; filename=$filename" );
+     $c->res->body( $json_text );
+
+}
+
+
 # checks /family/3/hmm
 sub get_homologyType : Chained( 'family_check' ) PathPart( 'homologyType' ) Args(2){
     my ( $this, $c, $query1,$query2 ) = @_;
@@ -1090,7 +1109,8 @@ sub get_summary_data : Private
     #$c->go('ReturnError', 'custom', ["No genetree adaptor found for TreeFam"]) unless $genetree_adaptor;
     my $genetree_adaptor = $c->stash->{'genetree_adaptor'};
     if(!$genetree_adaptor){
-    $c->log->debug(dump($c->stash->{genetree_adaptor})) if $c->debug;
+    	$c->log->debug('Family::Tree::get_summary could not get genetree_adaptor') if $c->debug;
+    	$c->log->debug(dump($c->stash->{genetree_adaptor})) if $c->debug;
     }
     my $tree             = $genetree_adaptor->fetch_by_stable_id($treefam_family_id);
     if ( !defined($tree) || $tree eq '' )
@@ -1098,7 +1118,7 @@ sub get_summary_data : Private
     	$c->log->debug('Family::Tree::get_summary Could not find tree using stable_id') if $c->debug;
      	#try with root_id
     	# here we can only use numbers, no characters
-        unless($treefam_family_id =~ m/^TF/){
+        unless($treefam_family_id =~ m/^TF/ || $treefam_family_id =~ m/^PTHR/){
             $tree             = $genetree_adaptor->fetch_by_root_id($treefam_family_id);
         }
         if ( !defined($tree) || $tree eq '' ){
@@ -1108,6 +1128,9 @@ sub get_summary_data : Private
             return;
 		}        
     }
+	else{
+    		$c->log->debug('Family::Tree::get_summary have retrieved a tree object') if $c->debug;
+	}
 	$c->log->debug('Family::Tree::get_summary Got tree') if $c->debug;
 
     #  print Dumper $tagvalue_hashref;
@@ -1118,7 +1141,7 @@ sub get_summary_data : Private
     $summaryData->{tree_num_spec_nodes}        = $tree->get_value_for_tag('tree_num_spec_nodes');
 
     # Number of inner nodes is: number_of_leaves / 2
-    $summaryData->{tree_num_internal_nodes}        = int ($summaryData->{numSequences} / 2);
+    $summaryData->{tree_num_internal_nodes}        = $summaryData->{numSequences} ? int ($summaryData->{numSequences} / 2) : 0;
     if(!($summaryData->{tree_num_internal_nodes}) || $summaryData->{tree_num_internal_nodes} eq ''){
         $summaryData->{tree_percentage_duplications}        = "NaN";
         $summaryData->{tree_percentage_speciations}        = "NaN";
@@ -1129,64 +1152,40 @@ sub get_summary_data : Private
         $summaryData->{tree_percentage_speciations}        = int (($summaryData->{tree_num_spec_nodes} * 100 / $summaryData->{tree_num_internal_nodes}));
     }
     #$summaryData->{aln_method}                = $tree->get_value_for_tag('aln_method');
-   
-   # cut percent identity
-    $summaryData->{aln_percent_identity}      = $tree->get_value_for_tag('aln_percent_identity');
-    $summaryData->{aln_percent_identity}      =~ s/\.\d*//g;
-	$c->log->debug("Truncated value: ".$summaryData->{aln_percent_identity}." %");
-    $summaryData->{percentIdentity}      = $summaryData->{aln_percent_identity};
-
-    $summaryData->{aln_num_residues}          = $tree->get_value_for_tag('aln_num_residues');
-    $summaryData->{tree_num_spec_nodes}       = $tree->get_value_for_tag('tree_num_spec_node');
-    $summaryData->{aln_length}                = $tree->get_value_for_tag('aln_length');
-    $c->stash->{tree}{phyloxml}             = $tree->get_value_for_tag('treenphyloxml');
-    $c->stash->{sequence_array_json}          = $tree->get_value_for_tag('sequence_array_json');
-	$summaryData->{numSpecies}                = $tree->get_value_for_tag('numspecies');
-    $c->log->debug("numSequences is ".$summaryData->{numSequences}." species ".$summaryData->{numSpecies});   
-	my $avg_seq_species = (!$summaryData->{numSequences} || !$summaryData->{numSpecies})? 1: ($summaryData->{numSequences}/ $summaryData->{numSpecies});
-    if($avg_seq_species =~ /\d+\.\d+/){
-        $avg_seq_species = $avg_seq_species =~ m/(\d+\.\d)/;
-    }
-    $summaryData->{avg_seq_per_species} = $avg_seq_species? $avg_seq_species : 'NaN';
-   $c->stash->{numSequences}              = $tree->get_value_for_tag('numSequences');
-	$c->stash->{json_tree_string}= $tree->get_value_for_tag('json_tree');
-	$c->stash->{numSpecies}                = $tree->get_value_for_tag('numspecies');
-    	$c->stash->{aln_percent_identity}      = $tree->get_value_for_tag('aln_percent_identity');
-    	$c->stash->{aln_percent_identity}      =~ s/\.\d*//g;
-    	$c->stash->{percentIdentity}      = $c->stash->{aln_percent_identity};
-    	$c->stash->{aln_length}                = $tree->get_value_for_tag('aln_length');
-    	$c->stash->{description} = $tree->get_value_for_tag('fam_description');   
-    	$c->stash->{symbol} = $tree->get_value_for_tag('fam_symbol');   
-    	$c->stash->{treefam_acc} = $tree->stable_id;   
+    my $summary_json      = from_json($tree->get_value_for_tag('summary'));
+    $c->log->debug('Family::Tree::get_summary Got summary_hash ',$summary_json) if $c->debug;
+    $c->log->debug("description is ".$summary_json->{description}." ");   
+     $summaryData->{'percentIdentity'}  = $summary_json->{aln_percent_identity};
+    $c->log->debug("aln_percentage is ".$summary_json->{aln_percent_identity}." ");   
+     $summaryData->{'aln_length'}  = $summary_json->{aln_length};
+     $summaryData->{'numSequences'}  = $summary_json->{numSequences};
+     $summaryData->{'numSpecies'}  = $summary_json->{numSpecies};
+    if($summary_json->{pfam}){
+	$c->stash->{treefam}{pfam} = from_json($summary_json->{pfam});   
+    		$c->log->debug("pfam is ".$c->stash->{treefam}{pfam}." ");   
+     }
+     $c->stash->{'treefam'}->{'description'}  = $summary_json->{description};
+     $c->stash->{'treefam'}->{'symbol'}  = $summary_json->{symbol};
+    $c->stash->{treefam}{hgnc} = $summary_json->{hgnc};   
+     $c->stash->{treefam_acc} = $tree->stable_id;   
  
 
 	#$summaryData->{fasta_aln}                = $tree->get_value_for_tag('fasta_aln');
 	#$summaryData->{"homologs_array_json"} = $tree->get_value_for_tag('homologs_array_json'); 
 
 ### data for header
-    $c->stash->{treefam}{acc} = $tree->stable_id;   
-    $c->stash->{treefam}{description} = $tree->get_value_for_tag('fam_description');   
-    $c->stash->{treefam}{full_description} = $tree->get_value_for_tag('fam_full_description');   
-    $c->stash->{treefam}{symbol} = $tree->get_value_for_tag('fam_symbol');   
-    $c->stash->{treefam}{wikigene} = $tree->get_value_for_tag('wikigene');   
-    $c->log->debug("wikigene is ".$c->stash->{treefam}{wikigene});   
-    $c->stash->{treefam}{taxa_count} = $tree->get_value_for_tag('taxa_count');   
-    $c->log->debug("TaxaCount is ".$c->stash->{treefam}{taxa_count});   
-    $c->stash->{treefam}{hgnc} = $tree->get_value_for_tag('hgnc');   
-    $c->log->debug("hgnc is ".$c->stash->{treefam}{hgnc});   
+    #$c->stash->{treefam}{acc} = $tree->stable_id;   
+    #$c->stash->{treefam}{description} = $tree->get_value_for_tag('fam_description');   
+    #$c->stash->{treefam}{full_description} = $tree->get_value_for_tag('fam_full_description');   
+    #$c->stash->{treefam}{symbol} = $tree->get_value_for_tag('fam_symbol');   
+    #$c->stash->{treefam}{wikigene} = $tree->get_value_for_tag('wikigene');   
+    #$c->log->debug("wikigene is ".$c->stash->{treefam}{wikigene});   
+    #$c->stash->{treefam}{taxa_count} = $tree->get_value_for_tag('taxa_count');   
+    #$c->log->debug("TaxaCount is ".$c->stash->{treefam}{taxa_count});   
+    #$c->stash->{treefam}{hgnc} = $tree->get_value_for_tag('hgnc');   
+    #$c->log->debug("hgnc is ".$c->stash->{treefam}{hgnc});   
     
-    my $pfam_string = $tree->get_value_for_tag('pfam');   
-    my @pfam_array;
-    foreach(split(" ", $pfam_string)){
-        my %pfam_entry_hash;
-        my ($id,$name,$count) = split("->",$_);
-        $c->log->debug("$id,$name,$count");
-        $pfam_entry_hash{'name'} = $id;
-        $pfam_entry_hash{'id'} = $name;
-        $pfam_entry_hash{'count'} = $count;
-        push(@pfam_array,\%pfam_entry_hash);
-    }
-    $c->stash->{treefam}{pfam} = \@pfam_array;   
+    
 	$c->log->debug("Family::Tree::get_summary PFAMS found ".$c->stash->{treefam}{pfam}." pfams");
 	
 	$c->log->debug("Family::Tree::get_summary Found ".$summaryData->{numSpecies}." species");
@@ -1215,46 +1214,47 @@ sub get_summary_data : Private
     #### TEST get all entries from xrefID2Sequence table for this family
     my %pfams;
     #my $dbh = DBI->connect('dbi:mysql:treefam_homology_67hmm;host=web-mei-treefam:3365','treefam_admin',$ENV{TFADMIN_PSW}) or die "Connection Error: $DBI::errstr\n";
-    my $extID2seq_sth = $genetree_adaptor->prepare('select * from xrefID2Sequence where gene_tree_stable_id= ?');
+    #my $extID2seq_sth = $genetree_adaptor->prepare('select * from xrefID2Sequence where gene_tree_stable_id= ?');
     #my $extID2seq_sth = $dbh->prepare('select * from xrefID2Sequence where gene_tree_stable_id= ?');
-    $extID2seq_sth->bind_param(1,$treefam_family_id);
-    $extID2seq_sth->execute() or die "SQL Error: $DBI::errstr\n";
-    my %dupl_hgncs;
-    while ( my ($extID,$extName,$db,$memberID,$gtID,$gtName,$description) = $extID2seq_sth->fetchrow_array() ){;
-        if($db eq "HGNC"){ 
-	            $c->log->debug("Family::Tree::get_summary HGNC: found ID: $extID, name: $extName ");
-                if(!exists $dupl_hgncs{$extID} && $extName ne "NULL" && defined($extName) ){
-                    push(@{$c->stash->{hgncs}},{"id"=>$extID,"name"=>$extName});
-                }
-                $symbol_backup = $extName;
-                $description_backup = $description;
+    #$extID2seq_sth->bind_param(1,$treefam_family_id);
+    #$extID2seq_sth->execute() or die "SQL Error: $DBI::errstr\n";
+    #my %dupl_hgncs;
+    #while ( my ($extID,$extName,$db,$memberID,$gtID,$gtName,$description) = $extID2seq_sth->fetchrow_array() ){;
+    #    if($db eq "HGNC"){ 
+	#            $c->log->debug("Family::Tree::get_summary HGNC: found ID: $extID, name: $extName ");
+         #       if(!exists $dupl_hgncs{$extID} && $extName ne "NULL" && defined($extName) ){
+          #          push(@{$c->stash->{hgncs}},{"id"=>$extID,"name"=>$extName});
+          #      }
+          #      $symbol_backup = $extName;
+          #      $description_backup = $description;
 
-                $dupl_hgncs{$extID} = 1;
-        }
-        elsif($db eq "Wikigene"){ push(@{$c->stash->{wikigenes}},{"id"=>$extID,"name"=>"NaN"});}
-        elsif($db eq "Pfam"){  
-                $pfams{$extName}{count}++;
-                $pfams{$extName}{id} = $extID;
-            }
-    }
+           #     $dupl_hgncs{$extID} = 1;
+        #}
+        #elsif($db eq "Wikigene"){ push(@{$c->stash->{wikigenes}},{"id"=>$extID,"name"=>"NaN"});}
+        #elsif($db eq "Pfam"){  
+         #       $pfams{$extName}{count}++;
+         #       $pfams{$extName}{id} = $extID;
+         #   }
+    #}
    	$c->log->debug("Family::Tree::get_summary HGNC".$c->stash->{hgncs}) if $c->debug;
-   	if(exists($c->stash->{wikigenes})){$c->log->debug("Family::Tree::get_summary WIKIGENE: ".join(",",@{$c->stash->{wikigenes}})) if $c->debug;}
+   #	if(exists($c->stash->{wikigenes})){$c->log->debug("Family::Tree::get_summary WIKIGENE: ".join(",",@{$c->stash->{wikigenes}})) if $c->debug;}
     
-    foreach my $pfam(keys(%pfams)){
-        my $pfam_count = ($summaryData->{numSequences} != 0) ? int($pfams{$pfam}{count}*100/$summaryData->{numSequences}) : "NaN";
-	push(@{$c->stash->{pfams}}, {"name"=>$pfam,"id"=>$pfams{$pfam}{id},"count"=>$pfam_count})
-    }
+    #foreach my $pfam(keys(%pfams)){
+    #    my $pfam_count = ($summaryData->{numSequences} != 0) ? int($pfams{$pfam}{count}*100/$summaryData->{numSequences}) : "NaN";
+	#push(@{$c->stash->{pfams}}, {"name"=>$pfam,"id"=>$pfams{$pfam}{id},"count"=>$pfam_count})
+    #}
 
 
     # make sure 
     # symbol and
     # description are set
-    if($c->stash->{'treefam'}->{'symbol'} eq '' || !defined($c->stash->{'treefam'}->{'symbol'})){
-       $c->stash->{'treefam'}->{'symbol'}  = $symbol_backup;
-    }
-    if($c->stash->{'treefam'}->{'description'} eq '' || !defined($c->stash->{'treefam'}->{'description'})){
-       $c->stash->{'treefam'}->{'description'}  = $description_backup;
-    }
+    #if($c->stash->{'treefam'}->{'symbol'} eq '' || !defined($c->stash->{'treefam'}->{'symbol'})){
+    #   $c->stash->{'treefam'}->{'symbol'}  = $symbol_backup;
+    #}
+    #if($c->stash->{'treefam'}->{'description'} eq '' || !defined($c->stash->{'treefam'}->{'description'})){
+    #   $c->stash->{'treefam'}->{'description'}  = $description_backup;
+    #}
+   	$c->log->debug("Family::Tree::get_summary ok, we are done with get_summary for now ") if $c->debug;
 
     return 1;
 

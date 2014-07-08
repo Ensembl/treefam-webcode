@@ -25,7 +25,7 @@ sub get_member_object{
 	my $member_object = $arg_ref->{'member_adaptor'};
 	my $source_id = $arg_ref->{'to_search'};
 	my $member = $member_object->fetch_by_source_stable_id(undef,$source_id);
-	print "getting member object\n";
+	print "getting member object for $source_id\n";
 	return defined($member)?$member:undef;
 }
 sub get_genetree_object{

@@ -20,7 +20,91 @@ use strict;
 use warnings;
 use Data::Dumper;
 use TreeFam::HomologyHelper;
+use JSON;
 
+
+
+sub get_alignments_domains4family{
+	my ($arg_ref) = @_;
+	#print Dumper $arg_ref;
+	my $genetree_adaptor= $arg_ref->{'genetree_adaptor'};
+	my $genomedb_adaptor= $arg_ref->{'genomedb_adaptor'};
+	my $member_adaptor= $arg_ref->{'member_adaptor'};
+	my $family_id= $arg_ref->{'family_id'};
+	my $json_result= $arg_ref->{'json_result'};
+
+my $family_tree_adaptor = $genetree_adaptor->fetch_by_stable_id( $family_id );
+my $all_members         = $family_tree_adaptor->get_all_Members;
+my @results_array;
+foreach my $member ( @{ $all_members } )
+{
+	my $id = $member->stable_id;
+	my $species = $member->taxon->binomial;
+	my $display_label = $member->gene_member->display_label;
+	#print "looking at id: $id\n";
+
+	#print "$tf_family, $level, $gene_name,$id,$species,$ref_id,$homology_type\n";
+	my $species_name = $species;
+	$species_name =~ s/ /_/g;
+	my @empty_domains;
+
+	# should get the domains here as well
+	my $ext_counts;
+	my @domains_for_seq;
+	my $domains = TreeFam::Production_modules::get_pfam_hits(
+												{ "id" => $id, "file_to_search" => '', "pfam_counts" => \%{ $ext_counts->{ "pfam_counts" } }, "db_adaptor" => $genomedb_adaptor } );
+
+	#print Dumper $domains;
+	foreach my $domain_hit ( keys( %{ $domains } ) )
+	{
+
+		#print Dumper $domain_hit;
+		foreach my $domain_no ( keys( %{ $domains->{ $domain_hit } } ) )
+		{
+			my ( $id, $name, $a_start, $a_end, $evalue ) = (
+															 $domains->{ $domain_hit }{ $domain_no }{ hmm_name },
+															 $domains->{ $domain_hit }{ $domain_no }{ description },
+															 $domains->{ $domain_hit }{ $domain_no }{ alignment_start },
+															 $domains->{ $domain_hit }{ $domain_no }{ alignment_end },
+															 $domains->{ $domain_hit }{ $domain_no }{ evalue }
+			);
+
+			#print "Hit: $id,$name, $a_start,$a_end,$evalue\n";
+			my $temp_hash = { domain_start => $a_start, domain_stop => $a_end, evalue => $evalue, name => $name, id => $id };
+			push( @domains_for_seq, $temp_hash );
+		}
+	}
+	my $seq_member = $member_adaptor->fetch_by_source_stable_id( undef, $id );
+
+	my $seq_length = $seq_member->seq_length;
+	my $alignment_length = length($member->alignment_string);
+
+	my @xref_array = ();
+    my @mol_function = ("nucleotide binding","nucleic acid binding");
+    my @bio_process = ("cytokinesis","MAPK cascade", "reproduction");
+    my @cell_comp = ("cytoplasmic chromosome","nuclear chromosome");
+    push(@xref_array, {"type" => "protein_id", "value" => "test_id"});
+    push(@xref_array, {"type" => "sf_name", "value" => "SF".int(rand(2))});
+    push(@xref_array, {"type" => "definition", "value"=> "test_def"});
+    push(@xref_array, {"type" => "organism", "value"=> $species_name});
+    push(@xref_array, {"type" => "gene_id", "value" => "gene_id"});
+    push(@xref_array, {"type" => "gene_symbol", "value"=> "gene_symbol"});
+    push(@xref_array, {"type" => "molecular_function", "value" => $mol_function[int(rand(2))]});
+    push(@xref_array, {"type" => "biological_process", "value" => $bio_process[int(rand(3))]});
+    push(@xref_array, {"type" => "cellular_component", "value" => $cell_comp[int(rand(2))]});
+    push(@xref_array, {"type" => "protein_class", "value" => $cell_comp[int(rand(1))]});
+    my $species_gene_hash = { 'display_label' => $display_label, 'species_name' => $species_name, 'seq_length' => $seq_length, 'name' => $id, "cigar_string" => $member->cigar_line,"alignment_string"=>$member->alignment_string, 'domains' => \@domains_for_seq , "alignment_length" => $alignment_length, 'xref' => \@xref_array};
+	#print Dumper $species_gene_hash;
+	#$species_hash{ $species_name } = $species_gene_hash;
+	push(@results_array, $species_gene_hash);
+	#exit;
+}
+#print "well, we made it this far\n";
+
+$$json_result= to_json( \@results_array, { utf8 => 1, pretty => 1 } );
+#print "$json_text\n";
+#return $json_text;
+}
 
 sub search_family_with_id{
 	my ($arg_ref) = @_;
@@ -536,6 +620,28 @@ sub get_all_for_sequence_id{
 
 
 
+sub get_distinct_uniprot_hits{
+	my ($arg_ref) = @_;
+	my $member_adaptor = $arg_ref->{'member_adaptor'};
+	my $to_search = $arg_ref->{'to_search'};
+	my $column = $arg_ref->{'type'};
+	my $extID2seq_sth_member;
+	my $extID2seq_sth_ext;
+	my $extID2seq_sth;
+	print "type: $column\n";
+	$extID2seq_sth_ext = $member_adaptor->prepare('select distinct(external_db_id) from xrefID2Sequence where gene_tree_stable_id = ? and db = "UniProtKB-ID"');
+	$extID2seq_sth_ext->bind_param(1,$to_search);
+	$extID2seq_sth = $extID2seq_sth_ext ;
+	$extID2seq_sth->execute() or die "SQL Error: $DBI::errstr\n";
+    my @hits;
+	my $sequences = $extID2seq_sth->fetchall_arrayref();
+	foreach my $seq_array(@{$sequences}){
+		my ($extID) = @{$seq_array};
+		push(@hits,$extID);
+	}
+	
+	return \@hits;
+}
 
 
 

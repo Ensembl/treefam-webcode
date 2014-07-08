@@ -1,0 +1,180 @@
+[%
+# summary.tt
+# jt6 20060406 WTSI
+# 
+# build the summary block for families
+#
+# $Id: summary.tt,v 1.11 2009-10-08 16:01:48 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+# try to change "NaN" to "awaiting annotation"
+IF treefam.symbol  == "NaN";
+	treefam.symbol = "awaiting annotation";
+END;
+
+IF treefam.description  == "NaN";
+	treefam.description = "awaiting annotation";
+END;
+
+
+PROCESS "components/require.tt";
+requirements.css.push( "bootstrap.min.css" );
+requirements.js.push( "bootstrap.min.js" );
+requirements.css.push( "buttons.css" );
+requirements.css.push( "demo_table.css" );
+requirements.css.push( "jquery/tipsy.css" );
+requirements.css.push( "tab_layout_new.css" );
+#requirements.css.push( "demo_page.css" );
+requirements.css.push( "TreeFamily.css" );
+requirements.js.push( "jquery/jquery-1.8.2.min.js" );
+requirements.js.push( "d3/d3.v3.min.js" );
+requirements.js.push( "d3/d3.layout.js" );
+requirements.js.push( "d3/packages.js" );
+
+
+#requirements.js.push( "jquery/jquery.js" );
+#requirements.js.push( "jquery/jquery.dataTables.js" );
+requirements.js.push( "jquery/jquery.dataTables.min.js" );
+#requirements.js.push( "axzoomer-min.js" );
+#requirements.js.push( "phylowidget/gene_tree.js" );
+requirements.js.push( "phylowidget/minimal_species_tree.js" );
+
+
+# biojs
+
+
+#requirements.css.push( "phylowidget/treefam.css" );
+requirements.js.push( "phylowidget/new_code/gene_tree.js" );
+# for new gene tree
+# bootstrap
+# jquery context menu
+requirements.css.push( "jquery.contextMenu.css" );
+
+requirements.css.push( "Biojs.Tree.css" );
+requirements.js.push( "biojs/Biojs.js" );
+requirements.js.push( "biojs/Biojs.Tree.js" );
+requirements.js.push( "biojs/tree_functions.js" );
+requirements.js.push( "jquery/jquery.tipsy.js" );
+requirements.js.push( "biojs/treefam_functionality.js" );
+
+
+
+#sparkline
+#requirements.js.push( "sparkline/jquery.sparkline.min.js" );
+#zoomify
+#requirements.js.push( "craigfrancis-zoomify-c4d09d0/zoomify.js" );
+#requirements.css.push( "craigfrancis-zoomify-c4d09d0/zoomify.css" );
+
+# magiczoom
+#requirements.js.push( "magiczoom/magiczoom.js" );
+#requirements.css.push( "magiczoom/magiczoom.css" );
+# fancybox
+#requirements.js.push( "fancybox/source/jquery.fancybox.js" );
+#requirements.css.push( "fancybox/jquery.fancybox.css" );
+# starzoom
+#requirements.js.push( "starzoom/starzoom.js" );
+#requirements.css.push( "starzoom/starzoom.css" );
+#requirements.js.push( "popups/messi/messi.js" );
+
+# gzoom
+#requirements.css.push( "jquery-ui-1.8.18.custom.css" );
+#requirements.js.push( "jquery/ui.core.min.js" );
+#requirements.js.push( "jquery/ui.slider.min.js" );
+#requirements.js.push( "jquery/jquery.mousewheel.js" );
+#requirements.js.push( "gzoom/jquery.gzoom.js" );
+#requirements.css.push( "gzoom/jquery.gzoom.css" );
+
+#requirements.js.push( "featuredimagezoomer/featuredimagezoomer.js" );
+
+requirements.js.push( "prototype.js" );
+requirements.js.push( "sharedFunctions.js" );
+
+
+#-------------------------------------------------------------------------------
+# num of species in db:
+num_total_species = 109
+-%]
+<!-- start summary block -->
+<div class="block" id="familySummaryBlock">
+  <div class="handle">
+    <h1>Summary</h1>
+  </div>
+  <div  align="center" class="blockContent">
+	<div id="my_custom_menu" style="display:none;z-index: 2;">
+		<ul class="context-menu-list context-menu-root" style="width: 250px; ">
+			<li id="menu_name" class="context-menu-item icon icon-edit"><span>Name: </span></li>
+			<li id="menu_info" class="context-menu-item icon icon-cut"><span>Information: </span></li>
+			
+			<li id="menu_seq" class="context-menu-item icon icon-cut"><span>Go to sequence: <a href="#">xyz</a></span></li>
+			
+			<li class="context-menu-item context-menu-separator not-selectable"></li>
+			<li id="focus_node" class="context-menu-item icon icon-copy">Focus subtree</li>
+			<li id="highlight_node" class="context-menu-item icon icon-copy">Highlight gene</li>
+			<li id="collapse_node" class="context-menu-item icon icon-copy">uncollapse/collapse node</li>
+			<li class="context-menu-item icon icon-copy"><span>Reroot tree here</span></li>
+			<li id="swap_children" class="context-menu-item icon icon-paste">swap children</li>
+			<li id="reset_tree" class="context-menu-item icon icon-paste">reset tree</li>
+			<li id="expand_all" class="context-menu-item icon icon-paste">expand tree</li>
+			<li class="context-menu-item icon icon-delete"><span>Delete</span></li>
+			<li class="context-menu-item context-menu-separator not-selectable"></li>
+			<li class="context-menu-item icon icon-delete"><span>annotate this node</span></li>
+			<li class="context-menu-item icon icon-delete"><span>set node annotation to null</span></li>
+			<li class="context-menu-item context-menu-separator not-selectable"></li>
+			<li id="menu_close" class="context-menu-item icon icon-quit"><span>Quit</span></li> 
+		</ul>	
+	</div>
+	
+
+	<div id="YourOwnDivId" class="col-md-12"></div>
+							
+				</div> 
+				<div class="clearfloat"></div>
+			</div> 
+		</div>
+<nav class="navbar navbar-default navbar-static-bottom" role="navigation">
+  TreeFam
+  <table>
+			<tr><td>Nodes</td><td>Alignment</td></tr>
+			<tr><td><img src="http://www.ebi.ac.uk/~fs/d3treeviewer/data/images/species_files/.png" alt="TreeFam" height="15" />  gene node</td><td><img src="http://www.ebi.ac.uk/~fs/d3treeviewer/data/images/species_files/alignment_gap.png" alt="TreeFam" height="15" />  gap</td></tr>
+			<tr><td><img src="http://www.ebi.ac.uk/~fs/d3treeviewer/data/images/species_files/tree_speciation.png" alt="TreeFam" height="15" />  speciation node</td><td><img src="http://www.ebi.ac.uk/~fs/d3treeviewer/data/images/species_files/alignment_conserved.png" alt="TreeFam" height="15" />  aligned seq</td></tr>
+			<tr><td><img src="http://www.ebi.ac.uk/~fs/d3treeviewer/data/images/species_files/tree_duplication.png" alt="TreeFam" height="15" />  duplication node</td></tr>
+			<tr><td><img src="http://www.ebi.ac.uk/~fs/d3treeviewer/data/images/species_files/tree_gene_loss.png" alt="TreeFam" height="15" />  lost taxon</td></tr>
+			</table>	
+</nav>		
+
+</div>
+</div>
+
+<script type="text/javascript">
+    jQuery.noConflict ();
+    jQuery(document).ready(function(){
+        
+});
+
+
+ 
+</script>
+</div>
+
+<!-- end summary block -->
+[%#
+Copyleft (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

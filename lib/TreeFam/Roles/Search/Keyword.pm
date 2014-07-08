@@ -69,8 +69,8 @@ sub autocomplete_search : Chained( 'search' ) PathPart( 'autocomplete' ) Args()
     }
     my $data;
     $data->{"rows"} = $xref_hits;
-        $c->log->debug("Found ".scalar(@{$xref_hits})."\n") if $c->debug;
-        $c->log->debug(dump($data)) if $c->debug;
+        #$c->log->debug("Found ".scalar(@{$xref_hits})."\n") if $c->debug;
+        #$c->log->debug(dump($data)) if $c->debug;
         my $families  =  encode_json $xref_hits; 
         $c->res->content_type('application/json');
         $c->res->body(  encode_json $data );

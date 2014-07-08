@@ -1,0 +1,169 @@
+[%
+# summary.tt
+# jt6 20060406 WTSI
+# 
+# build the summary block for families
+#
+# $Id: summary.tt,v 1.11 2009-10-08 16:01:48 jt6 Exp $
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+#PROCESS "components/require.tt";
+
+# include css
+requirements.css.push( "bootstrap.min.css" );
+requirements.css.push( "dc.css" );
+
+
+#-------------------------------------------------------------------------------
+-%]
+<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">	 -->
+
+<!-- start summary block -->
+<div class="block" id="browseSummaryBlock">
+  <div class="handle">
+    <h1>Summary</h1>
+  </div>
+  <div class="blockContent">
+<div class="container">
+    <div class="col-md-12 column" id="crossfilter_div">
+                <h3>TreeFam families</h3>
+                There are <span id="total_families"></span> families in this dataset. Click and drag and watch the graphs move and then when that gets old see ....
+                        <ol>
+                         <li>How many <a href="javascript:rootfilter('Vertebrata')">Vertebrate</a> families are there?</li>
+                         <li>Show me all families with <a href="javascript:familiesfilter([90,120])">~1 gene/species</a></li>
+                         <li>Which are the <a href="javascript:alignmentfilter([80, 100])">highly-conserved</a> families (alignment conservation >= 85%)?</li>
+                         <li>How many families with <a href="javascript:alignmentfilter([80, 100])">many Pfam annotations</a> are there?</li>
+                         </ol>
+                <div class="alert alert-success">Tips:
+                    <ul>
+                        <li>Use the mouse to drag & select a range families.</li>
+                        <li>You can select several entities and they will be "OR" linked. <br>E.g. selecting "Diptera"  and "Vertebrata" will show families that are either exclusive to Diptera or Vertebrata</li>
+                        <li>You will find the 'reset all' button to reset all filters on the top of the page.</li>
+                    </ul>
+                </div>
+         <hr>
+        <div id="tree_spinner"><img src="http://www.ebi.ac.uk/~fs/d3treeviewer/data/images/loadinfo.net.gif" alt="Loading tree" height="22" width="22">Loading families data...</div>
+        <h3>Gene Families</h3>
+            <div class="dc-data-count">
+                                <span class="filter-count"></span> selected out of <span class="total-count"></span> records | <a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
+            </div>        
+            <div class="row clearfix"></div>
+                            <div id="fluctuation-chart">
+                                    <span class="chart-title">Family size</span> <span id="tipsy_family" class="glyphicon glyphicon-info-sign"></span><br>
+                                    <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+                                    <div class="clearfix"></div>
+                            </div>
+            
+        <div class="col-md-8 column">
+            <div class="row clearfix">
+               
+                <div class="col-md-6 column">
+                            <div id="conservation-chart" >
+                            <span class="chart-title">Alignment conservation</span> <span id="tipsy_alignment" class="glyphicon glyphicon-info-sign"></span><br>
+                            <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+                            <div class="clearfix"></div>
+                            </div>
+                </div>
+                <div class="col-md-6 column" id="pfam-chart" >
+                        <span class="chart-title">Pfam coverage</span> <span id="tipsy_pfam" class="glyphicon glyphicon-info-sign"></span><br>
+                        <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+                        <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <h3>Species</h3>
+                <div class="col-md-6 column" id="species_count-chart">
+                    <span class="chart-title"># of species / family</span> <span id="tipsy_species" class="glyphicon glyphicon-info-sign"></span><br>
+                    <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+                            <div class="clearfix"></div>
+                </div>
+                <div class="col-md-6 column" id="modelOrganism_chart">
+                    <span class="chart-title"># of model organism genes</span> <span id="tipsy_modorga" class="glyphicon glyphicon-info-sign"></span><br>
+                    <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+                            <div class="clearfix"></div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-4 column">
+                <div id="org-chart">
+                    <span class="chart-title">Taxonomic root of families</span> <span id="tipsy_tax_root" class="glyphicon glyphicon-info-sign"></span>
+                    <a  href="javascript:dc.filterAll();dc.redrawAll();" style="display: none;">(reset)</a>
+                    <div class="clearfix"></div>
+                </div> 
+        </div>
+    </div>
+    <h4>Model organisms</h4>
+            <div class="row clearfix">
+                <div class="col-md-4 column" id="human_genes-chart">
+                    <span class="chart-title">Human genes</span><br>
+                    <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+                </div>
+                <div class="col-md-4 column" id="mouse_genes-chart">
+                    <span class="chart-title">Mouse genes</span><br>
+                    <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+                </div>
+                <div class="col-md-4 column" id="zebrafish_genes-chart">
+                    <span class="chart-title">Zebrafish genes</span><br>
+                    <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+                </div>
+            </div>
+    <div class="dc-data-count2">
+                        <span class="filter-count"></span> selected out of <span class="total-count"></span> records | <a
+                        href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
+    </div>       
+    <div class="row clearfix"></div>
+                        <h4>Selected families</h4>
+                <div class="col-md-12 column">
+                    <table class="dc-data-table table table-hover table-condensed table-striped dc-chart" id="dc-data-familiestable">
+                    <thead>
+                    <tr class="header">
+                         <th>family name</th> 
+                        <th>members</th>
+                        <th>alignment length</th>
+                        <th>conservation</th>
+                        <th>Root</th>
+                        
+                    </tr>
+                    </thead>    
+                    </table>
+                </div>
+
+            </div>
+</div>
+</div>
+[%
+requirements.js.push( "d3/d3.v3.min.js" );
+requirements.js.push( "jquery/jquery-1.8.2.min.js" );
+requirements.js.push( "crossfilter.js" );
+requirements.js.push( "bootstrap.min.js" );
+requirements.js.push( "dc.js" );
+requirements.js.push( "melt.js" );
+requirements.js.push( "d3/d3.tip.min.js" );
+requirements.js.push( "jquery/jquery.tipsy.js" );
+requirements.js.push( "colorbrewer.js" );
+requirements.js.push( "crossfilter/treefam_crossfilter.js" );
+
+%]
+<!-- end summary block -->
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), 
+         Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

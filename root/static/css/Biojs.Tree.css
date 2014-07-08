@@ -1,10 +1,79 @@
-//text {
-//	font-size:10px;
+#YourOwnDivId {
+    /*width: 900px; */
+    //border: 1px solid black;
+    //overflow: auto; /* will contain if #first is longer than #second */
+}
+
+#tree_panel{
+	padding-right: 20px;
+}
+#tree_panel, #species_tree_panel{
+    /*width: 300px;
+	#background-color: #EEEEEE; */
+   //max-height:700px;
+	 float:left; /* add this */
+//	padding: 20px;
+    /*border: 1px solid red; */
+    overflow: auto; /* will contain if #first is longer than #second */
+}
+#annotation_panel, #species_annotation_panel{
+    overflow: auto; /* if you don't want #second to wrap below #first */
+}
+//#seq_domains_annotation_panel, #annotation_grid_annotation_panel{
+//    overflow: auto; /* if you don't want #second to wrap below #first */
 //}
+
+.gene_tree_menu{
+	font-size:11px;
+}
+text.alignment_text {
+ /* fill: black;
+  stroke: none; 
+  opacity: 0.5; */
+  font-family: Monaco, Arial, monospace;
+  font-size: 8pt;
+}
+rect.A{
+	background-color: #EEEEEE;
+	opacity: 0.4;
+}
+rect.B{
+	background-color: #EEEEEE;
+	opacity: 0.3;
+}
+rect.C{
+	background-color: #EEEEEE;
+	opacity: 0.2;
+}
+rect.D{
+	background-color: #EEEEEE;
+	opacity: 0.1;
+}
+
+
+text.innerNode_label {
+	font-size:11px;
+	z-index:10;
+}
+text.leaf_label {
+	font-size:11px;
+	z-index:10;
+}
 
 text.model_organism {
 	font-size:12px;
 	font-weight: bold;
+}
+
+text.highlight_gene {
+	font-size:12px;
+	font-weight: bold;
+}
+
+text.missing_species {
+	font-size:9px;
+	//color:grey;
+	opacity: 0.5;
 }
 
 text.species_name {
@@ -16,6 +85,19 @@ path.link {
             stroke-width: 2.5px;
         }
 
+path.species_link {
+		            fill: none;
+		            stroke: black;
+		            stroke-width: 2.5px;
+}
+path.absent_species_link {
+		            fill: none;
+		            opacity: 0.5;
+					stroke-dasharray: 2,2;
+					//stroke: red;
+		            //stroke-width: 0.5px;
+}
+
         path.selected {
             stroke: darkred;
             fill: none;
@@ -23,17 +105,12 @@ path.link {
         }
 
 .tv_tree_container {
-	//background: #ff8e00;
 	height: 660px;
 	overflow: auto;
-	//width: 800px;
-	//border: 1px solid #000;
-	//padding: 10px;
 	 padding: 20px;
 }
 
 .tree_container{
-	//max-height:600px;
 }
 
 .middle-display{ }
@@ -51,8 +128,6 @@ path.link {
 
 
 circle {
-  //fill: white;
- // stroke: black;
   stroke-width: 5.5px;  
 }
 
@@ -75,7 +150,6 @@ text.domainlabel{
 
   pointer-events: none;
 
-  -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
 }
@@ -90,7 +164,7 @@ text.domainlabel{
     color: #48402E;
     box-shadow: 0 1px 5px #3D3D3D;
     font-size: 1em;
-    //height: 40px;
+    /*height: 40px; */
     padding-bottom: 11px;
     padding-left: 11px;
 	padding-right: 11px;
@@ -118,14 +192,12 @@ text.domainlabel{
 }
 .tv_homecontent {
     background-color: #FEFEFE;
-    //box-shadow: 0 1px 5px #3D3D3D;
     color: #48402E;
 	overflow: auto;
-    //float: right;
     font-size: 0.9em;
     padding-top: 30px;
     padding-left: 10px;
-    //width: 79.6%;
+    /*width: 79.6%;*/
 	-moz-border-radius: 1em 1em 1em 1em;
 	border-radius: 1em 1em 1em 1em;
 	
@@ -156,7 +228,7 @@ padding-left: 5px !important;
 }
 
 .highlight_gene{
-	//font-size: 22px;
+	/*font-size: 22px; */
 	background: blue;
 	color: white;
 }
@@ -243,7 +315,7 @@ padding-left: 5px !important;
 	}
 	#slider {
 	    left: -50px;
-	    position: absolute;;
+	    position: absolute;
 	    top: 0px;
 	    -moz-transition: left .25s ease-out;
 	    -webkit-transition: left .25s ease-out;
@@ -283,7 +355,7 @@ padding-left: 5px !important;
 	    border: 1px solid #a2a2a2;
 	    -moz-border-radius: 3px;
 	    -webkit-border-radius: 3px;
-	    border-radisu: 3px;
+	    border-radius: 3px;
 	    height: 28px;
 	    left: 50px;
 	    width: 50px;
@@ -321,23 +393,13 @@ padding-left: 5px !important;
 }
 .settings .left{
     float: left;
-    //padding: 0px 10px 0px 0px;
-    //width: 90px;
-   // background: red;
 }
 .settings .middle{
     top: 10px;
-    //margin-left: 100px;
-    //margin-right: 100px;
-    //background: green;
     margin-bottom: -2000px;
     padding-bottom: 2000px;
 }
  .settings .right{
-    //float: right;
-    //background: blue;
-    //padding: 0px 10px 0px 10px;
-    //width: 90px;
 }
 
 
@@ -411,3 +473,36 @@ div.content ul li a {
 code {
     overflow:auto;
 }
+
+div.legend 
+{
+background-color:transparent;
+padding-left: 13px;
+//z-index:+2;
+font-size:10pt;
+font-family:times new roman;
+//font-weight:bold;
+//font-style:italic;
+//color:#23238e;
+}
+
+div.my_custom_menu{   
+  position: absolute;           
+  text-align: center;           
+  width: 60px;                  
+  height: 28px;                 
+  padding: 2px;             
+  font: 12px sans-serif;        
+  background: lightsteelblue;   
+  border: 0px;      
+  border-radius: 8px;           
+  pointer-events: none;         
+}
+
+.top {
+		    fill: red;
+			    z-index: 100;
+		}
+
+body { padding-top: 70px; }
+

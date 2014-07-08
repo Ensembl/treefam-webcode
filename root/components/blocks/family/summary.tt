@@ -32,16 +32,20 @@ requirements.css.push( "TreeFamily.css" );
 
 #requirements.js.push( "family.js" );
 #requirements.js.push( "d3/d3.js" );
-requirements.js.push( "d3/d3.v3.min.js" );
-requirements.js.push( "d3/d3.layout.js" );
-requirements.js.push( "d3/packages.js" );
+requirements.js.push( "jquery/jquery-1.8.2.min.js" );
+requirements.js.push( "jquery/jquery.tipsy.js" );
+#requirements.js.push( "d3/d3.v3.min.js" );
+requirements.js.push( "d3/d3.min.js" );
+requirements.js.push( "tnt/tnt.js" );
+requirements.css.push( "tnt/tnt.css" );
+requirements.js.push( "tnt/treefam.js" );
+#requirements.js.push( "d3/d3.layout.js" );
+#requirements.js.push( "d3/packages.js" );
 
 
 #requirements.js.push( "jquery/jquery.js" );
 #requirements.js.push( "jquery/jquery.dataTables.js" );
-requirements.js.push( "jquery/jquery-1.8.2.min.js" );
-requirements.js.push( "jquery/jquery.dataTables.min.js" );
-requirements.js.push( "jquery/jquery.tipsy.js" );
+#requirements.js.push( "jquery/jquery.dataTables.min.js" );
 requirements.css.push( "jquery/tipsy.css" );
 #requirements.js.push( "axzoomer-min.js" );
 #requirements.js.push( "phylowidget/gene_tree.js" );
@@ -49,18 +53,20 @@ requirements.js.push( "phylowidget/minimal_species_tree.js" );
 
 
 # biojs
+#requirements.css.push( "bootstrap.min.css" );
+#requirements.js.push( "bootstrap.min.js" );
 requirements.css.push( "Biojs.Tree.css" );
 requirements.js.push( "biojs/Biojs.js" );
 requirements.js.push( "biojs/Biojs.Tree.js" );
 requirements.js.push( "biojs/tree_functions.js" );
 
 #requirements.css.push( "phylowidget/treefam.css" );
-requirements.js.push( "phylowidget/new_code/gene_tree.js" );
+#requirements.js.push( "phylowidget/new_code/gene_tree.js" );
 #requirements.js.push( "phylowidget/new_code/tree_functions.js" );
 
 # BioJS component
-requirements.js.push( "biojs/Biojs.js" );
-requirements.js.push( "biojs/Biojs.Alignment.js" );
+#requirements.js.push( "biojs/Biojs.js" );
+#requirements.js.push( "biojs/Biojs.Alignment.js" );
 
 #sparkline
 requirements.js.push( "sparkline/jquery.sparkline.min.js" );
@@ -69,8 +75,8 @@ requirements.js.push( "sparkline/jquery.sparkline.min.js" );
 #requirements.css.push( "craigfrancis-zoomify-c4d09d0/zoomify.css" );
 
 # magiczoom
-requirements.js.push( "magiczoom/magiczoom.js" );
-requirements.css.push( "magiczoom/magiczoom.css" );
+#requirements.js.push( "magiczoom/magiczoom.js" );
+#requirements.css.push( "magiczoom/magiczoom.css" );
 # fancybox
 #requirements.js.push( "fancybox/source/jquery.fancybox.js" );
 #requirements.css.push( "fancybox/jquery.fancybox.css" );
@@ -187,14 +193,6 @@ num_total_species = 109
 				<li><a href="https://github.com/treefam/treefam_tools/tree/master/api_scripts"></a> Use TreeFam data in your next publication (<a id="use_popup">read more</a>)</li>
 		</ul>	
 		</div>-->
-	<!-- 	<div id="three" class="Summ_box" style="display:table;">
-               <table align="left">
-		<tr><td align="left" ><h3>DOWNLOAD</h3></td></tr>
-		<tr><td align="left" ><b>Alignment: </b></td><td align="left"><a href="[% c.uri_for( "family/",acc, "alignment") %]">Fasta</a>, <a href="[% c.uri_for( acc, "hmm") %]">HMM</a></td></tr>
-		<tr><td align="left" ><b>Tree: </b></td><td align="left"><a href="[% c.uri_for( acc, "tree/newick") %]">Newick</a>, <a href="[% c.uri_for( acc, "tree/phyloxml") %]">PhyloXML</a></td></tr>
-		<tr><td align="left" ><b>Homologs: </b></td><td align="left"><a href="[% c.uri_for( acc, "orthologs/table") %]">Table</a>, <a href="[% c.uri_for( acc, "orthologs/orthoxml") %]">OrthoXML</a></td></tr>
-	       </table>
-       </div> -->
      </div>
       <div id="Summ_right" class="Summ_column">
               <div id="tree_content" class="Summ_box"><p>      

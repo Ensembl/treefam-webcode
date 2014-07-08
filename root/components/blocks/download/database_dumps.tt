@@ -10,13 +10,24 @@ META title = "Browse TreeFam";
 #META fullPage = 1;
 
 #USE dumper;
-requirements.css.push( "buttons.css" );
+requirements.css.push( "jquery.treetable.css" );
+requirements.css.push( "jquery.treetable.theme.default.css" );
+
+#requirements.css.push( "buttons.css" );
+
 # For tables
-#requirements.js.push( "d3/d3.v2.min.js" );
+requirements.js.push( "d3/d3.v3.min.js" );
 #requirements.js.push( "d3/d3.layout.js" );
 #requirements.css.push( "demo_table.css" );
 #requirements.css.push( "TreeFamily.css" );
 requirements.js.push( "jquery/jquery-1.8.2.min.js" );
+requirements.js.push( "jquery.treetable.js" );
+
+
+# required for nvd3
+requirements.css.push( "nv.d3.min.css" );
+requirements.js.push( "nv.d3.min.js" );
+#
 #requirements.js.push( "jquery/jquery.tipsy.js" );
 #requirements.js.push( "jquery/jquery.dataTables.min.js" );
 
@@ -43,8 +54,8 @@ requirements.js.push( "jquery/jquery-1.8.2.min.js" );
 
 #requirements.js.push( "featuredimagezoomer/featuredimagezoomer.js" );
 
-requirements.js.push( "prototype.js" );
-requirements.js.push( "sharedFunctions.js" );
+#requirements.js.push( "prototype.js" );
+#requirements.js.push( "sharedFunctions.js" );
 
 
 #-------------------------------------------------------------------------------
@@ -62,25 +73,34 @@ META title = "Download TreeFam";
   </div>
   <div class="blockContent">
 <!-- FAMILIES -->
-<table>
-<tr><td><h3>Families</h3></td></tr>
-<tr><td><a href="/static/download/treefam_family_data.tar.gz">families (tar.gz, 1.7Gb)</a></td><td>alignment, tree, orthologs for each family</td></tr>
-<tr><td><a href="/static/download/treefam9_family_annotation.tab.tar">families with annotation (e.g. HGNC, Pfam) (tar, 1Mb)</a></td><td>annotations (e.g. HGNC, Pfam,), number of species, sequences, etc</td></tr>
+<table border=0>
+
+<!--<tr><td><h3>Families</h3></td></tr> -->
+
+<tr><td><h3>Sequences</h3></td></tr>
+<tr><td><a href="/static/download/TF10_seqs.zip">sequences (zip, 657Mb)</a></td><td>fasta of all families</td></tr>
+
+<!-- <tr><td><a href="/static/download/treefam9_family_annotation.tab.tar">families with annotation (e.g. HGNC, Pfam) (tar, 1Mb)</a></td><td>annotations (e.g. HGNC, Pfam,), number of species, sequences, etc</td></tr> -->
+
 <!-- ALIGNMENTS -->
 <tr><td><h3>Alignments</h3></td></tr>
-<tr><td><a href="/static/download/treefam9.fa.tar.gz">sequences (tar.gz, 183Mb)</a></td><td>fasta file with all families and sequences</td></tr>
+<tr><td><a href="/static/download/TF10_alns.zip">Alignments (zip, 1.1Gb)</a></td><td>aligned sequences of all families</td></tr>
+
 <!-- HMMs -->
 <tr><td><h3>HMMs</h3></td></tr>
+<tr><td>Hmmer <a href="/static/download/TF10_hmm_profiles.zip">version 3</a> (zip, 3Gb)</a></td><td>HMMs of all TreeFam families</td></tr>
+
+<!--
 <tr><td>Hmmer <a href="/static/download/treefam9.hmm2.tar.gz">version 2 </a>/<a href="/static/download/treefam9.hmm3.tar.gz">version 3 </a>(tar.gz, 537Mb/735Mb)</a></td><td>HMMs of all TreeFam families</td></tr>
 <tr><td>Hmmer single-copy genes<a href="/static/download/TF9_single_copy_genes.hmm3.gz"> version 3 </a>(gz, 735Mb)</a></td><td>HMMs of all TreeFam single-copy families</td></tr>
-
+-->
 
 
 <!--  TREES -->
 <tr><td><h3>Trees</h3></td></tr>
 <!--<tr><td><a href="/static/download/xml/Compara.68.protein.nh.emf.tar.gz">gene trees (newick, 45Mb)</a></td><td>gene trees for each family</td></tr>
 <tr><td><a href="/static/download/xml/Compara.68.protein.tree.phyloxml.xml.tar.gz">trees (phyloxml, 137Mb)</a></td><td>accessions, syMbols and names of TreeFam-A families</td></tr> -->
-<tr><td><a href="/static/download/treefam_species_tree9.phy">species tree (newick, 3,7Kb)</a></td><td>species tree used in this release</td></tr>
+<tr><td><a href="/static/download/tf10_347_species.newick">species tree (newick, 9Kb)</a></td><td>species tree used in this release</td></tr>
 
 <!--  SEQUENCES -->
 <!--<tr><td><h3>Sequences</h3></td></tr>
@@ -88,12 +108,16 @@ META title = "Download TreeFam";
 <tr><td><a href="/static/download/emf/Compara.68.protein.cds.fasta.gz">cds_seq (fasta, 658Mb)</a></td><td>nucleotide sequences</td></tr> -->
 
 <!--  HOMOLOGS -->
+<!--
 <tr><td><h3>Homologs</h3></td></tr>
 <tr><td><a href="/static/download/xml/treefam9.protein.alltrees.orthoxml.xml.gz">homologs_orthoxml (orthoxml, 52Mb)</a></td><td>homologs </td></tr>
 <tr><td><a href="/static/download/pairwise_homology.zip">all pairwise homologs (table, 510Mb)</a></td><td>homologs </td></tr>
+-->
 
 <tr><td><h3>Species</h3></td></tr>
-<tr><td><a href="/static/download/species_list.txt">species_list.txt (.txt, 1kb)</a></td><td>list of all species, taxon_ids, genebuilds </td></tr>
+<tr><td><a href="/static/download/species_list_TF10.txt">species_list_TF10.txt (.txt, 11kb)</a></td><td>list of all species and taxon_ids</td></tr>
+
+<!--
 <tr><td><a href="/static/download/treefam9_species.tar">treefam9_species.tar (.tar, 1.3Gb)</a></td><td>all CDS/AA sequences used in TreeFam 9</td></tr>
 
 <tr><td><h3>Mappings to external DBs</h3></td></tr>
@@ -101,9 +125,12 @@ META title = "Download TreeFam";
 
 <tr><td><a href="http://www.ensembl.org/index.html" ><img src="[% c.uri_for('/static/images/ensembl_logo.png') %]"  height="20px" /></a></td><td><a href="/static/download/ENS2allIDs.tab.tar.gz">Mappings from TreeFam identifiers (Ensembl) to other databases (e.g. UniProt, RefSeq)</a></td></tr>
 <tr><td><a href="http://www.genenames.org" ><img src="http://www.genenames.org/sites/genenames.org/themes/custom/genenames/genenames_logo.png" height="20px" /></a></td><td><a href="/static/download/hgnc_treefam_txt">hgnc_treefam.txt</a></td></tr>
-<!-- <tr><td><a href="http://www.wikigenes.org" ><img src="[% c.uri_for('/static/images/wikigenes.jpg') %]"  height="20px" /></a></td><td><a href="/static/download/wikigene_treefam_txt">wikigene_treefam.txt</a></td></tr> -->
+
+<tr><td><a href="http://www.wikigenes.org" ><img src="[% c.uri_for('/static/images/wikigenes.jpg') %]"  height="20px" /></a></td><td><a href="/static/download/wikigene_treefam_txt">wikigene_treefam.txt</a></td></tr>
 <tr><td><a href="http://www.pfam.sanger.ac.uk" ><img src="[% c.uri_for('/static/images/pfam_logo.gif') %]"  height="20px" /></a></td><td><a href="/static/download/pfam_hits.txt.tar.gz">pfam_hits.txt.tar.gz</a></td></tr>
 <tr><td><a href="http://www.uniprot.org/"><img src="[% c.uri_for('/static/images/uniprot_logo.gif') %]"  height="20px" /></a></td><td><a href="/static/download/uniprotACC2treefam.txt">Mappings between UniProt IDs and TreeFam family IDs</a></td></tr>
+-->
+
 </table>  
 </div>
 </div>

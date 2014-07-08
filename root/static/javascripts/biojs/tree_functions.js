@@ -3,13 +3,18 @@
 	function draw_circles(args){
 		var nodeEnter = args.nodeEnter;
 		var circle_size = args.circle_size;
+		var genePresence = args.genePresence || false;
+		
 		//console.log("drawing with size "+circle_size);
 		
 		
 		/*var circles = nodeEnter.append("svg:circle")
           .attr("r", function(d){ 
 			  return d.children ? circle_size : 0; })
-          .attr("fill", function(d){return d.duplication == "Y"? "red":"green"})
+          .attr("fill", function(d){
+		  if(d._children){return "grey"}
+		  return d.duplication == "Y"? "red":"green"
+		  })
           //.on("click", click)
           //.on("click", focus)
           */
@@ -30,7 +35,15 @@
     	//.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
 		.attr("d", get_right_symbol)
 		.style("fill", function(d){
+			if(d._children){
+				return "grey";
+			}
 			if(d.children){
+				if (genePresence){
+					if(!genePresence.hasOwnProperty(d.name)){
+						return "grey";
+					}
+				}
 				if(d.duplication == "Y"){return "red";}
 				else{return "green";}
 			}
@@ -38,26 +51,29 @@
 		          //.on("click", click)
 		
 		//return circles;	
-	}
-	
+	}	
 	function get_right_symbol(d){
-		console.log("current "+d.name+" gets symbol ");
+		//console.log("current "+d.name+" gets symbol ");
 		if(d._children){
-			console.log("2");
+			//console.log("2");
+			
+			//return 'M ' + d.x +' '+ d.y + ' l 40 40 l -8 0 z';	
+			
+			return 'M -5 0 l 15 10 l 0 -20 z';	
 			return d3.svg.symbol().type(d3.svg.symbolTypes[1]).size([100])();
 		}
 		if(d.children){
 			if(d.duplication == "Y"){
-				console.log("4");
+			//	console.log("4");
 				return d3.svg.symbol().type(d3.svg.symbolTypes[4]).size([50])();
 			}
 			else{
-				console.log("0");
+			//	console.log("0");
 				return d3.svg.symbol().type(d3.svg.symbolTypes[0]).size(50)();
 			}
 		}
 		else{
-			console.log("3");
+			//console.log("3");
 			return d3.svg.symbol().type(d3.svg.symbolTypes[3]).size([25])();
 		}
 		
@@ -69,11 +85,13 @@
 		var source = args.source;
 		var circle_size = args.circle_size;
 		var duration = args.duration;
-		var availablewidth = args.availablewidth;
+		var annoation_option = args.annotation_option;
+		var availablewidth = args.availablewidth;//.replace("px","");
+		//availablewidth = 700;
 		var tree_representation_type = args.tree_representation_type;
 		var nodeindex = args.nodeindex;
+		var right2left = args.right2left; 
 		var two_window = args.two_window;
-		
 		console.log("tree reprensentation is "+tree_representation_type);
 		if (tree_representation_type == "radial"){
 		// Transition nodes to their new position.
@@ -132,7 +150,7 @@
 			      //.style("fill-opacity", 1)
 				  .attr("visibility", "")
 	              .attr("x", function(d) { 
-	  				if(d._children){return 15;}
+	  				if(d._children){return 17;}
 	  				return d.children ? -5 : 35; })
 	              .attr("y", function(d) { 
 	  				if(d._children){return 3;}
@@ -141,22 +159,24 @@
 				  .attr("text-anchor", function(d){if(d._children){ return "start"}})
 				  .text(function(d){ 
 					  if(d._children){
-						  console.log("change text to collapsed");
-						  return d.name+": "+d._collapsed_children+" homologs";
+						  //console.log("change text to collapsed");
+						  var name_copy = d.name;
+							name_copy=name_copy.replace(/_\d+/g, '');
+						  return name_copy+" ("+d._collapsed_children+")";
 					  }
 						else if(d.children){
 							"int node";
 						}
 	  					else{
 							  console.log("change text to "+get_right_leaf_name(d));
-							  return get_right_leaf_name(d);
+							  return get_right_leaf_name({d:d, annotation_option : annotation_option});
 							
 						}
 				  });
 			
 			
 	// Transition nodes to their new position.
-        nodeEnter.transition()
+       	 nodeEnter.transition()
             .duration(duration)
             .attr("transform", function(d) { 
 				//console.log("well, node entering at "+d.y+" and "+d.x+"("+availablewidth+")");
@@ -166,15 +186,30 @@
 									//return "translate(0,65.54166412353516)";	
 									return "translate(0," + (y_value+20) + ")"; 
 				}
-				return "translate(" + d.y + "," + d.x + ")"; })
+				if(right2left){
+					//console.log(d);
+					var y = availablewidth - d.y;
+					var x = d.x;
+					//console.log("right2left: "+d.y+" - "+availablewidth+" "+y+" "+x);
+					return "translate(" + y + "," + x + ")"; 
+					return test_translate; 
+				}
+				return "translate(" + d.y + "," + d.x + ")"; 
+			})
             .style("opacity", 1)
             .select("circle");
           
-        node.transition()
+       	 node.transition()
             .duration(duration)
             .attr("transform", function(d) { 
 				if(two_window){
 					return "translate(0," + (nodeindex[d.name] + 20) + ")"; 
+				}
+				if(right2left){
+					var y = availablewidth - d.y;
+					var x = d.x;
+					//console.log("right2left: "+d.y+" - "+availablewidth+" "+y+" "+x);
+					return "translate(" + y + "," + x + ")"; 
 				}
 				return "translate(" + d.y + "," + d.x + ")"; })
             .style("opacity", 1);
@@ -185,8 +220,13 @@
 				if(two_window){
 					return "translate(" + d.y + "," + nodeindex[d.name]+ 20 + ")";
 				}
-				console.log("uff, this node is leaving "+d.name);
-				
+				//console.log("uff, this node is leaving "+d.name);
+				if(right2left){
+					var y = availablewidth - d.y;
+					var x = d.x;
+					//console.log("right2left: "+d.y+" - "+availablewidth+" "+y+" "+x);
+					return "translate(" + y + "," + x + ")"; 
+				}
 				return "translate(" + d.y + "," + d.x + ")"; })
             .style("opacity", 1e-6)
             .remove();
@@ -196,7 +236,10 @@
 			var nodeEnter = args.nodeEnter;
 			var show_taxa = args.show_taxa;
 			var highlight_gene = args.highlight_gene;
-			var model_organisms = args.model_organisms;
+			var right2left = args.right2left;
+			var default_view = args.default_view;
+			var annotation_option = args.annotation_option;
+			var genePresence = args.genePresence || false;
 			var color_nodes = true;
 			var ID2Color = new Object();
 			var symbol_counter = {};
@@ -205,26 +248,37 @@
 			var n_available_value = "N/A";
 			//console.log("highlight gene: "+highlight_gene);
 	 		var texts = nodeEnter
-			.append("a")
+			/*.append("a")
 			.attr("xlink:href", function(d) {
 				if(!d.children){
-				//console.log("species : "+d.taxon+", identifier: "+d.name);
-				var url = species2sourceDB_mapping({species : d.taxon, identifier: d.name});
+				var url;
+				if(default_view === "uniprot"){
+					url = "http://www.uniprot.org/uniprot/"+d.uniprot_name;
+				}
+				else{
+				url = species2sourceDB_mapping({species : d.taxon, identifier: d.name});
+				}
 					return url;
 			}
 			})
-			.attr("target", "_blank")
+			.attr("target", "_blank")*/
 			.append("svg:text")
             .attr("x", function(d) { 
+				if(right2left){ return -17;}
 				if(d._children){return 15;}
 				return d.children ? -5 : 35; })
             .attr("y", function(d) { 
 				if(d._children){return 3;}
 				return d.children ? -3 : 4; })
             //.attr("class","innerNode_label")
-            .attr("text-anchor", function(d){ return d.children ? "end" : "start";})
+            .attr("text-anchor", function(d){ 
+				if(right2left){ return "end"}
+				return d.children ? "end" : "start";})
             //.attr("font-style", "italic")
-			
+			.attr("opacity", function(d){ 
+				if(d.is_lost){return 0.2;}
+				else{ return 1;}
+			})
 			.attr("visibility",function(d){
 				if(d.children){  
 					return "hidden";
@@ -234,6 +288,12 @@
 				}})
             .attr("class",function(d){ 
                 
+				if(genePresence){
+					if(!genePresence.hasOwnProperty(d.name)){
+						return "missing_species";
+					}
+				}
+				
 				if(d.children){ 
 						return "innerNode_label"}
                 else{ 
@@ -261,8 +321,38 @@
             })
             .text(function(d) { 
 				//console.log("looking at name: "+d.name);
-				return get_right_leaf_name(d);
+				return get_right_leaf_name({d:d,right2left:right2left,default_view:default_view, annotation_option: annotation_option });
+			})
+		/*.on("mouseover", function(curr_element){
+							
+		 d3.select(this)
+				            .attr("stroke-width", 2)
+				            .classed("top", true);
+		d3.select("#annotation_svg_container").append("rect")
+                .attr("y", function(t){
+						var test;
+					return curr_element.y;
 				})
+                .attr("id", "seq_highlight_rect")
+                .attr("width", function(d){return "400";})
+                .attr("height", function(d){
+                       return 10;
+                })
+				.style("opacity", 0.3)
+		}) */
+		.on("mouseout", function(d){
+				d3.select(this)
+				            .attr("stroke-width", 2)
+				            .classed("top", false);
+                d3.select("#seq_highlight_rect").remove();
+		
+		
+		})
+		
+		;	
+
+
+
 		return texts;                        
 	}
 	function draw_bootstraps(args){
@@ -289,43 +379,89 @@
 		var link_type = args.link_type;
 		var node_thickness = args.node_thickness;
 		var duration = args.duration;
+		var right2left = args.right2left;
+		var availablewidth = args.availablewidth;
+		var species_silhouette	 = args.species_silhouette;
+		var genePresence = args.genePresence || false;
+		var opacity = args.opacity || 1.0;
 		link_type = "elbow";
-		var diagonal = d3.svg.diagonal.radial().projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
+		var class_type = args.class_type || "link";
+		var x = d3.svg.diagonal.radial().projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
+		var diagonal = d3.svg.diagonal().projection(function(d) { return [d.y, d.x]; });
       // Enter any new links at the parent's previous position.
       link.enter().insert("svg:path", "g")
-          .attr("class", "link")
+          .attr("class", 
+		  	function(d){
+              	if(d.target.is_lost || d.source.is_lost){
+						return "absent_species_link";
+				}	
+				var target_node = d.target;
+				if (genePresence){
+					if(genePresence.hasOwnProperty(target_node.name)){
+						return class_type;
+					}
+					else{
+						return "absent_species_link";
+					}
+				}
+				else{
+					return class_type;
+				}
+				
+			})
           .attr("stroke-width", function(d){
               //console.log("drawing line with thickness "+node_thickness);
                 return node_thickness;
           })
+		  .attr("stroke-opacity", opacity)
           .attr("stroke", function(d){
-              
               return "black";
                 //return taxon_colors.hasOwnProperty(d.name)? taxon_colors[d.name]: "black";
           })      
-          .attr("d", elbow)
-          //.attr("d", diagonal)
-         //.attr("d", function(d) {
-            //   var o = {x: source.x0, y: source.y0};
-         //      return diagonal({source: o, target: o});
-         //})
+          .attr("d", function(d){ 
+			  if(species_silhouette){
+				  console.log("getting diagonal");
+				  return diagonal(d);
+			  }
+			  return elbow({d:d,right2left:right2left,availablewidth:availablewidth});
+		  })
         .transition()
           .duration(duration)
-          .attr("d", elbow)
+          .attr("d", function(d){
+			  if(species_silhouette){
+				  console.log("getting diagonal");
+				  return diagonal(d);
+			  } 
+			  return elbow({d:d,right2left:right2left,availablewidth:availablewidth});
+		  })
           //.attr("d", diagonal)
           ;
     
       // Transition links to their new position.
       link.transition()
           .duration(duration)
-          .attr("d", elbow)
+          .attr("d", function(d){ 
+			  //console.log("about to transition");
+			  if(species_silhouette){
+				  //console.log("getting diagonal");
+				  return diagonal(d);
+			  }
+			  return elbow({d:d,right2left:right2left,availablewidth:availablewidth});
+		  })
           //.attr("d", diagonal)
           ;
     
       // Transition exiting nodes to the parent's new position.
       link.exit().transition()
           .duration(duration)
-          .attr("d", elbow)
+          .attr("d", function(d){ 
+			  //console.log("about to exit");
+			  if(species_silhouette){
+				  //console.log("getting diagonal");
+				  return diagonal(d);
+			  }
+			  return elbow({d:d,right2left:right2left,availablewidth:availablewidth});
+		  })
           //.attr("d", diagonal)
           //.attr("d", function(d) {
              //   var o = {x: source.x, y: source.y};
@@ -334,17 +470,143 @@
           .remove();
     }
 
+
+
+	function collect_data_from_plotted_tree(args){
+		var target = args.target;
+		
+		d3.select("#"+target).selectAll("g.node").each(function(d) {
+			var name_copy = d.name;
+			name_copy=name_copy.replace(/_\d+/g, '');
+				var curr_y = d.y;
+				var curr_x = d.x;
+				var node_height = d.height;
+				var available_height = 100;
+				var rect_data = [];
+				
+				
+				if(node_height == 0){
+					
+				}
+				var line1 = {"start_x":"","end_x":"","":"",}
+				var line2 = {"start_x":"","end_x":"","":"",}
+				// max_x, min_x, | ranges for all 
+				//
+				console.log("looking at plotted_node "+name_copy);
+				//if(level2color.hasOwnProperty(name_copy)){
+					//rect_data[d.name] = {"rect_x" : rect_x,"rect_y": rect_y, "rect_height": rect_height, "rect_width": rect_width};
+		
+		//	}
+		
+		
+			
+		});
+		return rect_data;
+	}
+
+	function print_species_tree_silhouette(args){
+		//var nodeEnter = args.nodeEnter;
+		//var node = args.node;
+		
+		// collect data for each 
+		var link = args.link;
+		var link_type = args.link_type;
+		var node_thickness = args.node_thickness;
+		var duration = args.duration;
+		var right2left = args.right2left;
+		var availablewidth = args.availablewidth;
+		var species_silhouette = args.species_silhouette;
+		link_type = "elbow";
+		var x = d3.svg.diagonal.radial().projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
+		var diagonal = d3.svg.diagonal().projection(function(d) { return [d.y, d.x]; });
+      // Enter any new links at the parent's previous position.
+      link.enter().insert("svg:path", "g")
+          .attr("class", "silhouette")
+		  .attr("stroke-opacity", 0.3)
+          .attr("stroke-width", 30)
+          .attr("stroke", "grey")
+          .attr("d", function(d){ 
+			  if(species_silhouette){
+				  //console.log("getting diagonal");
+				  return diagonal(d);
+			  }
+			  return elbow({d:d,right2left:right2left,availablewidth:availablewidth});
+		  })
+          //.attr("d", diagonal)
+         //.attr("d", function(d) {
+            //   var o = {x: source.x0, y: source.y0};
+         //      return diagonal({source: o, target: o});
+         //})
+        .transition()
+          .duration(duration)
+		  .attr("stroke-opacity", 0.3)
+          .attr("stroke-width", 30)
+          .attr("stroke", "red")
+		  
+          .attr("d", function(d){
+			  if(species_silhouette){
+				  console.log("getting diagonal");
+				  return diagonal(d);
+			  } 
+			  return elbow({d:d,right2left:right2left,availablewidth:availablewidth});
+		  })
+          //.attr("d", diagonal)
+          ;
+    
+      // Transition links to their new position.
+      link.transition()
+          .duration(duration)
+          .attr("d", function(d){ 
+			  if(species_silhouette){
+				  console.log("getting diagonal");
+				  return diagonal(d);
+			  }
+			  return elbow({d:d,right2left:right2left,availablewidth:availablewidth});
+		  })
+          //.attr("d", diagonal)
+          ;
+    
+      // Transition exiting nodes to the parent's new position.
+      link.exit().transition()
+          .duration(duration)
+		  .attr("stroke-opacity", 0.3)
+          .attr("stroke-width", 30)
+          .attr("stroke", "red")
+		  
+          .attr("d", function(d){ 
+			  if(species_silhouette){
+				  console.log("getting diagonal");
+				  return diagonal(d);
+			  }
+			  return elbow({d:d,right2left:right2left,availablewidth:availablewidth});
+		  })
+          //.attr("d", diagonal)
+          //.attr("d", function(d) {
+             //   var o = {x: source.x, y: source.y};
+            //    return diagonal({source: o, target: o});
+          //})
+          .remove();
+		
+		
+	}
 // For lines between nodes
-    function elbow(d, i) {
-        //    console.log("use M" + d.source.y + "," + d.source.x
-        //   + "H" + d.target.y + "V" + d.target.x
-        //   + (d.target.children ? "" : "h" + margin.right));
-           
-           return "M" + d.source.y + "," + d.source.x
-      + "V" + d.target.x + "H" + d.target.y;
-//      return "M" + d.source.y + "," + d.source.x
-//           + "H" + d.target.y + "V" + d.target.x
-//           + (d.target.children ? "" : "h" + margin.right);
+    function elbow(args) {
+		var d = args.d;
+		var right2left = args.right2left;
+		var availablewidth = args.availablewidth;
+		
+		   // console.log("use M" + d.source.y + "," + d.source.x
+          // + "H" + d.target.y + "V" + d.target.x
+          // + (d.target.children ? "" : "h"));
+      if(right2left){
+      	return "M" + (availablewidth - d.source.y) + "," + d.source.x + "V" + d.target.x + "H" + (availablewidth - d.target.y);
+      } 
+	  else{    
+           return "M" + d.source.y + "," + d.source.x + "V" + d.target.x + "H" + d.target.y;
+	   }
+	  
+	  	 
+	  
     }
     function redraw() {
       //console.log("here", d3.event.translate, d3.event.scale);
@@ -452,11 +714,8 @@
 			if (typeof offset[j] == 'undefined') {
 				offset[j] = 0;
 			}
-			var final_y = offset[j]* font_size;
-			//console.log(""+i+":plotting at "+d.category+" and "+d.seq+" rect length is "+d.seq.length+" offset is "+offset[j]+" value j:"+j+" final: "+final_y);
-			//console.log(""+i+":length: "+string_width+" offset is "+offset[j]+" value j:"+j+" final: "+final_y);
+			var final_y = offset[j]* (font_size-1);
 			offset[j] += string_width;
-			//console.log("new offset is "+offset[j]);
 			return final_y;
         })
         .attr("class", "align_rect")
@@ -464,8 +723,8 @@
 		
         .attr("height", function(d,i){
 			offset += d.seq.length;
-			console.log("height is: "+(d.seq.length * font_size));
-			return d.seq.length * font_size;
+			//console.log("height is: "+(d.seq.length * font_size));
+			return d.seq.length * (font_size-1);
         })
 		.attr("class", function(d){ 
 			//console.log("looking at cat:"+d.category+" seq: "+d.seq);
@@ -490,6 +749,7 @@
 			}
 			var final_x = text_offset[j];
 			text_offset[j] += string_width;
+			//console.log("string width is "+string_width);
 			return final_x;
 		})
 		.attr("y", "4")
@@ -631,7 +891,7 @@
 				.attr("visibility",visibility)
                 .attr("width", function(d){return d.children ? "":"5";})
                 .attr("height", function(d){
-					console.log("name: "+d.name+" sequence length: "+domainScale(d.seq_length)+" --> "+d.seq_length);
+					//console.log("name: "+d.name+" sequence length: "+domainScale(d.seq_length)+" --> "+d.seq_length);
                         //if(!d.children){
                                         //console.log("draw sequence from "+sequence_start_y+" to "+(sequence_start_y + sequenceScale(d.seq_length))+"("+d.seq_length+")");
                                         //console.log("transform "+d.seq_length+" to "+sequenceScale(d.seq_length)+" (start drawing at: "+sequence_start_y+")");
@@ -643,6 +903,113 @@
             //   function(d){return d.children ? "":"grey";});
 		return rects;
     }
+	
+    function draw_cigar_borders(args){
+    	var leaf_group_x = args.leaf_group_x;
+    	var sequence_start_y = args.sequence_start_y;
+    	var nodeEnter = args.nodeEnter;
+    	var domainScale = args.domainScale;
+		var two_window = args.two_window;
+		var alignment_length = args.alignment_length;
+		var visibility = args.visibility;
+
+		// collect all leaf
+		var rects = nodeEnter.filter(function(d){ return typeof d.children == 'undefined' });
+    	//var rects = nodeEnter.filter(function(d){ return d.type == "leaf"});
+                rects.append("rect")
+				//.on('mouseover', show_gene_information)
+                .attr("x", leaf_group_x +4)
+                .attr("y", function(d){
+					if(two_window){
+						return 0;
+					}
+					return sequence_start_y;
+				})
+                .attr("class", "seq_string")
+				.attr("visibility",visibility)
+                .attr("width", function(d){return d.children ? "":"10";})
+                .attr("height", function(d){
+					//console.log("name: "+d.name+" sequence length: "+domainScale(d.seq_length)+" --> "+d.seq_length);
+                        //if(!d.children){
+                                        //console.log("draw sequence from "+sequence_start_y+" to "+(sequence_start_y + sequenceScale(d.seq_length))+"("+d.seq_length+")");
+                                        //console.log("transform "+d.seq_length+" to "+sequenceScale(d.seq_length)+" (start drawing at: "+sequence_start_y+")");
+                        //}
+                       return domainScale(alignment_length);
+                })
+               .attr("transform", function(d){return d.children ? "":"rotate(-90 100 100)";})
+               .attr("fill", "white")
+			   .attr("stroke","green");
+            //   function(d){return d.children ? "":"grey";});
+		return rects;
+    }
+	
+	function draw_cigar_sequences(args){
+		var domains = args.domains;
+		var sequence_start_y = args.sequence_start_y;
+		var domainScale = args.domainScale;
+		var leaf_group_x = args.leaf_group_x;
+		var domain_colors = args.domain_colors;
+		var two_window = args.two_window;
+		
+		var sequence_rect_width = args.sequence_rect_width;
+		var visibility = args.visibility;
+		var diff_domain_counter = 0;
+		
+		//console.log(domains);
+		console.log("drawing cigar_stuff");
+		var domain2color = {};
+		
+		//var domainsExit = domains.exit().remove();
+		var all_domains =  domains.enter()
+									.append("rect")
+									.attr("x", function(d){
+										//console.log("I am even here");
+										if(two_window){
+											leaf_group_x + 13;
+										}
+										return leaf_group_x + 3
+										})
+									.attr("y", function(d){
+										//console.log("but are we here?")
+										if(two_window){
+											var chosen = domainScale(d.offset);
+											return chosen;
+										}
+										if(d.domain_start == 3){
+										//	console.log("draw domain from "+sequence_start_y+" and "+domainScale(d.domain_start)+" to "+(sequence_start_y + domainScale(d.domain_start))+"("+d.domain_start+")");
+										//	console.log(sequence_start_y + domainScale(d.domain_start));
+										}
+										return sequence_start_y + domainScale(d.domain_start);
+									})
+									.attr("class", "cigar_rect")
+									.attr("visibility",visibility)
+									//.attr("rx", 5)
+									//.attr("ry", 5)
+									.attr("transform", "matrix(1,0,0,1,100,0)")
+									//.attr("stroke", "none")
+									.attr("width", function(d){
+										//console.log("width is "+sequence_rect_width + 4);
+										return sequence_rect_width;})
+									.attr("height", function(d){
+										var length = d.length;
+										return domainScale(length);
+									})
+									.attr("transform", "rotate(-90 100 100)")
+									.attr("fill", 
+									function(d,i){
+											if(d.type == "M") {
+												return "green";
+											}
+											else{
+												return "white";
+											}
+										})
+										.on('mouseover', show_domain_information);          
+			//console.log("finished?")
+			return all_domains;
+			
+	}
+	
 	function draw_domains(args){
 		var domains = args.domains;
 		var sequence_start_y = args.sequence_start_y;
@@ -655,86 +1022,107 @@
 		var visibility = args.visibility;
 		var diff_domain_counter = 0;
 		
-		console.log(domain_colors);
+		console.log(domains);
 		console.log("drawing domains");
 		var domain2color = {};
 		
-		var domainsExit = domains.exit().remove();
+		//var domainsExit = domains.exit().remove();
 		var all_domains =  domains.enter()
-		.append("a")
-		.attr("xlink:href", function(d) {
-			console.log("am I here?"+d.name);
-			return "http://pfam.sanger.ac.uk/family/"+d.name})
-		.attr("target", "_blank")
-		.append("rect")
-		.attr("x", function(d){
-			console.log("I am even here");
-			if(two_window){
-				leaf_group_x + 13;
-			}
-			return leaf_group_x + 3
-			})
-		.attr("y", function(d){
-			if(two_window){
-				return domainScale(d.domain_start);
-			}
-			if(d.domain_start == 3){
-				console.log("draw domain from "+sequence_start_y+" and "+domainScale(d.domain_start)+" to "+(sequence_start_y + domainScale(d.domain_start))+"("+d.domain_start+")");
-				console.log(sequence_start_y + domainScale(d.domain_start));
-			}
-			return sequence_start_y + domainScale(d.domain_start);
-		})
-		.attr("class", "domain")
-		.attr("visibility",visibility)
-		.attr("rx", 5)
-		.attr("ry", 5)
-		.attr("transform", "matrix(1,0,0,1,100,0)")
-		.attr("stroke", "none")
-		.attr("width", function(d){return sequence_rect_width + 4;})
-		.attr("height", function(d){
+									.append("a")
+									.attr("xlink:href", function(d) {
+										//console.log("am I here?"+d.name);
+										return "http://pfam.sanger.ac.uk/family/"+d.name})
+									.attr("target", "_blank")
+									.append("rect")
+									.attr("x", function(d){
+										//console.log("I am even here");
+										if(two_window){
+											leaf_group_x + 13;
+										}
+										return leaf_group_x + 3
+										})
+									.attr("y", function(d){
+										//console.log("but are we here?")
+										if(two_window){
+											return domainScale(d.domain_start);
+										}
+										if(d.domain_start == 3){
+											console.log("draw domain from "+sequence_start_y+" and "+domainScale(d.domain_start)+" to "+(sequence_start_y + domainScale(d.domain_start))+"("+d.domain_start+")");
+											console.log(sequence_start_y + domainScale(d.domain_start));
+										}
+										return sequence_start_y + domainScale(d.domain_start);
+									})
+									.attr("class", "domain")
+									.attr("visibility",visibility)
+									.attr("rx", 5)
+									.attr("ry", 5)
+									.attr("transform", "matrix(1,0,0,1,100,0)")
+									.attr("stroke", "none")
+									.attr("width", function(d){
+										//console.log("width is "+sequence_rect_width + 4);
+										return sequence_rect_width + 4;})
+									.attr("height", function(d){
 			
-			var length = domainScale(d.domain_stop - d.domain_start);
-			console.log("sequence_rect: appending source is "+length);
-			//console.log("transform domain length "+(d.domain_stop - d.domain_start)+" to "+length);
-			return length;
-		})
-		.attr("transform", "rotate(-90 100 100)")
-		.attr("fill-opacity",0.8) 
-		.attr("fill", 
-		//                        "url(#domain_gradient)")
-		//                        ;
-		function(d,i){
-			//console.log("checking for "+d.name+" in domain2color");
-			//                                if( d.name in domain2color ) {
-				if( domain2color[d.name] === undefined ) {
-					//console.log("not found");
-					domain2color[d.name] = domain_colors[diff_domain_counter % 6];
-					//console.log(d.name+" is "+diff_domain_counter+" and will use: "+domain2color[d.name]+ " length is "+domain_colors.length);
-					diff_domain_counter++;
-					return "url(#"+domain2color[d.name]+")";
-				}
-				else{
-					//console.log("found! using "+domain2color[d.name]);
-					return "url(#"+domain2color[d.name]+")";
-				}
-				//                            return "url(#"+domain_colors[i]+")";
-			})
-			.on('mouseover', show_domain_information);          
+										var length = domainScale(d.domain_stop - d.domain_start);
+										//console.log("sequence_rect: appending source is "+length);
+										//console.log("transform domain length "+(d.domain_stop - d.domain_start)+" to "+length);
+										return length;
+									})
+									.attr("transform", "rotate(-90 100 100)")
+									.attr("fill-opacity",0.8) 
+									.attr("fill", 
+									//                        "url(#domain_gradient)")
+									//                        ;
+									function(d,i){
+										//console.log("checking for "+d.name+" in domain2color");
+										//                                if( d.name in domain2color ) {
+											if( domain2color[d.name] === undefined ) {
+												//console.log("not found");
+												domain2color[d.name] = domain_colors[diff_domain_counter % 6];
+												//console.log(d.name+" is "+diff_domain_counter+" and will use: "+domain2color[d.name]+ " length is "+domain_colors.length);
+												diff_domain_counter++;
+												return "url(#"+domain2color[d.name]+")";
+											}
+											else{
+												//console.log("found! using "+domain2color[d.name]);
+												return "url(#"+domain2color[d.name]+")";
+											}
+											//                            return "url(#"+domain_colors[i]+")";
+										})
+										.on('mouseover', show_domain_information);          
 			//console.log("finished?")
 			return all_domains;
 			
 	}
 	
 	
-	function get_right_leaf_name(d){
+	function get_right_leaf_name(args){
+		var d = args.d;
+		var right2left = args.right2left;
+		var default_view = args.default_view;
+		var annotation_option = args.annotation_option;
 		var display_name;
-        if(d.children){
+		
+		if(right2left){
+			return d.name;
+		}
+		else if(d.children){
 				return d.name;
         }
+		else if(annotation_option === "species_genes"){
+				return d.name;
+		}
+		else if(d._children && d._species_collapsed){
+			return d.name+": "+d._collapsed_children+" species";
+		}
+		else if(d._children){
+			var name_copy = d.name;
+			name_copy=name_copy.replace(/_\d+/g, '');
+			return name_copy+" ("+d._collapsed_children+")";
+		}
         else{
-			
 			if(d.sequences){
-				return d.taxon+" ( "+d.sequences.length+" genes)"; 
+				return d.taxon+", "+d.sequences.length+" genes"; 
 			}
 			else{
 				if(d.swissprot_protein_name && ! d.swissprot_protein_name == "N/A"){
@@ -742,7 +1130,16 @@
 					display_name = d.swissprot_protein_name;
 				}
 				else {
-					if(d.display_label && !d.display_label == "") {
+				if(default_view === "uniprot"){
+						if(d.uniprot_name == "NaN" || d.uniprot_name == "N/A"){
+         					display_name = "not mapped";
+         				}
+						else{
+							display_name = d.uniprot_name;
+						}
+				}
+				else {
+						if(d.display_label && !d.display_label == "") {
 						//console.log("add display_label: "+d.display_label);
 						if(d.display_label.length > 20 ){
 							display_name = d.display_label.substring(0,15);
@@ -754,6 +1151,7 @@
 					else{
 						display_name = "N/A";
 					}
+				}
 				}
 				//console.log("display_name is "+display_name);
 				if(d.common_name == "NaN" || d.common_name == "N/A"){
@@ -895,17 +1293,33 @@ function draw_synteny(args){
 function draw_images(args){
      	var nodeEnter = args.nodeEnter;
      	var image_path = args.image_path;
+		var right2left = args.right2left;
+		
+		//var value2use = args.value2use || taxon;
      	
      	var images = nodeEnter.append("svg:image")
             .attr("y", -10)
-            .attr("x", 12.5)
+            .attr("x", function(d){
+				if(right2left){return -15;}
+				return 12.5;
+			})
             .attr("text-anchor", function(d){ return  "end";})
+            .attr("opacity", function(d){ 
+					if(d.is_lost){ return 0.2;}
+					else{return  "end";}
+				})
             .attr("width", 20).attr("height", 20)
             //.attr("xlink:href", function(d) { return d.children == null? image_path+"/thumb_"+d.taxon+".png" : "";  });
-        .attr("xlink:href", function(d) { 
-				var image_file = image_path+"/thumb_"+d.taxon+".png";
+			.attr("xlink:href", function(d) { 
+				var image_file;
+				if(d.taxon == "NaN"){
+					image_file = image_path+"/thumb_"+d.name+".png";
+				}
+				else{
+					image_file = image_path+"/thumb_"+d.taxon+".png";
+				}
 				//console.log("plotting image for "+d.taxon+" "+image_path+" -> "+image_file);
-				if(!d.children  || typeof d.children === 'undefined'){
+				if(!d.children  && !d._children || typeof d.children === 'undefined' || !d.taxon == "NaN"){
 					return image_file;
 				}
 				else{return "";}
@@ -943,7 +1357,6 @@ function draw_images(args){
 		   })
 		   //.attr("stroke","black")
 		   .attr("stroke-width","5px");
-		   ;
      	
     }
 
@@ -951,23 +1364,46 @@ function draw_images(args){
 	     	var nodeEnter = args.nodeEnter;
 			var target = args.target;
 			var level2color = new Object();
+			var previous_taxon = "";
+			level2color["Primates"] = "1";
+			//level2color["Murinae"] = "1";
+			level2color["Euarchontoglires"]  = "1";
+			level2color["Vertebrata"]  = "1";
+			
+			//level2color["Protostomia"] = "1";
+			level2color["Lophotrochozoa"] = "1";
+			level2color["Ecdysozoa"] = "1";
 
-			level2color["Primates"] = 1;
-			level2color["Murinae_1"] = "re";
-			level2color["Euarchontoglires_2"]  = "blue";
-			level2color["Euteleostomi_3"]  = "orange";
+			level2color["Laurasiatheria"] = "1";
+			level2color["Clupeocephala"] = "1";
+			level2color["Laurasiatheria"] = "1";
+			
+			
+			
+			
 			// iterate over internal nodes
 			// have a set of nodes to annotate
 			rect_data = [];
-			
+				
 			d3.select("#"+target).selectAll("g.node").each(function(d) {
 				if(d.children){
 					//console.log("checking name: "+d.name);
-					if(level2color.hasOwnProperty(d.name)){
+					var name_copy = d.name;
+					name_copy=name_copy.replace(/_\d+/g, '');
+					//console.log("looking at replaced: "+name_copy+" dupl?: "+d.duplication);
+					if(level2color.hasOwnProperty(name_copy) || d.depth === 1 || d.depth === 0){
 						//console.log("should be colered");
+						//if(d.depth === 0){
+
+						//}	
+						if(previous_taxon == name_copy){
+							//console.log("well, it is equal. do nothing for "+d.name+"!!!");
+							return "";
+						}
+						
 						var all_childs = get_all_childs(d);
-						console.log("have "+all_childs.length+" childen");
-						console.log(all_childs);
+						//console.log("have "+all_childs.length+" childen");
+						//console.log(all_childs);
 						var min_x =9000, max_x =0, curr_y,max_y;
 						curr_y = d.y;
 						jQuery.each(all_childs, function(t,node){
@@ -993,8 +1429,11 @@ function draw_images(args){
 						var rect_height = max_y - curr_y + 550;
 						var rect_x = max_x - d.x+8;
 						rect_x = -rect_x;
-						//console.log("plot a rect from "+rect_y+" heigth: "+rect_height+"("+max_y+"-"+curr_y+") width: "+rect_width+" min_x:"+min_x+" max_x:"+max_x);
+						
+						
+						console.log("plot a rect from "+rect_y+" heigth: "+rect_height+"("+max_y+"-"+curr_y+") width: "+rect_width+" min_x:"+min_x+" max_x:"+max_x);
 						rect_data[d.name] = {"rect_x" : rect_x,"rect_y": rect_y, "rect_height": rect_height, "rect_width": rect_width};
+						previous_taxon = name_copy;
 					}
 				}
 			})
@@ -1041,16 +1480,24 @@ function draw_images(args){
 // ToolTip
 	function add_tipsy(args){
 			var where = args.where;
-			console.log("where is "+where);
+			var default_view = args.default_view;
+			//console.log("where is "+where);
 			if(where == ".leaf_label"){
-					console.log("in leaf label");
+					//console.log("in leaf label");
 					jQuery(where).tipsy({ 
 					gravity: 'se', 
 					html: true, 
 					title: function() {
 					   var c = "red";
 					   var e = this.__data__;
-					  return 'ID: '+e.name+'<br>Taxon: '+e.taxon+" <br>Gene name: "+e.display_label+"<br>"; 
+						var text;
+						if(default_view === "uniprot"){
+							text = 'Taxon: '+e.taxon+'<br>ID: '+e.uniprot_name+"<br>Common name: "+e.common_name+"<br>Gene name: "+e.display_label+"<br>"; 
+						}
+						else{
+							text = 'Taxon: '+e.taxon+'<br>ID: '+e.name+"<br>Common name: "+e.common_name+"<br>Gene name: "+e.display_label+"<br>"; 
+						}
+					  return text; 
 					}
 				  });
 
@@ -1067,24 +1514,39 @@ function draw_images(args){
 					}
 				  });
 			}
+			else if(where == ".clade_tax_rect"){
+					jQuery(where).tipsy({ 
+					gravity: 'e', 
+					html: true, 
+					title: function() {
+						
+					   var c = "red";
+					   var e = this.__data__;
+   						var name_copy = e.name;
+   						name_copy=name_copy.replace(/_\d+/g, '');
+					  return name_copy+'<br>'; 
+					}
+				  });
+			}
+		else if(where == ".gene_box_rect"){
+					jQuery(where).tipsy({ 
+					gravity: 'w', 
+					html: true, 
+					title: function() {
+						
+					   var c = "red";
+					   var e = this.__data__;
+					  return 'name: '+e.name+'<br>species: '+e.species_name+'<br>display_label: '+e.display_label+'<br>'; 
+					}
+				  });
+			}	
+			
 	}
-	function toggleAll(d) {
-	        if (d.children) {
-	          d.children.forEach(toggle);
-	          click(d);
-	        }
-	}
-      
-// Toggle children.
-	function toggle(d) {
-	  if (d.children) {
-	    d._children = d.children;
-	    d.children = null;
-	  } else {
-	    d.children = d._children;
-	    d._children = null;
-	  }
-	}  
+	Array.prototype.insert = function (index, item) {
+	  this.splice(index, 0, item);
+	};
+	
+ 
 	  
 	  
 	function draw_blank_rects(args){
@@ -1132,7 +1594,7 @@ function draw_images(args){
 				var target = args.target;
 				var SwissProt2colorDictionary = new Object();
 				var Taxa2colorDictionary = new Object();
-				var p=d3.scale.category20b();
+				var p=d3.scale.category20();
 				var r=p.range(); // ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", 
 	                      // "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
 				var i = 0;
@@ -1142,19 +1604,17 @@ function draw_images(args){
 				
 				//console.log("one color is "+p(0));
 				//d3.select("#tree svg").selectAll(".leaf_label")
-				var all_available_node = d3.select("#"+target).selectAll("g.node").filter(function(d){return !d.children});
+				var all_available_node = d3.select("#"+target).selectAll("g.node").filter(function(d){return !d.children && !d._children});
+				
+
 				all_available_node.append("rect")
-					//.on('mouseover', show_gene_information)
 	                .attr("x", function(d){
 						return -6;
 					})
 	                .attr("y", function(d){
 						return 33;
 					})
-	                .attr("class", function(d){
-						return "tax_color_rect";
-					})
-					//.attr("visibility",visibility)
+	                .attr("class", "tax_color_rect")
 	                .attr("width", function(d){
 							return "12";
 					})
@@ -1164,7 +1624,7 @@ function draw_images(args){
 	               .attr("transform", function(d){
 					   return d.children ? "1":"rotate(-90)";
 				   })
-	               .attr("fill", function(d){
+	               .attr("fill", function(d){ 
 			               	//console.log("looking at "+d.swissprot_protein_name);
 							if(how_to_color_hash.hasOwnProperty(d.display_label)){
 									if(how_to_color_hash[d.display_label] == "N/A" || how_to_color_hash[d.display_label] == ""){
@@ -1176,35 +1636,24 @@ function draw_images(args){
 										return "grey";
 									}
 									else{
-							               	//if(d.swissprot_gene_name == 'N/A' || d.swissprot_gene_name == "undefined"){
-							               	//		//console.log("no color");
-									        //       	return "none";
-							               	//}
 											if( SwissProt2colorDictionary[d.display_label] === undefined ) {
 					                                    SwissProt2colorDictionary[d.display_label] = p(i % p.range().length);
-								               			html  = html + "<span style='opacity:0.6; background-color:"+SwissProt2colorDictionary[d.display_label]+"'>";
-														html = html + "<a href='http://www.uniprot.org/uniprot/?query="+d.display_label+"+AND+reviewed%3Ayes&sort=score'>";
-														html = html + d.swissprot_gene_name+"</a></span>: "+d.display_label+"</div><br>";
+								      //          			html  = html + "<span style='opacity:0.6; background-color:"+SwissProt2colorDictionary[d.display_label]+"'>";
+														// html = html + "<a href='http://www.uniprot.org/uniprot/?query="+d.display_label+"+AND+reviewed%3Ayes&sort=score'>";
+														// html = html + d.swissprot_gene_name+"</a></span>: "+d.display_label+"</div><br>";
 					                                    i++;
-					                                    return SwissProt2colorDictionary[d.display_label];
-					                				}
-					                else{
-					                                    //console.log("found! using "+domain2color[d.name]);
-					                                    //ID2Color[d.name] = SwissProt2colorDictionary[d.swissprot_gene_name];
-					                                    return SwissProt2colorDictionary[d.display_label];
-									}	
+					                		}
+					                         return SwissProt2colorDictionary[d.display_label];
 								}
 							}
 							else{
 								return "";
 							}
 			               })
-	               .attr("fill-opacity",
-				   function(d){
-					   return 0.2
-				   });
-               
-	               
+
+	               .attr("fill-opacity",function(d){ return 0.4 })
+	               ;
+               var test;
 	               // draw legend
 				   
 				  // show_general_information({swissprot_annotation: html});
@@ -1215,19 +1664,17 @@ function draw_images(args){
 				var target = args.target;
 				var SwissProt2colorDictionary = new Object();
 				var Taxa2colorDictionary = new Object();
-				var p=d3.scale.category20b();
+				var p=d3.scale.category20c();
 				var r=p.range(); // ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", 
 	                      // "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
-		  		var p_taxa=d3.scale.category10();
+		  		var p_taxa=d3.scale.category20b();
 		  		var r_taxa=p_taxa.range();		  
 				
 				var i = 0;
 				var i_taxa = 0;
 				var html ="";
-				
+				var previous_taxon = "";
 				console.log(subtree_colors);
-				//test
-				
 				
 				//console.log("one color is "+p(0));
 				//d3.select("#tree svg").selectAll(".leaf_label")
@@ -1244,6 +1691,7 @@ function draw_images(args){
 							return subtree_colors[d.name].rect_width;
 					})
 	                .attr("height", function(d){
+							return 1500;
 							return subtree_colors[d.name].rect_height;
 	                })
 	               .attr("transform", function(d){
@@ -1251,13 +1699,22 @@ function draw_images(args){
 				   })
 	               .attr("fill", function(d){
 			               	//console.log("looking at "+d.swissprot_protein_name);
+							// avoid duplicates
+								var name_copy = d.name;
+								name_copy=name_copy.replace(/_\d+/g, '');
+								//console.log("check if "+previous_taxon+" == "+name_copy);
 								if( Taxa2colorDictionary[d.name] === undefined ) {
 									Taxa2colorDictionary[d.name] = p_taxa(i_taxa % p_taxa.range().length);
 									i_taxa++;
 								}
+								
+								//console.log("setting "+previous_taxon+" == "+name_copy);
 								return Taxa2colorDictionary[d.name];
 			               })
 	               .attr("fill-opacity",function(d){return 0.1;});
+				   
+				 return Taxa2colorDictionary;  
+				   
 	}
 
 	function show_general_information(args){
@@ -1280,7 +1737,7 @@ function draw_images(args){
 		var swissprot_annotation =  d.swissprot_protein_name|| "NaN";
         // draw legend
 		
-		var url = species2sourceDB_mapping({species : taxon, identifier: id});
+		var url = species2sourceDB_mapping({species : taxon, identifier: id, default_view : default_view});
 		//console.log('ID: '+id+'<br>Taxon: '+taxon+" <br>Gene name: "+gene_name+"<br>Swiss-Prot annotation: "+swissprot_annotation+"");
         jQuery("#container_seq_id").html("<a href='"+url+"' target='_blank')>"+id+"</a> ");
         jQuery("#container_taxon_id").html("<font font-style='italic'>"+taxon+"</font>");
@@ -1341,7 +1798,7 @@ function draw_images(args){
 		.attr("width", function(d){return sequence_rect_width;})
 		.attr("height", function(d){
 			var length = 40;
-			console.log("sequence_rect: appending source is "+d.x);
+			//console.log("sequence_rect: appending source is "+d.x);
 			//console.log("transform domain length "+(d.domain_stop - d.domain_start)+" to "+length);
 			return length;
 		})
@@ -1425,7 +1882,7 @@ function draw_images(args){
 		
   	     d3.select("#"+target+" svg").selectAll(".tax_color_rect").attr("visibility", "hidden");
          d3.select("#"+target+" svg").selectAll(".leaf_label").text(function(d) { 
-			 return get_right_leaf_name(d);
+			 return get_right_leaf_name({d:d});
         });
     }
 	function show_leaf_uniprot(args) {
@@ -1449,10 +1906,10 @@ function draw_images(args){
 					}
 					if(d.children){
 						return "";
-						return_string = return_string +" ("+d.name+")";
+						return_string = return_string +", "+d.name;
 					}
 					else{
-						return_string = return_string +" ("+d.common_name+")";
+						return_string = return_string +", "+d.common_name;
 					}
 					return return_string;
          	})
@@ -1941,11 +2398,11 @@ function draw_images(args){
 		var id = args.identifier;
 		
 		//console.log("in url lookup with "+species+" and id: "+id);
+		var url = "";
 		var ensembl_species = new Object();
-		
 		var ensembl_genomes_species = new Object();
 		var species2db = new Object();
-		var url = "";
+
 		species2db["acyrthosiphon_pisum"] = "http://metazoa.ensembl.org/id/";
 		species2db["aedes_aegypti"] = "http://metazoa.ensembl.org/id/";
 		species2db["ailuropoda_melanoleuca"] = "http://www.ensembl.org/id/";
@@ -2060,14 +2517,13 @@ function draw_images(args){
 		if(species == "capitella_teleta"){
 		}
 		
-		console.log("Looking at id "+id+" from species "+species);
+		//console.log("Looking at id "+id+" from species "+species);
 		if(species == undefined){
 			return "";
 		}
 		
 		url = species2db[species.toLowerCase()]+id;
 		//console.log("url is "+url);
-		
 		// return URL for given ID
 		return url;
 	}

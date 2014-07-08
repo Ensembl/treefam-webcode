@@ -15,7 +15,7 @@ requirements.css.push( "buttons.css" );
 # For tables
 requirements.css.push( "demo_table.css" );
 requirements.css.push( "TreeFamily.css" );
-requirements.js.push( "jquery/jquery-1.6.2.min.js" );
+requirements.js.push( "jquery/jquery-1.8.2.min.js" );
 requirements.js.push( "jquery/jquery.dataTables.min.js" );
 
 ## Zoom
@@ -33,7 +33,7 @@ requirements.js.push( "jquery/jquery.dataTables.min.js" );
 #requirements.css.push( "magiczoom/magiczoom.css" );
 # For Tree
 #requirements.js.push( "d3/d3.min.js" );
-requirements.js.push( "d3/d3.v2.js" );
+requirements.js.push( "d3/d3.v3.js" );
 #requirements.js.push( "d3/d3.time.js" );
 #requirements.js.push( "jquery/jquery-1.6.2.min.js" );
 requirements.js.push( "d3/d3.layout.js" );

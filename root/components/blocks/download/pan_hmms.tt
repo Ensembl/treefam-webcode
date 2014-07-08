@@ -1,0 +1,183 @@
+[%
+# index.tt
+# jt6 20070426 WTSI
+# 
+# build a "browse" index page
+#
+# $Id: index.tt,v 1.6 2008-12-08 13:01:06 jt6 Exp $
+
+META title = "Browse TreeFam";
+#META fullPage = 1;
+
+#USE dumper;
+#requirements.js.push( "jquery/jquery.tipsy.js" );
+#requirements.js.push( "jquery/jquery.dataTables.min.js" );
+
+## Zoom
+#requirements.css.push( "ajax_zoom/jquery.fancybox-1.2.6.css" );
+#requirements.css.push( "ajax_zoom/axZm.css" );
+#requirements.js.push( "ajax_zoom/jquery.axZm.js" );
+#requirements.js.push( "ajax_zoom/jquery.fancybox-1.2.6.js" );
+
+# Fancybox
+#requirements.css.push( "fancybox/jquery.fancybox.css" );
+#requirements.js.push( "fancyapps/lib/jquery.mousewheel-3.0.6.pack.js" );
+#requirements.js.push( "fancyapps/source/jquery.fancybox.pack.js" );
+
+#requirements.js.push( "magiczoom/magiczoom.js" );
+#requirements.css.push( "magiczoom/magiczoom.css" );
+# For Tree
+#requirements.js.push( "d3/d3.min.js" );
+#requirements.js.push( "d3/d3.v2.js" );
+#requirements.js.push( "d3/d3.time.js" );
+#requirements.js.push( "jquery/jquery-1.6.2.min.js" );
+#requirements.js.push( "d3/d3.layout.js" );
+#requirements.css.push( "speciestree.css" );
+
+#requirements.js.push( "featuredimagezoomer/featuredimagezoomer.js" );
+
+requirements.js.push( "prototype.js" );
+requirements.js.push( "sharedFunctions.js" );
+
+
+#-------------------------------------------------------------------------------
+# specify required stylesheets and javascript files 
+
+
+#-------------------------------------------------------------------------------
+META title = "Download TreeFam";
+
+-%]
+
+<div class="block" id="downloadPanHMMBlock">
+  <div class="handle">
+    <h1>Pan HMMs</h1>
+  </div>
+  <div class="blockContent">
+
+
+<div id="chart">
+</div>
+
+<script>
+//jQuery("#example-basic").treetable({ expandable: true });
+//jQuery("#prot_classification").treetable({ expandable: true });
+
+
+nv.addGraph(function() {
+  var chart = nv.models.indentedTree()
+                .tableClass('table table-striped') //for bootstrap styling
+                .columns([
+                  {
+                    key: 'key',
+                    label: 'Name',
+                    showCount: true,
+                    width: '75%',
+                    type: 'text',
+                    classes: function(d) { return d.url ? 'clickable name' : 'name' },
+                    click: function(d) {
+                       if (d.url) window.location.href = d.url;
+                    }
+                  },
+                  {
+                    key: 'all_hmms',
+                    label: 'All HMMs',
+                    width: '25%',
+                    type: 'text'
+                  },
+                  {
+                    key: 'family',
+                    label: 'Family',
+                    width: '25%',
+                    type: 'text'
+                  },
+                  {
+                    key: 'subfamily',
+                    label: 'Subfamily',
+                    width: '25%',
+                    type: 'text'
+                  }                ]);
+
+
+  d3.select('#chart')
+      .datum(testData())
+    .call(chart);
+
+  return chart;
+});
+function testData() {
+ return 
+[
+  {
+    "key": "All HMMs",
+    "url": "http://novus.github.com/nvd3",
+    "values": [
+      
+      {"key": "Protists",
+            "all_hmms": "20000",
+            "family": "3000",
+            "subfamily": "17000",
+            "url": "http://novus.github.com/nvd3/ghpages/line.html"
+      },
+      {"key": "Plants",
+            "all_hmms": "20000",
+            "family": "3000",
+            "subfamily": "17000",
+            "url": "http://novus.github.com/nvd3/ghpages/line.html"
+      },
+      {"key": "Fungi",
+            "all_hmms": "20000",
+            "family": "3000",
+            "subfamily": "17000",
+            "url": "http://novus.github.com/nvd3/ghpages/line.html"
+      },
+      {
+        "key": "Animals",
+        "_values": [
+          {
+            "key": "Metazoa",
+            "all_hmms": "20000",
+            "family": "3000",
+            "subfamily": "17000",
+            "url": "http://novus.github.com/nvd3/ghpages/line.html"
+          },
+          {
+            "key": "Vertebrates",
+            "all_hmms": "20000",
+            "family": "3000",
+            "subfamily": "17000",
+            "url": "http://novus.github.com/nvd3/ghpages/line.html"
+          }
+
+        ]
+      }
+    ]
+  }
+];
+
+}
+
+</script>
+</div>
+</div>
+
+<!-- end of browse index page -->
+
+[%#
+Copyright (c) 2007: Genome Research Ltd.
+
+Authors: John Tate (jt6@sanger.ac.uk), Paul Gardner (pg5@sanger.ac.uk), Jennifer Daub (jd7@sanger.ac.uk)
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <http://www.gnu.org/licenses/>.
+-%]

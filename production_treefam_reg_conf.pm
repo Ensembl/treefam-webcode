@@ -51,22 +51,22 @@ use Bio::EnsEMBL::Compara::DBSQL::DBAdaptor;
 
 
 # Master
-#Bio::EnsEMBL::Compara::DBSQL::DBAdaptor->new(
-    #-host => 'web-mei-treefam',
-    #-user => 'treefam_user',
-    #-pass => 'readonly',
-    #-port => 3365,
-    #-species => 'TreeFam',
-    #-dbname => 'treefam_homology_67hmm',
-#);
 Bio::EnsEMBL::Compara::DBSQL::DBAdaptor->new(
-    -host => 'oy-mysql-treefam-rel',
+    -host => 'mysql-treefam-rel',
     -user => 'admin',
     -pass => '', # Don't forget to set this one !!
     -port => 4402,
     -species => 'TreeFam',
-    -dbname => 'treefam_production_9_69',
+    -dbname => 'TreeFam10',
 );
+#Bio::EnsEMBL::Compara::DBSQL::DBAdaptor->new(
+#    -host => 'mysql-treefam-prod',
+#    -user => 'admin',
+#    -pass => '', # Don't forget to set this one !!
+#    -port => 4401,
+#    -species => 'TreeFam',
+#    -dbname => 'treefam_production_9_69',
+#);
 #Bio::EnsEMBL::Compara::DBSQL::DBAdaptor->new(
     #-host => 'web-mei-treefam',
     #-user => 'treefam_admin',
