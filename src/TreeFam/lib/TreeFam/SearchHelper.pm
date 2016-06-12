@@ -416,8 +416,8 @@ sub check_valid_sequence{
 	if($member){
 		print "done (found) extract information\n";
 		$found_member = 1;
-		if($member->get_canonical_Member){   # is a protein member
-				$prot_member = $member->get_canonical_Member();
+		if($member->get_canonical_SeqMember){   # is a protein member
+				$prot_member = $member->get_canonical_SeqMember();
 				print "switched to protein member\n";
 		}
 		return $member;
@@ -458,8 +458,8 @@ sub get_MemberInformation4seq{
 	if($member){
 		print "done (found) extract information\n";
 		$found_member = 1;
-		if($member->get_canonical_Member){   # is a protein member
-				$prot_member = $member->get_canonical_Member();
+		if($member->get_canonical_SeqMember){   # is a protein member
+				$prot_member = $member->get_canonical_SeqMember();
 				print "switched to protein member\n";
 		}
 		#print "get external references now, searching for ".$prot_member->dbID."\n";
@@ -508,11 +508,11 @@ sub get_MemberInformation4seq{
 		#	#push(@{$resultset}, {"homologies" => $homologies});
 		#	$resultset->{"homologies"} = $homologies;
 		#}
-		if($member->get_canonical_Member){   # is a protein member
-				$prot_member = $member->get_canonical_Member();
+		if($member->get_canonical_SeqMember){   # is a protein member
+				$prot_member = $member->get_canonical_SeqMember();
 				print "switched to protein member\n";
 			$sequence = $prot_member->sequence();
-			$sequence_cds = $prot_member->sequence_cds();
+			$sequence_cds = $prot_member->other_sequence('cds');
 		}
 
 	
@@ -548,8 +548,8 @@ sub get_all_for_sequence_id{
 	if($member){
 		print "done (found) extract information\n";
 		$found_member = 1;
-		if($member->get_canonical_Member){   # is a protein member
-				$prot_member = $member->get_canonical_Member();
+		if($member->get_canonical_SeqMember){   # is a protein member
+				$prot_member = $member->get_canonical_SeqMember();
 				print "switched to protein member\n";
 		}
 		print "get external references now, searching for ".$prot_member->dbID."\n";
@@ -591,11 +591,11 @@ sub get_all_for_sequence_id{
 			#push(@{$resultset}, {"homologies" => $homologies});
 			$resultset->{"homologies"} = $homologies;
 		}
-		if($member->get_canonical_Member){   # is a protein member
-				$prot_member = $member->get_canonical_Member();
+		if($member->get_canonical_SeqMember){   # is a protein member
+				$prot_member = $member->get_canonical_SeqMember();
 				print "switched to protein member\n";
 			$sequence = $prot_member->sequence();
-			$sequence_cds = $prot_member->sequence_cds();
+			$sequence_cds = $prot_member->other_sequence('cds');
 		}
 
 	}

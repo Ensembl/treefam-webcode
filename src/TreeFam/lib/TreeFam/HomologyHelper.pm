@@ -152,8 +152,8 @@ sub encode_homologies{
 		else{
 			my ($source,$target) = ($homologue_genes->[0],$homologue_genes->[1]);
 			my %pair_hash;
-			my ($source_protein_id,$target_protein_id) = ($source->get_canonical_Member->stable_id,$target->get_canonical_Member->stable_id);
-			my ($source_protein_sequence,$target_protein_sequence) = ($source->get_canonical_Member->sequence(),$target->get_canonical_Member->sequence());
+			my ($source_protein_id,$target_protein_id) = ($source->get_canonical_SeqMember->stable_id,$target->get_canonical_Member->stable_id);
+			my ($source_protein_sequence,$target_protein_sequence) = ($source->get_canonical_SeqMember->sequence(),$target->get_canonical_Member->sequence());
 			# source
 					$pair_hash{"source"} = {
 							"protein_id" => $source_protein_id,
@@ -171,7 +171,7 @@ sub encode_homologies{
 			# type
 				$pair_hash{"tf_family"} = $tf_family;
 				$pair_hash{"type"} = $this_homology->description();
-				$pair_hash{"subtype"} = $this_homology->subtype();
+				$pair_hash{"subtype"} = $this_homology->taxonomy_level();
 				
 				#my $target_fasta = ">".$target_protein_id."\n".$target_protein_sequence;	
 				#my $source_fasta = ">".$source_protein_id."\n".$source_protein_sequence;
