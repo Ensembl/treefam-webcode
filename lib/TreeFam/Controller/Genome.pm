@@ -233,7 +233,7 @@ sub get_data : Private {
         $species_name =~ tr/_/ /;
   $proteomeSpecies{species} =  $species_name;
   $proteomeSpecies{ncbi_taxid}{ncbi_taxid} =  $found_genome->taxon_id;
-  my $sp_gene_count = $member_adaptor->get_source_taxon_count('ENSEMBLPEP',$found_genome->taxon_id);
+  my $sp_gene_count = $member_adaptor->generic_count('source_name = "ENSEMBLPEP" AND genome_db_id = '.($found_genome->dbID));
   $proteomeSpecies{total_genome_proteins} = $sp_gene_count; 
   $proteomeSpecies{num_total_regions} =  "NaN";
   $proteomeSpecies{sequence_coverage} =  "NaN";
